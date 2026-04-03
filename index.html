@@ -519,6 +519,31 @@
     .testi-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
   }
+
+  /* ── GALLERY ── */
+  .gallery-bg { background: var(--cream); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .gallery-item {
+    overflow: hidden;
+    border-radius: 2px;
+    aspect-ratio: 3/4;
+    position: relative;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.03); }
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -529,6 +554,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#sessions">Sessions</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#book">Book</a></li>
     <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
   </ul>
@@ -772,7 +798,7 @@
         <div class="info-block">
           <p class="info-label">Contact Directly</p>
           <div class="info-body">
-            <p><strong>Email</strong><br>soundhealingwithnishi@gmail.com</p>
+            <p><strong>Email</strong><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b58445e454f434e4a4742454c5c425f4345425843426b4c464a424705484446">[email&#160;protected]</a></p>
             <br>
             <p><strong>Phone / WhatsApp</strong><br>+1 (201) 982-5777</p>
             <br>
@@ -808,30 +834,21 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section testi-bg">
+
+<!-- GALLERY -->
+<section class="section gallery-bg" id="gallery">
   <div class="section-inner">
-    <p class="label">Experiences</p>
-    <h2 class="display-title">What people <em>feel</em></h2>
+    <p class="label">Gallery</p>
+    <h2 class="display-title">The practice <em>in motion</em></h2>
     <div class="gold-rule"></div>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <p class="testi-stars">★ ★ ★ ★ ★</p>
-        <p class="testi-quote">"I walked in with a racing mind and left feeling reset from the inside out. An experience I'll carry with me for a long time."</p>
-        <p class="testi-name">— Session participant</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="photo1.jpg" alt="Nishi with rain stick and singing bowls" loading="lazy">
       </div>
-      <div class="testi-card">
-        <p class="testi-stars">★ ★ ★ ★ ★</p>
-        <p class="testi-quote">"The combination of bowls, chimes, and Nishi's calm presence created something truly sacred. My whole body felt the vibration."</p>
-        <p class="testi-name">— Group sound bath guest</p>
-      </div>
-      <div class="testi-card">
-        <p class="testi-stars">★ ★ ★ ★ ★</p>
-        <p class="testi-quote">"Our corporate wellness event was transformed. The team left quieter, softer, more connected. Nishi has a real gift."</p>
-        <p class="testi-name">— Corporate wellness client</p>
+      <div class="gallery-item">
+        <img src="photo2.jpg" alt="Nishi playing singing bowls" loading="lazy">
       </div>
     </div>
-    <p style="text-align:center;margin-top:28px;font-size:12px;color:rgba(193,160,98,0.4);font-style:italic;font-family:'Cormorant Garamond',serif;">Replace these with real testimonials from your clients ✦</p>
   </div>
 </section>
 
@@ -856,14 +873,14 @@
           <span>waiting for you.</span>
         </h2>
         <br>
-        <a href="mailto:soundhealingwithnishi@gmail.com" class="btn-gold">Send an Email</a>
+        <a href="/cdn-cgi/l/email-protection#592a362c373d313c383530373e2e302d3137302a3130193e34383035773a3634" class="btn-gold">Send an Email</a>
       </div>
       <div class="contact-links">
         <div class="contact-item">
           <div class="contact-item-icon">✉</div>
           <div>
             <p class="contact-item-label">Email</p>
-            <a href="mailto:soundhealingwithnishi@gmail.com" class="contact-item-value">soundhealingwithnishi@gmail.com</a>
+            <a href="/cdn-cgi/l/email-protection#daa9b5afb4beb2bfbbb6b3b4bdadb3aeb2b4b3a9b2b39abdb7bbb3b6f4b9b5b7" class="contact-item-value"><span class="__cf_email__" data-cfemail="c5b6aab0aba1ada0a4a9acaba2b2acb1adabacb6adac85a2a8a4aca9eba6aaa8">[email&#160;protected]</span></a>
           </div>
         </div>
         <div class="contact-item">
@@ -890,16 +907,4 @@
   </div>
 </div>
 
-<script>
-  function handleForm(e) {
-    e.preventDefault();
-    document.getElementById('form-success').style.display = 'block';
-    e.target.reset();
-    setTimeout(() => {
-      window.location.href = 'mailto:soundhealingwithnishi@gmail.com?subject=Sound Healing Session Inquiry&body=Hi Nishi, I would love to book a session!';
-    }, 800);
-  }
-</script>
-
-</body>
-</html>
+<script data-cfasync="false
