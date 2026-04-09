@@ -386,39 +386,12 @@
     <h2 class="display-title">What people <em>feel</em></h2>
     <div class="gold-rule"></div>
 
-    <!-- VIDEO TESTIMONIALS — add more testi-video-card blocks as you collect videos -->
-    <div class="testi-video-grid">
+    <!-- VIDEO TESTIMONIALS -->
+    <div class="testi-video-grid" style="grid-template-columns: 1fr; max-width: 480px;">
       <div class="testi-video-card">
         <video controls preload="none" poster="photo3.jpg">
           <source src="testimonial1.mp4" type="video/mp4">
         </video>
-        <div class="testi-video-info">
-          <p>"Add this client's quote or feedback here."</p>
-          <span>— Client name, Charlotte NC</span>
-        </div>
-      </div>
-      <div class="testi-placeholder">
-        <div class="testi-placeholder-icon">▷</div>
-        <p>Add video testimonial 2</p>
-      </div>
-      <div class="testi-placeholder">
-        <div class="testi-placeholder-icon">▷</div>
-        <p>Add video testimonial 3</p>
-      </div>
-    </div>
-
-    <!-- WRITTEN TESTIMONIALS — add more testi-card blocks as you collect reviews -->
-    <div class="testi-written-grid">
-      <div class="testi-card">
-        <p class="testi-stars">★ ★ ★ ★ ★</p>
-        <p class="testi-quote">"Add your first real client testimonial here when you receive one."</p>
-        <p class="testi-name">— Client name</p>
-      </div>
-      <div class="testi-placeholder" style="min-height:160px;">
-        <p>Add written testimonial 2</p>
-      </div>
-      <div class="testi-placeholder" style="min-height:160px;">
-        <p>Add written testimonial 3</p>
       </div>
     </div>
   </div>
@@ -560,22 +533,4 @@ document.getElementById('contactForm').addEventListener('submit', async function
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         name: document.getElementById('fname').value,
-        email: document.getElementById('femail').value,
-        session: document.getElementById('ftype').value,
-        message: document.getElementById('fmessage').value,
-        _replyto: document.getElementById('femail').value,
-        _subject: 'New Booking Inquiry — Sound Healing with Nishi'
-      })
-    });
-    if (res.ok) {
-      document.getElementById('form-success').style.display = 'block';
-      this.reset();
-    } else { document.getElementById('form-error').style.display = 'block'; }
-  } catch(err) { document.getElementById('form-error').style.display = 'block'; }
-
-  btn.textContent = 'Send Message →';
-  btn.disabled = false;
-});
-</script>
-</body>
-</html>
+        email: document.getElementById('fem
