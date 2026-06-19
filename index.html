@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sound Healing with Nishi | Relax · Reset · Realign</title>
+<title>Sound Healing with Nishi | Charlotte, NC · Events & Sessions</title>
 <meta name="description" content="Nishi Bhansali — Certified Sound Healing Practitioner. Charlotte, NC. Private sessions, group sound baths, corporate wellness & retreats. Available worldwide.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,6 +185,216 @@
   .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 26px; font-size: 10px; letter-spacing: 1.5px; color: rgba(240,232,212,0.22); text-transform: uppercase; flex-wrap: wrap; gap: 10px; }
   .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: rgba(193,160,98,0.35); text-transform: none; }
 
+  /* ── EVENT SECTION ── */
+  .event-section { background: var(--forest-deep); position: relative; overflow: hidden; }
+  .event-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(193,160,98,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── FLOATING POPUP EVENT BAR (fixed at very top, above nav) ── */
+  .evt-popup {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 400;
+    background: var(--gold); height: 48px; overflow: hidden;
+    display: flex; align-items: center;
+    box-shadow: 0 2px 16px rgba(15,28,18,0.25);
+    transition: transform 0.4s ease;
+  }
+  .evt-popup.dismissed { transform: translateY(-100%); }
+  .evt-popup-scroll {
+    flex: 1; overflow: hidden; height: 100%; display: flex; align-items: center;
+    cursor: pointer;
+  }
+  .evt-popup-track {
+    display: flex; align-items: center; white-space: nowrap;
+    animation: popup-scroll 28s linear infinite;
+  }
+  .evt-popup-scroll:hover .evt-popup-track { animation-play-state: paused; }
+  @keyframes popup-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .evt-popup-item {
+    display: inline-flex; align-items: center; gap: 13px; flex-shrink: 0; padding: 0 24px;
+    font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--forest-deep);
+  }
+  .evt-popup-item strong { font-weight: 600; }
+  .evt-popup-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--forest-deep); opacity: 0.4; flex-shrink: 0; }
+  .evt-popup-tag {
+    background: var(--forest-deep); color: var(--gold);
+    font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+    animation: popup-pulse 2s ease-in-out infinite;
+  }
+  @keyframes popup-pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  .evt-popup-cta {
+    font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--forest-deep);
+    border-bottom: 1.5px solid rgba(26,42,32,0.5); padding-bottom: 1px;
+  }
+  .evt-popup-close {
+    flex-shrink: 0; width: 48px; height: 48px; border: none; background: transparent;
+    color: var(--forest-deep); font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    border-left: 1px solid rgba(26,42,32,0.15); transition: background 0.2s;
+  }
+  .evt-popup-close:hover { background: rgba(26,42,32,0.08); }
+
+  /* When popup is visible, push nav + hero down by 48px */
+  body.has-popup nav { top: 48px; }
+  body.has-popup .hero { padding-top: 168px; }
+
+  /* ── AS FEATURED AT — credentials strip ── */
+  .featured-strip { background: var(--cream); padding: 64px 0 56px; overflow: hidden; }
+  .featured-head { text-align: center; margin-bottom: 44px; padding: 0 24px; }
+  .featured-eyebrow {
+    font-size: 9px; font-weight: 500; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+    display: inline-flex; align-items: center; gap: 14px;
+  }
+  .featured-eyebrow::before, .featured-eyebrow::after { content: ''; width: 28px; height: 1px; background: rgba(193,160,98,0.45); }
+  .featured-title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 3vw, 34px);
+    font-weight: 300; color: var(--ink);
+  }
+  .featured-title em { font-style: italic; color: var(--forest-mid); }
+  .featured-marquee { position: relative; overflow: hidden; }
+  .featured-marquee::before, .featured-marquee::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+  }
+  .featured-marquee::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+  .featured-marquee::after { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+  .featured-track {
+    display: flex; align-items: center; gap: 0; white-space: nowrap;
+    animation: featured-scroll 36s linear infinite;
+  }
+  @keyframes featured-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .featured-item {
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+    flex-shrink: 0; padding: 0 52px; position: relative;
+    min-width: 200px;
+  }
+  .featured-item:not(:last-child)::after {
+    content: '✦'; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    color: rgba(193,160,98,0.3); font-size: 11px;
+  }
+  .featured-item-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400;
+    color: var(--forest-mid); letter-spacing: 0.5px; line-height: 1; margin-bottom: 6px;
+    transition: color 0.3s;
+  }
+  .featured-track:hover { animation-play-state: paused; }
+  .featured-item:hover .featured-item-name { color: var(--gold); }
+  .featured-item-tag { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted-light); }
+
+  /* Hero event block */
+  .evt-hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 560px; position: relative; z-index: 1;
+  }
+  .evt-left {
+    padding: 80px 64px 80px 48px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .evt-label { font-size: 9px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: rgba(193,160,98,0.6); margin-bottom: 22px; display: flex; align-items: center; gap: 14px; }
+  .evt-label::before { content: ''; width: 32px; height: 1px; background: rgba(193,160,98,0.4); }
+  .evt-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 4.5vw, 58px); font-weight: 300; line-height: 1.1;
+    color: #f5ede0; margin-bottom: 28px;
+  }
+  .evt-title em { font-style: italic; color: var(--gold-light); }
+  .evt-desc { font-size: 15px; line-height: 1.85; color: rgba(245,237,224,0.55); font-weight: 300; max-width: 420px; margin-bottom: 40px; }
+  .evt-meta-row { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+  .evt-meta-item { display: flex; align-items: flex-start; gap: 14px; }
+  .evt-meta-icon {
+    width: 36px; height: 36px; border: 1px solid rgba(193,160,98,0.25); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--gold); flex-shrink: 0;
+  }
+  .evt-meta-label { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(193,160,98,0.5); margin-bottom: 3px; }
+  .evt-meta-value { font-size: 15px; color: rgba(245,237,224,0.85); font-weight: 300; }
+  .evt-meta-value strong { font-weight: 500; color: #f5ede0; }
+  .evt-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-event-primary {
+    background: var(--gold); color: var(--forest-deep);
+    padding: 16px 44px; border: none; border-radius: 1px;
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+    position: relative; overflow: hidden;
+  }
+  .btn-event-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.12);
+    transform: translateX(-100%); transition: transform 0.35s ease;
+  }
+  .btn-event-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-event-primary:hover::after { transform: translateX(0); }
+  .btn-event-ghost {
+    background: transparent; color: rgba(245,237,224,0.65);
+    padding: 16px 44px; border: 1px solid rgba(193,160,98,0.3); border-radius: 1px;
+    font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s;
+  }
+  .btn-event-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* Right — visual panel */
+  .evt-right { position: relative; overflow: hidden; background: var(--forest-mid); }
+  .evt-right-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; opacity: 0.7; }
+  .evt-right-veil { position: absolute; inset: 0; background: linear-gradient(to right, rgba(26,42,32,0.5) 0%, transparent 50%); }
+  .evt-count-card {
+    position: absolute; bottom: 40px; right: 32px;
+    background: rgba(26,42,32,0.92); backdrop-filter: blur(12px);
+    border: 1px solid rgba(193,160,98,0.25); padding: 24px 28px;
+    text-align: center; min-width: 160px;
+  }
+  .evt-count-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300;
+    color: var(--gold-light); line-height: 1;
+  }
+  .evt-count-label { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(193,160,98,0.55); margin-top: 6px; }
+
+  /* What's included grid */
+  .evt-includes { padding: 64px 48px; position: relative; z-index: 1; border-top: 1px solid rgba(193,160,98,0.1); }
+  .evt-includes-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 48px; flex-wrap: wrap; }
+  .evt-includes-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,3.5vw,40px); font-weight: 300; color: #f5ede0; }
+  .evt-includes-title em { font-style: italic; color: var(--gold-light); }
+  .evt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(193,160,98,0.1); }
+  .evt-feature {
+    background: rgba(255,255,255,0.03); padding: 36px 30px;
+    border-top: 2px solid transparent; transition: background 0.25s, border-color 0.25s;
+  }
+  .evt-feature:hover { background: rgba(193,160,98,0.08); border-top-color: var(--gold); }
+  .evt-feature-icon { font-size: 22px; margin-bottom: 16px; color: var(--gold); }
+  .evt-feature-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: #f5ede0; margin-bottom: 10px; }
+  .evt-feature-desc { font-size: 13px; line-height: 1.8; color: rgba(245,237,224,0.48); font-weight: 300; }
+
+  /* Ticket CTA band */
+  .evt-cta-band {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 44px 48px; gap: 32px; flex-wrap: wrap;
+    background: rgba(193,160,98,0.07); border-top: 1px solid rgba(193,160,98,0.15);
+    position: relative; z-index: 1;
+  }
+  .evt-cta-left h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: #f5ede0; margin-bottom: 6px; }
+  .evt-cta-left p { font-size: 13px; color: rgba(245,237,224,0.45); }
+  .evt-cta-right { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .evt-spots-left { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: rgba(193,160,98,0.7); font-style: italic; }
+  @keyframes countdown-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+  .evt-countdown { display: flex; gap: 16px; }
+  .countdown-unit { text-align: center; }
+  .countdown-n { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; color: var(--gold-light); line-height: 1; display: block; }
+  .countdown-l { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(193,160,98,0.45); }
+  .countdown-sep { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: rgba(193,160,98,0.25); align-self: flex-start; margin-top: 6px; }
+
+  /* Gallery strip for event photos */
+  .evt-photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; position: relative; z-index: 1; }
+  .evt-photo { overflow: hidden; aspect-ratio: 3/4; background: var(--forest-mid); position: relative; }
+  .evt-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25,0.1,0.25,1); }
+  .evt-photo:hover img { transform: scale(1.05); }
+  .evt-photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 16px; background: linear-gradient(to top, rgba(26,42,32,0.75), transparent); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,237,224,0.7); opacity: 0; transition: opacity 0.3s; }
+  .evt-photo:hover .evt-photo-label { opacity: 1; }
+
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
@@ -193,32 +403,51 @@
     .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
     .g-tall { grid-row: span 1; }
     .form-row { grid-template-columns: 1fr; }
+    .evt-hero { grid-template-columns: 1fr; }
+    .evt-left { padding: 56px 24px; }
+    .evt-right { min-height: 340px; }
+    .evt-includes { padding: 48px 24px; }
+    .evt-grid { grid-template-columns: 1fr; }
+    .evt-cta-band { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
+    .evt-photos { grid-template-columns: 1fr 1fr; }
+    .evt-count-card { bottom: 16px; right: 16px; }
+    .featured-item { padding: 0 32px; min-width: 150px; }
+    .featured-item-name { font-size: 21px; }
+    .evt-popup-item { font-size: 14px; padding: 0 16px; }
+    body.has-popup .hero { padding-top: 158px; }
   }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- ═══ FLOATING POPUP EVENT BAR (top of page, scrolls to event details) ═══ -->
+<div class="evt-popup" id="evtPopup">
+  <div class="evt-popup-scroll" onclick="goToEvent()">
+    <div class="evt-popup-track">
+      <!-- set 1 -->
+      <span class="evt-popup-item"><span class="evt-popup-tag">Upcoming Event</span> <strong>Soundbath + Artmaking</strong> · Confidence Manifestation Experience</span>
+      <span class="evt-popup-item"><span class="evt-popup-dot"></span> Saturday, July 11 · 6:00–7:30 PM · Charlotte, NC</span>
+      <span class="evt-popup-item"><span class="evt-popup-dot"></span> <span class="evt-popup-cta">Tap for Details &amp; Tickets →</span></span>
+      <!-- set 2 (seamless loop) -->
+      <span class="evt-popup-item"><span class="evt-popup-tag">Upcoming Event</span> <strong>Soundbath + Artmaking</strong> · Confidence Manifestation Experience</span>
+      <span class="evt-popup-item"><span class="evt-popup-dot"></span> Saturday, July 11 · 6:00–7:30 PM · Charlotte, NC</span>
+      <span class="evt-popup-item"><span class="evt-popup-dot"></span> <span class="evt-popup-cta">Tap for Details &amp; Tickets →</span></span>
+    </div>
+  </div>
+  <button class="evt-popup-close" onclick="dismissPopup(event)" aria-label="Close">✕</button>
+</div>
+
+<nav id="mainNav">
   <div class="nav-logo">Sound Healing with Nishi</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#sessions">Sessions</a></li>
+    <li><a href="#upcoming-event" style="color:var(--gold);">✦ Event Jul 11</a></li>
     <li><a href="#testimonials">Stories</a></li>
     <li><a href="#book" class="nav-cta">Book</a></li>
   </ul>
 </nav>
-
-<!-- UPCOMING EVENT BANNER
-     To SHOW: change style="display:none" to style="display:block"
-     Edit the event details below -->
-<div id="event-banner" style="display:none;">
-  <div class="event-inner">
-    <span class="event-tag">Upcoming Event</span>
-    <p class="event-title"><strong>Full Moon Sound Bath</strong> — Charlotte, NC · Saturday May 10 · 7:00 PM</p>
-    <a href="#book" class="event-cta">Reserve your spot →</a>
-  </div>
-</div>
 
 <!-- HERO with photo slideshow -->
 <section class="hero">
@@ -279,6 +508,152 @@
     <span class="marquee-item"><span class="marquee-dot"></span>Tingsha Bells</span>
   </div>
 </div>
+
+<!-- ═══ AS FEATURED AT — credentials strip ═══ -->
+<div class="featured-strip">
+  <div class="featured-head">
+    <p class="featured-eyebrow">Trusted &amp; Featured</p>
+    <h3 class="featured-title">Bringing sound to <em>festivals, studios &amp; teams</em></h3>
+  </div>
+  <div class="featured-marquee">
+    <div class="featured-track">
+      <!-- set 1 -->
+      <div class="featured-item"><span class="featured-item-name">Move Talk Zen</span><span class="featured-item-tag">Wellness Studio</span></div>
+      <div class="featured-item"><span class="featured-item-name">Meditation Pasture</span><span class="featured-item-tag">Self-Care Retreat</span></div>
+      <div class="featured-item"><span class="featured-item-name">Private Studios</span><span class="featured-item-tag">Group Sound Baths</span></div>
+      <div class="featured-item"><span class="featured-item-name">Corporate Retreats</span><span class="featured-item-tag">Charlotte, NC</span></div>
+      <!-- set 2 -->
+      <div class="featured-item"><span class="featured-item-name">Move Talk Zen</span><span class="featured-item-tag">Wellness Studio</span></div>
+      <div class="featured-item"><span class="featured-item-name">Meditation Pasture</span><span class="featured-item-tag">Self-Care Retreat</span></div>
+      <div class="featured-item"><span class="featured-item-name">Private Studios</span><span class="featured-item-tag">Group Sound Baths</span></div>
+      <div class="featured-item"><span class="featured-item-name">Corporate Retreats</span><span class="featured-item-tag">Charlotte, NC</span></div>
+      <!-- set 3 -->
+      <div class="featured-item"><span class="featured-item-name">Move Talk Zen</span><span class="featured-item-tag">Wellness Studio</span></div>
+      <div class="featured-item"><span class="featured-item-name">Meditation Pasture</span><span class="featured-item-tag">Self-Care Retreat</span></div>
+      <div class="featured-item"><span class="featured-item-name">Private Studios</span><span class="featured-item-tag">Group Sound Baths</span></div>
+      <div class="featured-item"><span class="featured-item-name">Corporate Retreats</span><span class="featured-item-tag">Charlotte, NC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     UPCOMING EVENT SECTION
+     ═══════════════════════════════════════════════════ -->
+<section class="event-section" id="upcoming-event">
+
+  <!-- HERO SPLIT -->
+  <div class="evt-hero">
+    <div class="evt-left">
+      <p class="evt-label">Upcoming Event</p>
+      <h2 class="evt-title">Soundbath + Artmaking<br><em>Confidence Manifestation</em></h2>
+      <p class="evt-desc">A meditative soundbath-artmaking experience to help you find stillness and manifest a more centered, confident version of yourself. Sound meets creativity in one deeply nourishing evening.</p>
+
+      <div class="evt-meta-row">
+        <div class="evt-meta-item">
+          <div class="evt-meta-icon">📅</div>
+          <div>
+            <p class="evt-meta-label">Date & Time</p>
+            <p class="evt-meta-value"><strong>Saturday, July 11, 2026</strong><br>6:00 PM – 7:30 PM</p>
+          </div>
+        </div>
+        <div class="evt-meta-item">
+          <div class="evt-meta-icon">📍</div>
+          <div>
+            <p class="evt-meta-label">Location</p>
+            <p class="evt-meta-value"><strong>2128 McClintock Rd</strong><br>Charlotte, NC 28205</p>
+          </div>
+        </div>
+        <div class="evt-meta-item">
+          <div class="evt-meta-icon">🎟</div>
+          <div>
+            <p class="evt-meta-label">Tickets</p>
+            <p class="evt-meta-value">Available on <strong>Eventbrite</strong> · Limited spots</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="evt-actions">
+        <a href="https://www.eventbrite.com/e/soundbath-artmaking-confidence-manifestation-experience-tickets-1992169468508" target="_blank" class="btn-event-primary">Reserve My Spot</a>
+        <a href="#book" class="btn-event-ghost">Ask a Question</a>
+      </div>
+    </div>
+
+    <div class="evt-right">
+      <img src="photo3.jpg" alt="Nishi sound healing" class="evt-right-img">
+      <div class="evt-right-veil"></div>
+      <div class="evt-count-card">
+        <div class="evt-count-num" id="spotsNum">22</div>
+        <div class="evt-count-label">Days Away</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT'S INCLUDED -->
+  <div class="evt-includes">
+    <div class="evt-includes-head">
+      <h3 class="evt-includes-title">What you'll <em>experience</em></h3>
+      <a href="https://www.eventbrite.com/e/soundbath-artmaking-confidence-manifestation-experience-tickets-1992169468508" target="_blank" class="btn-gold" style="white-space:nowrap;">Get Tickets on Eventbrite →</a>
+    </div>
+    <div class="evt-grid">
+      <div class="evt-feature">
+        <div class="evt-feature-icon">◎</div>
+        <h4 class="evt-feature-title">Immersive Sound Bath</h4>
+        <p class="evt-feature-desc">Lie back and let Nishi's Himalayan singing bowls wash over you. A full meditative sound journey to quiet the mind and open the body.</p>
+      </div>
+      <div class="evt-feature">
+        <div class="evt-feature-icon">🎨</div>
+        <h4 class="evt-feature-title">Guided Artmaking</h4>
+        <p class="evt-feature-desc">Channeling the stillness from the sound bath, you'll create your own intuitive art — no experience needed. A powerful tool for manifestation and self-expression.</p>
+      </div>
+      <div class="evt-feature">
+        <div class="evt-feature-icon">✦</div>
+        <h4 class="evt-feature-title">Confidence Manifestation</h4>
+        <p class="evt-feature-desc">Through sound, breath, and creativity, step into a more centered, confident version of yourself. Leave with your art as a tangible reminder of your intention.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO STRIP — add your event photos here -->
+  <div class="evt-photos">
+    <div class="evt-photo">
+      <img src="photo3.jpg" alt="Sound bath experience">
+      <div class="evt-photo-label">Sound Bath</div>
+    </div>
+    <div class="evt-photo">
+      <img src="photo4.jpg" alt="Singing bowls">
+      <div class="evt-photo-label">Himalayan Bowls</div>
+    </div>
+    <div class="evt-photo">
+      <img src="photo5.jpg" alt="Healing session">
+      <div class="evt-photo-label">Sacred Space</div>
+    </div>
+    <div class="evt-photo">
+      <img src="photo7.jpg" alt="Meditation">
+      <div class="evt-photo-label">Deep Stillness</div>
+    </div>
+  </div>
+
+  <!-- TICKET CTA BAND -->
+  <div class="evt-cta-band">
+    <div class="evt-cta-left">
+      <h3>July 11 · Charlotte, NC</h3>
+      <p>Doors open 5:45 PM · 2128 McClintock Rd, Charlotte NC 28205 · Hosted by Move Talk Zen, LLC</p>
+    </div>
+    <div class="evt-cta-right">
+      <div class="evt-countdown" id="countdown">
+        <div class="countdown-unit"><span class="countdown-n" id="cd-d">22</span><span class="countdown-l">Days</span></div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit"><span class="countdown-n" id="cd-h">00</span><span class="countdown-l">Hrs</span></div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit"><span class="countdown-n" id="cd-m">00</span><span class="countdown-l">Min</span></div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit"><span class="countdown-n" id="cd-s">00</span><span class="countdown-l">Sec</span></div>
+      </div>
+      <a href="https://www.eventbrite.com/e/soundbath-artmaking-confidence-manifestation-experience-tickets-1992169468508" target="_blank" class="btn-event-primary">Register on Eventbrite</a>
+    </div>
+  </div>
+
+</section>
 
 <!-- ABOUT -->
 <section class="section" id="about" style="background:var(--cream);">
@@ -497,6 +872,18 @@
 </div>
 
 <script>
+/* EVENT POPUP BAR */
+document.body.classList.add('has-popup');
+function goToEvent() {
+  const el = document.getElementById('upcoming-event');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function dismissPopup(e) {
+  e.stopPropagation();
+  document.getElementById('evtPopup').classList.add('dismissed');
+  document.body.classList.remove('has-popup');
+}
+
 /* SLIDESHOW */
 let cur = 0;
 const slides = document.querySelectorAll('.hero-slide');
@@ -510,7 +897,40 @@ function goSlide(n) {
 }
 setInterval(() => goSlide((cur + 1) % slides.length), 5000);
 
-/* CONTACT FORM via Formspree */
+/* COUNTDOWN to July 11 2026 6:00 PM ET */
+(function() {
+  const eventDate = new Date('2026-07-11T18:00:00-04:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = eventDate - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = '<span style="font-family:\'Cormorant Garamond\',serif;font-size:18px;font-style:italic;color:var(--gold-light);">The event is happening now ✦</span>';
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hrs  = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = String(days).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(hrs).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(secs).padStart(2,'0');
+    document.getElementById('spotsNum').textContent = String(days).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+
+/* NAV HIGHLIGHT on scroll */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 60) {
+    nav.style.boxShadow = '0 2px 24px rgba(15,28,18,0.18)';
+  } else {
+    nav.style.boxShadow = '';
+  }
+});
+
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
