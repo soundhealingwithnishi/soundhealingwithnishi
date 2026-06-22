@@ -93,18 +93,39 @@
   .marquee-item { display: flex; align-items: center; gap: 12px; flex-shrink: 0; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(193,160,98,0.5); }
   .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(193,160,98,0.4); }
 
-  /* GALLERY */
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 280px 280px;
-    gap: 10px;
+  /* GALLERY — MOVING CAROUSEL */
+  .gallery-carousel {
     margin-top: 40px;
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   }
-  .g-item { overflow: hidden; border-radius: 2px; }
-  .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-  .g-item:hover img { transform: scale(1.04); }
-  .g-tall { grid-row: span 2; }
+  .gallery-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    animation: gallery-scroll 45s linear infinite;
+  }
+  .gallery-carousel:hover .gallery-track { animation-play-state: paused; }
+  @keyframes gallery-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .g-slide {
+    width: 320px; height: 420px; flex-shrink: 0;
+    overflow: hidden; border-radius: 3px; position: relative;
+    background: var(--forest-mid);
+  }
+  .g-slide img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .g-slide:hover img { transform: scale(1.05); }
+  .g-slide-cap {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 18px;
+    background: linear-gradient(to top, rgba(26,42,32,0.7), transparent);
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(245,237,224,0.85); opacity: 0; transition: opacity 0.3s;
+  }
+  .g-slide:hover .g-slide-cap { opacity: 1; }
 
   /* SERVICES */
   .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 40px; }
@@ -165,6 +186,8 @@
   .info-body strong { color: var(--ink); font-weight: 500; }
   .payment-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
   .pill { padding: 5px 14px; border: 1px solid rgba(193,160,98,0.3); border-radius: 100px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--forest-mid); font-weight: 500; background: rgba(193,160,98,0.05); }
+  .pay-pill { padding: 7px 16px; border: 1px solid rgba(193,160,98,0.35); border-radius: 100px; font-size: 11px; letter-spacing: 1px; color: var(--forest-mid); font-weight: 500; background: rgba(193,160,98,0.06); transition: background 0.2s, transform 0.15s; }
+  .pay-pill:hover { background: rgba(193,160,98,0.14); transform: translateY(-1px); }
 
   /* INSTAGRAM */
   .ig-section { background: var(--cream-dark); padding: 56px 24px; text-align: center; }
@@ -400,8 +423,7 @@
     .nav-links { display: none; }
     .about-grid, .book-grid, .contact-top { grid-template-columns: 1fr; gap: 36px; }
     .services-grid, .testi-video-grid, .testi-written-grid { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .g-tall { grid-row: span 1; }
+    .g-slide { width: 240px; height: 320px; }
     .form-row { grid-template-columns: 1fr; }
     .evt-hero { grid-template-columns: 1fr; }
     .evt-left { padding: 56px 24px; }
@@ -579,7 +601,8 @@
     </div>
 
     <div class="evt-right">
-      <img src="event-main.jpg" alt="Nishi sound healing" class="evt-right-img">
+      <!-- BIG EVENT PHOTO — to change, upload your photo & change "photo3.jpg" below -->
+      <img src="photo3.jpg" alt="Nishi sound healing event" class="evt-right-img">
       <div class="evt-right-veil"></div>
       <div class="evt-count-card">
         <div class="evt-count-num" id="spotsNum">22</div>
@@ -614,6 +637,8 @@
   </div>
 
   <!-- PHOTO STRIP — add your event photos here -->
+  <!-- EVENT PHOTO STRIP — currently uses your existing photos.
+       To use real event photos: upload them and change these 4 filenames. -->
   <div class="evt-photos">
     <div class="evt-photo">
       <img src="photo3.jpg" alt="Sound bath experience">
@@ -692,14 +717,32 @@
     <p class="label">Gallery</p>
     <h2 class="display-title">The practice <em>in motion</em></h2>
     <div class="gold-rule"></div>
-    <div class="gallery-grid">
-      <div class="g-item g-tall">
-        <img src="photo7.jpg" alt="Nishi meditating by the Ganges river">
-      </div>
-      <div class="g-item"><img src="photo3.jpg" alt="Nishi with rain stick and bowls"></div>
-      <div class="g-item"><img src="photo5.jpg" alt="Singing bowl at sunset"></div>
-      <div class="g-item"><img src="photo4.jpg" alt="Nishi playing singing bowls"></div>
-      <div class="g-item"><img src="photo8.jpg" alt="Nishi sound healing session"></div>
+  </div>
+  <!-- MOVING GALLERY CAROUSEL
+       To swap a photo: upload your image to the repo, then change BOTH copies
+       of that filename below (each photo appears once in SET 1 and once in SET 2).
+       Right now slots 1-4 use your existing photos; slots 5-8 expect new
+       uploads named gallery5.jpg ... gallery8.jpg (add aesthetic photos here). -->
+  <div class="gallery-carousel">
+    <div class="gallery-track">
+      <!-- SET 1 -->
+      <div class="g-slide"><img src="photo7.jpg" alt="Meditation by the Ganges"><div class="g-slide-cap">Ganges River, India</div></div>
+      <div class="g-slide"><img src="photo3.jpg" alt="Sound healing session"><div class="g-slide-cap">Sound Bath</div></div>
+      <div class="g-slide"><img src="photo5.jpg" alt="Singing bowl at sunset"><div class="g-slide-cap">Sacred Space</div></div>
+      <div class="g-slide"><img src="photo4.jpg" alt="Playing singing bowls"><div class="g-slide-cap">Himalayan Bowls</div></div>
+      <div class="g-slide"><img src="gallery5.jpg" alt="Sound healing"><div class="g-slide-cap">New Photo</div></div>
+      <div class="g-slide"><img src="gallery6.jpg" alt="Sound healing"><div class="g-slide-cap">New Photo</div></div>
+      <div class="g-slide"><img src="gallery7.jpg" alt="Sound healing"><div class="g-slide-cap">New Photo</div></div>
+      <div class="g-slide"><img src="gallery8.jpg" alt="Sound healing"><div class="g-slide-cap">New Photo</div></div>
+      <!-- SET 2 (duplicate for seamless loop) -->
+      <div class="g-slide"><img src="photo7.jpg" alt="Meditation by the Ganges"><div class="g-slide-cap">Ganges River, India</div></div>
+      <div class="g-slide"><img src="photo3.jpg" alt="Sound healing session"><div class="g-slide-cap">Sound Bath</div></div>
+      <div class="g-slide"><img src="photo5.jpg" alt="Singing bowl at sunset"><div class="g-slide-cap">Sacred Space</div></div>
+      <div class="g-slide"><img src="photo4.jpg" alt="Playing singing bowls"><div class="g-slide-cap">Himalayan Bowls</div></div>
+      <div class="g-slide"><img src="gallery5.jpg" alt="Sound healing"><div class="g-slide-cap">New Photo</div></div>
+      <div class="g-slide"><img src="gallery6.jpg" alt="Sound healing"><div class="g-slide-cap">New Photo</div></div>
+      <div class="g-slide"><img src="gallery7.jpg" alt="Sound healing"><div class="g-slide-cap">New Photo</div></div>
+      <div class="g-slide"><img src="gallery8.jpg" alt="Sound healing"><div class="g-slide-cap">New Photo</div></div>
     </div>
   </div>
 </section>
@@ -823,6 +866,22 @@
         <div class="info-block">
           <p class="info-label">Response Time</p>
           <div class="info-body"><p>Nishi responds to all inquiries <strong>within 24 hours.</strong></p></div>
+        </div>
+
+        <div class="info-block">
+          <p class="info-label">Payment Methods</p>
+          <div class="info-body">
+            <p style="margin-bottom:10px;">Secure payment accepted via:</p>
+            <div class="payment-pills">
+              <span class="pay-pill">💳 Card</span>
+              <span class="pay-pill">Venmo</span>
+              <span class="pay-pill">Zelle</span>
+              <span class="pay-pill">Cash App</span>
+              <span class="pay-pill">PayPal</span>
+              <span class="pay-pill">Cash</span>
+            </div>
+            <p style="margin-top:12px;font-size:13px;">Event tickets are purchased securely through <strong>Eventbrite</strong>.</p>
+          </div>
         </div>
       </div>
     </div>
