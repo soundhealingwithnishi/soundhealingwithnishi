@@ -32,25 +32,83 @@
   .nav-links a:hover, .nav-links a.nav-cta { color: var(--gold); }
   .nav-cta { border: 1px solid rgba(193,160,98,0.45) !important; padding: 7px 18px; border-radius: 1px; }
 
-  /* HERO SLIDESHOW */
-  .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 90px; overflow: hidden; }
+  /* HERO SPLIT LAYOUT (left = slideshow + title, right = Summer Series) */
+  .hero {
+    min-height: 100vh; position: relative;
+    display: grid; grid-template-columns: 52% 48%;
+    overflow: hidden;
+  }
+  .hero-left {
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 130px 40px 90px;
+  }
   .hero-slides { position: absolute; inset: 0; z-index: 0; }
   .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; }
   .hero-slide.active { opacity: 1; }
-  .hero-slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,28,18,0.6) 0%, rgba(15,28,18,0.45) 50%, rgba(15,28,18,0.78) 100%); }
+  .hero-slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,28,18,0.62) 0%, rgba(15,28,18,0.48) 50%, rgba(15,28,18,0.8) 100%); }
   .hero-content { position: relative; z-index: 2; }
+
+  /* RIGHT SIDE — Summer Series feature panel */
+  .hero-right {
+    position: relative; background: var(--cream);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 56px 60px; overflow-y: auto;
+  }
+  .hero-right-inner { max-width: 480px; margin: 0 auto; width: 100%; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal-left.in { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+  .reveal-right.in { opacity: 1; transform: translateX(0); }
+  .reveal-delay-1 { transition-delay: 0.12s; }
+  .reveal-delay-2 { transition-delay: 0.24s; }
+  .reveal-delay-3 { transition-delay: 0.36s; }
+
+  /* HERO SCROLL CUE */
+  .hero-scroll-cue { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fade-up 1s 1.6s forwards; cursor: pointer; }
+  .hero-scroll-cue-text { font-size: 8px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(193,160,98,0.7); }
+  .hero-scroll-cue-arrow { width: 16px; height: 16px; border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold); transform: rotate(45deg); animation: bounce-down 2s ease-in-out infinite; }
+  @keyframes bounce-down { 0%,100% { transform: rotate(45deg) translate(0,0); opacity: 0.5; } 50% { transform: rotate(45deg) translate(4px,4px); opacity: 1; } }
   @keyframes fade-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 26px; opacity: 0; animation: fade-up 0.8s 0.3s forwards; }
-  .hero-lotus { width: 68px; height: 68px; margin-bottom: 26px; opacity: 0; animation: fade-up 0.8s 0.5s forwards; }
-  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(50px, 9vw, 94px); font-weight: 300; line-height: 1.0; color: #f5ede0; opacity: 0; animation: fade-up 0.9s 0.6s forwards; }
+  .hero-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; opacity: 0; animation: fade-up 0.8s 0.3s forwards; }
+  .hero-lotus { width: 58px; height: 58px; margin-bottom: 22px; opacity: 0; animation: fade-up 0.8s 0.5s forwards; }
+  .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 300; line-height: 1.0; color: #f5ede0; opacity: 0; animation: fade-up 0.9s 0.6s forwards; }
   .hero-h1 .with { font-size: 0.42em; display: block; letter-spacing: 4px; text-transform: uppercase; font-weight: 300; color: rgba(245,237,224,0.42); font-family: 'Jost', sans-serif; margin-bottom: 4px; }
   .hero-h1 .name { font-style: italic; color: var(--gold-light); }
-  .hero-rule { width: 1px; height: 44px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); margin: 24px auto; opacity: 0; animation: fade-up 0.8s 0.8s forwards; }
-  .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(17px, 2.5vw, 22px); font-style: italic; font-weight: 300; color: rgba(245,237,224,0.68); margin-bottom: 40px; max-width: 440px; opacity: 0; animation: fade-up 0.8s 0.9s forwards; }
-  .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fade-up 0.8s 1.0s forwards; }
-  .slide-dots { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
+  .hero-rule { width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); margin: 22px auto; opacity: 0; animation: fade-up 0.8s 0.8s forwards; }
+  .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 2.2vw, 20px); font-style: italic; font-weight: 300; color: rgba(245,237,224,0.68); margin-bottom: 36px; max-width: 380px; opacity: 0; animation: fade-up 0.8s 0.9s forwards; }
+  .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fade-up 0.8s 1.0s forwards; }
+  .slide-dots { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 7px; z-index: 2; }
   .slide-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(193,160,98,0.35); border: none; cursor: pointer; transition: background 0.3s; padding: 0; }
   .slide-dot.active { background: var(--gold); }
+
+  /* HERO RIGHT — Summer Series content */
+  .hr-partner { display: inline-flex; align-items: center; gap: 10px; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hr-partner::before { content: ''; width: 24px; height: 1px; background: rgba(193,160,98,0.5); }
+  .hr-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 3.6vw, 44px); font-weight: 300; line-height: 1.08; color: var(--ink); margin-bottom: 16px; }
+  .hr-title em { font-style: italic; color: var(--forest-mid); }
+  .hr-desc { font-size: 14px; line-height: 1.75; color: var(--muted); font-weight: 300; margin-bottom: 22px; }
+  .hr-photo { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; border-radius: 3px; margin-bottom: 22px; background: var(--forest-mid); }
+  .hr-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hr-photo-badge { position: absolute; top: 14px; left: 14px; background: var(--gold); color: var(--forest-deep); font-size: 8px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 13px; border-radius: 100px; }
+  .hr-meta { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
+  .hr-meta-row { display: flex; align-items: baseline; gap: 12px; }
+  .hr-meta-k { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); min-width: 54px; flex-shrink: 0; }
+  .hr-meta-v { font-size: 13px; color: var(--ink); font-weight: 300; line-height: 1.5; }
+  .hr-meta-v strong { font-weight: 500; }
+  .hr-dates { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .hr-date-pill { padding: 4px 11px; border: 1px solid rgba(193,160,98,0.35); border-radius: 100px; font-size: 11px; color: var(--forest-mid); font-weight: 500; background: rgba(193,160,98,0.05); }
+  .hr-promo { background: var(--forest-deep); border-radius: 3px; padding: 18px 20px; margin-bottom: 20px; text-align: center; }
+  .hr-promo-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(193,160,98,0.6); margin-bottom: 7px; }
+  .hr-promo-code { font-family: 'Jost', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 3px; color: var(--gold-light); margin-bottom: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+  .hr-promo-code .copy-hint { font-size: 9px; font-weight: 400; letter-spacing: 1px; color: rgba(240,232,212,0.4); border: 1px solid rgba(193,160,98,0.3); padding: 2px 7px; border-radius: 2px; }
+  .hr-promo-desc { font-size: 11px; line-height: 1.6; color: rgba(240,232,212,0.6); font-weight: 300; }
+  .hr-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .hr-cta .btn-event-primary, .hr-cta .btn-event-ghost { padding: 13px 26px; font-size: 9px; }
 
   /* BUTTONS */
   .btn-gold { background: var(--gold); color: var(--forest-deep); padding: 15px 40px; border: none; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
@@ -262,9 +320,9 @@
   }
   .evt-popup-close:hover { background: rgba(26,42,32,0.08); }
 
-  /* When popup is visible, push nav + hero down by 48px */
+  /* When popup is visible, push nav down by 48px; hero left padding handles nav clearance */
   body.has-popup nav { top: 48px; }
-  body.has-popup .hero { padding-top: 168px; }
+  body.has-popup .hero { margin-top: 48px; }
 
   /* ── AS FEATURED AT — credentials strip ── */
   .featured-strip { background: var(--cream); padding: 64px 0 56px; overflow: hidden; }
@@ -418,6 +476,72 @@
   .evt-photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 16px; background: linear-gradient(to top, rgba(26,42,32,0.75), transparent); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,237,224,0.7); opacity: 0; transition: opacity 0.3s; }
   .evt-photo:hover .evt-photo-label { opacity: 1; }
 
+  /* ── REFERRAL / PROMO CODE BAND ── */
+  .referral-band {
+    background: var(--forest-deep);
+    border-top: 1px solid rgba(193,160,98,0.15);
+    padding: 18px 24px; text-align: center;
+  }
+  .referral-inner {
+    max-width: 720px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+  }
+  .referral-text { font-size: 13px; letter-spacing: 0.5px; color: rgba(240,232,212,0.75); }
+  .referral-code {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(193,160,98,0.12); border: 1px dashed var(--gold);
+    padding: 6px 16px; border-radius: 2px;
+    font-family: 'Jost', sans-serif; font-weight: 600; letter-spacing: 2px;
+    color: var(--gold-light); font-size: 14px; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .referral-code:hover { background: rgba(193,160,98,0.22); }
+  .referral-copied { font-size: 11px; color: var(--gold); margin-left: 4px; opacity: 0; transition: opacity 0.3s; }
+  .referral-copied.show { opacity: 1; }
+
+  /* ── SAUNA HOUSE SERIES SECTION ── */
+  .series-section { background: var(--cream); padding: 96px 24px; }
+  .series-inner { max-width: 1000px; margin: 0 auto; }
+  .series-head { text-align: center; margin-bottom: 16px; }
+  .series-partner {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .series-partner::before, .series-partner::after { content: ''; width: 28px; height: 1px; background: rgba(193,160,98,0.4); }
+  .series-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px,5vw,52px); font-weight: 300; line-height: 1.1; color: var(--ink); margin-bottom: 18px; }
+  .series-title em { font-style: italic; color: var(--forest-mid); }
+  .series-desc { font-size: 15px; line-height: 1.85; color: var(--muted); font-weight: 300; max-width: 560px; margin: 0 auto 12px; }
+  .series-venue { font-size: 13px; color: var(--muted-light); letter-spacing: 1px; margin-bottom: 44px; text-align: center; }
+  .series-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .series-photo { position: relative; aspect-ratio: 4/5; overflow: hidden; border-radius: 3px; background: var(--forest-mid); }
+  .series-photo-badge { position: absolute; top: 18px; left: 18px; z-index: 3; background: var(--gold); color: var(--forest-deep); font-size: 9px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; padding: 7px 16px; border-radius: 100px; }
+  .series-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .series-details { }
+  .series-block { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .series-block:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
+  .series-block-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .series-block-value { font-size: 15px; line-height: 1.7; color: var(--ink); font-weight: 300; }
+  .series-block-value strong { font-weight: 500; }
+  .series-dates { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .series-date-pill {
+    padding: 6px 14px; border: 1px solid rgba(193,160,98,0.35); border-radius: 100px;
+    font-size: 12px; color: var(--forest-mid); font-weight: 500; background: rgba(193,160,98,0.05);
+  }
+  .series-promo-box {
+    background: var(--forest-deep); border-radius: 3px; padding: 24px 26px; margin-top: 28px;
+    text-align: center;
+  }
+  .series-promo-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(193,160,98,0.6); margin-bottom: 10px; }
+  .series-promo-code {
+    font-family: 'Jost', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: 4px;
+    color: var(--gold-light); margin-bottom: 8px;
+    display: inline-flex; align-items: center; gap: 12px; cursor: pointer;
+  }
+  .series-promo-code .copy-hint { font-size: 10px; font-weight: 400; letter-spacing: 1px; color: rgba(240,232,212,0.4); border: 1px solid rgba(193,160,98,0.3); padding: 3px 8px; border-radius: 2px; }
+  .series-promo-desc { font-size: 13px; line-height: 1.7; color: rgba(240,232,212,0.6); font-weight: 300; }
+  .series-cta { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
@@ -436,8 +560,87 @@
     .featured-item { padding: 0 32px; min-width: 150px; }
     .featured-item-name { font-size: 21px; }
     .evt-popup-item { font-size: 14px; padding: 0 16px; }
-    body.has-popup .hero { padding-top: 158px; }
+    .series-grid { grid-template-columns: 1fr; gap: 32px; }
+    .series-section { padding: 64px 24px; }
+    /* SPLIT HERO stacks on mobile */
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { min-height: 70vh; padding: 130px 24px 70px; }
+    .hero-right { padding: 56px 24px 64px; }
+    .hero-right-inner { max-width: 520px; }
   }
+  /* ═══════════════════════════════════════════════
+     BUBBLE AESTHETIC — Sauna House style rounded cards,
+     images & pill buttons applied across the whole page.
+     ═══════════════════════════════════════════════ */
+
+  /* Rounded CARDS & panels (large radius like Sauna House) */
+  .service-card,
+  .svc-card,
+  .evt-feature,
+  .testi-card,
+  .testi-video-card,
+  .testi-placeholder,
+  .book-form,
+  .stat-box,
+  .quote-block,
+  .hr-promo,
+  .series-promo-box,
+  .evt-includes .evt-grid,
+  .featured-strip,
+  .info-block-card { border-radius: 22px !important; }
+
+  /* Rounded IMAGES / photo tiles */
+  .hr-photo,
+  .g-slide,
+  .evt-photo,
+  .series-photo,
+  .gallery-carousel,
+  .evt-right,
+  .evt-right-img { border-radius: 22px !important; }
+  .evt-right-img { border-radius: 22px !important; }
+
+  /* The big event split photo gets rounded too */
+  .evt-right { overflow: hidden; }
+
+  /* PILL-SHAPED buttons (fully rounded, Sauna House look) */
+  .btn-gold,
+  .btn-ghost,
+  .btn-forest,
+  .btn-submit,
+  .btn-event-primary,
+  .btn-event-ghost,
+  .nav-cta,
+  .nav-book,
+  .cert,
+  .cert-badge { border-radius: 100px !important; }
+
+  /* Rounded form inputs */
+  .form-group input,
+  .form-group select,
+  .form-group textarea { border-radius: 14px !important; }
+
+  /* Rounded event meta icons already circular; promo boxes rounded */
+  .evt-popup { border-radius: 0 !important; } /* keep top bar flush */
+
+  /* Event feature cards: round each tile and add gap so they read as bubbles */
+  .evt-grid { gap: 14px !important; background: transparent !important; }
+  .evt-feature { border: 1px solid rgba(193,160,98,0.18) !important; border-top: 1px solid rgba(193,160,98,0.18) !important; }
+  .evt-feature:hover { border-color: var(--gold) !important; }
+
+  /* Service cards: bubble spacing */
+  .services-grid { gap: 16px !important; }
+  .service-card { border: 1px solid rgba(193,160,98,0.16) !important; }
+
+  /* Gallery slides bubble spacing */
+  .gallery-track { gap: 18px !important; }
+
+  /* Testimonial cards spacing */
+  .testi-written-grid, .testi-video-grid { gap: 18px !important; }
+
+  /* Event photo strip → separated bubbles */
+  .evt-photos { gap: 14px !important; padding: 0 48px 48px !important; }
+  @media (max-width: 768px) { .evt-photos { padding: 0 24px 24px !important; } }
+
 </style>
 </head>
 <body>
@@ -449,10 +652,12 @@
       <!-- set 1 -->
       <span class="evt-popup-item"><span class="evt-popup-tag">Upcoming Event</span> <strong>Soundbath + Artmaking</strong> · Confidence Manifestation Experience</span>
       <span class="evt-popup-item"><span class="evt-popup-dot"></span> Friday, July 10 · 6:00–7:30 PM · Charlotte, NC</span>
+      <span class="evt-popup-item"><span class="evt-popup-dot"></span> <strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
       <span class="evt-popup-item"><span class="evt-popup-dot"></span> <span class="evt-popup-cta">Tap for Details &amp; Tickets →</span></span>
       <!-- set 2 (seamless loop) -->
       <span class="evt-popup-item"><span class="evt-popup-tag">Upcoming Event</span> <strong>Soundbath + Artmaking</strong> · Confidence Manifestation Experience</span>
       <span class="evt-popup-item"><span class="evt-popup-dot"></span> Friday, July 10 · 6:00–7:30 PM · Charlotte, NC</span>
+      <span class="evt-popup-item"><span class="evt-popup-dot"></span> <strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
       <span class="evt-popup-item"><span class="evt-popup-dot"></span> <span class="evt-popup-cta">Tap for Details &amp; Tickets →</span></span>
     </div>
   </div>
@@ -462,67 +667,118 @@
 <nav id="mainNav">
   <div class="nav-logo">Sound Healing with Nishi</div>
   <ul class="nav-links">
+    <li><a href="#top" style="color:var(--gold);" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">✦ Summer Series</a></li>
+    <li><a href="#upcoming-event">Event Jul 10</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#sessions">Sessions</a></li>
-    <li><a href="#upcoming-event" style="color:var(--gold);">✦ Event Jul 10</a></li>
-    <li><a href="#testimonials">Stories</a></li>
     <li><a href="#book" class="nav-cta">Book</a></li>
   </ul>
 </nav>
 
-<!-- HERO with photo slideshow -->
+<!-- HERO — SPLIT: slideshow + title on left, Summer Series on right -->
 <section class="hero">
-  <div class="hero-slides" id="slides">
-    <div class="hero-slide active" style="background-image:url('photo3.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('photo4.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('photo1.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('photo5.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('Image-1.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('Image-2.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('Image-3.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('Image-4.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('Image-5.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('Image-6.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('Image-7.jpg');"></div>
-    <div class="hero-slide" style="background-image:url('Image-8.jpg');"></div>
-  </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Certified Sound Healing Practitioner</p>
-    <svg class="hero-lotus" viewBox="0 0 80 80" fill="none">
-      <ellipse cx="40" cy="52" rx="7" ry="14" stroke="#c1a062" stroke-width="1.1"/>
-      <ellipse cx="40" cy="47" rx="11" ry="18" transform="rotate(-28 40 47)" stroke="#c1a062" stroke-width="1"/>
-      <ellipse cx="40" cy="47" rx="11" ry="18" transform="rotate(28 40 47)" stroke="#c1a062" stroke-width="1"/>
-      <ellipse cx="40" cy="45" rx="13" ry="20" transform="rotate(-55 40 45)" stroke="rgba(193,160,98,0.5)" stroke-width="0.8"/>
-      <ellipse cx="40" cy="45" rx="13" ry="20" transform="rotate(55 40 45)" stroke="rgba(193,160,98,0.5)" stroke-width="0.8"/>
-      <circle cx="40" cy="40" r="3.5" stroke="rgba(193,160,98,0.4)" stroke-width="0.7"/>
-      <circle cx="40" cy="40" r="1.2" fill="rgba(193,160,98,0.5)"/>
-    </svg>
-    <h1 class="hero-h1">
-      <span class="with">Sound Healing</span>
-      <span>with <span class="name">Nishi</span></span>
-    </h1>
-    <div class="hero-rule"></div>
-    <p class="hero-tagline">"Let the sound bring you home to yourself."</p>
-    <div class="hero-buttons">
-      <a href="#book" class="btn-gold">Book a Session</a>
-      <a href="#sessions" class="btn-ghost">Explore Sessions</a>
+
+  <!-- LEFT: photo slideshow + title -->
+  <div class="hero-left">
+    <div class="hero-slides" id="slides">
+      <div class="hero-slide active" style="background-image:url('photo3.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('photo4.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('photo1.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('photo5.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('Image-1.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('Image-2.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('Image-3.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('Image-4.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('Image-5.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('Image-6.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('Image-7.jpg');"></div>
+      <div class="hero-slide" style="background-image:url('Image-8.jpg');"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Certified Sound Healing Practitioner</p>
+      <svg class="hero-lotus" viewBox="0 0 80 80" fill="none">
+        <ellipse cx="40" cy="52" rx="7" ry="14" stroke="#c1a062" stroke-width="1.1"/>
+        <ellipse cx="40" cy="47" rx="11" ry="18" transform="rotate(-28 40 47)" stroke="#c1a062" stroke-width="1"/>
+        <ellipse cx="40" cy="47" rx="11" ry="18" transform="rotate(28 40 47)" stroke="#c1a062" stroke-width="1"/>
+        <ellipse cx="40" cy="45" rx="13" ry="20" transform="rotate(-55 40 45)" stroke="rgba(193,160,98,0.5)" stroke-width="0.8"/>
+        <ellipse cx="40" cy="45" rx="13" ry="20" transform="rotate(55 40 45)" stroke="rgba(193,160,98,0.5)" stroke-width="0.8"/>
+        <circle cx="40" cy="40" r="3.5" stroke="rgba(193,160,98,0.4)" stroke-width="0.7"/>
+        <circle cx="40" cy="40" r="1.2" fill="rgba(193,160,98,0.5)"/>
+      </svg>
+      <h1 class="hero-h1">
+        <span class="with">Sound Healing</span>
+        <span>with <span class="name">Nishi</span></span>
+      </h1>
+      <div class="hero-rule"></div>
+      <p class="hero-tagline">"Let the sound bring you home to yourself."</p>
+      <div class="hero-buttons">
+        <a href="#book" class="btn-gold">Book a Session</a>
+        <a href="#sessions" class="btn-ghost">Explore Sessions</a>
+      </div>
+    </div>
+    <div class="slide-dots" id="dots">
+      <button class="slide-dot active" onclick="goSlide(0)"></button>
+      <button class="slide-dot" onclick="goSlide(1)"></button>
+      <button class="slide-dot" onclick="goSlide(2)"></button>
+      <button class="slide-dot" onclick="goSlide(3)"></button>
+      <button class="slide-dot" onclick="goSlide(4)"></button>
+      <button class="slide-dot" onclick="goSlide(5)"></button>
+      <button class="slide-dot" onclick="goSlide(6)"></button>
+      <button class="slide-dot" onclick="goSlide(7)"></button>
+      <button class="slide-dot" onclick="goSlide(8)"></button>
+      <button class="slide-dot" onclick="goSlide(9)"></button>
+      <button class="slide-dot" onclick="goSlide(10)"></button>
+      <button class="slide-dot" onclick="goSlide(11)"></button>
     </div>
   </div>
-  <div class="slide-dots" id="dots">
-    <button class="slide-dot active" onclick="goSlide(0)"></button>
-    <button class="slide-dot" onclick="goSlide(1)"></button>
-    <button class="slide-dot" onclick="goSlide(2)"></button>
-    <button class="slide-dot" onclick="goSlide(3)"></button>
-    <button class="slide-dot" onclick="goSlide(4)"></button>
-    <button class="slide-dot" onclick="goSlide(5)"></button>
-    <button class="slide-dot" onclick="goSlide(6)"></button>
-    <button class="slide-dot" onclick="goSlide(7)"></button>
-    <button class="slide-dot" onclick="goSlide(8)"></button>
-    <button class="slide-dot" onclick="goSlide(9)"></button>
-    <button class="slide-dot" onclick="goSlide(10)"></button>
-    <button class="slide-dot" onclick="goSlide(11)"></button>
+
+  <!-- RIGHT: Summer Sound Bath Series feature -->
+  <div class="hero-right">
+    <div class="hero-right-inner">
+      <span class="hr-partner">In Collaboration With Sauna House Charlotte</span>
+      <h2 class="hr-title">Summer <em>Sound Bath Series</em></h2>
+      <p class="hr-desc">Four restorative sound bath sessions at Sauna House Charlotte. Move through the thermal cycle as soothing melodies drift through the bathhouse.</p>
+
+      <div class="hr-photo">
+        <span class="hr-photo-badge">Featured Series</span>
+        <img src="saunahouse-nishi.jpg" alt="Nishi playing singing bowls at sunset" onerror="this.onerror=null;this.src='photo3.jpg';">
+      </div>
+
+      <div class="hr-meta">
+        <div class="hr-meta-row">
+          <span class="hr-meta-k">When</span>
+          <span class="hr-meta-v"><strong>7:00 – 9:00 PM</strong>
+            <span class="hr-dates">
+              <span class="hr-date-pill">Jun 26</span>
+              <span class="hr-date-pill">Jul 17</span>
+              <span class="hr-date-pill">Jul 31</span>
+              <span class="hr-date-pill">Aug 14</span>
+            </span>
+          </span>
+        </div>
+        <div class="hr-meta-row">
+          <span class="hr-meta-k">Where</span>
+          <span class="hr-meta-v">Public bathhouse space at <strong>Sauna House Charlotte</strong></span>
+        </div>
+        <div class="hr-meta-row">
+          <span class="hr-meta-k">Join</span>
+          <span class="hr-meta-v">No tickets needed — book a standard bathhouse visit during the hours above.</span>
+        </div>
+      </div>
+
+      <div class="hr-promo">
+        <p class="hr-promo-label">Exclusive Code for Nishi's Followers</p>
+        <div class="hr-promo-code" onclick="copyPromo('NISHI15')">NISHI15 <span class="copy-hint">Tap to copy</span></div>
+        <p class="hr-promo-desc">$15 off your first 2-hour bathhouse + sound bath visit. Valid 6–10 PM on the dates above.</p>
+      </div>
+
+      <div class="hr-cta">
+        <a href="https://www.saunahouse.com/pages/charlotte" target="_blank" class="btn-event-primary">Book at Sauna House</a>
+        <a href="https://www.instagram.com/saunahousecharlotte" target="_blank" class="btn-event-ghost" style="color:var(--forest-mid);border-color:rgba(193,160,98,0.4);">@saunahousecharlotte</a>
+      </div>
+    </div>
   </div>
+
 </section>
 
 <!-- MARQUEE -->
@@ -698,7 +954,7 @@
 
 <!-- ABOUT -->
 <section class="section" id="about" style="background:var(--cream);">
-  <div class="section-inner">
+  <div class="section-inner reveal">
     <div class="about-grid">
       <div>
         <p class="label">About Nishi</p>
@@ -729,7 +985,7 @@
 
 <!-- GALLERY -->
 <section class="section" id="gallery" style="background:var(--cream-dark);">
-  <div class="section-inner">
+  <div class="section-inner reveal">
     <p class="label">Gallery</p>
     <h2 class="display-title">The practice <em>in motion</em></h2>
     <div class="gold-rule"></div>
@@ -765,7 +1021,7 @@
 
 <!-- SERVICES -->
 <section class="section" id="sessions" style="background:var(--cream);">
-  <div class="section-inner">
+  <div class="section-inner reveal">
     <p class="label">Sessions & Offerings</p>
     <h2 class="display-title">Find your <em>frequency</em></h2>
     <div class="gold-rule"></div>
@@ -800,7 +1056,7 @@
 
 <!-- HOW IT WORKS -->
 <section class="section how-bg">
-  <div class="section-inner">
+  <div class="section-inner reveal">
     <p class="label" style="color:rgba(193,160,98,0.65);">What to expect</p>
     <h2 class="display-title" style="color:#f5ede0;">Your <em>journey</em> begins here</h2>
     <div class="gold-rule" style="background:rgba(193,160,98,0.45);"></div>
@@ -815,7 +1071,7 @@
 
 <!-- TESTIMONIALS -->
 <section class="section testi-bg" id="testimonials">
-  <div class="section-inner">
+  <div class="section-inner reveal">
     <p class="label">Client Stories</p>
     <h2 class="display-title">What people <em>feel</em></h2>
     <div class="gold-rule"></div>
@@ -871,6 +1127,10 @@
           <div class="info-body"><a href="mailto:soundhealingwithnishi@gmail.com" style="color:var(--forest-mid);text-decoration:none;font-size:14px;">soundhealingwithnishi@gmail.com</a></div>
         </div>
         <div class="info-block">
+          <p class="info-label">Phone</p>
+          <div class="info-body"><a href="tel:+12019825777" style="color:var(--forest-mid);text-decoration:none;font-size:14px;">(201) 982-5777</a></div>
+        </div>
+        <div class="info-block">
           <p class="info-label">Instagram</p>
           <div class="info-body"><a href="https://instagram.com/soundhealingwithnishi" target="_blank" style="color:var(--forest-mid);text-decoration:none;">@soundhealingwithnishi</a></div>
         </div>
@@ -903,6 +1163,15 @@
     </div>
   </div>
 </section>
+
+<!-- ═══ REFERRAL CODE BAND ═══ -->
+<div class="referral-band">
+  <div class="referral-inner">
+    <span class="referral-text">Loved your session? Share the calm — refer a friend with code</span>
+    <span class="referral-code" onclick="copyPromo('NISHI')">NISHI <span class="referral-copied" id="refCopied">Copied!</span></span>
+    <span class="referral-text">and you both save on your next sound bath.</span>
+  </div>
+</div>
 
 <!-- INSTAGRAM -->
 <div class="ig-section">
@@ -957,6 +1226,48 @@ function dismissPopup(e) {
   e.stopPropagation();
   document.getElementById('evtPopup').classList.add('dismissed');
   document.body.classList.remove('has-popup');
+}
+
+/* SCROLL REVEAL — fade/slide elements in as they enter the viewport */
+(function() {
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  if (!('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => obs.observe(el));
+})();
+
+/* COPY PROMO / REFERRAL CODE */
+function copyPromo(code) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(code).then(() => showCopied(code));
+  } else {
+    showCopied(code);
+  }
+}
+function showCopied(code) {
+  const refCopied = document.getElementById('refCopied');
+  if (refCopied && code === 'NISHI') {
+    refCopied.classList.add('show');
+    setTimeout(() => refCopied.classList.remove('show'), 1800);
+  } else {
+    // brief inline confirmation for the NISHI15 series code
+    const el = event && event.currentTarget;
+    if (el) {
+      const original = el.innerHTML;
+      el.innerHTML = code + ' <span class="copy-hint">Copied!</span>';
+      setTimeout(() => { el.innerHTML = original; }, 1800);
+    }
+  }
 }
 
 /* SLIDESHOW */
