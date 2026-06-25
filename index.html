@@ -52,15 +52,19 @@
   "areaServed": { "@type": "City", "name": "Charlotte, North Carolina" },
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "2132 Cascade Pointe Boulevard",
     "addressLocality": "Charlotte",
     "addressRegion": "NC",
+    "postalCode": "28208",
     "addressCountry": "US"
   },
   "geo": { "@type": "GeoCoordinates", "latitude": 35.2271, "longitude": -80.8431 },
+  "hasMap": "https://share.google/2SQAhjzLM3Vu3GyNR",
   "sameAs": [
     "https://www.instagram.com/soundhealingwithnishi",
     "https://www.tiktok.com/@soundhealingwithnishi",
-    "https://www.facebook.com/soundhealingwithnishi"
+    "https://www.facebook.com/soundhealingwithnishi",
+    "https://share.google/2SQAhjzLM3Vu3GyNR"
   ],
   "knowsAbout": ["Sound Healing", "Sound Bath", "Himalayan Singing Bowls", "Crystal Bowls", "Meditation", "Corporate Wellness", "Vibrational Therapy"]
 }
@@ -202,6 +206,9 @@
   .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
   .btn-ghost { background: transparent; color: rgba(240,232,212,0.75); padding: 15px 40px; border: 1px solid rgba(193,160,98,0.38); border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
   .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+  .btn-forest { background: var(--forest-deep); color: var(--gold-light); padding: 15px 40px; border: none; border-radius: 1px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+  .btn-forest:hover { background: var(--forest-mid); transform: translateY(-1px); }
+
 
   /* EVENT BANNER — set display:none to hide, display:block to show */
   #event-banner { display: none; background: var(--gold); padding: 18px 24px; text-align: center; }
@@ -729,6 +736,28 @@
   .evt-photos { gap: 14px !important; padding: 0 48px 48px !important; }
   @media (max-width: 768px) { .evt-photos { padding: 0 24px 24px !important; } }
 
+
+  /* GOOGLE BUSINESS PROFILE */
+  .google-profile-section { background: var(--cream); padding: 96px 24px; }
+  .google-profile-inner { max-width: 1020px; margin: 0 auto; }
+  .google-profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: stretch; margin-top: 44px; }
+  .gbp-card { background: var(--white); border: 1px solid rgba(193,160,98,0.18); border-radius: 22px; padding: 34px; box-shadow: 0 18px 54px rgba(26,42,32,0.08); }
+  .gbp-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 100px; background: rgba(193,160,98,0.12); border: 1px solid rgba(193,160,98,0.22); color: var(--forest-mid); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; margin-bottom: 18px; }
+  .gbp-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: var(--ink); line-height: 1.15; margin-bottom: 12px; }
+  .gbp-title em { color: var(--forest-mid); font-style: italic; }
+  .gbp-text { font-size: 15px; line-height: 1.85; color: var(--muted); font-weight: 300; margin-bottom: 18px; }
+  .gbp-details { display: grid; gap: 12px; margin: 24px 0; }
+  .gbp-detail { display: flex; gap: 13px; align-items: flex-start; padding: 14px 0; border-top: 1px solid rgba(0,0,0,0.06); }
+  .gbp-detail:last-child { border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .gbp-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--forest-deep); color: var(--gold-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; }
+  .gbp-detail-label { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+  .gbp-detail-value { font-size: 14px; line-height: 1.6; color: var(--ink); font-weight: 300; }
+  .gbp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .gbp-map-card { background: var(--forest-deep); border-radius: 22px; overflow: hidden; border: 1px solid rgba(193,160,98,0.18); box-shadow: 0 18px 54px rgba(26,42,32,0.08); display: flex; flex-direction: column; }
+  .gbp-map-card iframe { width: 100%; min-height: 340px; height: 100%; border: 0; flex: 1; display: block; }
+  .gbp-map-footer { padding: 22px 26px; color: rgba(245,237,224,0.72); font-size: 13px; line-height: 1.7; font-weight: 300; border-top: 1px solid rgba(193,160,98,0.14); }
+  .gbp-map-footer strong { color: var(--gold-light); font-weight: 500; }
+
   /* ── LOCATIONS / MAPS SECTION ── */
   .locations-section { background: var(--cream-dark); padding: 96px 24px; }
   .locations-inner { max-width: 1020px; margin: 0 auto; }
@@ -748,6 +777,9 @@
   .loc-btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
   @media (max-width: 768px) {
     .loc-grid { grid-template-columns: 1fr; }
+    .google-profile-section { padding: 64px 24px; }
+    .google-profile-grid { grid-template-columns: 1fr; gap: 18px; }
+    .gbp-card { padding: 26px; }
     .locations-section { padding: 64px 24px; }
   }
 
@@ -785,6 +817,7 @@
     <li><a href="sound-bath-charlotte.html">Sound Bath Charlotte</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="#locations">Locations</a></li>
+    <li><a href="#google-profile">Google Profile</a></li>
     <li><a href="#book" class="nav-cta">Book</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -802,6 +835,7 @@
   <a href="sound-bath-charlotte.html" onclick="closeMobileMenu()">Sound Bath Charlotte</a>
   <a href="blog.html" onclick="closeMobileMenu()">Blog</a>
   <a href="#locations" onclick="closeMobileMenu()">Locations</a>
+  <a href="#google-profile" onclick="closeMobileMenu()">Google Profile</a>
   <a class="mm-book" href="#book" onclick="closeMobileMenu()">Book</a>
 </div>
 
@@ -1335,6 +1369,63 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══ GOOGLE BUSINESS PROFILE / REVIEWS ═══ -->
+<section class="google-profile-section" id="google-profile">
+  <div class="google-profile-inner">
+    <div class="reveal" style="text-align:center;">
+      <p class="label" style="color:var(--gold);">Google Business Profile</p>
+      <h2 class="display-title">Find Sound Healing with Nishi <em>on Google</em></h2>
+      <div class="gold-rule" style="margin-left:auto;margin-right:auto;"></div>
+    </div>
+
+    <div class="google-profile-grid">
+      <div class="gbp-card reveal-left">
+        <div class="gbp-badge">★ Listed on Google Maps</div>
+        <h3 class="gbp-title">A trusted Charlotte destination for <em>sound healing</em></h3>
+        <p class="gbp-text">Sound Healing with Nishi is listed on Google for vibrational sound healing, sound bath meditation, private sound bath, group sound bath and corporate sound meditation in Charlotte, NC.</p>
+        <p class="gbp-text">Visitors can use the Google Business Profile to read current reviews, get directions, call Nishi, view photos and confirm the latest profile details before booking a session.</p>
+
+        <div class="gbp-details">
+          <div class="gbp-detail">
+            <div class="gbp-icon">⌖</div>
+            <div>
+              <p class="gbp-detail-label">Location</p>
+              <p class="gbp-detail-value">2132 Cascade Pointe Boulevard<br>Charlotte, NC 28208</p>
+            </div>
+          </div>
+          <div class="gbp-detail">
+            <div class="gbp-icon">◎</div>
+            <div>
+              <p class="gbp-detail-label">Services on Google</p>
+              <p class="gbp-detail-value">Vibrational Sound Healing, Sound Bath Meditation, Private Sound Bath, Group Sound Bath and Corporate Sound Meditation.</p>
+            </div>
+          </div>
+          <div class="gbp-detail">
+            <div class="gbp-icon">☏</div>
+            <div>
+              <p class="gbp-detail-label">Contact</p>
+              <p class="gbp-detail-value"><a href="tel:+12019825777" style="color:var(--ink);text-decoration:none;">201-982-5777</a> · <a href="mailto:soundhealingwithnishi@gmail.com" style="color:var(--ink);text-decoration:none;">soundhealingwithnishi@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gbp-actions">
+          <a href="https://share.google/2SQAhjzLM3Vu3GyNR" target="_blank" rel="noopener" class="btn-gold">View on Google</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=2132+Cascade+Pointe+Boulevard+Charlotte+NC+28208" target="_blank" rel="noopener" class="btn-forest">Get Directions</a>
+          <a href="#book" class="btn-ghost" style="color:var(--forest-mid);border-color:rgba(193,160,98,0.45);">Book a Session</a>
+        </div>
+      </div>
+
+      <div class="gbp-map-card reveal-right">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Sound+Healing+with+Nishi+2132+Cascade+Pointe+Boulevard+Charlotte+NC+28208&output=embed"></iframe>
+        <div class="gbp-map-footer"><strong>Serving Charlotte and nearby areas:</strong> Ballantyne, SouthPark, Dilworth, Plaza Midwood, NoDa, Matthews, Pineville, Huntersville, Concord, Fort Mill and surrounding communities.</div>
+      </div>
     </div>
   </div>
 </section>
