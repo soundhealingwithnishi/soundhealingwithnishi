@@ -785,6 +785,29 @@
     .locations-section { padding: 64px 24px; }
   }
 
+  /* ── NEWSLETTER SIGNUP ── */
+  .newsletter-section { background: var(--forest-deep); padding: 88px 24px; position: relative; overflow: hidden; }
+  .newsletter-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(193,160,98,0.1) 0%, transparent 70%); pointer-events: none; }
+  .newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+  .newsletter-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: inline-flex; align-items: center; gap: 14px; }
+  .newsletter-eyebrow::before, .newsletter-eyebrow::after { content: ''; width: 28px; height: 1px; background: rgba(193,160,98,0.45); }
+  .newsletter-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px,4vw,46px); font-weight: 300; color: #f5ede0; margin-bottom: 18px; line-height: 1.1; }
+  .newsletter-title em { font-style: italic; color: var(--gold-light); }
+  .newsletter-desc { font-size: 15px; line-height: 1.8; color: rgba(245,237,224,0.6); font-weight: 300; margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto; }
+  .newsletter-form { display: flex; gap: 10px; max-width: 460px; margin: 0 auto; flex-wrap: wrap; }
+  .newsletter-form input { flex: 1; min-width: 200px; padding: 16px 22px; border-radius: 100px; border: 1px solid rgba(193,160,98,0.3); background: rgba(255,255,255,0.04); color: #f5ede0; font-family: 'Jost', sans-serif; font-size: 14px; }
+  .newsletter-form input::placeholder { color: rgba(245,237,224,0.4); }
+  .newsletter-form input:focus { outline: none; border-color: var(--gold); }
+  .newsletter-form button { background: var(--gold); color: var(--forest-deep); border: none; padding: 16px 32px; border-radius: 100px; font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+  .newsletter-form button:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .newsletter-fineprint { font-size: 11px; color: rgba(245,237,224,0.4); margin-top: 18px; }
+  .newsletter-success { display: none; margin-top: 20px; padding: 16px; background: rgba(193,160,98,0.1); border: 1px solid rgba(193,160,98,0.3); border-radius: 12px; }
+  .newsletter-success p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: var(--gold-light); }
+  @media (max-width: 768px) {
+    .newsletter-section { padding: 64px 24px; }
+    .newsletter-form button { width: 100%; }
+  }
+
 </style>
 </head>
 <body>
@@ -1331,6 +1354,30 @@
   </div>
 </section>
 
+<!-- ═══ NEWSLETTER SIGNUP ═══
+     HOW THIS WORKS: This form collects emails. To actually store & send to them,
+     connect it to a free email tool (EmailOctopus or Kit recommended — see notes).
+     Two ways to connect:
+       OPTION A (easiest): Replace the whole <form> action with your email tool's
+         embed form code (they give you HTML to paste — just swap it in here).
+       OPTION B: Keep this design and point the form 'action' to your tool's form URL.
+     Until connected, it shows a thank-you message but does not store the email. -->
+<section class="newsletter-section" id="newsletter">
+  <div class="newsletter-inner reveal">
+    <p class="newsletter-eyebrow">Stay in the Loop</p>
+    <h2 class="newsletter-title">Never miss a <em>sound bath</em></h2>
+    <p class="newsletter-desc">Join Nishi's circle to hear about upcoming events, new sound bath dates, and special offers — straight to your inbox. No spam, just good vibrations.</p>
+    <form class="newsletter-form" id="newsletterForm" onsubmit="return handleNewsletter(event)">
+      <input type="email" id="newsletterEmail" name="email" placeholder="your@email.com" required>
+      <button type="submit">Subscribe ✦</button>
+    </form>
+    <p class="newsletter-fineprint">We respect your inbox. Unsubscribe anytime.</p>
+    <div class="newsletter-success" id="newsletterSuccess">
+      <p>✦ You're in! Watch your inbox for the next sound bath.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ LOCATIONS / DIRECTIONS ═══ -->
 <section class="locations-section" id="locations">
   <div class="locations-inner">
@@ -1484,6 +1531,19 @@
 </div>
 
 <script>
+/* NEWSLETTER SIGNUP
+   This currently shows a thank-you message. To actually capture emails,
+   connect an email tool (EmailOctopus/Kit). Easiest: replace the form's
+   onsubmit with the email tool's own embed code. */
+function handleNewsletter(e) {
+  e.preventDefault();
+  var email = document.getElementById('newsletterEmail').value;
+  // TODO: when connected to EmailOctopus/Kit, this is where the email gets sent to them.
+  document.getElementById('newsletterForm').style.display = 'none';
+  document.getElementById('newsletterSuccess').style.display = 'block';
+  return false;
+}
+
 /* MOBILE MENU */
 function toggleMobileMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
