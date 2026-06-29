@@ -808,6 +808,34 @@
     .newsletter-form button { width: 100%; }
   }
 
+
+  /* EMAILOCTOPUS NEWSLETTER EMBED */
+  .newsletter-embed {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 22px;
+    background: rgba(250,247,242,0.06);
+    border: 1px solid rgba(193,160,98,0.28);
+    border-radius: 22px;
+  }
+  .newsletter-embed iframe,
+  .newsletter-embed form {
+    max-width: 100%;
+  }
+  .newsletter-page-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--gold-light);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(193,160,98,0.45);
+    padding-bottom: 4px;
+  }
+  .newsletter-page-link:hover { color: var(--gold); }
+
 </style>
 </head>
 <body>
@@ -1354,27 +1382,22 @@
   </div>
 </section>
 
-<!-- ═══ NEWSLETTER SIGNUP ═══
-     HOW THIS WORKS: This form collects emails. To actually store & send to them,
-     connect it to a free email tool (EmailOctopus or Kit recommended — see notes).
-     Two ways to connect:
-       OPTION A (easiest): Replace the whole <form> action with your email tool's
-         embed form code (they give you HTML to paste — just swap it in here).
-       OPTION B: Keep this design and point the form 'action' to your tool's form URL.
-     Until connected, it shows a thank-you message but does not store the email. -->
+<!-- ═══ NEWSLETTER SIGNUP: EmailOctopus connected ═══ -->
 <section class="newsletter-section" id="newsletter">
   <div class="newsletter-inner reveal">
     <p class="newsletter-eyebrow">Stay in the Loop</p>
-    <h2 class="newsletter-title">Never miss a <em>sound bath</em></h2>
-    <p class="newsletter-desc">Join Nishi's circle to hear about upcoming events, new sound bath dates, and special offers — straight to your inbox. No spam, just good vibrations.</p>
-    <form class="newsletter-form" id="newsletterForm" onsubmit="return handleNewsletter(event)">
-      <input type="email" id="newsletterEmail" name="email" placeholder="your@email.com" required>
-      <button type="submit">Subscribe ✦</button>
-    </form>
-    <p class="newsletter-fineprint">We respect your inbox. Unsubscribe anytime.</p>
-    <div class="newsletter-success" id="newsletterSuccess">
-      <p>✦ You're in! Watch your inbox for the next sound bath.</p>
+    <h2 class="newsletter-title">Join Nishi's <em>sound healing circle</em></h2>
+    <p class="newsletter-desc">Receive upcoming sound bath dates, private session openings, Charlotte wellness events, and gentle sound healing updates from Nishi.</p>
+
+    <div class="newsletter-embed">
+      <script async src="https://eomail5.com/form/66638936-73dd-11f1-891f-b59e7ea25898.js" data-form="66638936-73dd-11f1-891f-b59e7ea25898"></script>
+      <noscript>
+        <a href="https://soundhealingwithnishi.eo.page/3n5v5" target="_blank" rel="noopener">Join the Sound Healing with Nishi newsletter</a>
+      </noscript>
     </div>
+
+    <a class="newsletter-page-link" href="https://soundhealingwithnishi.eo.page/3n5v5" target="_blank" rel="noopener">Open signup page</a>
+    <p class="newsletter-fineprint">By joining, you agree to receive sound bath dates, private session openings, Charlotte wellness events, and sound healing updates. Unsubscribe anytime.</p>
   </div>
 </section>
 
@@ -1531,19 +1554,6 @@
 </div>
 
 <script>
-/* NEWSLETTER SIGNUP
-   This currently shows a thank-you message. To actually capture emails,
-   connect an email tool (EmailOctopus/Kit). Easiest: replace the form's
-   onsubmit with the email tool's own embed code. */
-function handleNewsletter(e) {
-  e.preventDefault();
-  var email = document.getElementById('newsletterEmail').value;
-  // TODO: when connected to EmailOctopus/Kit, this is where the email gets sent to them.
-  document.getElementById('newsletterForm').style.display = 'none';
-  document.getElementById('newsletterSuccess').style.display = 'block';
-  return false;
-}
-
 /* MOBILE MENU */
 function toggleMobileMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
