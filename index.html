@@ -863,7 +863,7 @@
   <div class="nav-logo">Sound Healing with Nishi</div>
   <ul class="nav-links">
     <li><a href="#top" style="color:var(--gold);" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">✦ Summer Series</a></li>
-    <li><a href="#upcoming-event">Event Jul 10</a></li>
+    <li><a href="event-art-sound-bath.html">Event Jul 10</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#sessions">Sessions</a></li>
     <li><a href="offerings.html">Offerings</a></li>
@@ -871,7 +871,7 @@
     <li><a href="blog.html">Blog</a></li>
     <li><a href="#locations">Locations</a></li>
     <li><a href="#google-profile">Google Profile</a></li>
-    <li><a href="#book" class="nav-cta">Book</a></li>
+    <li><a href="booking.html" class="nav-cta">Book</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -881,7 +881,7 @@
 <!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
   <a class="mm-accent" href="#top" onclick="closeMobileMenu();window.scrollTo({top:0,behavior:'smooth'});return false;">✦ Summer Series</a>
-  <a href="#upcoming-event" onclick="closeMobileMenu()">Event Jul 10</a>
+  <a href="event-art-sound-bath.html" onclick="closeMobileMenu()">Event Jul 10</a>
   <a href="#about" onclick="closeMobileMenu()">About</a>
   <a href="#sessions" onclick="closeMobileMenu()">Sessions</a>
   <a href="offerings.html" onclick="closeMobileMenu()">Offerings</a>
@@ -889,7 +889,7 @@
   <a href="blog.html" onclick="closeMobileMenu()">Blog</a>
   <a href="#locations" onclick="closeMobileMenu()">Locations</a>
   <a href="#google-profile" onclick="closeMobileMenu()">Google Profile</a>
-  <a class="mm-book" href="#book" onclick="closeMobileMenu()">Book</a>
+  <a class="mm-book" href="booking.html" onclick="closeMobileMenu()">Book</a>
 </div>
 
 <!-- HERO — SPLIT: slideshow + title on left, Summer Series on right -->
@@ -930,7 +930,7 @@
       <p class="hero-tagline">"Let the sounds make you fall in love with yourself."</p>
       <p style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1.5px;color:rgba(245,237,224,0.5);margin-top:-22px;margin-bottom:34px;max-width:400px;line-height:1.6;">Charlotte, NC · Hand-picked Himalayan bowls, crystal bowls &amp; 18+ instruments</p>
       <div class="hero-buttons">
-        <a href="#book" class="btn-gold">Book a Session</a>
+        <a href="booking.html" class="btn-gold">Book a Session</a>
         <a href="#sessions" class="btn-ghost">Explore Sessions</a>
       </div>
     </div>
@@ -1086,7 +1086,7 @@
 
       <div class="evt-actions">
         <a href="https://www.eventbrite.com/e/soundbath-artmaking-confidence-manifestation-experience-tickets-1992169468508" target="_blank" class="btn-event-primary">Reserve My Spot</a>
-        <a href="#book" class="btn-event-ghost">Ask a Question</a>
+        <a href="booking.html" class="btn-event-ghost">Ask a Question</a>
       </div>
     </div>
 
@@ -1490,7 +1490,7 @@
         <div class="gbp-actions">
           <a href="https://share.google/2SQAhjzLM3Vu3GyNR" target="_blank" rel="noopener" class="btn-gold">View on Google</a>
           <a href="https://www.google.com/maps/dir/?api=1&destination=2132+Cascade+Pointe+Boulevard+Charlotte+NC+28208" target="_blank" rel="noopener" class="btn-forest">Get Directions</a>
-          <a href="#book" class="btn-ghost" style="color:var(--forest-mid);border-color:rgba(193,160,98,0.45);">Book a Session</a>
+          <a href="booking.html" class="btn-ghost" style="color:var(--forest-mid);border-color:rgba(193,160,98,0.45);">Book a Session</a>
         </div>
       </div>
 
@@ -1567,8 +1567,7 @@ function closeMobileMenu() {
 /* EVENT POPUP BAR */
 document.body.classList.add('has-popup');
 function goToEvent() {
-  const el = document.getElementById('upcoming-event');
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window.location.href = 'event-art-sound-bath.html';
 }
 function dismissPopup(e) {
   e.stopPropagation();
