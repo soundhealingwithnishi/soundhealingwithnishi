@@ -836,6 +836,34 @@
   }
   .newsletter-page-link:hover { color: var(--gold); }
 
+
+
+  /* BOOK YOUR EXPERIENCE COMPACT SECTION */
+  .book-experience-section { background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%); padding: 76px 24px; }
+  .book-experience-inner { max-width: 1040px; margin: 0 auto; }
+  .book-experience-head { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end; margin-bottom: 34px; }
+  .book-experience-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px,4.8vw,52px); font-weight: 300; color: var(--ink); line-height: 1.1; }
+  .book-experience-title em { color: var(--forest-mid); font-style: italic; }
+  .book-experience-sub { font-size: 15px; line-height: 1.8; color: var(--muted); font-weight: 300; max-width: 600px; margin-top: 14px; }
+  .book-experience-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
+  .book-experience-card { background: var(--white); border: 1px solid rgba(193,160,98,0.18); border-radius: 24px; padding: 28px; box-shadow: 0 18px 54px rgba(26,42,32,0.07); }
+  .book-experience-card.dark { background: var(--forest-deep); color: #f5ede0; }
+  .book-experience-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--ink); margin-bottom: 10px; }
+  .book-experience-card.dark h3 { color: #f5ede0; }
+  .book-experience-card p { font-size: 14px; line-height: 1.75; color: var(--muted); font-weight: 300; margin-bottom: 18px; }
+  .book-experience-card.dark p { color: rgba(245,237,224,0.66); }
+  .book-experience-mini { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin: 16px 0 22px; }
+  .book-mini-pill { border: 1px solid rgba(193,160,98,0.25); border-radius: 16px; padding: 12px; background: rgba(193,160,98,0.06); }
+  .book-mini-pill strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--forest-deep); font-weight: 400; }
+  .book-mini-pill span { display: block; font-size: 11px; color: var(--muted); line-height: 1.5; margin-top: 3px; }
+  .book-experience-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .source-note { margin-top: 18px; font-size: 12px; line-height: 1.7; color: var(--muted-light); }
+  .source-note a { color: var(--forest-mid); text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 768px) {
+    .book-experience-head, .book-experience-grid { grid-template-columns: 1fr; }
+    .book-experience-mini { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -863,7 +891,7 @@
   <div class="nav-logo">Sound Healing with Nishi</div>
   <ul class="nav-links">
     <li><a href="#top" style="color:var(--gold);" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">✦ Summer Series</a></li>
-    <li><a href="event-art-sound-bath.html">Event Jul 10</a></li>
+    <li><a href="#upcoming-event">Event Jul 10</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#sessions">Sessions</a></li>
     <li><a href="offerings.html">Offerings</a></li>
@@ -881,7 +909,7 @@
 <!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
   <a class="mm-accent" href="#top" onclick="closeMobileMenu();window.scrollTo({top:0,behavior:'smooth'});return false;">✦ Summer Series</a>
-  <a href="event-art-sound-bath.html" onclick="closeMobileMenu()">Event Jul 10</a>
+  <a href="#upcoming-event" onclick="closeMobileMenu()">Event Jul 10</a>
   <a href="#about" onclick="closeMobileMenu()">About</a>
   <a href="#sessions" onclick="closeMobileMenu()">Sessions</a>
   <a href="offerings.html" onclick="closeMobileMenu()">Offerings</a>
@@ -930,7 +958,7 @@
       <p class="hero-tagline">"Let the sounds make you fall in love with yourself."</p>
       <p style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1.5px;color:rgba(245,237,224,0.5);margin-top:-22px;margin-bottom:34px;max-width:400px;line-height:1.6;">Charlotte, NC · Hand-picked Himalayan bowls, crystal bowls &amp; 18+ instruments</p>
       <div class="hero-buttons">
-        <a href="booking.html" class="btn-gold">Book a Session</a>
+        <a href="#book-experience" class="btn-gold">Book Your Experience</a>
         <a href="#sessions" class="btn-ghost">Explore Sessions</a>
       </div>
     </div>
@@ -1086,7 +1114,7 @@
 
       <div class="evt-actions">
         <a href="https://www.eventbrite.com/e/soundbath-artmaking-confidence-manifestation-experience-tickets-1992169468508" target="_blank" class="btn-event-primary">Reserve My Spot</a>
-        <a href="booking.html" class="btn-event-ghost">Ask a Question</a>
+        <a href="#book" class="btn-event-ghost">Ask a Question</a>
       </div>
     </div>
 
@@ -1170,6 +1198,49 @@
 
 </section>
 
+
+<!-- BOOK YOUR EXPERIENCE COMPACT -->
+<section class="book-experience-section" id="book-experience">
+  <div class="book-experience-inner reveal">
+    <div class="book-experience-head">
+      <div>
+        <p class="label">Book Your Experience</p>
+        <h2 class="book-experience-title">Choose the right way to <em>connect with Nishi</em></h2>
+        <p class="book-experience-sub">For private, group, corporate, retreat, or special event sound healing, send a booking request with your preferred date and details. For the July 10 Art &amp; Sound Bath, reserve directly through the event page.</p>
+      </div>
+      <div class="book-experience-actions">
+        <a href="booking.html" class="btn-gold">Book a Session</a>
+        <a href="#book" class="btn-forest">Quick Message</a>
+      </div>
+    </div>
+    <div class="book-experience-grid">
+      <div class="book-experience-card">
+        <h3>Private, group, corporate, retreats and events</h3>
+        <p>Use the full booking request page to choose your preferred date, time, session type, number of people, event mood, location, and message. Your request goes through Formspree to Nishi for personal review.</p>
+        <div class="book-experience-mini">
+          <div class="book-mini-pill"><strong>Private</strong><span>1:1, couples, personal reset</span></div>
+          <div class="book-mini-pill"><strong>Group</strong><span>Friends, family, birthdays</span></div>
+          <div class="book-mini-pill"><strong>Corporate</strong><span>Team wellness and retreats</span></div>
+          <div class="book-mini-pill"><strong>Events</strong><span>Retreats, ceremonies, special spaces</span></div>
+        </div>
+        <div class="book-experience-actions">
+          <a href="booking.html" class="btn-gold">Open Booking Form</a>
+          <a href="#book" class="btn-ghost" style="color:var(--forest-mid);border-color:rgba(193,160,98,0.45);">Send Quick Inquiry</a>
+        </div>
+      </div>
+      <div class="book-experience-card dark">
+        <h3>Upcoming event</h3>
+        <p><strong>Art &amp; Sound Bath: Self-Confidence Manifestation Experience</strong><br>July 10 · 6:00 PM to 7:45 PM · Move Talk Zen, Charlotte.</p>
+        <p>Come experience Charlotte’s vibrational sound healing with meditative art-making. No art experience needed.</p>
+        <div class="book-experience-actions">
+          <a href="event-art-sound-bath.html" class="btn-gold">View Event Page</a>
+          <a href="https://www.eventbrite.com/e/soundbath-artmaking-confidence-manifestation-experience-tickets-1992169468508" target="_blank" rel="noopener" class="btn-ghost">Get Tickets</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="section" id="about" style="background:var(--cream);">
   <div class="section-inner reveal">
@@ -1197,6 +1268,22 @@
           <div class="stat-box"><p class="stat-num">✦</p><p class="stat-label">Certified</p></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SEO EDUCATIONAL SECTION -->
+<section class="section" id="why-sound-healing-charlotte" style="background:var(--cream-dark);">
+  <div class="section-inner reveal">
+    <p class="label">Sound Healing in Charlotte</p>
+    <h2 class="display-title">Why sound healing is becoming <em>popular in Charlotte</em></h2>
+    <div class="gold-rule"></div>
+    <div class="about-body" style="max-width:860px;">
+      <p>Sound healing has become a growing wellness practice for people looking for peace, stress release, nervous system calm, and a deeper way to rest. Across meditation studios, retreats, corporate wellness spaces, and modern wellness conversations, sound baths are being recognized as a calming experience that helps people slow down and reconnect with themselves.</p>
+      <p>At <strong>Sound Healing with Nishi</strong>, each session is designed with hand-picked Himalayan singing bowls, crystal bowls, crystal tuning fork, and 18+ instruments to create an immersive vibrational sound experience. Sessions are available for private sound baths, group sound baths, corporate wellness, retreats, and special events in Charlotte, NC.</p>
+      <p>This is not about pressure or performance. It is about creating a peaceful space where you can breathe, release stress, soften the nervous system, and come back home to yourself.</p>
+      <p class="source-note">Further reading: <a href="https://stratfordschoolofmeditation.com/blog-1/f/celebrities-who-swear-by-sound-healing" target="_blank" rel="noopener">Stratford School of Meditation on sound healing in celebrity wellness culture</a>. This external article is shared as further reading only and does not imply any celebrity endorsement of Sound Healing with Nishi.</p>
     </div>
   </div>
 </section>
@@ -1567,7 +1654,8 @@ function closeMobileMenu() {
 /* EVENT POPUP BAR */
 document.body.classList.add('has-popup');
 function goToEvent() {
-  window.location.href = 'event-art-sound-bath.html';
+  const el = document.getElementById('upcoming-event');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 function dismissPopup(e) {
   e.stopPropagation();
