@@ -39,7 +39,7 @@ document.querySelectorAll('.social-card video').forEach(video => {
 });
 
 
-/* Animated hero collage — each of the 3 cells cycles through all photos,
+/* Animated hero collage — each of the 3 cells cross-fades through all photos,
    offset so the same photo never appears in two cells at once. */
 function initHeroCollage(){
   const collage = document.getElementById('heroCollage');
@@ -49,54 +49,43 @@ function initHeroCollage(){
   const cells = Array.from(collage.querySelectorAll('.collage-cell'));
   const N = photos.length;
 
-  // Each cell starts at a spread-out index so they show different photos
-  const state = cells.map((cell, idx) => {
-    const startIdx = Math.floor(idx * N / cells.length);
-    return { cell: cell, idx: startIdx, imgs: cell.querySelectorAll('.collage-img') };
-  });
+  const state = cells.map((cell, idx) => ({
+    cell: cell,
+    idx: Math.floor(idx * N / cells.length)
+  }));
 
-  function currentlyShown() {
-    // which photo indices are on screen right now
-    return state.map(s => s.idx % N);
-  }
+  function shownIndices(){ return state.map(s => s.idx % N); }
 
-  function swapCell(s) {
-    const shown = currentlyShown();
-    // pick next photo for this cell that's not currently shown in another cell
-    let tries = 0, next = (s.idx + cells.length) % N;
-    while (tries < N) {
-      if (!shown.includes(next) || next === (s.idx % N)) break;
-      next = (next + 1) % N;
-      tries++;
-    }
+  function swapCell(s){
+    const shown = shownIndices();
+    let next = (s.idx + cells.length) % N, tries = 0;
+    while (tries < N && shown.includes(next)) { next = (next + 1) % N; tries++; }
     s.idx = next;
     const cell = s.cell;
-    // find the currently active img, and an inactive img to fade in
-    let activeImg = cell.querySelector('.collage-img.active');
+    const activeImg = cell.querySelector('.collage-img.active');
     let imgs = cell.querySelectorAll('.collage-img');
     let incoming;
     if (imgs.length < 2) {
-      // create a second img layer for cross-fade
       incoming = document.createElement('img');
       incoming.className = 'collage-img';
-      // preserve caption on the big cell by inserting before caption
-      const cap = cell.querySelector('.collage-caption');
-      if (cap) cell.insertBefore(incoming, cap); else cell.appendChild(incoming);
+      incoming.alt = 'Sound healing with Nishi';
+      incoming.onerror = function(){ this.onerror=null; this.src='photo3.jpg'; };
+      cell.appendChild(incoming);
     } else {
       incoming = Array.from(imgs).find(i => !i.classList.contains('active'));
     }
     incoming.src = photos[next];
-    // force reflow then fade
     void incoming.offsetWidth;
     incoming.classList.add('active');
     if (activeImg && activeImg !== incoming) activeImg.classList.remove('active');
   }
 
-  // Stagger each cell's timer so they don't all flip together
+  // Stagger the timers so cells flip at different moments
   state.forEach((s, i) => {
-    setInterval(() => swapCell(s), 4200);
-    // initial staggered offset
-    setTimeout(() => {}, i * 1400);
+    setTimeout(() => {
+      swapCell(s);
+      setInterval(() => swapCell(s), 4500);
+    }, 1600 + i * 1500);
   });
 }
 if (document.readyState === 'loading') {
@@ -104,8 +93,6 @@ if (document.readyState === 'loading') {
 } else {
   initHeroCollage();
 }
-
-
 
 </script>
 <style>
@@ -1458,7 +1445,7 @@ footer {
 }
 
 
-/* Animated collage: 3 cells, each cross-fades through all photos */
+/* Hero photo slider: one image at a time, using all previous hero photos */
 .hero-collage {
   position: absolute;
   inset: 0;
@@ -1475,7 +1462,7 @@ footer {
 .collage-cell {
   position: relative;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 12px;
   background: var(--forest2);
 }
 .collage-img {
@@ -1494,35 +1481,15 @@ footer {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(22,37,28,.28), transparent 46%);
+  background: linear-gradient(to top, rgba(22,37,28,.22), transparent 46%);
   pointer-events: none;
   z-index: 2;
-}
-.collage-caption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  z-index: 3;
-  background: rgba(250,247,241,.95);
-  color: var(--forest);
-  padding: 16px 20px;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 19px;
-  line-height: 1.25;
-}
-.collage-cap-label {
-  display: block;
-  font-family: 'Jost', sans-serif;
-  font-size: 9px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gold2);
-  margin-bottom: 5px;
 }
 @media(max-width: 900px) {
   .hero-collage { position: relative; height: 520px; }
 }
 @media(max-width: 560px) {
-  .hero-collage { height: 480px; }
+  .hero-collage { height: 460px; }
 }
 
 
@@ -1666,10 +1633,8 @@ footer {
 
   <div class="hero-right">
     <div class="hero-collage" id="heroCollage">
-      <!-- 3 collage cells; each rotates through ALL photos, offset so no repeats on screen -->
       <div class="collage-cell collage-big" data-cell="0">
         <img class="collage-img active" src="photo3.jpg" alt="Sound Healing with Nishi">
-        <div class="collage-caption"><span class="collage-cap-label">Signature Session</span>Himalayan bowls, crystal bowls &amp; vibrational instruments</div>
       </div>
       <div class="collage-cell collage-top" data-cell="1">
         <img class="collage-img active" src="photo4.jpg" alt="Sound healing session in Charlotte">
@@ -1678,12 +1643,19 @@ footer {
         <img class="collage-img active" src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo5.jpg';" alt="Sunset sound bath">
       </div>
     </div>
+    <div class="hero-veil"></div>
+    <div class="hero-chip">
+      <div class="hero-chip-label">Signature Session</div>
+      <div class="hero-chip-text">Himalayan bowls, crystal bowls & vibrational instruments</div>
+    </div>
+  </div>
+
   </div>
 </section>
 
-<!-- Photo pool for the animated collage (all hero photos) -->
+<!-- Photo pool for the animated collage (all photos that exist in the repo) -->
 <script>
-window.HERO_COLLAGE_PHOTOS = ['photo3.jpg','photo4.jpg','photo1.jpg','photo5.jpg','Image-1.jpg','Image-2.jpg','Image-3.jpg','Image-4.jpg','Image-5.jpg','Image-6.jpg','Image-7.jpg','Image-8.jpg','saunahouse-nishi.jpg'];
+window.HERO_COLLAGE_PHOTOS = ['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo7.jpg','photo8.jpg','photo10.jpg','Image-1.jpg','Image-2.jpg','Image-3.jpg','Image-4.jpg','Image-5.jpg','Image-6.jpg','Image-7.jpg','Image-8.jpg','saunahouse-nishi.jpg'];
 </script>
 
 <div class="marquee">
