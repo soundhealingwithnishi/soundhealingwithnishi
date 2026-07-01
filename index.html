@@ -864,6 +864,333 @@
     .book-experience-mini { grid-template-columns: 1fr; }
   }
 
+
+
+
+/* Targeted hero CTA polish: centered, glowing, readable */
+.hero.hero-solo .hero-content { max-width: 760px; margin: 0 auto; text-align: center; }
+.hero.hero-solo .hero-tagline {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-shadow: 0 0 22px rgba(245,237,224,.36);
+}
+.hero.hero-solo .hero-tagline + p {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.hero.hero-solo .hero-buttons {
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid !important;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+.hero.hero-solo .hero-buttons .btn-gold,
+.hero.hero-solo .hero-buttons .btn-ghost {
+  min-width: 215px;
+  text-align: center;
+  border-radius: 100px !important;
+  box-shadow: 0 0 18px rgba(193,160,98,.32), 0 18px 46px rgba(15,28,18,.32);
+}
+.hero.hero-solo .hero-buttons .btn-gold {
+  animation: nishiGlowGold 2.7s ease-in-out infinite;
+}
+.hero.hero-solo .hero-buttons .btn-ghost {
+  background: rgba(15,28,18,.22);
+  backdrop-filter: blur(6px);
+  animation: nishiGlowSoft 3.2s ease-in-out infinite;
+}
+.hero.hero-solo .hero-book-note {
+  grid-column: 1 / -1;
+  justify-self: center;
+  text-align: center;
+  margin-top: 6px !important;
+  padding: 9px 22px;
+  border-radius: 100px;
+  border: 1px solid rgba(193,160,98,.22);
+  background: rgba(15,28,18,.18);
+  color: rgba(245,237,224,.78) !important;
+  text-shadow: 0 0 18px rgba(193,160,98,.36);
+  box-shadow: 0 0 24px rgba(193,160,98,.12);
+}
+@keyframes nishiGlowGold {
+  0%,100% { box-shadow: 0 0 18px rgba(193,160,98,.36), 0 18px 46px rgba(15,28,18,.32); transform: translateY(0); }
+  50% { box-shadow: 0 0 34px rgba(212,184,122,.72), 0 22px 58px rgba(15,28,18,.38); transform: translateY(-1px); }
+}
+@keyframes nishiGlowSoft {
+  0%,100% { box-shadow: 0 0 12px rgba(193,160,98,.22), 0 18px 46px rgba(15,28,18,.28); }
+  50% { box-shadow: 0 0 26px rgba(212,184,122,.5), 0 20px 54px rgba(15,28,18,.34); }
+}
+
+/* Front-page availability calendar */
+.front-calendar-section {
+  background: linear-gradient(180deg, var(--forest-deep) 0%, #203528 100%);
+  padding: 88px 24px 96px;
+  color: #f5ede0;
+}
+.front-calendar-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: .86fr 1.14fr;
+  gap: 42px;
+  align-items: start;
+}
+.front-calendar-copy .label { color: var(--gold-light); }
+.front-calendar-copy h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+.front-calendar-copy h2 em { color: var(--gold-light); }
+.front-calendar-copy p {
+  color: rgba(245,237,224,.68);
+  font-size: 15px;
+  line-height: 1.85;
+  font-weight: 300;
+  max-width: 440px;
+}
+.front-calendar-card {
+  background: rgba(250,247,242,.96);
+  color: var(--ink);
+  border: 1px solid rgba(193,160,98,.32);
+  border-radius: 30px;
+  padding: 24px;
+  box-shadow: 0 26px 80px rgba(0,0,0,.22);
+}
+.front-calendar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.front-calendar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  color: var(--forest-deep);
+}
+.front-calendar-nav {
+  display: flex;
+  gap: 8px;
+}
+.front-calendar-nav button {
+  width: 34px;
+  height: 34px;
+  border-radius: 100px;
+  border: 1px solid rgba(193,160,98,.35);
+  background: var(--cream);
+  color: var(--forest-deep);
+  cursor: pointer;
+}
+.front-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
+}
+.front-cal-dow {
+  font-size: 8px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  font-weight: 600;
+  padding: 7px 0;
+}
+.front-cal-day {
+  min-height: 60px;
+  border: 1px solid rgba(26,42,32,.08);
+  border-radius: 14px;
+  background: var(--cream-dark);
+  padding: 8px;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+}
+.front-cal-day.empty { visibility: hidden; pointer-events: none; }
+.front-cal-day .n { display: block; color: var(--forest-deep); font-size: 13px; }
+.front-cal-day .s { display: block; margin-top: 7px; font-size: 8px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.front-cal-day.open {
+  background: rgba(193,160,98,.14);
+  border-color: rgba(193,160,98,.45);
+}
+.front-cal-day.open .s { color: var(--forest-deep); }
+.front-cal-day.limited {
+  background: rgba(61,90,68,.12);
+  border-color: rgba(61,90,68,.28);
+}
+.front-cal-day.booked {
+  opacity: .55;
+  cursor: not-allowed;
+}
+.front-cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.front-cal-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.front-cal-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); }
+.front-cal-dot.limited { background: var(--forest-mid); }
+.front-cal-dot.booked { background: #b9afa4; }
+.front-calendar-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+@media (max-width: 768px) {
+  .hero.hero-solo .hero-buttons { grid-template-columns: 1fr; max-width: 320px; }
+  .hero.hero-solo .hero-buttons .btn-gold,
+  .hero.hero-solo .hero-buttons .btn-ghost { width: 100%; min-width: 0; }
+  .front-calendar-inner { grid-template-columns: 1fr; }
+  .front-calendar-grid { gap: 5px; }
+  .front-cal-day { min-height: 52px; padding: 6px; }
+}
+
+
+/* Targeted update: hero full-width and Summer Series moved below */
+.hero.hero-solo { display: block; min-height: 100vh; }
+.hero.hero-solo .hero-left { min-height: 100vh; width: 100%; }
+.moved-series-section { background: var(--cream); padding: 92px 24px; }
+.moved-series-section .section-inner { max-width: 1120px; margin: 0 auto; }
+.moved-series-section .hero-right { position: relative; background: transparent; display: block; padding: 0; overflow: visible; }
+.moved-series-section .hero-right-inner { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: .95fr 1.05fr; gap: 42px; align-items: center; }
+.moved-series-section .hr-photo { grid-row: 1 / span 7; margin-bottom: 0; aspect-ratio: 4/5; box-shadow: 0 24px 70px rgba(26,42,32,.12); }
+.moved-series-section .hr-partner, .moved-series-section .hr-title, .moved-series-section .hr-desc, .moved-series-section .hr-meta, .moved-series-section .hr-promo, .moved-series-section .hr-cta { grid-column: 2; }
+.moved-series-section .hr-title { font-size: clamp(36px,5vw,56px); }
+.hero-buttons .btn-gold { box-shadow: 0 18px 45px rgba(193,160,98,.32); }
+.hero-book-note { margin-top: 16px; font-size: 10px; letter-spacing: 2px; color: rgba(245,237,224,.62); text-transform: uppercase; }
+/* LTS-inspired premium horizontal scrolling showcase */
+.experience-rail-section { background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%); padding: 86px 0 96px; overflow: hidden; }
+.experience-rail-head { max-width: 960px; margin: 0 auto 36px; padding: 0 24px; text-align: center; }
+.experience-rail-head h2 { font-family:'Cormorant Garamond', serif; font-size: clamp(34px, 5vw, 54px); font-weight:300; color: var(--ink); }
+.experience-rail-head p { color: var(--muted); font-size: 15px; line-height: 1.8; max-width: 640px; margin: 16px auto 0; font-weight: 300; }
+.experience-rail { display: flex; gap: 24px; overflow-x: auto; padding: 12px 9vw 28px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.experience-card { scroll-snap-align: center; flex: 0 0 min(560px, 82vw); min-height: 430px; border-radius: 30px; overflow: hidden; position: relative; background: var(--forest-deep); box-shadow: 0 25px 80px rgba(26,42,32,.22); }
+.experience-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; opacity: .76; transition: transform .7s ease; }
+.experience-card:hover img { transform: scale(1.04); }
+.experience-card::after { content:''; position:absolute; inset:0; background: linear-gradient(to top, rgba(26,42,32,.88), rgba(26,42,32,.16)); }
+.experience-card-content { position:absolute; left:0; right:0; bottom:0; z-index:2; padding:34px; color:#f5ede0; }
+.experience-card-content span { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--gold-light); }
+.experience-card-content h3 { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; margin:8px 0 10px; }
+.experience-card-content p { color: rgba(245,237,224,.72); font-size:14px; line-height:1.75; max-width:430px; }
+.experience-card-content a { display:inline-block; margin-top:18px; color:var(--gold-light); text-decoration:none; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; border-bottom:1px solid rgba(193,160,98,.55); padding-bottom:4px; }
+@media (max-width:768px) { .moved-series-section .hero-right-inner { grid-template-columns:1fr; } .moved-series-section .hr-photo, .moved-series-section .hr-partner, .moved-series-section .hr-title, .moved-series-section .hr-desc, .moved-series-section .hr-meta, .moved-series-section .hr-promo, .moved-series-section .hr-cta { grid-column:auto; grid-row:auto; } .experience-rail { padding-left:24px; padding-right:24px; } }
+
+
+
+/* Floating chat connect widget */
+.nishi-chat-widget { position: fixed; right: 22px; bottom: 22px; z-index: 9999; font-family: 'Jost', sans-serif; }
+.nishi-chat-toggle { width: 62px; height: 62px; border-radius: 50%; border: 1px solid rgba(193,160,98,.45); background: var(--gold, #c1a062); color: var(--forest-deep, #1a2a20); box-shadow: 0 16px 42px rgba(26,42,32,.28); cursor: pointer; font-size: 24px; display:flex; align-items:center; justify-content:center; }
+.nishi-chat-panel { position: absolute; right: 0; bottom: 76px; width: 272px; background: #fff; border: 1px solid rgba(193,160,98,.28); border-radius: 22px; padding: 18px; box-shadow: 0 22px 70px rgba(26,42,32,.22); opacity: 0; transform: translateY(10px); pointer-events: none; transition: .22s ease; }
+.nishi-chat-widget.open .nishi-chat-panel { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.nishi-chat-panel h4 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--forest-deep, #1a2a20); margin: 0 0 6px; font-weight: 400; }
+.nishi-chat-panel p { font-size: 13px; color: var(--muted, #7a7268); line-height: 1.55; margin: 0 0 14px; }
+.nishi-chat-actions { display: grid; gap: 9px; }
+.nishi-chat-actions a { text-decoration: none; display: flex; align-items:center; justify-content:center; padding: 12px 14px; border-radius: 100px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+.nishi-chat-actions .wa { background: #1a2a20; color: #d4b87a; }
+.nishi-chat-actions .sms { background: #c1a062; color: #1a2a20; }
+@media(max-width:768px){ .nishi-chat-widget { right: 14px; bottom: 14px; } .nishi-chat-panel { width: 250px; } }
+
+
+/* Targeted update: auto-moving Book Your Session rail */
+.experience-rail {
+  scroll-behavior: smooth;
+}
+.experience-rail.auto-sliding {
+  scrollbar-width: none;
+}
+.experience-rail.auto-sliding::-webkit-scrollbar {
+  display: none;
+}
+.experience-rail-section:hover .experience-rail.auto-sliding {
+  scroll-behavior: auto;
+}
+.experience-rail-head .auto-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+.experience-rail-head .auto-note::before,
+.experience-rail-head .auto-note::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: rgba(193,160,98,.45);
+}
+
+/* Google Reviews CTA */
+.google-review-cta {
+  background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
+  padding: 76px 24px;
+}
+.google-review-card {
+  max-width: 980px;
+  margin: 0 auto;
+  background: var(--forest-deep);
+  color: #f5ede0;
+  border: 1px solid rgba(193,160,98,.22);
+  border-radius: 28px;
+  padding: 42px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 28px;
+  align-items: center;
+  box-shadow: 0 24px 78px rgba(26,42,32,.16);
+}
+.google-review-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 300;
+  line-height: 1.12;
+  margin-bottom: 12px;
+}
+.google-review-card h2 em {
+  color: var(--gold-light);
+}
+.google-review-card p {
+  color: rgba(245,237,224,.66);
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 620px;
+}
+.google-review-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.google-review-actions a {
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .google-review-card {
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+    text-align: center;
+  }
+  .google-review-actions {
+    justify-content: center;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -921,7 +1248,7 @@
 </div>
 
 <!-- HERO — SPLIT: slideshow + title on left, Summer Series on right -->
-<section class="hero">
+<section class="hero hero-solo">
 
   <!-- LEFT: photo slideshow + title -->
   <div class="hero-left">
@@ -958,8 +1285,9 @@
       <p class="hero-tagline">"Let the sounds make you fall in love with yourself."</p>
       <p style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1.5px;color:rgba(245,237,224,0.5);margin-top:-22px;margin-bottom:34px;max-width:400px;line-height:1.6;">Charlotte, NC · Hand-picked Himalayan bowls, crystal bowls &amp; 18+ instruments</p>
       <div class="hero-buttons">
-        <a href="#book-experience" class="btn-gold">Book Your Session Here!</a>
+        <a href="booking.html" class="btn-gold">Book Your Session</a>
         <a href="#sessions" class="btn-ghost">Explore Sessions</a>
+        <p class="hero-book-note">View Dates · Send Inquiry</p>
       </div>
     </div>
     <div class="slide-dots" id="dots">
@@ -978,6 +1306,43 @@
     </div>
   </div>
 
+
+
+</section>
+
+
+<!-- Front Page Availability Calendar -->
+<section class="front-calendar-section" id="front-calendar">
+  <div class="front-calendar-inner">
+    <div class="front-calendar-copy">
+      <p class="label">Availability Calendar</p>
+      <h2>View dates, then <em>send your inquiry</em></h2>
+      <p>Choose an open or limited date and send a booking inquiry. This keeps the process personal: Nishi reviews each request and confirms availability directly.</p>
+      <div class="front-calendar-actions">
+        <a href="booking.html" class="btn-event-primary">Book Your Session</a>
+        <a href="booking.html#calendar-booking" class="btn-event-ghost">Open Full Calendar</a>
+      </div>
+    </div>
+    <div class="front-calendar-card">
+      <div class="front-calendar-head">
+        <button type="button" id="frontCalPrev" aria-label="Previous month">‹</button>
+        <div class="front-calendar-title" id="frontCalTitle">Availability</div>
+        <button type="button" id="frontCalNext" aria-label="Next month">›</button>
+      </div>
+      <div class="front-calendar-grid" id="frontCalendarGrid"></div>
+      <div class="front-cal-legend">
+        <span><i class="front-cal-dot"></i> Open</span>
+        <span><i class="front-cal-dot limited"></i> Limited</span>
+        <span><i class="front-cal-dot booked"></i> Booked</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Summer Sound Bath Series moved below hero -->
+<section class="moved-series-section" id="summer-series">
+  <div class="section-inner">
   <!-- RIGHT: Summer Sound Bath Series feature -->
   <div class="hero-right">
     <div class="hero-right-inner">
@@ -1024,7 +1389,38 @@
       </div>
     </div>
   </div>
+  </div>
+</section>
 
+
+
+
+<!-- LTS-inspired horizontal experience showcase -->
+<section class="experience-rail-section" id="experience-showcase">
+  <div class="experience-rail-head">
+    <p class="label">Book Your Session</p>
+    <h2>Choose the sound experience that fits <em>your moment</em></h2>
+    <p>A premium, visual way to guide visitors toward booking without removing your original content, trusted sections, blog links, or existing information.</p>
+    <span class="auto-note">Auto-moving session showcase</span>
+  </div>
+  <div class="experience-rail auto-sliding" id="experienceRail">
+    <article class="experience-card">
+      <img src="photo3.jpg" alt="Private sound healing session with Himalayan bowls and crystal bowls">
+      <div class="experience-card-content"><span>Private Reset</span><h3>1:1 Sound Healing</h3><p>For deep rest, stress release, emotional reset and a calmer nervous system.</p><a href="booking.html">Book Private Session</a></div>
+    </article>
+    <article class="experience-card">
+      <img src="photo4.jpg" alt="Couples sound bath session">
+      <div class="experience-card-content"><span>Shared Calm</span><h3>Couples Sound Bath</h3><p>A peaceful session for two people to relax, reconnect and receive together.</p><a href="booking.html">Request Couples Session</a></div>
+    </article>
+    <article class="experience-card">
+      <img src="photo1.jpg" alt="Group sound bath with immersive sound healing instruments">
+      <div class="experience-card-content"><span>Gather Together</span><h3>Private Groups</h3><p>For birthdays, friends, family circles and small wellness gatherings.</p><a href="booking.html">Send Group Inquiry</a></div>
+    </article>
+    <article class="experience-card">
+      <img src="photo5.jpg" alt="Corporate and event sound healing experience">
+      <div class="experience-card-content"><span>Workplace Wellness</span><h3>Corporate & Events</h3><p>Sound healing for offices, retreats, collaborations and wellness programming.</p><a href="booking.html">Plan an Event</a></div>
+    </article>
+  </div>
 </section>
 
 <!-- MARQUEE -->
@@ -1752,6 +2148,124 @@ window.addEventListener('scroll', () => {
   }
 });
 
+
+
+/* Auto-moving Book Your Session rail */
+(function(){
+  const rail = document.getElementById('experienceRail');
+  if (!rail) return;
+
+  let paused = false;
+  let direction = 1;
+  let last = performance.now();
+
+  rail.addEventListener('mouseenter', () => paused = true);
+  rail.addEventListener('mouseleave', () => paused = false);
+  rail.addEventListener('touchstart', () => paused = true, {passive:true});
+  rail.addEventListener('touchend', () => { setTimeout(() => paused = false, 1800); }, {passive:true});
+
+  function step(now){
+    const dt = Math.min(now - last, 40);
+    last = now;
+
+    if (!paused && rail.scrollWidth > rail.clientWidth) {
+      rail.scrollLeft += direction * dt * 0.035;
+      if (rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2) {
+        direction = -1;
+      }
+      if (rail.scrollLeft <= 2) {
+        direction = 1;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+})();
+
+
+/* Front-page calendar */
+(function(){
+  const grid = document.getElementById('frontCalendarGrid');
+  if (!grid) return;
+
+  const openDates = {
+    '2026-07-05':'open',
+    '2026-07-08':'limited',
+    '2026-07-12':'open',
+    '2026-07-16':'open',
+    '2026-07-18':'limited',
+    '2026-07-22':'open',
+    '2026-07-26':'open',
+    '2026-07-30':'limited',
+    '2026-08-02':'open',
+    '2026-08-06':'open',
+    '2026-08-09':'limited',
+    '2026-08-13':'open',
+    '2026-08-17':'open',
+    '2026-08-21':'limited',
+    '2026-08-24':'open',
+    '2026-08-29':'open'
+  };
+  const bookedDates = new Set(['2026-07-10','2026-07-19','2026-08-16']);
+  let calDate = new Date(2026, 6, 1);
+
+  function iso(y,m,d){
+    return y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+  }
+
+  function renderFrontCalendar(){
+    const title = document.getElementById('frontCalTitle');
+    const y = calDate.getFullYear();
+    const m = calDate.getMonth();
+    title.textContent = calDate.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+    grid.innerHTML = '';
+
+    ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day => {
+      const el = document.createElement('div');
+      el.className = 'front-cal-dow';
+      el.textContent = day;
+      grid.appendChild(el);
+    });
+
+    const first = new Date(y, m, 1).getDay();
+    const days = new Date(y, m + 1, 0).getDate();
+
+    for (let i = 0; i < first; i++) {
+      const empty = document.createElement('button');
+      empty.className = 'front-cal-day empty';
+      empty.type = 'button';
+      grid.appendChild(empty);
+    }
+
+    for (let d = 1; d <= days; d++) {
+      const date = iso(y, m, d);
+      const status = openDates[date] || (bookedDates.has(date) ? 'booked' : '');
+      const cell = document.createElement('button');
+      cell.type = 'button';
+      cell.className = 'front-cal-day ' + status;
+      cell.innerHTML = '<span class="n">' + d + '</span><span class="s">' + (status === 'open' ? 'Open' : status === 'limited' ? 'Limited' : status === 'booked' ? 'Booked' : 'Ask') + '</span>';
+      if (status !== 'booked') {
+        cell.addEventListener('click', function(){
+          window.location.href = 'booking.html?date=' + encodeURIComponent(date);
+        });
+      }
+      grid.appendChild(cell);
+    }
+  }
+
+  document.getElementById('frontCalPrev')?.addEventListener('click', function(){
+    calDate.setMonth(calDate.getMonth() - 1);
+    renderFrontCalendar();
+  });
+  document.getElementById('frontCalNext')?.addEventListener('click', function(){
+    calDate.setMonth(calDate.getMonth() + 1);
+    renderFrontCalendar();
+  });
+
+  renderFrontCalendar();
+})();
+
+
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
@@ -1798,5 +2312,19 @@ document.getElementById('contactForm').addEventListener('submit', async function
   btn.textContent = 'Send Message →';
 });
 </script>
+
+
+<div class="nishi-chat-widget" id="nishiChatWidget">
+  <div class="nishi-chat-panel">
+    <h4>Chat with Nishi</h4>
+    <p>Have a question before booking? Send a WhatsApp or text message.</p>
+    <div class="nishi-chat-actions">
+      <a class="wa" href="https://wa.me/12019825777?text=Hi%20Nishi%2C%20I%20have%20a%20question%20about%20booking%20a%20sound%20healing%20session." target="_blank" rel="noopener">WhatsApp</a>
+      <a class="sms" href="sms:+12019825777?&body=Hi%20Nishi%2C%20I%20have%20a%20question%20about%20booking%20a%20sound%20healing%20session.">Text Nishi</a>
+    </div>
+  </div>
+  <button class="nishi-chat-toggle" type="button" aria-label="Open chat" onclick="document.getElementById('nishiChatWidget').classList.toggle('open')">💬</button>
+</div>
+
 </body>
 </html>
