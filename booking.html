@@ -142,6 +142,24 @@
 .nishi-chat-actions .sms { background: #c1a062; color: #1a2a20; }
 @media(max-width:768px){ .nishi-chat-widget { right: 14px; bottom: 14px; } .nishi-chat-panel { width: 250px; } }
 
+
+/* Booking hero cleanup: remove side note card space */
+.booking-hero,
+.booking-hero-inner,
+.hero-booking,
+.booking-hero-content {
+  grid-template-columns: 1fr !important;
+}
+.booking-hero .booking-hero-copy,
+.booking-hero-copy,
+.booking-hero-text {
+  max-width: 860px !important;
+}
+.booking-hero-card,
+.hero-note-card {
+  display: none !important;
+}
+
 </style>
 
 <style>
@@ -155,17 +173,6 @@
   .required-note { color:var(--muted); font-size:13px; margin-bottom:20px; }
   @media(max-width:880px) { .calendar-box { grid-template-columns:1fr; } .summary { position:relative; top:auto; } }
 </style>
-
-<style>
-.day.filled {
-  background: rgba(120,76,55,.16) !important;
-  border-color: rgba(120,76,55,.34) !important;
-  cursor: not-allowed !important;
-}
-.day.filled .s { color: #784c37 !important; }
-.dot.filled { background: #784c37 !important; }
-</style>
-
 </head>
 <body>
 <div class="topbar">Book a session · Private · Group · Corporate · Events · Retreats</div>
@@ -187,11 +194,8 @@
       <h1>Book a <em>sound healing</em> session</h1>
       <p>Choose your session type, preferred date, time, and intention. This form sends a booking request to Nishi. Your session is confirmed after Nishi replies.</p>
     </div>
-    <div class="panel">
-      <p class="label">Good to know</p>
-      <h2 style="font-size:34px;color:var(--forest-deep);margin-bottom:12px;">Request first, confirm after</h2>
-      <p style="color:var(--muted);">The calendar below helps collect your preferred time. It does not automatically reserve the slot until Nishi confirms by email or phone.</p>
-    </div>
+    
+
   </div>
 </section>
 
