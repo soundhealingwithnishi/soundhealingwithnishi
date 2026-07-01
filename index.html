@@ -1345,55 +1345,156 @@
 }
 
 
-/* URGENT FIX: make hero photos fill the full slide again */
-.hero.hero-solo,
-.hero.hero-solo .hero-left {
+/* FINAL RESTORE: old full-width hero slideshow behavior */
+.hero {
+  min-height: 100vh !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 120px 24px 90px !important;
+  overflow: hidden !important;
   width: 100% !important;
   max-width: none !important;
-  overflow: hidden !important;
   background: var(--forest-deep) !important;
+  grid-template-columns: none !important;
 }
-.hero.hero-solo .hero-slides,
-.hero.hero-solo .hero-slide {
+.hero-slides {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
   width: 100% !important;
   height: 100% !important;
 }
-.hero.hero-solo .hero-slide,
 .hero-slide {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   background-size: cover !important;
+  background-position: center center !important;
   background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-color: var(--forest-deep) !important;
+  opacity: 0;
+  transition: opacity 1.8s ease;
 }
-
-/* Keep the important lower instruments more visible on wide desktop screens */
-.hero.hero-solo .hero-slide:nth-child(1),
-.hero.hero-solo .hero-slide:nth-child(2),
-.hero.hero-solo .hero-slide:nth-child(3),
-.hero.hero-solo .hero-slide:nth-child(4) {
-  background-position: center center !important;
+.hero-slide.active { opacity: 1 !important; }
+.hero-slide::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(to bottom, rgba(15,28,18,0.60) 0%, rgba(15,28,18,0.45) 50%, rgba(15,28,18,0.78) 100%) !important;
 }
-
-/* Desktop: full cinematic width */
-@media (min-width: 900px) {
-  .hero.hero-solo .hero-left {
-    min-height: calc(100vh - 116px) !important;
-    padding-top: 120px !important;
-    padding-bottom: 90px !important;
-  }
+.hero-content {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
 }
-
-/* Phone: keep full-slide look and avoid weird side bars */
+.hero-subline {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: rgba(245,237,224,0.58);
+  margin: -22px auto 34px;
+  max-width: 430px;
+  line-height: 1.6;
+  text-align: center;
+}
+.hero-buttons {
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid !important;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+.hero-buttons .btn-gold,
+.hero-buttons .btn-ghost {
+  min-width: 215px;
+  text-align: center;
+  border-radius: 100px !important;
+  box-shadow: 0 0 18px rgba(193,160,98,.32), 0 18px 46px rgba(15,28,18,.32);
+}
+.hero-buttons .btn-gold { animation: nishiGlowGold 2.7s ease-in-out infinite; }
+.hero-buttons .btn-ghost {
+  background: rgba(15,28,18,.22);
+  backdrop-filter: blur(6px);
+  animation: nishiGlowSoft 3.2s ease-in-out infinite;
+}
+.hero-book-note {
+  grid-column: 1 / -1;
+  justify-self: center;
+  text-align: center;
+  margin-top: 6px !important;
+  padding: 9px 22px;
+  border-radius: 100px;
+  border: 1px solid rgba(193,160,98,.22);
+  background: rgba(15,28,18,.18);
+  color: rgba(245,237,224,.78) !important;
+  text-shadow: 0 0 18px rgba(193,160,98,.36);
+  box-shadow: 0 0 24px rgba(193,160,98,.12);
+  text-decoration: none !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.hero-book-note:hover {
+  color: var(--gold-light) !important;
+  border-color: rgba(193,160,98,.55) !important;
+  box-shadow: 0 0 28px rgba(193,160,98,.28) !important;
+}
+.slide-dots {
+  position: absolute !important;
+  bottom: 28px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  gap: 8px !important;
+  z-index: 3 !important;
+}
+.hero-scroll-cue {
+  position: absolute !important;
+  bottom: 64px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 3 !important;
+}
+body.has-popup .hero {
+  padding-top: 168px !important;
+  margin-top: 0 !important;
+}
 @media (max-width: 768px) {
-  .hero.hero-solo .hero-left {
-    min-height: 78vh !important;
-    padding-top: 110px !important;
-    padding-bottom: 90px !important;
+  .hero {
+    min-height: 92vh !important;
+    padding: 130px 20px 96px !important;
   }
-  .hero.hero-solo .hero-slide,
-  .hero-slide {
-    background-size: cover !important;
-    background-position: center center !important;
+  .hero-buttons {
+    grid-template-columns: 1fr !important;
+    max-width: 320px !important;
+  }
+  .hero-buttons .btn-gold,
+  .hero-buttons .btn-ghost,
+  .hero-book-note {
+    width: 100%;
+    min-width: 0;
+  }
+  .hero-subline {
+    font-size: 10px;
+    margin-bottom: 24px;
+  }
+  .slide-dots {
+    bottom: 24px !important;
+    gap: 6px !important;
+  }
+  .hero-scroll-cue {
+    display: none !important;
   }
 }
 
@@ -1453,67 +1554,71 @@
   <a class="mm-book" href="booking.html" onclick="closeMobileMenu()">Book</a>
 </div>
 
-<!-- HERO — SPLIT: slideshow + title on left, Summer Series on right -->
-<section class="hero hero-solo">
+<!-- HERO with photo slideshow - restored from old full-width build -->
+<section class="hero" id="top">
+  <div class="hero-slides" id="slides">
+    <div class="hero-slide active" style="background-image:url('photo3.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('photo4.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('photo1.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('photo5.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('Image-1.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('Image-2.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('Image-3.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('Image-4.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('Image-5.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('Image-6.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('Image-7.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('Image-8.jpg');"></div>
+  </div>
 
-  <!-- LEFT: photo slideshow + title -->
-  <div class="hero-left">
-    <div class="hero-slides" id="slides">
-      <div class="hero-slide active" style="background-image:url('photo3.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('photo4.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('photo1.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('photo5.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('Image-1.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('Image-2.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('Image-3.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('Image-4.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('Image-5.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('Image-6.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('Image-7.jpg');"></div>
-      <div class="hero-slide" style="background-image:url('Image-8.jpg');"></div>
-    </div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Charlotte's First Vibrational Sound Healer</p>
-      <svg class="hero-lotus" viewBox="0 0 80 80" fill="none">
-        <ellipse cx="40" cy="52" rx="7" ry="14" stroke="#c1a062" stroke-width="1.1"/>
-        <ellipse cx="40" cy="47" rx="11" ry="18" transform="rotate(-28 40 47)" stroke="#c1a062" stroke-width="1"/>
-        <ellipse cx="40" cy="47" rx="11" ry="18" transform="rotate(28 40 47)" stroke="#c1a062" stroke-width="1"/>
-        <ellipse cx="40" cy="45" rx="13" ry="20" transform="rotate(-55 40 45)" stroke="rgba(193,160,98,0.5)" stroke-width="0.8"/>
-        <ellipse cx="40" cy="45" rx="13" ry="20" transform="rotate(55 40 45)" stroke="rgba(193,160,98,0.5)" stroke-width="0.8"/>
-        <circle cx="40" cy="40" r="3.5" stroke="rgba(193,160,98,0.4)" stroke-width="0.7"/>
-        <circle cx="40" cy="40" r="1.2" fill="rgba(193,160,98,0.5)"/>
-      </svg>
-      <h1 class="hero-h1">
-        <span class="with">Sound Healing</span>
-        <span>with <span class="name">Nishi</span></span>
-      </h1>
-      <div class="hero-rule"></div>
-      <p class="hero-tagline">"Let the sounds make you fall in love with yourself."</p>
-      <p style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1.5px;color:rgba(245,237,224,0.5);margin-top:-22px;margin-bottom:34px;max-width:400px;line-height:1.6;">Charlotte, NC · Hand-picked Himalayan bowls, crystal bowls &amp; 18+ instruments</p>
-      <div class="hero-buttons">
-        <a href="booking.html" class="btn-gold">Book Your Session</a>
-        <a href="#sessions" class="btn-ghost">Explore Sessions</a>
-        <a href="booking.html#booking-calendar" class="hero-book-note">View Dates · Send Inquiry</a>
-      </div>
-    </div>
-    <div class="slide-dots" id="dots">
-      <button class="slide-dot active" onclick="goSlide(0)"></button>
-      <button class="slide-dot" onclick="goSlide(1)"></button>
-      <button class="slide-dot" onclick="goSlide(2)"></button>
-      <button class="slide-dot" onclick="goSlide(3)"></button>
-      <button class="slide-dot" onclick="goSlide(4)"></button>
-      <button class="slide-dot" onclick="goSlide(5)"></button>
-      <button class="slide-dot" onclick="goSlide(6)"></button>
-      <button class="slide-dot" onclick="goSlide(7)"></button>
-      <button class="slide-dot" onclick="goSlide(8)"></button>
-      <button class="slide-dot" onclick="goSlide(9)"></button>
-      <button class="slide-dot" onclick="goSlide(10)"></button>
-      <button class="slide-dot" onclick="goSlide(11)"></button>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Charlotte's First Vibrational Sound Healer</p>
+    <svg class="hero-lotus" viewBox="0 0 80 80" fill="none">
+      <ellipse cx="40" cy="52" rx="7" ry="14" stroke="#c1a062" stroke-width="1.1"/>
+      <ellipse cx="40" cy="47" rx="11" ry="18" transform="rotate(-28 40 47)" stroke="#c1a062" stroke-width="1"/>
+      <ellipse cx="40" cy="47" rx="11" ry="18" transform="rotate(28 40 47)" stroke="#c1a062" stroke-width="1"/>
+      <ellipse cx="40" cy="45" rx="13" ry="20" transform="rotate(-55 40 45)" stroke="rgba(193,160,98,0.5)" stroke-width="0.8"/>
+      <ellipse cx="40" cy="45" rx="13" ry="20" transform="rotate(55 40 45)" stroke="rgba(193,160,98,0.5)" stroke-width="0.8"/>
+      <circle cx="40" cy="40" r="3.5" stroke="rgba(193,160,98,0.4)" stroke-width="0.7"/>
+      <circle cx="40" cy="40" r="1.2" fill="rgba(193,160,98,0.5)"/>
+    </svg>
+
+    <h1 class="hero-h1">
+      <span class="with">Sound Healing</span>
+      <span>with <span class="name">Nishi</span></span>
+    </h1>
+
+    <div class="hero-rule"></div>
+
+    <p class="hero-tagline">"Let the sounds make you fall in love with yourself."</p>
+    <p class="hero-subline">Charlotte, NC · Hand-picked Himalayan bowls, crystal bowls &amp; 18+ instruments</p>
+
+    <div class="hero-buttons">
+      <a href="booking.html" class="btn-gold">Book Your Session</a>
+      <a href="#sessions" class="btn-ghost">Explore Sessions</a>
+      <a href="booking.html#booking-calendar" class="hero-book-note">View Dates · Send Inquiry</a>
     </div>
   </div>
 
+  <div class="slide-dots" id="dots">
+    <button class="slide-dot active" onclick="goSlide(0)" aria-label="Slide 1"></button>
+    <button class="slide-dot" onclick="goSlide(1)" aria-label="Slide 2"></button>
+    <button class="slide-dot" onclick="goSlide(2)" aria-label="Slide 3"></button>
+    <button class="slide-dot" onclick="goSlide(3)" aria-label="Slide 4"></button>
+    <button class="slide-dot" onclick="goSlide(4)" aria-label="Slide 5"></button>
+    <button class="slide-dot" onclick="goSlide(5)" aria-label="Slide 6"></button>
+    <button class="slide-dot" onclick="goSlide(6)" aria-label="Slide 7"></button>
+    <button class="slide-dot" onclick="goSlide(7)" aria-label="Slide 8"></button>
+    <button class="slide-dot" onclick="goSlide(8)" aria-label="Slide 9"></button>
+    <button class="slide-dot" onclick="goSlide(9)" aria-label="Slide 10"></button>
+    <button class="slide-dot" onclick="goSlide(10)" aria-label="Slide 11"></button>
+    <button class="slide-dot" onclick="goSlide(11)" aria-label="Slide 12"></button>
+  </div>
 
-
+  <div class="hero-scroll-cue" onclick="document.getElementById('front-calendar')?.scrollIntoView({behavior:'smooth'});">
+    <span class="hero-scroll-cue-text">View availability</span>
+    <span class="hero-scroll-cue-arrow"></span>
+  </div>
 </section>
 
 
