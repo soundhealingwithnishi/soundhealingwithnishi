@@ -61,12 +61,12 @@
     "addressCountry": "US"
   },
   "geo": { "@type": "GeoCoordinates", "latitude": 35.2271, "longitude": -80.8431 },
-  "hasMap": "https://share.google/2SQAhjzLM3Vu3GyNR",
+  "hasMap": "https://share.google/nts81XwQVwJB2WoPT",
   "sameAs": [
     "https://www.instagram.com/soundhealingwithnishi",
     "https://www.tiktok.com/@soundhealingwithnishi",
     "https://www.facebook.com/soundhealingwithnishi",
-    "https://share.google/2SQAhjzLM3Vu3GyNR"
+    "https://share.google/nts81XwQVwJB2WoPT"
   ],
   "knowsAbout": ["Sound Healing", "Sound Bath", "Himalayan Singing Bowls", "Crystal Bowls", "Meditation", "Corporate Wellness", "Vibrational Therapy"]
 }
@@ -1117,24 +1117,6 @@
 .experience-rail-section:hover .experience-rail.auto-sliding {
   scroll-behavior: auto;
 }
-.experience-rail-head .auto-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-  color: var(--gold);
-  font-size: 9px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-}
-.experience-rail-head .auto-note::before,
-.experience-rail-head .auto-note::after {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: rgba(193,160,98,.45);
-}
-
 /* Google Reviews CTA */
 .google-review-cta {
   background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
@@ -1190,6 +1172,67 @@
     justify-content: center;
   }
 }
+
+
+/* Targeted fix: show full hero slideshow photos without cutting bowls */
+.hero.hero-solo .hero-slide,
+.hero-slide {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-color: var(--forest-deep) !important;
+}
+
+/* Keep the full-photo look clean by softening the empty side area */
+.hero.hero-solo {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(193,160,98,0.08), transparent 46%),
+    linear-gradient(180deg, #1a2a20 0%, #142119 100%) !important;
+}
+
+/* Give a little more visual height so the bottom bowls remain visible */
+.hero.hero-solo .hero-left {
+  min-height: calc(100vh - 116px) !important;
+  padding-bottom: 120px !important;
+}
+
+/* Move slide dots down slightly so they do not sit on top of the bowls */
+.hero.hero-solo .slide-dots {
+  bottom: 22px !important;
+}
+
+@media (max-width: 768px) {
+  .hero.hero-solo .hero-left {
+    min-height: 72vh !important;
+    padding-bottom: 90px !important;
+  }
+}
+
+
+/* Bug fix: session showcase uses background layers instead of visible broken image tags */
+.experience-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: .72;
+  transition: transform .7s ease;
+}
+.experience-card:hover .experience-card-bg {
+  transform: scale(1.04);
+}
+.experience-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 12%, rgba(193,160,98,.16), transparent 34%),
+    linear-gradient(135deg, rgba(26,42,32,.86), rgba(26,42,32,.72));
+  z-index: 1;
+}
+.experience-card::after { z-index: 1; }
+.experience-card-content { z-index: 2; }
 
 </style>
 </head>
@@ -1400,24 +1443,23 @@
   <div class="experience-rail-head">
     <p class="label">Book Your Session</p>
     <h2>Choose the sound experience that fits <em>your moment</em></h2>
-    <p>A premium, visual way to guide visitors toward booking without removing your original content, trusted sections, blog links, or existing information.</p>
-    <span class="auto-note">Auto-moving session showcase</span>
+    <p>Choose a private, couples, group, or event sound bath. Each session is designed for calm, relaxation, and a deeper reset.</p>
   </div>
   <div class="experience-rail auto-sliding" id="experienceRail">
     <article class="experience-card">
-      <img src="photo3.jpg" alt="Private sound healing session with Himalayan bowls and crystal bowls">
+      <div class="experience-card-bg" style="background-image:url('photo3.jpg')" aria-label="Private sound healing session with Himalayan bowls and crystal bowls"></div>
       <div class="experience-card-content"><span>Private Reset</span><h3>1:1 Sound Healing</h3><p>For deep rest, stress release, emotional reset and a calmer nervous system.</p><a href="booking.html">Book Private Session</a></div>
     </article>
     <article class="experience-card">
-      <img src="photo4.jpg" alt="Couples sound bath session">
+      <div class="experience-card-bg" style="background-image:url('photo4.jpg')" aria-label="Couples sound bath session"></div>
       <div class="experience-card-content"><span>Shared Calm</span><h3>Couples Sound Bath</h3><p>A peaceful session for two people to relax, reconnect and receive together.</p><a href="booking.html">Request Couples Session</a></div>
     </article>
     <article class="experience-card">
-      <img src="photo1.jpg" alt="Group sound bath with immersive sound healing instruments">
+      <div class="experience-card-bg" style="background-image:url('photo1.jpg')" aria-label="Group sound bath with immersive sound healing instruments"></div>
       <div class="experience-card-content"><span>Gather Together</span><h3>Private Groups</h3><p>For birthdays, friends, family circles and small wellness gatherings.</p><a href="booking.html">Send Group Inquiry</a></div>
     </article>
     <article class="experience-card">
-      <img src="photo5.jpg" alt="Corporate and event sound healing experience">
+      <div class="experience-card-bg" style="background-image:url('photo5.jpg')" aria-label="Corporate and event sound healing experience"></div>
       <div class="experience-card-content"><span>Workplace Wellness</span><h3>Corporate & Events</h3><p>Sound healing for offices, retreats, collaborations and wellness programming.</p><a href="booking.html">Plan an Event</a></div>
     </article>
   </div>
@@ -1971,7 +2013,7 @@
         </div>
 
         <div class="gbp-actions">
-          <a href="https://share.google/2SQAhjzLM3Vu3GyNR" target="_blank" rel="noopener" class="btn-gold">View on Google</a>
+          <a href="https://share.google/nts81XwQVwJB2WoPT" target="_blank" rel="noopener" class="btn-gold">View on Google</a>
           <a href="https://www.google.com/maps/dir/?api=1&destination=2132+Cascade+Pointe+Boulevard+Charlotte+NC+28208" target="_blank" rel="noopener" class="btn-forest">Get Directions</a>
           <a href="booking.html" class="btn-ghost" style="color:var(--forest-mid);border-color:rgba(193,160,98,0.45);">Book a Session</a>
         </div>
