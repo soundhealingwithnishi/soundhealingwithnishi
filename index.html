@@ -1234,6 +1234,151 @@
 .experience-card::after { z-index: 1; }
 .experience-card-content { z-index: 2; }
 
+
+/* Final fix: make hero date note clickable */
+.hero.hero-solo .hero-book-note,
+.hero-book-note {
+  text-decoration: none !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.hero.hero-solo .hero-book-note:hover,
+.hero-book-note:hover {
+  color: var(--gold-light) !important;
+  border-color: rgba(193,160,98,.55) !important;
+  box-shadow: 0 0 28px rgba(193,160,98,.28) !important;
+}
+
+/* Final responsive session slider */
+.experience-rail-section {
+  overflow: hidden !important;
+}
+.experience-carousel-wrap {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 66px;
+}
+.experience-rail {
+  display: flex !important;
+  gap: 24px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 12px 0 28px !important;
+  scroll-snap-type: x mandatory !important;
+  scroll-behavior: smooth !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch;
+}
+.experience-rail::-webkit-scrollbar {
+  display: none !important;
+}
+.experience-card {
+  flex: 0 0 calc((100% - 48px) / 3) !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  scroll-snap-align: start !important;
+}
+.experience-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: .72;
+  transition: transform .7s ease;
+}
+.experience-card:hover .experience-card-bg {
+  transform: scale(1.04);
+}
+.experience-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 24% 14%, rgba(193,160,98,.14), transparent 34%),
+    linear-gradient(135deg, rgba(26,42,32,.86), rgba(26,42,32,.72));
+  z-index: 1;
+}
+.experience-card::after {
+  z-index: 1;
+}
+.experience-card-content {
+  z-index: 2 !important;
+}
+.experience-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  width: 44px;
+  height: 44px;
+  border-radius: 100px;
+  border: 1px solid rgba(193,160,98,.45);
+  background: rgba(26,42,32,.92);
+  color: var(--gold-light);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(26,42,32,.24);
+  transition: transform .18s ease, background .18s ease, opacity .18s ease;
+}
+.experience-nav:hover {
+  background: var(--gold);
+  color: var(--forest-deep);
+  transform: translateY(-50%) scale(1.05);
+}
+.experience-prev {
+  left: 12px;
+}
+.experience-next {
+  right: 12px;
+}
+.experience-slider-hint {
+  text-align: center;
+  margin-top: 4px;
+  color: var(--muted-light);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+@media (max-width: 1040px) {
+  .experience-card {
+    flex-basis: calc((100% - 24px) / 2) !important;
+  }
+}
+@media (max-width: 680px) {
+  .experience-carousel-wrap {
+    padding: 0 20px 0 20px;
+  }
+  .experience-card {
+    flex-basis: 100% !important;
+    min-height: 390px !important;
+  }
+  .experience-nav {
+    width: 40px;
+    height: 40px;
+    top: auto;
+    bottom: -2px;
+    transform: none;
+  }
+  .experience-nav:hover {
+    transform: scale(1.04);
+  }
+  .experience-prev {
+    left: 26px;
+  }
+  .experience-next {
+    right: 26px;
+  }
+  .experience-slider-hint {
+    padding-top: 18px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1330,7 +1475,7 @@
       <div class="hero-buttons">
         <a href="booking.html" class="btn-gold">Book Your Session</a>
         <a href="#sessions" class="btn-ghost">Explore Sessions</a>
-        <p class="hero-book-note">View Dates · Send Inquiry</p>
+        <a href="booking.html#booking-calendar" class="hero-book-note">View Dates · Send Inquiry</a>
       </div>
     </div>
     <div class="slide-dots" id="dots">
@@ -1363,7 +1508,7 @@
       <p>Choose an open or limited date and send a booking inquiry. This keeps the process personal: Nishi reviews each request and confirms availability directly.</p>
       <div class="front-calendar-actions">
         <a href="booking.html" class="btn-event-primary">Book Your Session</a>
-        <a href="booking.html#calendar-booking" class="btn-event-ghost">Open Full Calendar</a>
+        <a href="booking.html#booking-calendar" class="btn-event-ghost">Open Full Calendar</a>
       </div>
     </div>
     <div class="front-calendar-card">
@@ -1445,7 +1590,9 @@
     <h2>Choose the sound experience that fits <em>your moment</em></h2>
     <p>Choose a private, couples, group, or event sound bath. Each session is designed for calm, relaxation, and a deeper reset.</p>
   </div>
-  <div class="experience-rail auto-sliding" id="experienceRail">
+  <div class="experience-carousel-wrap">
+    <button class="experience-nav experience-prev" type="button" aria-label="Previous session">‹</button>
+    <div class="experience-rail auto-sliding" id="experienceRail">
     <article class="experience-card">
       <div class="experience-card-bg" style="background-image:url('photo3.jpg')" aria-label="Private sound healing session with Himalayan bowls and crystal bowls"></div>
       <div class="experience-card-content"><span>Private Reset</span><h3>1:1 Sound Healing</h3><p>For deep rest, stress release, emotional reset and a calmer nervous system.</p><a href="booking.html">Book Private Session</a></div>
@@ -1463,6 +1610,9 @@
       <div class="experience-card-content"><span>Workplace Wellness</span><h3>Corporate & Events</h3><p>Sound healing for offices, retreats, collaborations and wellness programming.</p><a href="booking.html">Plan an Event</a></div>
     </article>
   </div>
+    <button class="experience-nav experience-next" type="button" aria-label="Next session">›</button>
+  </div>
+  <div class="experience-slider-hint">Use arrows or swipe to view all session options.</div>
 </section>
 
 <!-- MARQUEE -->
@@ -2192,36 +2342,51 @@ window.addEventListener('scroll', () => {
 
 
 
-/* Auto-moving Book Your Session rail */
+
+/* Final responsive Book Your Session slider */
 (function(){
   const rail = document.getElementById('experienceRail');
   if (!rail) return;
 
+  const prev = document.querySelector('.experience-prev');
+  const next = document.querySelector('.experience-next');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let paused = false;
-  let direction = 1;
-  let last = performance.now();
+
+  function stepSize(){
+    const card = rail.querySelector('.experience-card');
+    if (!card) return rail.clientWidth;
+    const styles = window.getComputedStyle(rail);
+    const gap = parseFloat(styles.columnGap || styles.gap || 24) || 24;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function maxScroll(){
+    return Math.max(0, rail.scrollWidth - rail.clientWidth);
+  }
+
+  function go(delta){
+    const max = maxScroll();
+    if (max <= 0) return;
+    let target = rail.scrollLeft + (delta * stepSize());
+    if (target > max - 8) target = 0;
+    if (target < 0) target = max;
+    rail.scrollTo({ left: target, behavior: 'smooth' });
+  }
+
+  prev?.addEventListener('click', () => { paused = true; go(-1); setTimeout(() => paused = false, 2500); });
+  next?.addEventListener('click', () => { paused = true; go(1); setTimeout(() => paused = false, 2500); });
 
   rail.addEventListener('mouseenter', () => paused = true);
   rail.addEventListener('mouseleave', () => paused = false);
-  rail.addEventListener('touchstart', () => paused = true, {passive:true});
-  rail.addEventListener('touchend', () => { setTimeout(() => paused = false, 1800); }, {passive:true});
+  rail.addEventListener('touchstart', () => paused = true, { passive: true });
+  rail.addEventListener('touchend', () => { setTimeout(() => paused = false, 3000); }, { passive: true });
 
-  function step(now){
-    const dt = Math.min(now - last, 40);
-    last = now;
-
-    if (!paused && rail.scrollWidth > rail.clientWidth) {
-      rail.scrollLeft += direction * dt * 0.035;
-      if (rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2) {
-        direction = -1;
-      }
-      if (rail.scrollLeft <= 2) {
-        direction = 1;
-      }
-    }
-    requestAnimationFrame(step);
+  if (!reduceMotion) {
+    setInterval(() => {
+      if (!paused) go(1);
+    }, 4200);
   }
-  requestAnimationFrame(step);
 })();
 
 

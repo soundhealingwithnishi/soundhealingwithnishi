@@ -397,6 +397,25 @@ function renderBookingCalendar(){
         dateInput.value = iso;
         bookingSelectedDateText.textContent = bookingPretty(iso);
         renderBookingCalendar();
+
+/* Accept selected date from homepage calendar */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const incomingDate = params.get('date');
+  if (!incomingDate || !dateInput) return;
+  dateInput.value = incomingDate;
+  if (bookingSelectedDateText) {
+    bookingSelectedDateText.textContent = bookingPretty(incomingDate);
+  }
+  if (typeof renderBookingCalendar === 'function') {
+    const parts = incomingDate.split('-').map(Number);
+    if (parts.length === 3 && parts.every(Boolean)) {
+      bookingCalendarDate = new Date(parts[0], parts[1] - 1, 1);
+    }
+    renderBookingCalendar();
+  }
+})();
+
         document.getElementById('bookingForm').scrollIntoView({behavior:'smooth', block:'start'});
       });
     }
