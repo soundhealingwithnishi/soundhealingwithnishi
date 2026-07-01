@@ -16,84 +16,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"HealthAndBeautyBusiness",
-  "name":"Sound Healing with Nishi",
-  "url":"https://soundhealingwithnishi.com/",
-  "telephone":"+1-201-982-5777",
-  "email":"soundhealingwithnishi@gmail.com",
-  "image":"https://soundhealingwithnishi.com/photo3.jpg",
-  "address":{"@type":"PostalAddress","addressLocality":"Charlotte","addressRegion":"NC","addressCountry":"US"},
-  "areaServed":"Charlotte, NC",
-  "founder":{"@type":"Person","name":"Nishi Bhansali","jobTitle":"Sound Healing Practitioner"},
-  "knowsAbout":["sound healing","sound bath","Himalayan singing bowls","crystal bowls","corporate wellness","vibrational sound healing"]
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "Sound Healing with Nishi",
+  "url": "https://soundhealingwithnishi.com/",
+  "telephone": "+1-201-982-5777",
+  "email": "soundhealingwithnishi@gmail.com",
+  "image": "https://soundhealingwithnishi.com/photo3.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Charlotte",
+    "addressRegion": "NC",
+    "addressCountry": "US"
+  },
+  "areaServed": "Charlotte, NC",
+  "founder": {
+    "@type": "Person",
+    "name": "Nishi Bhansali",
+    "jobTitle": "Sound Healing Practitioner"
+  },
+  "knowsAbout": [
+    "sound healing",
+    "sound bath",
+    "Himalayan singing bowls",
+    "crystal bowls",
+    "corporate wellness",
+    "vibrational sound healing"
+  ]
 }
-
-/* Social video hover play */
-document.querySelectorAll('.social-card video').forEach(video => {
-  const card = video.closest('.social-card');
-  if (!card) return;
-  card.addEventListener('mouseenter', () => video.play().catch(()=>{}));
-  card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
-  card.addEventListener('touchstart', () => video.play().catch(()=>{}), {passive:true});
-});
-
-
-/* Animated hero collage — each of the 3 cells cross-fades through all photos,
-   offset so the same photo never appears in two cells at once. */
-function initHeroCollage(){
-  const collage = document.getElementById('heroCollage');
-  if (!collage) return;
-  const photos = window.HERO_COLLAGE_PHOTOS || [];
-  if (photos.length < 3) return;
-  const cells = Array.from(collage.querySelectorAll('.collage-cell'));
-  const N = photos.length;
-
-  const state = cells.map((cell, idx) => ({
-    cell: cell,
-    idx: Math.floor(idx * N / cells.length)
-  }));
-
-  function shownIndices(){ return state.map(s => s.idx % N); }
-
-  function swapCell(s){
-    const shown = shownIndices();
-    let next = (s.idx + cells.length) % N, tries = 0;
-    while (tries < N && shown.includes(next)) { next = (next + 1) % N; tries++; }
-    s.idx = next;
-    const cell = s.cell;
-    const activeImg = cell.querySelector('.collage-img.active');
-    let imgs = cell.querySelectorAll('.collage-img');
-    let incoming;
-    if (imgs.length < 2) {
-      incoming = document.createElement('img');
-      incoming.className = 'collage-img';
-      incoming.alt = 'Sound healing with Nishi';
-      incoming.onerror = function(){ this.onerror=null; this.src='photo3.jpg'; };
-      cell.appendChild(incoming);
-    } else {
-      incoming = Array.from(imgs).find(i => !i.classList.contains('active'));
-    }
-    incoming.src = photos[next];
-    void incoming.offsetWidth;
-    incoming.classList.add('active');
-    if (activeImg && activeImg !== incoming) activeImg.classList.remove('active');
-  }
-
-  // Stagger the timers so cells flip at different moments
-  state.forEach((s, i) => {
-    setTimeout(() => {
-      swapCell(s);
-      setInterval(() => swapCell(s), 4500);
-    }, 1600 + i * 1500);
-  });
-}
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initHeroCollage);
-} else {
-  initHeroCollage();
-}
-
 </script>
 <style>
 :root {
@@ -1649,14 +1599,9 @@ footer {
       <div class="hero-chip-text">Himalayan bowls, crystal bowls & vibrational instruments</div>
     </div>
   </div>
-
-  </div>
 </section>
 
-<!-- Photo pool for the animated collage (all photos that exist in the repo) -->
-<script>
-window.HERO_COLLAGE_PHOTOS = ['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo7.jpg','photo8.jpg','photo10.jpg','Image-1.jpg','Image-2.jpg','Image-3.jpg','Image-4.jpg','Image-5.jpg','Image-6.jpg','Image-7.jpg','Image-8.jpg','saunahouse-nishi.jpg'];
-</script>
+
 
 <div class="marquee">
   <div class="marquee-inner">
@@ -1794,55 +1739,53 @@ window.HERO_COLLAGE_PHOTOS = ['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg
       </div>
       <div class="social-arrow">→</div>
     </a>
-
-    
     
     <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-01.mp4" poster="nishi-video-poster-01.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
-    
     <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-02.mp4" poster="nishi-video-poster-02.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
-    
     <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-03.mp4" poster="nishi-video-poster-03.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
-    
     <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-04.mp4" poster="nishi-video-poster-04.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
-    
     <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-05.mp4" poster="nishi-video-poster-05.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
-    
     <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-06.mp4" poster="nishi-video-poster-06.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
-    
     <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-07.mp4" poster="nishi-video-poster-07.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
-    
     <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-08.mp4" poster="nishi-video-poster-08.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
-    
     <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-09.mp4" poster="nishi-video-poster-09.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
+    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-10.mp4" poster="nishi-video-poster-10.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
+    </a>
+    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-11.mp4" poster="nishi-video-poster-11.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
+    </a>
   </div>
-  <p class="social-video-note">Tap any video to open Instagram or TikTok. Thumbnails are optimized for phone and iPad.</p>
+  <p class="social-video-note">Tap any video to open Instagram or TikTok. New videos 07, 08, 09, 10, and 11 are now connected.</p>
 </section>
 
 
@@ -2200,5 +2143,85 @@ if (quickForm) {
   });
 }
 </script>
+
+<script>
+/* FIXED: automatic hero collage slider and video hover */
+window.HERO_COLLAGE_PHOTOS = [
+  'photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg',
+  'photo7.jpg','photo8.jpg','photo10.jpg',
+  'Image-1.jpg','Image-2.jpg','Image-3.jpg','Image-4.jpg',
+  'Image-5.jpg','Image-6.jpg','Image-7.jpg','Image-8.jpg',
+  'saunahouse-nishi.jpg'
+];
+
+function initHeroCollageFixed(){
+  const collage = document.getElementById('heroCollage');
+  if (!collage || collage.dataset.sliderReady === 'true') return;
+  const photos = (window.HERO_COLLAGE_PHOTOS || []).filter(Boolean);
+  const cells = Array.from(collage.querySelectorAll('.collage-cell'));
+  if (photos.length < 3 || cells.length < 1) return;
+  collage.dataset.sliderReady = 'true';
+
+  cells.forEach((cell, i) => {
+    const img = cell.querySelector('.collage-img.active') || cell.querySelector('.collage-img');
+    const startIndex = (i * Math.ceil(photos.length / cells.length)) % photos.length;
+    if (img) { img.src = photos[startIndex]; img.classList.add('active'); }
+    cell.dataset.photoIndex = String(startIndex);
+  });
+
+  function currentIndices(){ return cells.map(cell => Number(cell.dataset.photoIndex || 0)); }
+
+  function swapOneCell(cellIndex){
+    const cell = cells[cellIndex % cells.length];
+    const current = Number(cell.dataset.photoIndex || 0);
+    const shown = new Set(currentIndices());
+    let next = (current + cells.length) % photos.length;
+    let safety = 0;
+    while (shown.has(next) && safety < photos.length) { next = (next + 1) % photos.length; safety++; }
+    cell.dataset.photoIndex = String(next);
+
+    let imgs = Array.from(cell.querySelectorAll('.collage-img'));
+    let outgoing = imgs.find(img => img.classList.contains('active'));
+    let incoming = imgs.find(img => !img.classList.contains('active'));
+    if (!incoming) {
+      incoming = document.createElement('img');
+      incoming.className = 'collage-img';
+      incoming.alt = 'Sound Healing with Nishi';
+      incoming.onerror = function(){ this.onerror = null; this.src = 'photo3.jpg'; };
+      cell.appendChild(incoming);
+    }
+    incoming.onload = function(){
+      incoming.classList.add('active');
+      if (outgoing && outgoing !== incoming) outgoing.classList.remove('active');
+    };
+    incoming.src = photos[next];
+    if (incoming.complete) {
+      incoming.classList.add('active');
+      if (outgoing && outgoing !== incoming) outgoing.classList.remove('active');
+    }
+  }
+
+  let turn = 0;
+  setInterval(function(){ swapOneCell(turn); turn = (turn + 1) % cells.length; }, 2600);
+}
+
+function initSocialVideoHoverFixed(){
+  document.querySelectorAll('.social-card video').forEach(video => {
+    const card = video.closest('.social-card');
+    if (!card) return;
+    card.addEventListener('mouseenter', () => video.play().catch(()=>{}));
+    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+    card.addEventListener('touchstart', () => video.play().catch(()=>{}), {passive:true});
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function(){ initHeroCollageFixed(); initSocialVideoHoverFixed(); });
+} else {
+  initHeroCollageFixed();
+  initSocialVideoHoverFixed();
+}
+</script>
+
 </body>
 </html>
