@@ -1174,41 +1174,6 @@
 }
 
 
-/* Targeted fix: show full hero slideshow photos without cutting bowls */
-.hero.hero-solo .hero-slide,
-.hero-slide {
-  background-size: contain !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-color: var(--forest-deep) !important;
-}
-
-/* Keep the full-photo look clean by softening the empty side area */
-.hero.hero-solo {
-  background:
-    radial-gradient(circle at 50% 48%, rgba(193,160,98,0.08), transparent 46%),
-    linear-gradient(180deg, #1a2a20 0%, #142119 100%) !important;
-}
-
-/* Give a little more visual height so the bottom bowls remain visible */
-.hero.hero-solo .hero-left {
-  min-height: calc(100vh - 116px) !important;
-  padding-bottom: 120px !important;
-}
-
-/* Move slide dots down slightly so they do not sit on top of the bowls */
-.hero.hero-solo .slide-dots {
-  bottom: 22px !important;
-}
-
-@media (max-width: 768px) {
-  .hero.hero-solo .hero-left {
-    min-height: 72vh !important;
-    padding-bottom: 90px !important;
-  }
-}
-
-
 /* Bug fix: session showcase uses background layers instead of visible broken image tags */
 .experience-card-bg {
   position: absolute;
@@ -1376,6 +1341,59 @@
   }
   .experience-slider-hint {
     padding-top: 18px;
+  }
+}
+
+
+/* URGENT FIX: make hero photos fill the full slide again */
+.hero.hero-solo,
+.hero.hero-solo .hero-left {
+  width: 100% !important;
+  max-width: none !important;
+  overflow: hidden !important;
+  background: var(--forest-deep) !important;
+}
+.hero.hero-solo .hero-slides,
+.hero.hero-solo .hero-slide {
+  width: 100% !important;
+  height: 100% !important;
+}
+.hero.hero-solo .hero-slide,
+.hero-slide {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-color: var(--forest-deep) !important;
+}
+
+/* Keep the important lower instruments more visible on wide desktop screens */
+.hero.hero-solo .hero-slide:nth-child(1),
+.hero.hero-solo .hero-slide:nth-child(2),
+.hero.hero-solo .hero-slide:nth-child(3),
+.hero.hero-solo .hero-slide:nth-child(4) {
+  background-position: center center !important;
+}
+
+/* Desktop: full cinematic width */
+@media (min-width: 900px) {
+  .hero.hero-solo .hero-left {
+    min-height: calc(100vh - 116px) !important;
+    padding-top: 120px !important;
+    padding-bottom: 90px !important;
+  }
+}
+
+/* Phone: keep full-slide look and avoid weird side bars */
+@media (max-width: 768px) {
+  .hero.hero-solo .hero-left {
+    min-height: 78vh !important;
+    padding-top: 110px !important;
+    padding-bottom: 90px !important;
+  }
+  .hero.hero-solo .hero-slide,
+  .hero-slide {
+    background-size: cover !important;
+    background-position: center center !important;
   }
 }
 
