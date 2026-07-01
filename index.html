@@ -38,6 +38,50 @@ document.querySelectorAll('.social-card video').forEach(video => {
   card.addEventListener('touchstart', () => video.play().catch(()=>{}), {passive:true});
 });
 
+
+/* Working automatic hero photo slider */
+(function(){
+  const slides = Array.from(document.querySelectorAll('.hero-photo-slide'));
+  const dots = Array.from(document.querySelectorAll('.hero-slider-dot'));
+  if (!slides.length) return;
+
+  let currentHeroSlide = slides.findIndex(slide => slide.classList.contains('active'));
+  if (currentHeroSlide < 0) currentHeroSlide = 0;
+  let heroTimer = null;
+  let paused = false;
+
+  function showHeroSlide(nextIndex) {
+    currentHeroSlide = (nextIndex + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === currentHeroSlide));
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentHeroSlide));
+  }
+
+  function startHeroSlider() {
+    clearInterval(heroTimer);
+    heroTimer = setInterval(function(){
+      if (!paused) showHeroSlide(currentHeroSlide + 1);
+    }, 3800);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', function(){
+      showHeroSlide(i);
+      startHeroSlider();
+    });
+  });
+
+  const heroRight = document.querySelector('.hero-right');
+  if (heroRight) {
+    heroRight.addEventListener('mouseenter', () => paused = true);
+    heroRight.addEventListener('mouseleave', () => paused = false);
+    heroRight.addEventListener('touchstart', () => paused = true, {passive:true});
+    heroRight.addEventListener('touchend', () => setTimeout(() => paused = false, 1800), {passive:true});
+  }
+
+  showHeroSlide(currentHeroSlide);
+  startHeroSlider();
+})();
+
 </script>
 <style>
 :root {
@@ -1499,6 +1543,52 @@ footer {
   .clean-video-card video { min-height: 520px; }
 }
 
+
+/* Final fix: hide all photo names in the visual journey gallery */
+.bubble-gallery .bubble-photo span,
+.gallery-grid .gallery-cap,
+.gallery-cap {
+  display: none !important;
+}
+.bubble-gallery .bubble-photo::after {
+  background: linear-gradient(to top, rgba(22,37,28,.18), transparent 58%) !important;
+}
+
+
+/* Final fix: ensure hero slider layers switch correctly */
+.hero-photo-slide {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+.hero-photo-slide.active {
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+.hero-slider-dot.active {
+  background: var(--gold2) !important;
+  transform: scale(1.22);
+}
+
+
+/* Calendar status support: open, limited, booked, filled */
+.day.filled {
+  background: rgba(120,76,55,.16);
+  border-color: rgba(120,76,55,.34);
+  cursor: not-allowed;
+}
+.day.filled .s {
+  color: #784c37;
+}
+.dot.filled {
+  background: #784c37;
+}
+.calendar-admin-note {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
 </style>
 </head>
 <body>
@@ -1665,35 +1755,27 @@ footer {
   <div class="bubble-gallery">
     <a class="bubble-photo bubble-large" href="booking.html">
       <img src="photo3.jpg" alt="Private sound healing session with Nishi">
-      <span>Private Sound Bath</span>
     </a>
     <a class="bubble-photo bubble-tall" href="booking.html">
       <img src="photo4.jpg" alt="Group sound healing with Nishi">
-      <span>Group Energy</span>
     </a>
     <a class="bubble-photo" href="booking.html">
       <img src="photo1.jpg" alt="Sound healing instruments and bowls">
-      <span>18+ Instruments</span>
     </a>
     <a class="bubble-photo bubble-wide" href="#summer-series">
       <img src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo5.jpg';" alt="Summer sound bath series">
-      <span>Summer Series</span>
     </a>
     <a class="bubble-photo" href="booking.html">
       <img src="photo5.jpg" alt="Sound healing room and calming setup">
-      <span>Calm Space</span>
     </a>
     <a class="bubble-photo bubble-tall" href="booking.html">
       <img src="Image-1.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Relaxing sound healing moment">
-      <span>Relaxation</span>
     </a>
     <a class="bubble-photo" href="booking.html">
       <img src="Image-3.jpg" onerror="this.onerror=null;this.src='photo1.jpg';" alt="Grounding sound bath moment">
-      <span>Grounding</span>
     </a>
     <a class="bubble-photo bubble-wide" href="event-art-sound-bath.html">
       <img src="Image-5.jpg" onerror="this.onerror=null;this.src='photo4.jpg';" alt="Sound bath event moment">
-      <span>Event Energy</span>
     </a>
   </div>
 </section>
@@ -1881,7 +1963,9 @@ footer {
         <span><i class="dot"></i> Open</span>
         <span><i class="dot limited"></i> Limited</span>
         <span><i class="dot booked"></i> Booked</span>
+        <span><i class="dot filled"></i> Filled</span>
       </div>
+      <p class="calendar-admin-note">To update availability later, edit the <strong>calendarStatus</strong> list in this index file and use: open, limited, booked, or filled.</p>
     </div>
   </div>
 </section>
@@ -2068,12 +2152,22 @@ function toggleChat() {
 }
 
 /* Calendar */
-const availableDates = {
+/* EDIT CALENDAR STATUS HERE
+   Options visitors can see:
+   open = Open
+   limited = Limited
+   booked = Booked
+   filled = Filled
+   ask or blank = Ask
+*/
+const calendarStatus = {
   "2026-07-05":"open",
   "2026-07-08":"limited",
+  "2026-07-10":"booked",
   "2026-07-12":"open",
   "2026-07-16":"open",
   "2026-07-18":"limited",
+  "2026-07-19":"filled",
   "2026-07-22":"open",
   "2026-07-26":"open",
   "2026-07-30":"limited",
@@ -2081,12 +2175,12 @@ const availableDates = {
   "2026-08-06":"open",
   "2026-08-09":"limited",
   "2026-08-13":"open",
+  "2026-08-16":"booked",
   "2026-08-17":"open",
   "2026-08-21":"limited",
   "2026-08-24":"open",
   "2026-08-29":"open"
 };
-const bookedDates = new Set(["2026-07-10","2026-07-19","2026-08-16"]);
 let calDate = new Date(2026, 6, 1);
 const monthTitle = document.getElementById("monthTitle");
 const grid = document.getElementById("calendarGrid");
@@ -2116,12 +2210,12 @@ function renderCalendar() {
   }
   for (let d=1; d<=days; d++) {
     const date = iso(y,m,d);
-    const status = availableDates[date] || (bookedDates.has(date) ? "booked" : "");
+    const status = calendarStatus[date] || "";
     const cell = document.createElement("button");
     cell.type = "button";
     cell.className = "day " + status;
-    cell.innerHTML = "<span class='n'>" + d + "</span><span class='s'>" + (status === "open" ? "Open" : status === "limited" ? "Limited" : status === "booked" ? "Booked" : "Ask") + "</span>";
-    if (status !== "booked") {
+    cell.innerHTML = "<span class='n'>" + d + "</span><span class='s'>" + (status === "open" ? "Open" : status === "limited" ? "Limited" : status === "booked" ? "Booked" : status === "filled" ? "Filled" : "Ask") + "</span>";
+    if (status !== "booked" && status !== "filled") {
       cell.addEventListener("click", () => {
         window.location.href = "booking.html?date=" + encodeURIComponent(date) + "#booking-calendar";
       });

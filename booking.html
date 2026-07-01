@@ -155,6 +155,17 @@
   .required-note { color:var(--muted); font-size:13px; margin-bottom:20px; }
   @media(max-width:880px) { .calendar-box { grid-template-columns:1fr; } .summary { position:relative; top:auto; } }
 </style>
+
+<style>
+.day.filled {
+  background: rgba(120,76,55,.16) !important;
+  border-color: rgba(120,76,55,.34) !important;
+  cursor: not-allowed !important;
+}
+.day.filled .s { color: #784c37 !important; }
+.dot.filled { background: #784c37 !important; }
+</style>
+
 </head>
 <body>
 <div class="topbar">Book a session · Private · Group · Corporate · Events · Retreats</div>
