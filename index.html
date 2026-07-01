@@ -1182,6 +1182,212 @@ footer {
   }
 }
 
+
+/* Refined symmetric bubble gallery */
+.bubble-gallery-sec {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(198,161,90,.10), transparent 30%),
+    linear-gradient(180deg, var(--off), var(--cream));
+  padding: 96px 0 110px;
+}
+.bubble-gallery-head {
+  max-width: 1120px;
+  margin: 0 auto 54px;
+  padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.bubble-gallery {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 210px;
+  gap: 18px;
+}
+.bubble-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 38px;
+  background: var(--forest);
+  border: 1px solid rgba(198,161,90,.18);
+  box-shadow: 0 22px 64px rgba(22,37,28,.10);
+  isolation: isolate;
+}
+.bubble-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .7s ease, filter .4s ease;
+  filter: saturate(.95) contrast(.96);
+}
+.bubble-photo:hover img {
+  transform: scale(1.055);
+  filter: saturate(1.05) contrast(1);
+}
+.bubble-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(22,37,28,.74), rgba(22,37,28,.12) 52%, transparent);
+  z-index: 1;
+}
+.bubble-photo span {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  z-index: 2;
+  color: var(--cream);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.bubble-large {
+  grid-column: span 2;
+  grid-row: span 2;
+  border-radius: 44px;
+}
+.bubble-wide {
+  grid-column: span 2;
+}
+.bubble-tall {
+  grid-row: span 2;
+}
+@media(max-width: 1000px) {
+  .bubble-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
+}
+@media(max-width: 640px) {
+  .bubble-gallery-head { padding: 0 24px; }
+  .bubble-gallery { grid-template-columns: 1fr; grid-auto-rows: 280px; padding: 0 20px; }
+  .bubble-large,.bubble-wide,.bubble-tall { grid-column: span 1; grid-row: span 1; }
+  .bubble-photo { border-radius: 32px; }
+}
+
+/* About Nishi */
+.about-nishi-sec {
+  background: var(--white);
+}
+.about-nishi-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 86px;
+  align-items: center;
+}
+.about-nishi-visual {
+  position: relative;
+  min-height: 650px;
+}
+.about-main-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 72%;
+  height: 88%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  box-shadow: 0 22px 70px rgba(22,37,28,.12);
+}
+.about-accent-img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 52%;
+  height: 50%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  border: 7px solid var(--white);
+  box-shadow: 0 18px 58px rgba(22,37,28,.12);
+}
+.about-badge {
+  position: absolute;
+  top: 42%;
+  right: 0;
+  transform: translate(20%, -50%);
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--gold2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 18px 60px rgba(22,37,28,.20);
+  text-align: center;
+  padding: 14px;
+  z-index: 5;
+}
+.about-badge strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  line-height: 1;
+}
+.about-badge span {
+  margin-top: 7px;
+  font-size: 8px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: rgba(250,247,241,.68);
+  line-height: 1.4;
+}
+.about-nishi-copy p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+.about-tags {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.about-tags span {
+  border: 1px solid rgba(198,161,90,.30);
+  background: rgba(198,161,90,.08);
+  color: var(--forest);
+  border-radius: 100px;
+  padding: 8px 15px;
+  font-size: 10px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+@media(max-width: 900px) {
+  .about-nishi-layout { grid-template-columns: 1fr; gap: 48px; }
+  .about-nishi-visual { min-height: 460px; }
+  .about-main-img { width: 76%; }
+  .about-accent-img { width: 56%; }
+  .about-badge { transform: translate(5%, -50%); }
+}
+@media(max-width: 560px) {
+  .about-nishi-visual { min-height: 380px; }
+  .about-badge { width: 108px; height: 108px; right: 4px; }
+  .about-badge strong { font-size: 21px; }
+}
+
+/* Refined social video wording */
+.social-card.video-card .social-platform {
+  color: var(--gold2);
+}
+
+
+/* Small text update: About Nishi certification badge */
+.about-badge strong {
+  font-size: 20px !important;
+}
+.about-badge span {
+  max-width: 92px !important;
+}
+
 </style>
 </head>
 <body>
@@ -1189,6 +1395,7 @@ footer {
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="toggleMenu(false)">×</button>
   <a onclick="toggleMenu(false)" href="#gallery">Gallery</a>
+  <a onclick="toggleMenu(false)" href="#about-nishi">About</a>
   <a onclick="toggleMenu(false)" href="#sessions">Sessions</a>
   <a onclick="toggleMenu(false)" href="#social-videos">Videos</a>
   <a onclick="toggleMenu(false)" href="#summer-series">Summer Series</a>
@@ -1214,6 +1421,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#summer-series">Summer Series</a></li>
     <li><a href="event-art-sound-bath.html">Event Jul 10</a></li>
+    <li><a href="#about-nishi">About</a></li>
     <li><a href="#sessions">Sessions</a></li>
     <li><a href="#social-videos">Videos</a></li>
     <li><a href="offerings.html">Offerings</a></li>
@@ -1278,27 +1486,91 @@ footer {
   </div>
 </div>
 
-<section class="gallery-sec" id="gallery">
-  <div class="gallery-head">
+
+<section class="gallery-sec bubble-gallery-sec" id="gallery">
+  <div class="bubble-gallery-head">
     <div>
       <p class="eyebrow">The Experience</p>
       <h2 class="h2">A visual journey into <em>sound</em></h2>
-      <p class="lead">Instead of one cropped slideshow, the homepage now opens with an organized image experience and a full gallery-style flow so the photos feel intentional.</p>
+      <p class="lead">A soft, organized photo story of the bowls, spaces, people, and peaceful moments that make Sound Healing with Nishi feel warm and intentional.</p>
     </div>
     <a class="btn-fill" href="booking.html">Book Your Session</a>
   </div>
-  <div class="gallery-grid">
-    <a class="gallery-item" href="booking.html"><img src="photo3.jpg" alt="Sound healing with Nishi"><div class="gallery-cap"><span>Private Session</span></div></a>
-    <a class="gallery-item" href="event-art-sound-bath.html"><img src="photo4.jpg" alt="Sound bath gathering"><div class="gallery-cap"><span>Group Sound Bath</span></div></a>
-    <a class="gallery-item" href="booking.html"><img src="photo1.jpg" alt="Himalayan bowls and sound instruments"><div class="gallery-cap"><span>18+ Instruments</span></div></a>
-    <a class="gallery-item" href="booking.html"><img src="photo5.jpg" alt="Sound healing room"><div class="gallery-cap"><span>Calm Space</span></div></a>
-    <a class="gallery-item" href="#summer-series"><img src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sauna House sound bath series"><div class="gallery-cap"><span>Summer Series</span></div></a>
-    <a class="gallery-item" href="booking.html"><img src="Image-1.jpg" alt="Sound healing photo"><div class="gallery-cap"><span>Relaxation</span></div></a>
-    <a class="gallery-item" href="booking.html"><img src="Image-3.jpg" alt="Sound healing photo"><div class="gallery-cap"><span>Grounding</span></div></a>
-    <a class="gallery-item" href="booking.html"><img src="Image-5.jpg" alt="Sound healing photo"><div class="gallery-cap"><span>Reset</span></div></a>
+
+  <div class="bubble-gallery">
+    <a class="bubble-photo bubble-large" href="booking.html">
+      <img src="photo3.jpg" alt="Private sound healing session with Nishi">
+      <span>Private Sound Bath</span>
+    </a>
+    <a class="bubble-photo bubble-tall" href="booking.html">
+      <img src="photo4.jpg" alt="Group sound healing with Nishi">
+      <span>Group Energy</span>
+    </a>
+    <a class="bubble-photo" href="booking.html">
+      <img src="photo1.jpg" alt="Sound healing instruments and bowls">
+      <span>18+ Instruments</span>
+    </a>
+    <a class="bubble-photo bubble-wide" href="#summer-series">
+      <img src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo5.jpg';" alt="Summer sound bath series">
+      <span>Summer Series</span>
+    </a>
+    <a class="bubble-photo" href="booking.html">
+      <img src="photo5.jpg" alt="Sound healing room and calming setup">
+      <span>Calm Space</span>
+    </a>
+    <a class="bubble-photo bubble-tall" href="booking.html">
+      <img src="Image-1.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Relaxing sound healing moment">
+      <span>Relaxation</span>
+    </a>
+    <a class="bubble-photo" href="booking.html">
+      <img src="Image-3.jpg" onerror="this.onerror=null;this.src='photo1.jpg';" alt="Grounding sound bath moment">
+      <span>Grounding</span>
+    </a>
+    <a class="bubble-photo bubble-wide" href="event-art-sound-bath.html">
+      <img src="Image-5.jpg" onerror="this.onerror=null;this.src='photo4.jpg';" alt="Sound bath event moment">
+      <span>Event Energy</span>
+    </a>
   </div>
 </section>
 
+
+
+
+
+<section class="sec about-nishi-sec" id="about-nishi">
+  <div class="sec-inner about-nishi-layout">
+    <div class="about-nishi-visual">
+      <img class="about-main-img" src="photo3.jpg" alt="Nishi sound healing practitioner">
+      <img class="about-accent-img" src="photo1.jpg" alt="Himalayan bowls and crystal bowls">
+      <div class="about-badge">
+        <strong>Certified at</strong>
+        <span>Rishikesh, India</span>
+      </div>
+    </div>
+
+    <div class="about-nishi-copy">
+      <p class="eyebrow">About Nishi</p>
+      <h2 class="h2">A global journey into <em>sound, softness & healing</em></h2>
+      <div class="hairline"></div>
+      <p>Nishi’s path began with curiosity, movement, and a love for discovering the world. She has traveled through places like Dubai, Singapore, and Sydney, Australia, where she completed her studies and spent six years building a career in the corporate tech world.</p>
+      <p>After returning to India, her heart pulled her toward wellness, energy, and deeper inner connection. That passion led her to explore sound healing across India and become certified in Rishikesh, a place known for yoga, meditation, and spiritual learning.</p>
+      <p>After marriage, Nishi moved to Charlotte, North Carolina, carrying with her the same calm, grounding energy she discovered on her own journey. Through Sound Healing with Nishi, she now shares immersive vibrational sound experiences with Himalayan bowls, crystal bowls, tuning fork, gong, and 18+ instruments.</p>
+
+      <div class="about-tags">
+        <span>Dubai</span>
+        <span>Singapore</span>
+        <span>Sydney</span>
+        <span>Certified at Rishikesh, India</span>
+        <span>Charlotte, NC</span>
+      </div>
+
+      <div class="hero-actions" style="margin-top:34px;">
+        <a class="btn-fill" href="booking.html">Book with Nishi</a>
+        <a class="btn-line" href="#social-videos"><span>→</span> Watch Videos</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <section class="social-sec" id="social-videos">
@@ -1337,73 +1609,73 @@ footer {
     <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Relaxing sound bath moment">
       <video src="nishi-social-video-01.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">Instagram Reel</div>
+        <div class="social-platform">Sound Bath Moment</div>
         <div class="social-title">Relaxing sound bath moment</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
     <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Himalayan bowls and crystal bowls">
       <video src="nishi-social-video-02.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">Instagram Reel</div>
+        <div class="social-platform">Instrument Journey</div>
         <div class="social-title">Himalayan bowls and crystal bowls</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
     <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Behind the sound healing setup">
       <video src="nishi-social-video-03.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">Instagram Reel</div>
+        <div class="social-platform">Behind the Sound</div>
         <div class="social-title">Behind the sound healing setup</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
     <a class="social-card video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Charlotte sound healing experience">
       <video src="nishi-social-video-04.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">TikTok Clip</div>
+        <div class="social-platform">Charlotte Session</div>
         <div class="social-title">Charlotte sound healing experience</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
     <a class="social-card video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Deep reset with 18+ instruments">
       <video src="nishi-social-video-05.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">TikTok Clip</div>
+        <div class="social-platform">Deep Reset</div>
         <div class="social-title">Deep reset with 18+ instruments</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
     <a class="social-card video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Peaceful private session energy">
       <video src="nishi-social-video-06.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">TikTok Clip</div>
+        <div class="social-platform">Private Session Energy</div>
         <div class="social-title">Peaceful private session energy</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
     <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Group sound bath atmosphere">
       <video src="nishi-social-video-07.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">Instagram Reel</div>
+        <div class="social-platform">Group Sound Bath</div>
         <div class="social-title">Group sound bath atmosphere</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
     <a class="social-card video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Calm, release, and reset">
       <video src="nishi-social-video-08.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">TikTok Clip</div>
+        <div class="social-platform">Calm Release Reset</div>
         <div class="social-title">Calm, release, and reset</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
     <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound Healing with Nishi">
       <video src="nishi-social-video-09.mp4" muted loop playsinline preload="metadata"></video>
       <div class="social-overlay">
-        <div class="social-platform">Instagram Reel</div>
+        <div class="social-platform">Sound Healing with Nishi</div>
         <div class="social-title">Sound Healing with Nishi</div>
-        <div class="social-sub">Tap to follow Sound Healing with Nishi.</div>
+        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
       </div>
     </a>
   </div>
@@ -1614,7 +1886,8 @@ footer {
     <h4>Quick Links</h4>
     <ul>
       <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#sessions">Sessions</a></li>
+      <li><a href="#about-nishi">About</a></li>
+    <li><a href="#sessions">Sessions</a></li>
     <li><a href="#social-videos">Videos</a></li>
       <li><a href="#summer-series">Summer Series</a></li>
       <li><a href="booking.html">Book</a></li>
