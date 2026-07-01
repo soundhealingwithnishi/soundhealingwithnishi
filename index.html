@@ -1388,6 +1388,117 @@ footer {
   max-width: 92px !important;
 }
 
+
+/* Hero photo slider: one image at a time, using all previous hero photos */
+.hero-photo-slider {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--forest);
+}
+.hero-photo-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.1s ease;
+}
+.hero-photo-slide.active { opacity: 1; }
+.hero-photo-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  filter: saturate(.96) contrast(.98);
+}
+.hero-photo-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(22,37,28,.08), transparent 34%),
+    linear-gradient(to top, rgba(22,37,28,.25), transparent 42%);
+  pointer-events: none;
+}
+.hero-slider-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 82%;
+}
+.hero-slider-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(250,247,241,.42);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.hero-slider-dot.active {
+  background: var(--gold2);
+  transform: scale(1.22);
+}
+@media(max-width: 900px) {
+  .hero-photo-slider { position: relative; height: 520px; }
+  .hero-slider-dots { bottom: 16px; }
+}
+@media(max-width: 560px) {
+  .hero-photo-slider { height: 480px; }
+}
+
+
+/* Clean video cards with iPhone/iPad poster thumbnails */
+.clean-video-card {
+  background: var(--forest);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.clean-video-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 1;
+  background: var(--forest);
+}
+.video-play-badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(22,37,28,.55);
+  border: 1px solid rgba(221,194,126,.5);
+  color: var(--gold2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  font-size: 19px;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+}
+.clean-video-card:hover .video-play-badge {
+  background: rgba(198,161,90,.86);
+  color: var(--forest);
+}
+@media(max-width: 900px) {
+  .clean-video-card video { min-height: 420px; }
+}
+@media(max-width: 560px) {
+  .clean-video-card video { min-height: 520px; }
+}
+
 </style>
 </head>
 <body>
@@ -1449,17 +1560,71 @@ footer {
       <div class="hero-stat"><div class="hero-stat-n">CLT</div><div class="hero-stat-l">Charlotte, NC</div></div>
     </div>
   </div>
+
   <div class="hero-right">
-    <div class="hero-img-grid">
-      <div class="img-cell big"><img src="photo3.jpg" alt="Nishi sound healing session with singing bowls"></div>
-      <div class="img-cell"><img src="photo4.jpg" alt="Sound bath setting"></div>
-      <div class="img-cell"><img src="photo1.jpg" alt="Sound healing instruments"></div>
+    <div class="hero-photo-slider" id="heroPhotoSlider">
+      <div class="hero-photo-slide active">
+        <img src="photo3.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 1">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="photo4.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 2">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="photo1.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 3">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="photo5.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 4">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="Image-1.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 5">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="Image-2.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 6">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="Image-3.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 7">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="Image-4.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 8">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="Image-5.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 9">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="Image-6.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 10">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="Image-7.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 11">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="Image-8.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 12">
+      </div>
+      <div class="hero-photo-slide">
+        <img src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Sound Healing with Nishi photo 13">
+      </div>
+    </div>
+    <div class="hero-slider-dots" id="heroSliderDots">
+      <button type="button" class="hero-slider-dot active" data-slide="0" aria-label="Hero photo 1"></button>
+      <button type="button" class="hero-slider-dot" data-slide="1" aria-label="Hero photo 2"></button>
+      <button type="button" class="hero-slider-dot" data-slide="2" aria-label="Hero photo 3"></button>
+      <button type="button" class="hero-slider-dot" data-slide="3" aria-label="Hero photo 4"></button>
+      <button type="button" class="hero-slider-dot" data-slide="4" aria-label="Hero photo 5"></button>
+      <button type="button" class="hero-slider-dot" data-slide="5" aria-label="Hero photo 6"></button>
+      <button type="button" class="hero-slider-dot" data-slide="6" aria-label="Hero photo 7"></button>
+      <button type="button" class="hero-slider-dot" data-slide="7" aria-label="Hero photo 8"></button>
+      <button type="button" class="hero-slider-dot" data-slide="8" aria-label="Hero photo 9"></button>
+      <button type="button" class="hero-slider-dot" data-slide="9" aria-label="Hero photo 10"></button>
+      <button type="button" class="hero-slider-dot" data-slide="10" aria-label="Hero photo 11"></button>
+      <button type="button" class="hero-slider-dot" data-slide="11" aria-label="Hero photo 12"></button>
+      <button type="button" class="hero-slider-dot" data-slide="12" aria-label="Hero photo 13"></button>
     </div>
     <div class="hero-veil"></div>
     <div class="hero-chip">
       <div class="hero-chip-label">Signature Session</div>
       <div class="hero-chip-text">Himalayan bowls, crystal bowls & vibrational instruments</div>
     </div>
+  </div>
+
   </div>
 </section>
 
@@ -1541,7 +1706,7 @@ footer {
   <div class="sec-inner about-nishi-layout">
     <div class="about-nishi-visual">
       <img class="about-main-img" src="photo3.jpg" alt="Nishi sound healing practitioner">
-      <img class="about-accent-img" src="photo1.jpg" alt="Himalayan bowls and crystal bowls">
+      <img class="about-accent-img" src="photo1.jpg" alt="">
       <div class="about-badge">
         <strong>Certified at</strong>
         <span>Rishikesh, India</span>
@@ -1552,13 +1717,16 @@ footer {
       <p class="eyebrow">About Nishi</p>
       <h2 class="h2">A global journey into <em>sound, softness & healing</em></h2>
       <div class="hairline"></div>
-      <p>Nishi’s path began with curiosity, movement, and a love for discovering the world. She has traveled through places like Dubai, Singapore, and Sydney, Australia, where she completed her studies and spent six years building a career in the corporate tech world.</p>
+      <p>Nishi’s path began with curiosity, movement, and a love for discovering the world. She has traveled through places like Dubai, Singapore, Sri Lanka, Switzerland, Europe, and Sydney, Australia, where she completed her studies and spent six years building a career in the corporate tech world.</p>
       <p>After returning to India, her heart pulled her toward wellness, energy, and deeper inner connection. That passion led her to explore sound healing across India and become certified in Rishikesh, a place known for yoga, meditation, and spiritual learning.</p>
       <p>After marriage, Nishi moved to Charlotte, North Carolina, carrying with her the same calm, grounding energy she discovered on her own journey. Through Sound Healing with Nishi, she now shares immersive vibrational sound experiences with Himalayan bowls, crystal bowls, tuning fork, gong, and 18+ instruments.</p>
 
       <div class="about-tags">
         <span>Dubai</span>
         <span>Singapore</span>
+        <span>Sri Lanka</span>
+        <span>Switzerland</span>
+        <span>Europe</span>
         <span>Sydney</span>
         <span>Certified at Rishikesh, India</span>
         <span>Charlotte, NC</span>
@@ -1606,80 +1774,53 @@ footer {
     </a>
 
     
-    <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Relaxing sound bath moment">
-      <video src="nishi-social-video-01.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Sound Bath Moment</div>
-        <div class="social-title">Relaxing sound bath moment</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-01.mp4" poster="nishi-video-poster-01.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
-    <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Himalayan bowls and crystal bowls">
-      <video src="nishi-social-video-02.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Instrument Journey</div>
-        <div class="social-title">Himalayan bowls and crystal bowls</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-02.mp4" poster="nishi-video-poster-02.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
-    <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Behind the sound healing setup">
-      <video src="nishi-social-video-03.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Behind the Sound</div>
-        <div class="social-title">Behind the sound healing setup</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-03.mp4" poster="nishi-video-poster-03.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
-    <a class="social-card video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Charlotte sound healing experience">
-      <video src="nishi-social-video-04.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Charlotte Session</div>
-        <div class="social-title">Charlotte sound healing experience</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-04.mp4" poster="nishi-video-poster-04.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
-    <a class="social-card video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Deep reset with 18+ instruments">
-      <video src="nishi-social-video-05.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Deep Reset</div>
-        <div class="social-title">Deep reset with 18+ instruments</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-05.mp4" poster="nishi-video-poster-05.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
-    <a class="social-card video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Peaceful private session energy">
-      <video src="nishi-social-video-06.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Private Session Energy</div>
-        <div class="social-title">Peaceful private session energy</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-06.mp4" poster="nishi-video-poster-06.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
-    <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Group sound bath atmosphere">
-      <video src="nishi-social-video-07.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Group Sound Bath</div>
-        <div class="social-title">Group sound bath atmosphere</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-07.mp4" poster="nishi-video-poster-07.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
-    <a class="social-card video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Calm, release, and reset">
-      <video src="nishi-social-video-08.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Calm Release Reset</div>
-        <div class="social-title">Calm, release, and reset</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-08.mp4" poster="nishi-video-poster-08.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
-    <a class="social-card video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound Healing with Nishi">
-      <video src="nishi-social-video-09.mp4" muted loop playsinline preload="metadata"></video>
-      <div class="social-overlay">
-        <div class="social-platform">Sound Healing with Nishi</div>
-        <div class="social-title">Sound Healing with Nishi</div>
-        <div class="social-sub">Tap to follow or watch more sound healing moments.</div>
-      </div>
+    
+    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-09.mp4" poster="nishi-video-poster-09.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
     </a>
   </div>
-  <p class="social-video-note">Videos play on hover or touch. Click any video card to open Instagram or TikTok.</p>
+  <p class="social-video-note">Tap any video to open Instagram or TikTok. Thumbnails are optimized for phone and iPad.</p>
 </section>
 
 
