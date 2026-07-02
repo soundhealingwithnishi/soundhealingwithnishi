@@ -1954,6 +1954,58 @@ body::before {
   .video-film-track { animation: none; }
 }
 
+/* Video lightbox: clicking a video card plays it in place instead of leaving the site */
+.video-film-card,
+.social-card.video-card {
+  cursor: pointer;
+}
+.video-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: rgba(15,20,15,.92);
+  backdrop-filter: blur(6px);
+}
+.video-lightbox.open { display: flex; }
+.video-lightbox-inner {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  display: flex;
+}
+.video-lightbox video {
+  width: 100%;
+  max-height: 88vh;
+  border-radius: 18px;
+  background: #000;
+  box-shadow: 0 30px 90px rgba(0,0,0,.5);
+  display: block;
+}
+.video-lightbox-close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(198,161,90,.48);
+  background: rgba(22,37,28,.88);
+  color: var(--gold2);
+  font-size: 22px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+@media (max-width: 560px) {
+  .video-lightbox { padding: 20px 14px; }
+  .video-lightbox-close { top: -42px; right: 0; width: 34px; height: 34px; font-size: 19px; }
+}
 
 /* Movie-style visual journey photo slider */
 .photo-film-sec {
@@ -2317,6 +2369,13 @@ body::before {
 </head>
 <body>
 
+<div class="video-lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="Video player">
+  <div class="video-lightbox-inner">
+    <button class="video-lightbox-close" id="videoLightboxClose" type="button" aria-label="Close video">&times;</button>
+    <video id="videoLightboxPlayer" controls playsinline></video>
+  </div>
+</div>
+
 <div class="global-top-wrap">
   <div class="global-ribbon" onclick="window.location.href='event-art-sound-bath.html'">
     <div class="global-ribbon-track">
@@ -2375,10 +2434,10 @@ body::before {
       <img class="collage-img active" src="charlotte-sound-bath-red-01.jpg" alt="">
     </div>
  <div class="collage-cell collage-top" data-cell="1">
-      <img class="collage-img active" src="charlotte-sound-bath-red-04.jpg" alt="">
+      <img class="collage-img active" src="nishi-handpan-gong-03.jpg" alt="">
     </div>
  <div class="collage-cell collage-bottom" data-cell="2">
-      <img class="collage-img active" src="charlotte-sound-bath-red-07.jpg" alt="">
+      <img class="collage-img active" src="photo7.jpg" alt="">
     </div>
  </div>
  <div class="hero-veil"></div>
@@ -2417,9 +2476,9 @@ body::before {
  <div class="sec-inner about-nishi-layout">
  
  <div class="about-nishi-visual handpan-about-grid">
-   <div class="about-handpan-photo main"><img src="photo1" alt=""></div>
+   <div class="about-handpan-photo main"><img src="nishi-handpan-gong-01.jpg" alt=""></div>
    <div class="about-handpan-photo"><img src="charlotte-sound-bath-red-04.jpg" alt=""></div>
-   <div class="about-handpan-photo"><img src="photo3.jpg" alt=""></div>
+   <div class="about-handpan-photo"><img src="charlotte-sound-bath-red-05.jpg" alt=""></div>
    <div class="about-badge">
      <strong>Certified at</strong>
      <span>Rishikesh, India</span>
@@ -3292,6 +3351,22 @@ window.HERO_COLLAGE_PHOTOS = [
  'Image-20.jpg'
 ];
 
+function shuffleArray(arr){
+ const a = arr.slice();
+ for (let i = a.length - 1; i > 0; i--) {
+ const j = Math.floor(Math.random() * (i + 1));
+ const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+ }
+ return a;
+}
+
+function pickRandomIndex(max, exclude){
+ if (exclude.size >= max) return Math.floor(Math.random() * max);
+ let idx;
+ do { idx = Math.floor(Math.random() * max); } while (exclude.has(idx));
+ return idx;
+}
+
 function initHeroCollageFixed(){
  const collage = document.getElementById('heroCollage');
  if (!collage || collage.dataset.sliderReady === 'true') return;
@@ -3300,9 +3375,11 @@ function initHeroCollageFixed(){
  if (photos.length < 3 || cells.length < 1) return;
  collage.dataset.sliderReady = 'true';
 
- cells.forEach((cell, i) => {
+ const usedStart = new Set();
+ cells.forEach((cell) => {
  const img = cell.querySelector('.collage-img.active') || cell.querySelector('.collage-img');
- const startIndex = i % photos.length; /* open on the newest event photos */
+ const startIndex = pickRandomIndex(photos.length, usedStart); /* random photo on every load, not just the top event shots */
+ usedStart.add(startIndex);
  if (img) { img.src = photos[startIndex]; img.classList.add('active'); }
  cell.dataset.photoIndex = String(startIndex);
  });
@@ -3311,11 +3388,8 @@ function initHeroCollageFixed(){
 
  function swapOneCell(cellIndex){
  const cell = cells[cellIndex % cells.length];
- const current = Number(cell.dataset.photoIndex || 0);
  const shown = new Set(currentIndices());
- let next = (current + cells.length) % photos.length;
- let safety = 0;
- while (shown.has(next) && safety < photos.length) { next = (next + 1) % photos.length; safety++; }
+ const next = pickRandomIndex(photos.length, shown); /* always a random pick, never a fixed sequence */
  cell.dataset.photoIndex = String(next);
 
  let imgs = Array.from(cell.querySelectorAll('.collage-img'));
@@ -3353,6 +3427,46 @@ function initSocialVideoHoverFixed(){
  });
 }
 
+function initVideoLightbox(){
+ const lightbox = document.getElementById('videoLightbox');
+ const player = document.getElementById('videoLightboxPlayer');
+ const closeBtn = document.getElementById('videoLightboxClose');
+ if (!lightbox || !player || !closeBtn || lightbox.dataset.ready === 'true') return;
+ lightbox.dataset.ready = 'true';
+
+ function openVideo(src, poster){
+ if (!src) return;
+ player.pause();
+ player.muted = false;
+ player.loop = false;
+ player.src = src;
+ if (poster) player.poster = poster;
+ lightbox.classList.add('open');
+ document.body.style.overflow = 'hidden';
+ player.play().catch(() => {});
+ }
+ function closeVideo(){
+ player.pause();
+ player.removeAttribute('src');
+ player.load();
+ lightbox.classList.remove('open');
+ document.body.style.overflow = '';
+ }
+
+ document.querySelectorAll('.video-film-card').forEach(card => {
+ const vid = card.querySelector('video');
+ if (!vid) return;
+ card.addEventListener('click', function(e){
+ e.preventDefault();
+ openVideo(vid.currentSrc || vid.getAttribute('src'), vid.getAttribute('poster'));
+ });
+ });
+
+ closeBtn.addEventListener('click', closeVideo);
+ lightbox.addEventListener('click', function(e){ if (e.target === lightbox) closeVideo(); });
+ document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeVideo(); });
+}
+
 if (document.readyState === 'loading') {
 /* Preload-validate every photo, then drive BOTH the hero collage and the
    photo film strip from only the photos that actually exist. Missing files
@@ -3386,11 +3500,13 @@ function rebuildPhotoFilm(validPhotos){
 
 document.addEventListener('DOMContentLoaded', function(){
   initSocialVideoHoverFixed();
+  initVideoLightbox();
   preloadValidPhotos(window.HERO_COLLAGE_PHOTOS || [], function(valid){
     if (valid.length >= 3) {
-      window.HERO_COLLAGE_PHOTOS = valid;
+      var shuffled = shuffleArray(valid); /* random mix instead of the original list order (which had all the red event shots grouped together) */
+      window.HERO_COLLAGE_PHOTOS = shuffled;
       initHeroCollageFixed();
-      rebuildPhotoFilm(valid);
+      rebuildPhotoFilm(shuffled);
     } else {
       initHeroCollageFixed();
     }
@@ -3399,6 +3515,7 @@ document.addEventListener('DOMContentLoaded', function(){
 } else {
  initHeroCollageFixed();
  initSocialVideoHoverFixed();
+ initVideoLightbox();
 }
 </script>
 
