@@ -2107,140 +2107,6 @@ body::before {
 
 
 /* Consistent deploy-safe top navigation across every page */
-.global-top-wrap {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
-  background: #12291d;
-  box-shadow: 0 1px 0 rgba(198,160,82,.20);
-}
-.global-ribbon {
-  height: 35px;
-  overflow: hidden;
-  background: #c8a052;
-  color: #14261b;
-  border-bottom: 1px solid rgba(18,41,29,.16);
-  cursor: pointer;
-  white-space: nowrap;
-}
-.global-ribbon-track {
-  height: 35px;
-  display: inline-flex;
-  align-items: center;
-  gap: 44px;
-  min-width: max-content;
-  padding-left: 18px;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  letter-spacing: .04em;
-  animation: globalRibbonMove 46s linear infinite;
-}
-.global-ribbon:hover .global-ribbon-track {
-  animation-play-state: paused;
-}
-.global-ribbon-track strong {
-  font-weight: 900;
-}
-@keyframes globalRibbonMove {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.global-header {
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 0 28px;
-  background: #12291d;
-  color: #fbf7ef;
-}
-.global-logo {
-  flex: 0 0 auto;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 20px;
-  color: #d8b56c !important;
-  text-decoration: none !important;
-  white-space: nowrap;
-}
-.global-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 22px;
-  min-width: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-}
-.global-nav::-webkit-scrollbar {
-  display: none;
-}
-.global-nav-link,
-.global-book {
-  flex: 0 0 auto;
-  color: rgba(251,247,239,.78) !important;
-  text-decoration: none !important;
-  text-transform: uppercase;
-  font-size: 10px;
-  line-height: 1;
-  letter-spacing: .20em;
-  font-weight: 800;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  transition: color .2s ease, border-color .2s ease, background .2s ease;
-}
-.global-nav-link:hover,
-.global-nav-link.active {
-  color: #d8b56c !important;
-}
-.global-book {
-  color: #d8b56c !important;
-  border: 1px solid rgba(216,181,108,.64);
-  border-radius: 999px;
-  padding: 15px 24px;
-  margin-left: 4px;
-}
-.global-book:hover {
-  background: rgba(216,181,108,.12);
-}
-@media(max-width: 1000px) {
-  .global-header {
-    height: auto;
-    min-height: 76px;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 14px 18px 12px;
-  }
-  .global-nav {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 18px;
-    padding: 0 0 7px;
-  }
-  .global-ribbon,
-  .global-ribbon-track {
-    height: 32px;
-  }
-  .global-ribbon-track {
-    font-size: 12px;
-    gap: 30px;
-  }
-}
-@media(max-width: 560px) {
-  .global-logo {
-    font-size: 18px;
-  }
-  .global-nav-link,
-  .global-book {
-    font-size: 9px;
-    letter-spacing: .16em;
-  }
-  .global-book {
-    padding: 12px 18px;
-  }
-}
 /* Prevent old page nav styles from affecting the new shared header */
 .global-top-wrap ul,
 .global-top-wrap li {
@@ -3488,7 +3354,48 @@ function initSocialVideoHoverFixed(){
 }
 
 if (document.readyState === 'loading') {
- document.addEventListener('DOMContentLoaded', function(){ initHeroCollageFixed(); initSocialVideoHoverFixed(); });
+/* Preload-validate every photo, then drive BOTH the hero collage and the
+   photo film strip from only the photos that actually exist. Missing files
+   can never freeze or break the sliders. */
+function preloadValidPhotos(list, done){
+  var valid = [], pending = list.length;
+  if (!pending) return done(valid);
+  list.forEach(function(srcName){
+    var im = new Image();
+    var settled = false;
+    function finish(ok){
+      if (settled) return; settled = true;
+      if (ok) valid.push(srcName);
+      if (--pending === 0) done(valid);
+    }
+    im.onload = function(){ finish(true); };
+    im.onerror = function(){ finish(false); };
+    setTimeout(function(){ finish(false); }, 8000);
+    im.src = srcName;
+  });
+}
+
+function rebuildPhotoFilm(validPhotos){
+  var track = document.getElementById('photoFilmTrack');
+  if (!track || validPhotos.length < 4) return;
+  var cardHTML = validPhotos.map(function(p){
+    return '<a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="' + p + '" alt="Sound Healing with Nishi" loading="lazy" decoding="async"></a>';
+  }).join('');
+  track.innerHTML = cardHTML + cardHTML; /* duplicate for seamless loop */
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  initSocialVideoHoverFixed();
+  preloadValidPhotos(window.HERO_COLLAGE_PHOTOS || [], function(valid){
+    if (valid.length >= 3) {
+      window.HERO_COLLAGE_PHOTOS = valid;
+      initHeroCollageFixed();
+      rebuildPhotoFilm(valid);
+    } else {
+      initHeroCollageFixed();
+    }
+  });
+});
 } else {
  initHeroCollageFixed();
  initSocialVideoHoverFixed();
@@ -3580,7 +3487,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function hideBrokenMedia(){
     document.querySelectorAll('img').forEach(function(img){
       img.addEventListener('error', function(){
-        var card = img.closest('.photo-film-card, .gallery-row-card, .gallery-tile, .about-handpan-photo, .handpan-feature-card, .img-cell, .collage-cell');
+        var card = img.closest('.photo-film-card, .gallery-row-card, .gallery-tile, .about-handpan-photo, .handpan-feature-card');
         if(card) card.remove();
       }, {once:true});
     });
