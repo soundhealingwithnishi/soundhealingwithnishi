@@ -2397,6 +2397,26 @@ body::before {
   padding: 0 !important;
 }
 
+
+/* All-photo visual journey slider refinement */
+.photo-film-track {
+  gap: 18px;
+}
+.photo-film-card {
+  background: #12291d;
+}
+.photo-film-card img {
+  opacity: 1;
+}
+.photo-film-card:empty {
+  display: none !important;
+}
+@media(max-width: 560px) {
+  .photo-film-head {
+    text-align: left;
+  }
+}
+
 </style>
 <!-- Sections reordered: Experience and Social after Book Your Session -->
 </head>
@@ -2631,7 +2651,7 @@ body::before {
     </div>
     <div class="social-actions">
       <a class="btn-fill" href="booking.html">Book Your Session</a>
-      <a class="btn-line" href="gallery.html"><span>→</span> View Gallery</a>
+      <a class="btn-line" href="gallery.html#photo-gallery"><span>→</span> View Gallery</a>
     </div>
   </div>
 
@@ -2639,101 +2659,71 @@ body::before {
     <button class="photo-film-nav prev" type="button" aria-label="Previous photos">‹</button>
     <div class="photo-film-viewport" id="photoFilmViewport">
       <div class="photo-film-track" id="photoFilmTrack">
-        
-      <a class="photo-film-card" href="gallery.html">
-        <img src="nishi-handpan-gong-01.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="nishi-handpan-gong-02.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="nishi-handpan-gong-03.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-01.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-02.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-03.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-04.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-05.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-06.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-07.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-08.jpg" alt="">
-      </a>
-        
-      <a class="photo-film-card" href="gallery.html">
-        <img src="nishi-handpan-gong-01.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="nishi-handpan-gong-02.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="nishi-handpan-gong-03.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-01.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-02.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-03.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-04.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-05.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-06.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-07.jpg" alt="">
-      </a>
-
-      <a class="photo-film-card" href="gallery.html">
-        <img src="charlotte-sound-bath-red-08.jpg" alt="">
-      </a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="nishi-handpan-gong-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="nishi-handpan-gong-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="nishi-handpan-gong-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="event-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="event-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="event-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="saunahouse-nishi.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="event-main.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-6.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-7.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-8.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="nishi-handpan-gong-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="nishi-handpan-gong-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="nishi-handpan-gong-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="event-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="event-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="event-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="saunahouse-nishi.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="event-main.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="photo5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-6.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-7.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open gallery"><img src="Image-8.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
       </div>
     </div>
     <button class="photo-film-nav next" type="button" aria-label="Next photos">›</button>
   </div>
 
   <div class="photo-film-actions">
-    <a class="btn-fill" href="gallery.html">View Full Photo Gallery</a>
+    <a class="btn-fill" href="gallery.html#photo-gallery">View Full Photo Gallery</a>
     <a class="btn-line" href="booking.html"><span>→</span> Book Your Session</a>
   </div>
 </section>

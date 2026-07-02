@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sound Healing Gallery Charlotte NC | Sound Healing with Nishi</title>
-<meta name="description" content="Photo and video gallery for Sound Healing with Nishi in Charlotte, NC. View handpan, gong, Himalayan bowls, crystal bowls, and outdoor sound bath experiences.">
+<title>Sound Healing Photo and Video Gallery Charlotte NC | Sound Healing with Nishi</title>
+<meta name="description" content="Full photo and video gallery for Sound Healing with Nishi in Charlotte, NC, including handpan, gong, Himalayan bowls, crystal bowls, outdoor sound baths and private sessions.">
 <style>
 :root {
-  --forest:#12291d;
+  --forest:#13281d;
   --forest2:#0b1f15;
   --cream:#fbf7ef;
   --off:#f3eadf;
-  --gold:#c8a052;
-  --gold2:#d8b56c;
+  --gold:#c6a15a;
+  --gold2:#d4b067;
   --text:#16251c;
   --muted:#746f65;
   --line:rgba(198,160,82,.28);
@@ -24,83 +24,36 @@ body {
   background:var(--cream);
   color:var(--text);
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  position:relative;
-}
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-  background:
-    linear-gradient(rgba(251,247,239,.91), rgba(251,247,239,.91)),
-    url('nishi-handpan-gong-01.jpg') center / cover no-repeat;
-  opacity:.25;
 }
 a { color:inherit; text-decoration:none; }
 img, video { max-width:100%; }
-.site-header {
-  position:sticky;
-  top:0;
-  z-index:50;
-  height:76px;
-  background:rgba(18,41,29,.98);
-  border-bottom:1px solid rgba(198,160,82,.18);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 32px;
-}
-.logo {
-  color:var(--gold2);
-  font-family: Georgia, serif;
-  font-size:22px;
-  font-style:italic;
-  white-space:nowrap;
-}
-.nav {
-  display:flex;
-  align-items:center;
-  gap:28px;
-  font-size:11px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  font-weight:700;
-  color:rgba(251,247,239,.75);
-}
-.nav a:hover { color:var(--gold2); }
-.book-pill {
-  border:1px solid rgba(198,160,82,.62);
-  border-radius:999px;
-  padding:12px 22px;
-  color:var(--gold2) !important;
-}
+
 .hero {
-  min-height:610px;
+  min-height:560px;
   background:
-    radial-gradient(circle at 78% 30%, rgba(198,160,82,.16), transparent 38%),
-    linear-gradient(120deg, rgba(18,41,29,.97), rgba(9,28,18,.99));
+    radial-gradient(circle at 76% 30%, rgba(198,161,90,.13), transparent 36%),
+    linear-gradient(115deg, rgba(19,40,29,.98), rgba(8,25,16,.99));
   color:var(--cream);
   display:grid;
   place-items:center;
-  padding:92px 36px;
+  padding:92px 34px;
   overflow:hidden;
 }
 .hero-inner {
   max-width:1180px;
   width:100%;
   display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:58px;
+  grid-template-columns:.86fr 1.14fr;
+  gap:54px;
   align-items:center;
 }
 .eyebrow {
-  margin:0 0 18px;
+  margin:0 0 17px;
   color:var(--gold2);
-  font-size:11px;
+  font-size:10.5px;
   letter-spacing:.34em;
   text-transform:uppercase;
-  font-weight:800;
+  font-weight:700;
 }
 .h1, .h2 {
   margin:0;
@@ -108,32 +61,31 @@ img, video { max-width:100%; }
   font-weight:400;
   line-height:.98;
 }
-.h1 { font-size:clamp(58px, 8vw, 112px); color:var(--cream); }
-.h2 { font-size:clamp(42px, 5.2vw, 78px); color:var(--forest); }
+.h1 { font-size:clamp(54px, 7.5vw, 108px); color:var(--cream); }
+.h2 { font-size:clamp(42px, 5.1vw, 76px); color:var(--forest); }
 em { color:var(--gold); font-style:italic; }
 .lead {
   max-width:720px;
   margin:24px 0 0;
-  font-size:17px;
+  font-size:16px;
   line-height:1.85;
-  color:rgba(251,247,239,.76);
+  color:rgba(251,247,239,.74);
 }
-.hero-photo-stack {
-  min-height:460px;
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  grid-template-rows:1fr 1fr;
+.hero-photo-strip {
+  display:flex;
   gap:16px;
+  height:430px;
+  overflow:hidden;
 }
-.hero-photo-stack img {
-  width:100%;
+.hero-photo-strip img {
+  flex:1;
+  min-width:0;
   height:100%;
   object-fit:cover;
-  border-radius:32px;
-  border:1px solid rgba(198,160,82,.30);
-  box-shadow:0 26px 80px rgba(0,0,0,.25);
+  border-radius:30px;
+  border:1px solid rgba(198,161,90,.30);
+  box-shadow:0 26px 76px rgba(0,0,0,.25);
 }
-.hero-photo-stack img:first-child { grid-row:span 2; }
 .actions {
   margin-top:34px;
   display:flex;
@@ -145,13 +97,13 @@ em { color:var(--gold); font-style:italic; }
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-height:50px;
+  min-height:48px;
   border-radius:999px;
-  padding:0 30px;
-  font-size:11px;
+  padding:0 28px;
+  font-size:10.5px;
   letter-spacing:.18em;
   text-transform:uppercase;
-  font-weight:800;
+  font-weight:700;
 }
 .btn-fill {
   background:var(--forest);
@@ -165,7 +117,7 @@ em { color:var(--gold); font-style:italic; }
 }
 .hero .btn-line { color:var(--cream); border-color:rgba(198,160,82,.45); }
 .section {
-  padding:94px 36px;
+  padding:96px 34px;
 }
 .section-inner {
   max-width:1180px;
@@ -185,20 +137,20 @@ em { color:var(--gold); font-style:italic; }
 }
 .photo-reel {
   overflow:hidden;
-  margin:0 -36px;
-  padding:8px 0 28px;
+  margin:0 -34px;
+  padding:8px 0 30px;
 }
 .photo-reel-track {
   display:flex;
   gap:18px;
   width:max-content;
-  animation: photoMove 88s linear infinite;
+  animation: photoMove 96s linear infinite;
 }
 .photo-reel:hover .photo-reel-track {
   animation-play-state:paused;
 }
 .photo-reel-card {
-  flex:0 0 clamp(290px, 28vw, 500px);
+  flex:0 0 clamp(290px, 28vw, 510px);
   height:clamp(330px, 34vw, 520px);
   border-radius:34px;
   overflow:hidden;
@@ -225,11 +177,11 @@ em { color:var(--gold); font-style:italic; }
 }
 .gallery-photo-card {
   grid-column:span 4;
-  min-height:360px;
+  min-height:350px;
   border:0;
   padding:0;
   cursor:pointer;
-  border-radius:32px;
+  border-radius:30px;
   overflow:hidden;
   background:var(--forest);
   box-shadow:0 20px 56px rgba(18,41,29,.13);
@@ -250,7 +202,7 @@ em { color:var(--gold); font-style:italic; }
 .video-section {
   background:var(--forest);
   color:var(--cream);
-  padding:100px 36px;
+  padding:100px 34px;
 }
 .video-section .h2 { color:var(--cream); }
 .video-section .lead { color:rgba(251,247,239,.72); }
@@ -265,7 +217,7 @@ em { color:var(--gold); font-style:italic; }
   position:relative;
   border-radius:30px;
   overflow:hidden;
-  min-height:480px;
+  min-height:460px;
   background:#08180f;
   border:1px solid rgba(198,160,82,.28);
   box-shadow:0 24px 70px rgba(0,0,0,.22);
@@ -273,37 +225,30 @@ em { color:var(--gold); font-style:italic; }
 .video-card video {
   width:100%;
   height:100%;
-  min-height:480px;
+  min-height:460px;
   object-fit:cover;
   display:block;
   background:#08180f;
-}
-.video-card::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top, rgba(7,22,14,.34), transparent 58%);
-  pointer-events:none;
 }
 .play-button {
   position:absolute;
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
-  width:64px;
-  height:64px;
+  width:62px;
+  height:62px;
   border-radius:999px;
   border:1px solid rgba(216,181,108,.65);
-  background:rgba(200,160,82,.92);
+  background:rgba(198,161,90,.92);
   color:#07170f;
   z-index:5;
   cursor:pointer;
-  font-size:22px;
+  font-size:21px;
   display:grid;
   place-items:center;
 }
 .cta {
-  padding:96px 36px;
+  padding:92px 34px;
   text-align:center;
 }
 .cta .lead {
@@ -316,24 +261,24 @@ em { color:var(--gold); font-style:italic; }
   right:22px;
   bottom:22px;
   z-index:60;
-  min-height:56px;
+  min-height:54px;
   border-radius:999px;
-  padding:0 28px;
+  padding:0 26px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   background:var(--gold);
   color:#07170f;
-  font-size:11px;
+  font-size:10.5px;
   letter-spacing:.18em;
   text-transform:uppercase;
-  font-weight:900;
+  font-weight:800;
   box-shadow:0 20px 48px rgba(18,41,29,.20);
 }
 .lightbox {
   position:fixed;
   inset:0;
-  z-index:100;
+  z-index:10000;
   background:rgba(7,19,12,.92);
   display:none;
   align-items:center;
@@ -376,29 +321,15 @@ em { color:var(--gold); font-style:italic; }
   flex-wrap:wrap;
 }
 @media(max-width:1100px) {
-  .nav { gap:18px; font-size:10px; }
   .hero-inner { grid-template-columns:1fr; }
   .video-grid { grid-template-columns:repeat(3, 1fr); }
   .gallery-photo-card { grid-column:span 6; }
   .gallery-photo-card.wide { grid-column:span 12; }
 }
 @media(max-width:820px) {
-  .site-header {
-    height:auto;
-    min-height:76px;
-    padding:16px 18px;
-    align-items:flex-start;
-    gap:14px;
-    flex-direction:column;
-  }
-  .nav {
-    width:100%;
-    overflow-x:auto;
-    padding-bottom:6px;
-  }
   .hero { min-height:auto; padding:76px 22px; }
-  .hero-photo-stack { min-height:auto; grid-template-columns:1fr; }
-  .hero-photo-stack img { min-height:280px; }
+  .hero-photo-strip { height:auto; flex-direction:column; }
+  .hero-photo-strip img { min-height:280px; }
   .section, .video-section, .cta { padding-left:22px; padding-right:22px; }
   .photo-reel { margin:0 -22px; }
   .photo-reel-card {
@@ -411,8 +342,8 @@ em { color:var(--gold); font-style:italic; }
   .video-card, .video-card video { min-height:420px; }
 }
 @media(max-width:560px) {
-  .h1 { font-size:54px; }
-  .h2 { font-size:42px; }
+  .h1 { font-size:52px; }
+  .h2 { font-size:40px; }
   .gallery-photo-card,
   .gallery-photo-card.wide {
     grid-column:span 12;
@@ -427,302 +358,9 @@ em { color:var(--gold); font-style:italic; }
   .btn-fill, .btn-line { width:100%; }
   .email-nishi { right:14px; bottom:14px; padding:0 18px; }
 }
-
-/* Consistent deploy-safe top navigation across every page */
-.global-top-wrap {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
-  background: #12291d;
-  box-shadow: 0 1px 0 rgba(198,160,82,.20);
-}
-.global-ribbon {
-  height: 35px;
-  overflow: hidden;
-  background: #c8a052;
-  color: #14261b;
-  border-bottom: 1px solid rgba(18,41,29,.16);
-  cursor: pointer;
-  white-space: nowrap;
-}
-.global-ribbon-track {
-  height: 35px;
-  display: inline-flex;
-  align-items: center;
-  gap: 44px;
-  min-width: max-content;
-  padding-left: 18px;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  letter-spacing: .04em;
-  animation: globalRibbonMove 46s linear infinite;
-}
-.global-ribbon:hover .global-ribbon-track {
-  animation-play-state: paused;
-}
-.global-ribbon-track strong {
-  font-weight: 900;
-}
-@keyframes globalRibbonMove {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.global-header {
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 0 28px;
-  background: #12291d;
-  color: #fbf7ef;
-}
-.global-logo {
-  flex: 0 0 auto;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 20px;
-  color: #d8b56c !important;
-  text-decoration: none !important;
-  white-space: nowrap;
-}
-.global-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 22px;
-  min-width: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-}
-.global-nav::-webkit-scrollbar {
-  display: none;
-}
-.global-nav-link,
-.global-book {
-  flex: 0 0 auto;
-  color: rgba(251,247,239,.78) !important;
-  text-decoration: none !important;
-  text-transform: uppercase;
-  font-size: 10px;
-  line-height: 1;
-  letter-spacing: .20em;
-  font-weight: 800;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  transition: color .2s ease, border-color .2s ease, background .2s ease;
-}
-.global-nav-link:hover,
-.global-nav-link.active {
-  color: #d8b56c !important;
-}
-.global-book {
-  color: #d8b56c !important;
-  border: 1px solid rgba(216,181,108,.64);
-  border-radius: 999px;
-  padding: 15px 24px;
-  margin-left: 4px;
-}
-.global-book:hover {
-  background: rgba(216,181,108,.12);
-}
-@media(max-width: 1000px) {
-  .global-header {
-    height: auto;
-    min-height: 76px;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 14px 18px 12px;
-  }
-  .global-nav {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 18px;
-    padding: 0 0 7px;
-  }
-  .global-ribbon,
-  .global-ribbon-track {
-    height: 32px;
-  }
-  .global-ribbon-track {
-    font-size: 12px;
-    gap: 30px;
-  }
-}
-@media(max-width: 560px) {
-  .global-logo {
-    font-size: 18px;
-  }
-  .global-nav-link,
-  .global-book {
-    font-size: 9px;
-    letter-spacing: .16em;
-  }
-  .global-book {
-    padding: 12px 18px;
-  }
-}
-/* Prevent old page nav styles from affecting the new shared header */
-.global-top-wrap ul,
-.global-top-wrap li {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-
-/* Consistent old-style elegant navigation across every page */
-.global-top-wrap {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
-  background: #13281d;
-  box-shadow: 0 1px 0 rgba(198,160,82,.18);
-}
-.global-ribbon {
-  height: 30px;
-  overflow: hidden;
-  background: #c6a15a;
-  color: #16251c;
-  border-bottom: 1px solid rgba(18,41,29,.12);
-  cursor: pointer;
-  white-space: nowrap;
-}
-.global-ribbon-track {
-  height: 30px;
-  display: inline-flex;
-  align-items: center;
-  gap: 42px;
-  min-width: max-content;
-  padding-left: 16px;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: .025em;
-  animation: globalRibbonMove 52s linear infinite;
-}
-.global-ribbon:hover .global-ribbon-track {
-  animation-play-state: paused;
-}
-.global-ribbon-track strong {
-  font-weight: 600;
-  letter-spacing: .04em;
-}
-@keyframes globalRibbonMove {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.global-header {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 0 24px;
-  background: #13281d;
-  color: #fbf7ef;
-}
-.global-logo {
-  flex: 0 0 auto;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 18px;
-  font-weight: 400;
-  color: #d4b067 !important;
-  text-decoration: none !important;
-  white-space: nowrap;
-}
-.global-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 23px;
-  min-width: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-}
-.global-nav::-webkit-scrollbar {
-  display: none;
-}
-.global-nav-link,
-.global-book {
-  flex: 0 0 auto;
-  color: rgba(251,247,239,.70) !important;
-  text-decoration: none !important;
-  text-transform: uppercase;
-  font-size: 9.5px;
-  line-height: 1;
-  letter-spacing: .19em;
-  font-weight: 500;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  transition: color .2s ease, border-color .2s ease, background .2s ease;
-}
-.global-nav-link:hover,
-.global-nav-link.active {
-  color: #d4b067 !important;
-}
-.global-book {
-  color: #d4b067 !important;
-  border: 1px solid rgba(212,176,103,.52);
-  border-radius: 999px;
-  padding: 12px 22px;
-  margin-left: 4px;
-  letter-spacing: .20em;
-}
-.global-book:hover {
-  background: rgba(212,176,103,.10);
-}
-@media(max-width: 1000px) {
-  .global-header {
-    height: auto;
-    min-height: 70px;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 13px 18px 10px;
-  }
-  .global-nav {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 18px;
-    padding: 0 0 7px;
-  }
-  .global-ribbon,
-  .global-ribbon-track {
-    height: 28px;
-  }
-  .global-ribbon-track {
-    font-size: 11.5px;
-    gap: 30px;
-  }
-}
-@media(max-width: 560px) {
-  .global-logo {
-    font-size: 17px;
-  }
-  .global-nav-link,
-  .global-book {
-    font-size: 9px;
-    letter-spacing: .15em;
-  }
-  .global-book {
-    padding: 11px 16px;
-  }
-}
-/* Prevent old page nav styles from affecting the new shared header */
-.global-top-wrap ul,
-.global-top-wrap li {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 </style>
 </head>
 <body>
-
 <div class="global-top-wrap">
   <div class="global-ribbon" onclick="window.location.href='event-art-sound-bath.html'">
     <div class="global-ribbon-track">
@@ -737,41 +375,22 @@ em { color:var(--gold); font-style:italic; }
     </div>
   </div>
 
-  <header class="global-header">
-    <a class="global-logo" href="index.html">Sound Healing with Nishi</a>
-    <nav class="global-nav" aria-label="Main navigation">
-      <a class="global-nav-link" href="index.html">Home</a>
-      <a class="global-nav-link" href="index.html#summer-series">Summer Series</a>
-      <a class="global-nav-link" href="event-art-sound-bath.html">Event Jul 10</a>
-      <a class="global-nav-link" href="index.html#about-nishi">About</a>
-      <a class="global-nav-link" href="index.html#sessions">Sessions</a>
-      <a class="global-nav-link" href="index.html#social-videos">Videos</a>
-      <a class="global-nav-link active" href="gallery.html">Gallery</a>
-      <a class="global-nav-link" href="offerings.html">Offerings</a>
-      <a class="global-nav-link" href="sound-bath-charlotte.html">Sound Bath Charlotte</a>
-      <a class="global-nav-link" href="blog.html">Blog</a>
-      <a class="global-nav-link" href="index.html#google-reviews">Google Reviews</a>
-      <a class="global-book" href="booking.html">Book</a>
-    </nav>
-  </header>
-</div>
-
 <main>
   <section class="hero">
     <div class="hero-inner">
       <div>
         <p class="eyebrow">Photo & Video Gallery</p>
         <h1 class="h1">A visual story of <em>sound healing</em></h1>
-        <p class="lead">Moments from Nishi’s Charlotte sound bath experiences, shown from newest to oldest, with handpan, gong, Himalayan bowls, crystal bowls and peaceful outdoor sessions.</p>
+        <p class="lead">All photo and video moments from Nishi’s Charlotte sound bath experiences, shown from newest to oldest.</p>
         <div class="actions">
           <a class="btn-fill" href="booking.html">Book Your Session</a>
           <a class="btn-line" href="#gallery-videos">Watch Videos</a>
         </div>
       </div>
-      <div class="hero-photo-stack">
-        <img src="nishi-handpan-gong-03.jpg" alt="">
-        <img src="nishi-handpan-gong-02.jpg" alt="">
-        <img src="charlotte-sound-bath-red-08.jpg" alt="">
+      <div class="hero-photo-strip">
+        <img src="nishi-handpan-gong-03.jpg" alt="" onerror="this.remove()">
+        <img src="nishi-handpan-gong-02.jpg" alt="" onerror="this.remove()">
+        <img src="charlotte-sound-bath-red-08.jpg" alt="" onerror="this.remove()">
       </div>
     </div>
   </section>
@@ -780,9 +399,9 @@ em { color:var(--gold); font-style:italic; }
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Newest Photos First</p>
+          <p class="eyebrow">All Photos</p>
           <h2 class="h2">Sound bath <em>moments</em></h2>
-          <p class="lead">A cleaner gallery layout with all photos organized from the newest handpan and outdoor session images to earlier sound bath photos.</p>
+          <p class="lead">A complete photo gallery, newest to oldest. No visible image titles or labels.</p>
         </div>
         <div class="actions">
           <a class="btn-fill" href="booking.html">Book Your Session</a>
@@ -793,53 +412,98 @@ em { color:var(--gold); font-style:italic; }
 
     <div class="photo-reel" aria-label="Moving photo gallery">
       <div class="photo-reel-track">
-      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-03.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-02.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-01.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-08.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-07.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-06.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-05.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-04.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-03.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-02.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-01.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="saunahouse-nishi.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="photo1.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="photo4.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-03.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-02.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-01.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-08.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-07.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-06.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-05.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-04.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-03.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-02.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-01.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="saunahouse-nishi.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="photo1.jpg" alt=""></a>
-      <a class="photo-reel-card" href="#photo-gallery"><img src="photo4.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="nishi-handpan-gong-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="nishi-handpan-gong-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="nishi-handpan-gong-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="event-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="event-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="event-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="saunahouse-nishi.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="event-main.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-6.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-7.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-8.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="nishi-handpan-gong-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="nishi-handpan-gong-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="nishi-handpan-gong-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="event-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="event-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="event-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="saunahouse-nishi.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="event-main.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="photo5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-6.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-7.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
+      <a class="photo-reel-card" href="#photo-gallery" aria-label="Gallery photo"><img src="Image-8.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></a>
       </div>
     </div>
 
     <div class="section-inner" style="margin-top:48px;">
       <div class="photo-grid">
-      <button class="gallery-photo-card wide" type="button" data-img="nishi-handpan-gong-03.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-03.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="nishi-handpan-gong-02.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-02.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="nishi-handpan-gong-01.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-01.jpg" alt=""></button>
-      <button class="gallery-photo-card wide" type="button" data-img="charlotte-sound-bath-red-08.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-08.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-07.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-07.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-06.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-06.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-05.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-05.jpg" alt=""></button>
-      <button class="gallery-photo-card wide" type="button" data-img="charlotte-sound-bath-red-04.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-04.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-03.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-03.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-02.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-02.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-01.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-01.jpg" alt=""></button>
-      <button class="gallery-photo-card wide" type="button" data-img="saunahouse-nishi.jpg" aria-label="Open photo"><img src="saunahouse-nishi.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="photo1.jpg" aria-label="Open photo"><img src="photo1.jpg" alt=""></button>
-      <button class="gallery-photo-card " type="button" data-img="photo4.jpg" aria-label="Open photo"><img src="photo4.jpg" alt=""></button>
+      <button class="gallery-photo-card wide" type="button" data-img="nishi-handpan-gong-03.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="nishi-handpan-gong-02.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="nishi-handpan-gong-01.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card wide" type="button" data-img="charlotte-sound-bath-red-08.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="charlotte-sound-bath-red-07.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="charlotte-sound-bath-red-06.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="charlotte-sound-bath-red-05.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card wide" type="button" data-img="charlotte-sound-bath-red-04.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="charlotte-sound-bath-red-03.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="charlotte-sound-bath-red-02.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="charlotte-sound-bath-red-01.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="event-red-03.jpg" aria-label="Open photo"><img src="event-red-03.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card wide" type="button" data-img="event-red-02.jpg" aria-label="Open photo"><img src="event-red-02.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="event-red-01.jpg" aria-label="Open photo"><img src="event-red-01.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="saunahouse-nishi.jpg" aria-label="Open photo"><img src="saunahouse-nishi.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card wide" type="button" data-img="event-main.jpg" aria-label="Open photo"><img src="event-main.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="photo1.jpg" aria-label="Open photo"><img src="photo1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="photo2.jpg" aria-label="Open photo"><img src="photo2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="photo3.jpg" aria-label="Open photo"><img src="photo3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="photo4.jpg" aria-label="Open photo"><img src="photo4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="photo5.jpg" aria-label="Open photo"><img src="photo5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="Image-1.jpg" aria-label="Open photo"><img src="Image-1.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card wide" type="button" data-img="Image-2.jpg" aria-label="Open photo"><img src="Image-2.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="Image-3.jpg" aria-label="Open photo"><img src="Image-3.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="Image-4.jpg" aria-label="Open photo"><img src="Image-4.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="Image-5.jpg" aria-label="Open photo"><img src="Image-5.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="Image-6.jpg" aria-label="Open photo"><img src="Image-6.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="Image-7.jpg" aria-label="Open photo"><img src="Image-7.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
+      <button class="gallery-photo-card" type="button" data-img="Image-8.jpg" aria-label="Open photo"><img src="Image-8.jpg" alt="" loading="lazy" onerror="this.parentElement.remove()"></button>
       </div>
     </div>
   </section>
@@ -848,9 +512,9 @@ em { color:var(--gold); font-style:italic; }
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Newest Videos First</p>
+          <p class="eyebrow">All Videos</p>
           <h2 class="h2">Video gallery of <em>sound</em></h2>
-          <p class="lead">All uploaded video moments in one place, ordered from newest to oldest. Tap or hover to play.</p>
+          <p class="lead">All uploaded video moments in one place. Tap or hover to play.</p>
         </div>
         <div class="actions">
           <a class="btn-fill" href="booking.html">Book Your Session</a>
@@ -885,6 +549,14 @@ em { color:var(--gold); font-style:italic; }
       </article>
       <article class="video-card">
         <video src="nishi-social-video-14.mp4" poster="nishi-video-poster-14.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-13.mp4" poster="nishi-video-poster-13.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-12.mp4" poster="nishi-video-poster-12.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
         <button class="play-button" type="button" aria-label="Play video">▶</button>
       </article>
       <article class="video-card">
@@ -965,8 +637,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const lightboxImg = lightbox.querySelector('img');
   const closeBtn = lightbox.querySelector('.close-lightbox');
 
-  document.querySelectorAll('.gallery-photo-card').forEach(btn => {
-    btn.addEventListener('click', () => {
+  document.querySelectorAll('.gallery-photo-card').forEach(function(btn) {
+    btn.addEventListener('click', function() {
       lightboxImg.src = btn.dataset.img;
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
@@ -980,25 +652,25 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   closeBtn.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', e => {
+  lightbox.addEventListener('click', function(e) {
     if (e.target === lightbox) closeLightbox();
   });
 
-  document.querySelectorAll('.video-card').forEach(card => {
+  document.querySelectorAll('.video-card').forEach(function(card) {
     const video = card.querySelector('video');
     const btn = card.querySelector('.play-button');
 
-    function playVideo() {
-      document.querySelectorAll('.video-card video').forEach(v => {
-        if (v !== video) v.pause();
-      });
-      video.play().catch(() => {});
-    }
+    video.addEventListener('error', function() {
+      card.remove();
+    });
 
     function toggleVideo(e) {
       e.preventDefault();
+      document.querySelectorAll('.video-card video').forEach(function(v) {
+        if (v !== video) v.pause();
+      });
       if (video.paused) {
-        playVideo();
+        video.play().catch(function() {});
         btn.style.opacity = '0';
       } else {
         video.pause();
@@ -1006,11 +678,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 
-    card.addEventListener('mouseenter', () => {
-      video.play().catch(() => {});
+    card.addEventListener('mouseenter', function() {
+      video.play().catch(function() {});
       btn.style.opacity = '0';
     });
-    card.addEventListener('mouseleave', () => {
+    card.addEventListener('mouseleave', function() {
       video.pause();
       btn.style.opacity = '1';
     });
