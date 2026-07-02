@@ -1764,6 +1764,47 @@ body::before {
   }
 }
 
+
+/* Verified Google review section */
+.verified-reviews-grid {
+  grid-template-columns: minmax(280px, 560px) !important;
+  justify-content: start;
+}
+.verified-review-card h3 {
+  margin: 8px 0 10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--forest);
+}
+.review-source {
+  margin: 12px 0 0;
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.review-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--forest);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 800;
+  border-bottom: 1px solid rgba(198,161,90,.55);
+}
+.review-actions {
+  align-items: center;
+  flex-wrap: wrap;
+}
+@media(max-width: 700px) {
+  .verified-reviews-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 </style>
 <!-- Sections reordered: Experience and Social after Book Your Session -->
 </head>
@@ -1881,10 +1922,9 @@ body::before {
    <div class="about-handpan-photo"><img src="nishi-handpan-gong-02.jpg" alt=""></div>
    <div class="about-handpan-photo"><img src="nishi-handpan-gong-03.jpg" alt=""></div>
    <div class="about-badge">
-     <strong>Handpan</strong>
-     <span>Played by hand in Charlotte</span>
+     <strong>Certified at</strong>
+     <span>Rishikesh, India</span>
    </div>
-   <div class="about-handpan-note">Handpan + Gong + Crystal Bowls</div>
  </div>
 
 
@@ -2206,22 +2246,31 @@ body::before {
  </div>
 </section>
 
-<section class="sec review-sec" id="google-reviews">
- <div class="sec-inner">
- <p class="eyebrow">Google Reviews</p>
- <h2 class="h2">What people feel after a <em>sound bath</em></h2>
- <p class="lead">Real reviews help new clients understand the feeling of the experience before they book.</p>
- <div class="review-grid">
- <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">A peaceful, therapeutic experience that helped me feel calm and grounded.</p><div class="review-name">Google Review</div></div>
- <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">The sound bath created a deep reset. It felt gentle, beautiful, and very intentional.</p><div class="review-name">Client Experience</div></div>
- <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">A relaxing and unique wellness experience in Charlotte.</p><div class="review-name">Charlotte Client</div></div>
- </div>
- <div class="google-actions">
- <a class="btn-fill" href="https://share.google/nts81XwQVwJB2WoPT" target="_blank" rel="noopener">Read Google Reviews</a>
- <a class="btn-line" href="https://share.google/nts81XwQVwJB2WoPT" target="_blank" rel="noopener"><span>★</span> Leave Review</a>
- </div>
- </div>
+
+<section class="sec reviews-sec" id="google-reviews">
+  <div class="sec-inner">
+    <p class="eyebrow">Google Reviews</p>
+    <h2 class="h2">What people feel after a <em>sound bath</em></h2>
+    <p class="lead">Real Google reviews only. This section now shows Alexis’s original Google review link and leaves space to add more verified reviews later.</p>
+
+    <div class="reviews-grid verified-reviews-grid">
+      <!-- Future verified reviews: duplicate this review-card block, change the name, text, and review link. -->
+      <article class="review-card verified-review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-source">Verified Google Review</p>
+        <h3>Alexis</h3>
+        <p class="review-text">Open Alexis’s original Google review to read the exact review on Google.</p>
+        <a class="review-link" href="https://share.google/BjH2OGuSRRioNX27w" target="_blank" rel="noopener">Read Alexis’s Review</a>
+      </article>
+    </div>
+
+    <div class="hero-actions review-actions" style="margin-top:34px;">
+      <a class="btn-fill" href="https://share.google/BjH2OGuSRRioNX27w" target="_blank" rel="noopener">Read Alexis’s Review</a>
+      <a class="btn-line" href="https://share.google/2SQAhjzLM3Vu3GyNR" target="_blank" rel="noopener"><span>★</span> Leave Review</a>
+    </div>
+  </div>
 </section>
+
 
 <section class="sec" id="about">
  <div class="sec-inner">
