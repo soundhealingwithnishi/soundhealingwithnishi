@@ -170,6 +170,59 @@
  justify-content: center;
 }
 
+
+/* Booking page contact cleanup: chat opens email */
+.chat-main[href],
+.book-fab[href],
+.contact-fab[href],
+.chat-fab[href] {
+ text-decoration: none;
+}
+.chat-main[href] {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+
+/* Booking page: Email Nishi floating button */
+.nishi-chat-toggle.email-nishi-toggle {
+  width: auto !important;
+  min-width: 142px !important;
+  height: 54px !important;
+  padding: 0 22px !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.email-nishi-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 999px;
+  padding: 12px 18px;
+  background: var(--forest-deep, #1a2a20);
+  color: var(--gold-light, #d7bd78) !important;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+@media(max-width: 560px) {
+  .nishi-chat-toggle.email-nishi-toggle {
+    min-width: 126px !important;
+    height: 50px !important;
+    padding: 0 18px !important;
+    font-size: 9px !important;
+  }
+}
+
 </style>
 
 <style>
@@ -486,16 +539,16 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 });
 </script>
 
+
 <div class="nishi-chat-widget" id="nishiChatWidget">
- <div class="nishi-chat-panel">
- <h4>Chat with Nishi</h4>
- <p>Have a question before booking? Send a WhatsApp or text message.</p>
- <div class="nishi-chat-actions">
- <a class="wa" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A" target="_blank" rel="noopener">WhatsApp</a>
- <a class="sms" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A">Text Nishi</a>
- </div>
- </div>
- <button class="nishi-chat-toggle" type="button" aria-label="Open chat" onclick="document.getElementById('nishiChatWidget').classList.toggle('open')">💬</button>
+  <div class="nishi-chat-panel">
+    <h4>Email Nishi</h4>
+    <p>Have a question before booking? Send Nishi an email and she will reply personally.</p>
+    <div class="nishi-chat-actions">
+      <a class="email-nishi-action" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A">Email Nishi</a>
+    </div>
+  </div>
+  <a class="nishi-chat-toggle email-nishi-toggle" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A" aria-label="Email Nishi">Email Nishi</a>
 </div>
 
 
