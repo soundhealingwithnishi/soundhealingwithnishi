@@ -1954,64 +1954,6 @@ body::before {
   .video-film-track { animation: none; }
 }
 
-/* Video click popup: choose Instagram or TikTok instead of leaving unexpectedly */
-.video-film-card {
-  cursor: pointer;
-}
-.video-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(15,20,15,.72);
-  backdrop-filter: blur(4px);
-}
-.video-lightbox.open { display: flex; }
-.video-lightbox-inner {
-  position: relative;
-  width: 100%;
-  max-width: 320px;
-  background: var(--cream);
-  border-radius: 20px;
-  padding: 36px 26px 26px;
-  text-align: center;
-  box-shadow: 0 30px 90px rgba(0,0,0,.35);
-}
-.video-choice-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 21px;
-  color: var(--forest);
-  margin-bottom: 22px;
-}
-.video-choice-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.video-choice-actions a { width: 100%; }
-.video-lightbox-close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(198,161,90,.48);
-  background: var(--forest);
-  color: var(--gold2);
-  font-size: 19px;
-  line-height: 1;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-@media (max-width: 560px) {
-  .video-lightbox { padding: 20px 14px; }
-}
 
 /* Movie-style visual journey photo slider */
 .photo-film-sec {
@@ -2370,21 +2312,171 @@ body::before {
   .photo-film-card:nth-child(3n+2), .photo-film-card:nth-child(4n) { margin-top: 0 !important; }
 }
 
+
+/* URGENT FINAL FIX: balanced random photo sliders and video open-choice modal */
+.photo-film-track, .video-film-track {
+  transform: translateX(0);
+}
+.video-film-card {
+  cursor: pointer;
+}
+.video-choice-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(22,37,28,.62);
+  backdrop-filter: blur(8px);
+}
+.video-choice-modal.open {
+  display: flex;
+}
+.video-choice-box {
+  width: min(420px, 92vw);
+  background: var(--cream);
+  border: 1px solid rgba(198,161,90,.38);
+  box-shadow: 0 26px 90px rgba(0,0,0,.22);
+  border-radius: 26px;
+  padding: 28px;
+  color: var(--forest);
+  text-align: center;
+}
+.video-choice-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0 0 10px;
+}
+.video-choice-box p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0 0 22px;
+}
+.video-choice-actions {
+  display: grid;
+  gap: 12px;
+}
+.video-choice-actions a,
+.video-choice-actions button {
+  width: 100%;
+  border-radius: 999px;
+  padding: 14px 18px;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 800;
+  cursor: pointer;
+}
+.video-choice-actions a {
+  display: flex;
+  justify-content: center;
+  background: var(--forest);
+  color: var(--gold2);
+  border: 1px solid var(--forest);
+}
+.video-choice-actions a:nth-child(2) {
+  background: var(--gold);
+  color: var(--forest);
+  border-color: var(--gold);
+}
+.video-choice-actions button {
+  background: transparent;
+  color: var(--forest);
+  border: 1px solid rgba(22,37,28,.22);
+}
+
+
+
+/* FINAL EVENT SAFE FIX: no flicker hero/photos and clickable video choice */
+.collage-cell { background: linear-gradient(135deg, #16251c, #243b2b) !important; }
+.collage-img { opacity: 0; transition: opacity 1.05s ease !important; }
+.collage-img.active { opacity: 1 !important; }
+.photo-film-track { animation: nishiPhotoMarqueeFixed 135s linear infinite !important; }
+.photo-film-shell:hover .photo-film-track { animation-play-state: running !important; }
+.video-film-track { animation: nishiVideoMarquee 105s linear infinite !important; }
+.video-film-shell:hover .video-film-track { animation-play-state: running !important; }
+.video-film-card { cursor: pointer; }
+.video-choice-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(22,37,28,.66);
+  backdrop-filter: blur(8px);
+}
+.video-choice-modal.open { display: flex; }
+.video-choice-box {
+  width: min(420px, 92vw);
+  background: var(--cream);
+  border: 1px solid rgba(198,161,90,.38);
+  box-shadow: 0 26px 90px rgba(0,0,0,.22);
+  border-radius: 26px;
+  padding: 28px;
+  color: var(--forest);
+  text-align: center;
+}
+.video-choice-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0 0 10px;
+}
+.video-choice-box p { color: var(--muted); font-size: 14px; line-height: 1.65; margin: 0 0 22px; }
+.video-choice-actions { display: grid; gap: 12px; }
+.video-choice-actions a,
+.video-choice-actions button {
+  width: 100%;
+  border-radius: 999px;
+  padding: 14px 18px;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 800;
+  cursor: pointer;
+}
+.video-choice-actions a {
+  display: flex;
+  justify-content: center;
+  background: var(--forest);
+  color: var(--gold2);
+  border: 1px solid var(--forest);
+}
+.video-choice-actions a:nth-child(2) {
+  background: var(--gold);
+  color: var(--forest);
+  border-color: var(--gold);
+}
+.video-choice-actions button {
+  background: transparent;
+  color: var(--forest);
+  border: 1px solid rgba(22,37,28,.22);
+}
+
+
+/* PHOTO SLIDER VISIBILITY FIX */
+.photo-film-shell { min-height: 380px !important; }
+.photo-film-viewport { min-height: 360px !important; overflow: hidden !important; }
+.photo-film-track { display: flex !important; gap: 18px !important; width: max-content !important; min-height: 360px !important; animation: nishiPhotoMarqueeFixed 135s linear infinite !important; animation-play-state: running !important; }
+.photo-film-card { display: block; flex: 0 0 clamp(260px, 28vw, 500px) !important; height: clamp(330px, 35vw, 560px) !important; border-radius: 34px !important; overflow: hidden !important; background: #14291d !important; }
+.photo-film-card img { display: block !important; width: 100% !important; height: 100% !important; object-fit: cover !important; }
+.photo-film-shell:hover .photo-film-track { animation-play-state: running !important; }
+@media(max-width: 700px) {
+  .photo-film-card { flex-basis: 78vw !important; height: 96vw !important; }
+}
+
 </style>
 <!-- Sections reordered: Experience and Social after Book Your Session -->
 </head>
 <body>
-
-<div class="video-lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="Choose where to watch">
-  <div class="video-lightbox-inner">
-    <button class="video-lightbox-close" id="videoLightboxClose" type="button" aria-label="Close">&times;</button>
-    <p class="video-choice-title">Watch this video on</p>
-    <div class="video-choice-actions">
-      <a class="btn-fill" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn-line" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener"><span>▶</span> TikTok</a>
-    </div>
-  </div>
-</div>
 
 <div class="global-top-wrap">
   <div class="global-ribbon" onclick="window.location.href='event-art-sound-bath.html'">
@@ -2441,13 +2533,13 @@ body::before {
  <div class="hero-right">
  <div class="hero-collage" id="heroCollage">
  <div class="collage-cell collage-big" data-cell="0">
-      <img class="collage-img active" src="charlotte-sound-bath-red-01.jpg" alt="">
+      <img class="collage-img active" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg" alt="">
     </div>
  <div class="collage-cell collage-top" data-cell="1">
-      <img class="collage-img active" src="nishi-handpan-gong-03.jpg" alt="">
+      <img class="collage-img active" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-04.jpg" alt="">
     </div>
  <div class="collage-cell collage-bottom" data-cell="2">
-      <img class="collage-img active" src="photo7.jpg" alt="">
+      <img class="collage-img active" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-07.jpg" alt="">
     </div>
  </div>
  <div class="hero-veil"></div>
@@ -2486,9 +2578,9 @@ body::before {
  <div class="sec-inner about-nishi-layout">
  
  <div class="about-nishi-visual handpan-about-grid">
-   <div class="about-handpan-photo main"><img src="nishi-handpan-gong-01.jpg" alt=""></div>
-   <div class="about-handpan-photo"><img src="charlotte-sound-bath-red-04.jpg" alt=""></div>
-   <div class="about-handpan-photo"><img src="charlotte-sound-bath-red-05.jpg" alt=""></div>
+   <div class="about-handpan-photo main"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-01.jpg" alt=""></div>
+   <div class="about-handpan-photo"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-04.jpg" alt=""></div>
+   <div class="about-handpan-photo"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-05.jpg" alt=""></div>
    <div class="about-badge">
      <strong>Certified at</strong>
      <span>Rishikesh, India</span>
@@ -2604,154 +2696,154 @@ body::before {
     <button class="photo-film-nav prev" type="button" aria-label="Previous photos">‹</button>
     <div class="photo-film-viewport" id="photoFilmViewport">
       <div class="photo-film-track" id="photoFilmTrack">
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="saunahouse-nishi.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-main.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo1.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo2.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo3.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo4.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo5.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo6.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo7.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo8.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo9.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo13.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo14.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo15.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo16.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo17.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo18.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo19.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo20.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-1.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-2.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-3.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-4.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-5.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-6.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-7.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-8.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-9.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-13.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-14.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-15.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-16.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-17.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-18.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-19.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-20.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="nishi-handpan-gong-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="charlotte-sound-bath-red-12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-red-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="saunahouse-nishi.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="event-main.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo1.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo2.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo3.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo4.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo5.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo6.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo7.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo8.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo9.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo13.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo14.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo15.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo16.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo17.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo18.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo19.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="photo20.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-1.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-2.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-3.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-4.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-5.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-6.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-7.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-8.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-9.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-13.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-14.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-15.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-16.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-17.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-18.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-19.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
-        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="Image-20.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/saunahouse-nishi.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-main.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo1.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo2.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo3.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo4.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo5.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo6.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo7.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo8.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo9.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo13.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo14.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo15.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo16.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo17.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo18.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo19.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo20.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-1.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-2.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-3.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-4.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-5.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-6.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-7.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-8.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-9.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-13.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-14.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-15.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-16.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-17.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-18.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-19.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-20.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/nishi-handpan-gong-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-01.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-02.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-04.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-05.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-06.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-07.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-08.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-09.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-red-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/saunahouse-nishi.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/event-main.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo1.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo2.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo3.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo4.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo5.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo6.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo7.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo8.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo9.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo13.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo14.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo15.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo16.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo17.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo18.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo19.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/photo20.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-1.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-2.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-3.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-4.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-5.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-6.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-7.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-8.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-9.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-10.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-11.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-12.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-13.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-14.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-15.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-16.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-17.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-18.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-19.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
+        <a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="https://soundhealingwithnishi.com/Image-20.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.photo-film-card').remove()"></a>
       </div>
     </div>
     <button class="photo-film-nav next" type="button" aria-label="Next photos">›</button>
@@ -2995,8 +3087,8 @@ body::before {
 <section class="sec series-sec" id="summer-series">
  <div class="sec-inner series-layout">
  <div class="series-visual">
- <img class="series-main" src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="">
- <img class="series-accent" src="photo1.jpg" alt="">
+ <img class="series-main" src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='https://soundhealingwithnishi.com/photo3.jpg';" alt="">
+ <img class="series-accent" src="https://soundhealingwithnishi.com/photo1.jpg" alt="">
  <div class="badge"><strong>4</strong><span>Summer Sessions</span></div>
  </div>
  <div>
@@ -3035,7 +3127,7 @@ body::before {
  </div>
  </div>
  <div class="event-right">
- <img src="photo4.jpg" alt="">
+ <img src="https://soundhealingwithnishi.com/photo4.jpg" alt="">
  <div class="event-count"><strong>Jul 10</strong><span>Charlotte Event</span></div>
  </div>
  </div>
@@ -3282,251 +3374,7 @@ if (quickForm) {
 }
 </script>
 
-<script>
-/* FIXED: automatic hero collage slider and video hover */
-window.HERO_COLLAGE_PHOTOS = [
- 'nishi-handpan-gong-01.jpg',
- 'nishi-handpan-gong-02.jpg',
- 'nishi-handpan-gong-03.jpg',
- 'nishi-handpan-gong-04.jpg',
- 'nishi-handpan-gong-05.jpg',
- 'nishi-handpan-gong-06.jpg',
- 'nishi-handpan-gong-07.jpg',
- 'nishi-handpan-gong-08.jpg',
- 'nishi-handpan-gong-09.jpg',
- 'nishi-handpan-gong-10.jpg',
- 'charlotte-sound-bath-red-01.jpg',
- 'charlotte-sound-bath-red-02.jpg',
- 'charlotte-sound-bath-red-03.jpg',
- 'charlotte-sound-bath-red-04.jpg',
- 'charlotte-sound-bath-red-05.jpg',
- 'charlotte-sound-bath-red-06.jpg',
- 'charlotte-sound-bath-red-07.jpg',
- 'charlotte-sound-bath-red-08.jpg',
- 'charlotte-sound-bath-red-09.jpg',
- 'charlotte-sound-bath-red-10.jpg',
- 'charlotte-sound-bath-red-11.jpg',
- 'charlotte-sound-bath-red-12.jpg',
- 'event-red-01.jpg',
- 'event-red-02.jpg',
- 'event-red-03.jpg',
- 'event-red-04.jpg',
- 'event-red-05.jpg',
- 'event-red-06.jpg',
- 'event-red-07.jpg',
- 'event-red-08.jpg',
- 'event-red-09.jpg',
- 'event-red-10.jpg',
- 'saunahouse-nishi.jpg',
- 'event-main.jpg',
- 'photo1.jpg',
- 'photo2.jpg',
- 'photo3.jpg',
- 'photo4.jpg',
- 'photo5.jpg',
- 'photo6.jpg',
- 'photo7.jpg',
- 'photo8.jpg',
- 'photo9.jpg',
- 'photo10.jpg',
- 'photo11.jpg',
- 'photo12.jpg',
- 'photo13.jpg',
- 'photo14.jpg',
- 'photo15.jpg',
- 'photo16.jpg',
- 'photo17.jpg',
- 'photo18.jpg',
- 'photo19.jpg',
- 'photo20.jpg',
- 'Image-1.jpg',
- 'Image-2.jpg',
- 'Image-3.jpg',
- 'Image-4.jpg',
- 'Image-5.jpg',
- 'Image-6.jpg',
- 'Image-7.jpg',
- 'Image-8.jpg',
- 'Image-9.jpg',
- 'Image-10.jpg',
- 'Image-11.jpg',
- 'Image-12.jpg',
- 'Image-13.jpg',
- 'Image-14.jpg',
- 'Image-15.jpg',
- 'Image-16.jpg',
- 'Image-17.jpg',
- 'Image-18.jpg',
- 'Image-19.jpg',
- 'Image-20.jpg'
-];
 
-function shuffleArray(arr){
- const a = arr.slice();
- for (let i = a.length - 1; i > 0; i--) {
- const j = Math.floor(Math.random() * (i + 1));
- const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
- }
- return a;
-}
-
-function pickRandomIndex(max, exclude){
- if (exclude.size >= max) return Math.floor(Math.random() * max);
- let idx;
- do { idx = Math.floor(Math.random() * max); } while (exclude.has(idx));
- return idx;
-}
-
-function initHeroCollageFixed(){
- const collage = document.getElementById('heroCollage');
- if (!collage || collage.dataset.sliderReady === 'true') return;
- const photos = (window.HERO_COLLAGE_PHOTOS || []).filter(Boolean);
- const cells = Array.from(collage.querySelectorAll('.collage-cell'));
- if (photos.length < 3 || cells.length < 1) return;
- collage.dataset.sliderReady = 'true';
-
- cells.forEach(cell => { cell.dataset.photoIndex = '-1'; });
-
- function currentIndices(){ return cells.map(cell => Number(cell.dataset.photoIndex)); }
-
- function swapOneCell(cellIndex, forceIndex){
- const cell = cells[cellIndex % cells.length];
- const shown = new Set(currentIndices().filter(n => n >= 0));
- const next = (typeof forceIndex === 'number') ? forceIndex : pickRandomIndex(photos.length, shown);
- cell.dataset.photoIndex = String(next);
-
- let imgs = Array.from(cell.querySelectorAll('.collage-img'));
- let outgoing = imgs.find(img => img.classList.contains('active'));
- let incoming = imgs.find(img => !img.classList.contains('active'));
- if (!incoming) {
- incoming = document.createElement('img');
- incoming.className = 'collage-img';
- incoming.alt = 'Sound Healing with Nishi';
- incoming.onerror = function(){ this.onerror = null; this.src = 'photo3.jpg'; };
- cell.appendChild(incoming);
- }
- incoming.onload = function(){
- incoming.classList.add('active');
- if (outgoing && outgoing !== incoming) outgoing.classList.remove('active');
- };
- incoming.src = photos[next];
- if (incoming.complete) {
- incoming.classList.add('active');
- if (outgoing && outgoing !== incoming) outgoing.classList.remove('active');
- }
- }
-
- /* Every cell's first photo crossfades in from whatever placeholder is already on
-    screen (1.3s ease), so there is never an instant pop/flicker on page load. */
- const usedStart = new Set();
- cells.forEach((cell, i) => {
- const startIndex = pickRandomIndex(photos.length, usedStart);
- usedStart.add(startIndex);
- swapOneCell(i, startIndex);
- });
-
- let turn = 0;
- setInterval(function(){ swapOneCell(turn); turn = (turn + 1) % cells.length; }, 2600);
-}
-
-function initSocialVideoHoverFixed(){
- document.querySelectorAll('.social-card video').forEach(video => {
- const card = video.closest('.social-card');
- if (!card) return;
- card.addEventListener('mouseenter', () => video.play().catch(()=>{}));
- card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
- card.addEventListener('touchstart', () => video.play().catch(()=>{}), {passive:true});
- });
-}
-
-var VIDEO_FILM_ITEMS = [
- {video:'nishi-social-video-01.mp4', poster:'nishi-video-poster-01.jpg'},
- {video:'nishi-social-video-02.mp4', poster:'nishi-video-poster-02.jpg'},
- {video:'nishi-social-video-03.mp4', poster:'nishi-video-poster-03.jpg'},
- {video:'nishi-social-video-04.mp4', poster:'nishi-video-poster-04.jpg'},
- {video:'nishi-social-video-05.mp4', poster:'nishi-video-poster-05.jpg'},
- {video:'nishi-social-video-06.mp4', poster:'nishi-video-poster-06.jpg'},
- {video:'nishi-social-video-07.mp4', poster:'nishi-video-poster-07.jpg'},
- {video:'nishi-social-video-08.mp4', poster:'nishi-video-poster-08.jpg'},
- {video:'nishi-social-video-09.mp4', poster:'nishi-video-poster-09.jpg'},
- {video:'nishi-social-video-10.mp4', poster:'nishi-video-poster-10.jpg'},
- {video:'nishi-social-video-11.mp4', poster:'nishi-video-poster-11.jpg'},
- {video:'nishi-social-video-12.mp4', poster:'nishi-video-poster-12.jpg'},
- {video:'nishi-social-video-13.mp4', poster:'nishi-video-poster-13.jpg'},
- {video:'nishi-social-video-14.mp4', poster:'nishi-video-poster-14.jpg'},
- {video:'nishi-social-video-15.mp4', poster:'nishi-video-poster-15.jpg'},
- {video:'nishi-social-video-16.mp4', poster:'nishi-video-poster-16.jpg'},
- {video:'nishi-social-video-17.mp4', poster:'nishi-video-poster-17.jpg'},
- {video:'nishi-social-video-18.mp4', poster:'nishi-video-poster-18.jpg'},
- {video:'nishi-social-video-19.mp4', poster:'nishi-video-poster-19.jpg'},
- {video:'nishi-social-video-20.mp4', poster:'nishi-video-poster-20.jpg'}
-];
-
-function buildVideoFilmTrack(){
- var track = document.getElementById('videoFilmTrack');
- if (!track) return;
- var items = shuffleArray(VIDEO_FILM_ITEMS); /* fresh random order every page load */
- var cardHTML = items.map(function(it){
- return '<a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">' +
- '<video src="' + it.video + '" poster="' + it.poster + '" muted loop playsinline webkit-playsinline preload="metadata" onerror="this.closest(\'.video-film-card\').remove()"></video>' +
- '<span class="video-play-badge">\u25B6</span></a>';
- }).join('');
- track.innerHTML = cardHTML + cardHTML; /* duplicate for seamless marquee loop */
-}
-
-function rebuildPhotoFilm(photos){
- var track = document.getElementById('photoFilmTrack');
- if (!track || photos.length < 4) return;
- var cardHTML = photos.map(function(p){
- return '<a class="photo-film-card" href="gallery.html#photo-gallery" aria-label="Open photo gallery"><img src="' + p + '" alt="Sound Healing with Nishi" loading="lazy" decoding="async" onerror="this.closest(\'.photo-film-card\').remove()"></a>';
- }).join('');
- track.innerHTML = cardHTML + cardHTML; /* duplicate for seamless loop */
-}
-
-function initVideoChoicePopup(){
- const lightbox = document.getElementById('videoLightbox');
- const closeBtn = document.getElementById('videoLightboxClose');
- if (!lightbox || !closeBtn || lightbox.dataset.ready === 'true') return;
- lightbox.dataset.ready = 'true';
-
- function openChoice(){
- lightbox.classList.add('open');
- document.body.style.overflow = 'hidden';
- }
- function closeChoice(){
- lightbox.classList.remove('open');
- document.body.style.overflow = '';
- }
-
- /* Delegated on document so it keeps working even after the track is rebuilt/shuffled */
- document.addEventListener('click', function(e){
- const card = e.target.closest('.video-film-card');
- if (card) { e.preventDefault(); openChoice(); }
- });
-
- closeBtn.addEventListener('click', closeChoice);
- lightbox.addEventListener('click', function(e){ if (e.target === lightbox) closeChoice(); });
- document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeChoice(); });
-}
-
-function initEverything(){
- /* Random mix instead of the original list order, which grouped every red event
-    shot together at the top and made the sliders feel repetitive. */
- var shuffledPhotos = shuffleArray(window.HERO_COLLAGE_PHOTOS || []);
- window.HERO_COLLAGE_PHOTOS = shuffledPhotos;
- initHeroCollageFixed();
- rebuildPhotoFilm(shuffledPhotos);
- buildVideoFilmTrack();
- initSocialVideoHoverFixed();
- initVideoChoicePopup();
-}
-
-if (document.readyState === 'loading') {
- document.addEventListener('DOMContentLoaded', initEverything);
-} else {
- initEverything();
-}
-</script>
 
 
 <script>
@@ -3607,29 +3455,612 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
+
+
+
+
+
+
 <script>
-/* EMERGENCY FIX: hide missing photos and force sliders to keep moving */
-(function(){
-  function hideBrokenMedia(){
-    document.querySelectorAll('img').forEach(function(img){
-      img.addEventListener('error', function(){
-        var card = img.closest('.photo-film-card, .gallery-row-card, .gallery-tile, .about-handpan-photo, .handpan-feature-card');
-        if(card) card.remove();
-      }, {once:true});
+/* FINAL EVENT SAFE FIX: randomized photo order with no blank flicker, plus video Instagram/TikTok choices */
+(function() {
+  var INSTAGRAM_URL = "https://www.instagram.com/soundhealingwithnishi/";
+  var TIKTOK_URL = "https://www.tiktok.com/@soundhealingnishi";
+  function assetUrl(src) {
+    if (!src) return src;
+    if (/^https?:\/\//i.test(src) || /^data:/i.test(src)) return src;
+    return "https://soundhealingwithnishi.com/" + src.replace(/^\.\//, "");
+  }
+  var ALL_PHOTOS = [
+  "charlotte-sound-bath-red-01.jpg",
+  "charlotte-sound-bath-red-04.jpg",
+  "charlotte-sound-bath-red-07.jpg",
+  "nishi-handpan-gong-01.jpg",
+  "charlotte-sound-bath-red-05.jpg",
+  "nishi-handpan-gong-02.jpg",
+  "nishi-handpan-gong-03.jpg",
+  "nishi-handpan-gong-04.jpg",
+  "nishi-handpan-gong-05.jpg",
+  "nishi-handpan-gong-06.jpg",
+  "nishi-handpan-gong-07.jpg",
+  "nishi-handpan-gong-08.jpg",
+  "nishi-handpan-gong-09.jpg",
+  "nishi-handpan-gong-10.jpg",
+  "charlotte-sound-bath-red-02.jpg",
+  "charlotte-sound-bath-red-03.jpg",
+  "charlotte-sound-bath-red-06.jpg",
+  "charlotte-sound-bath-red-08.jpg",
+  "charlotte-sound-bath-red-09.jpg",
+  "charlotte-sound-bath-red-10.jpg",
+  "charlotte-sound-bath-red-11.jpg",
+  "charlotte-sound-bath-red-12.jpg",
+  "event-red-01.jpg",
+  "event-red-02.jpg",
+  "event-red-03.jpg",
+  "event-red-04.jpg",
+  "event-red-05.jpg",
+  "event-red-06.jpg",
+  "event-red-07.jpg",
+  "event-red-08.jpg",
+  "event-red-09.jpg",
+  "event-red-10.jpg",
+  "saunahouse-nishi.jpg",
+  "event-main.jpg",
+  "photo1.jpg",
+  "photo2.jpg",
+  "photo3.jpg",
+  "photo4.jpg",
+  "photo5.jpg",
+  "photo6.jpg",
+  "photo7.jpg",
+  "photo8.jpg",
+  "photo9.jpg",
+  "photo10.jpg",
+  "photo11.jpg",
+  "photo12.jpg",
+  "photo13.jpg",
+  "photo14.jpg",
+  "photo15.jpg",
+  "photo16.jpg",
+  "photo17.jpg",
+  "photo18.jpg",
+  "photo19.jpg",
+  "photo20.jpg",
+  "Image-1.jpg",
+  "Image-2.jpg",
+  "Image-3.jpg",
+  "Image-4.jpg",
+  "Image-5.jpg",
+  "Image-6.jpg",
+  "Image-7.jpg",
+  "Image-8.jpg",
+  "Image-9.jpg",
+  "Image-10.jpg",
+  "Image-11.jpg",
+  "Image-12.jpg",
+  "Image-13.jpg",
+  "Image-14.jpg",
+  "Image-15.jpg",
+  "Image-16.jpg",
+  "Image-17.jpg",
+  "Image-18.jpg",
+  "Image-19.jpg",
+  "Image-20.jpg"
+];
+  var ALL_VIDEOS = [
+  "nishi-social-video-19.mp4",
+  "nishi-social-video-20.mp4",
+  "nishi-social-video-14.mp4",
+  "nishi-social-video-15.mp4",
+  "nishi-social-video-16.mp4",
+  "nishi-social-video-17.mp4",
+  "nishi-social-video-18.mp4",
+  "nishi-social-video-07.mp4",
+  "nishi-social-video-08.mp4",
+  "nishi-social-video-09.mp4",
+  "nishi-social-video-10.mp4",
+  "nishi-social-video-11.mp4",
+  "nishi-social-video-01.mp4",
+  "nishi-social-video-02.mp4",
+  "nishi-social-video-03.mp4",
+  "nishi-social-video-04.mp4",
+  "nishi-social-video-05.mp4",
+  "nishi-social-video-06.mp4",
+  "nishi-social-video-12.mp4",
+  "nishi-social-video-13.mp4"
+];
+  var MODAL_HTML = "<div class=\"video-choice-box\"><h3>Open Nishi's videos</h3><p>Choose where you want to continue watching sound healing moments.</p><div class=\"video-choice-actions\"><a href=\"https://www.instagram.com/soundhealingwithnishi/\" target=\"_blank\" rel=\"noopener\">Open Instagram</a><a href=\"https://www.tiktok.com/@soundhealingnishi\" target=\"_blank\" rel=\"noopener\">Open TikTok</a><button type=\"button\" data-close-video-choice>Stay on Website</button></div></div>";
+
+  function unique(list) {
+    var out = [];
+    var seen = {};
+    (list || []).forEach(function(item) {
+      if (!item || seen[item]) return;
+      seen[item] = true;
+      out.push(item);
+    });
+    return out;
+  }
+
+  function shuffle(list) {
+    var arr = list.slice();
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+    return arr;
+  }
+
+  function categoryOf(src) {
+    if (/nishi-handpan-gong/i.test(src)) return "handpan";
+    if (/^photo\d+/i.test(src)) return "studio";
+    if (/^Image-/i.test(src)) return "legacy";
+    if (/saunahouse|event-main/i.test(src)) return "event";
+    if (/charlotte-sound-bath-red|event-red/i.test(src)) return "red";
+    return "other";
+  }
+
+  function balancedRandomPhotos(list) {
+    var groups = { handpan: [], studio: [], legacy: [], event: [], red: [], other: [] };
+    unique(list).forEach(function(src) { groups[categoryOf(src)].push(src); });
+    Object.keys(groups).forEach(function(k) { groups[k] = shuffle(groups[k]); });
+
+    // This keeps red event photos mixed in, not clustered.
+    var rotation = ["handpan", "studio", "legacy", "event", "handpan", "red", "studio", "legacy", "other", "handpan", "event", "red"];
+    var result = [];
+    var safety = 0;
+
+    while (Object.keys(groups).some(function(k) { return groups[k].length; }) && safety < 2000) {
+      rotation.forEach(function(k) {
+        if (groups[k] && groups[k].length) result.push(groups[k].shift());
+      });
+      safety++;
+    }
+    return result;
+  }
+
+  function preloadValidPhotos(list, callback) {
+    var candidates = unique(balancedRandomPhotos(list));
+    var valid = [];
+    var pending = candidates.length;
+    if (!pending) { callback(valid); return; }
+
+    candidates.forEach(function(src) {
+      var img = new Image();
+      var done = false;
+      function finish(ok) {
+        if (done) return;
+        done = true;
+        if (ok) valid.push(src);
+        pending--;
+        if (pending === 0) callback(balancedRandomPhotos(valid));
+      }
+      img.onload = function() { finish(true); };
+      img.onerror = function() { finish(false); };
+      setTimeout(function() { finish(false); }, 7000);
+      img.src = assetUrl(src);
     });
   }
-  function restartMovingTrack(id){
-    var track = document.getElementById(id);
-    if(!track) return;
-    track.style.animationPlayState = 'running';
-    track.addEventListener('mouseenter', function(){ track.style.animationPlayState = 'running'; });
-    track.addEventListener('touchstart', function(){ track.style.animationPlayState = 'running'; }, {passive:true});
+
+  function makeLoadedImage(src, className, onReady) {
+    var test = new Image();
+    test.onload = function() {
+      var img = document.createElement("img");
+      img.src = assetUrl(src);
+      img.alt = "";
+      img.loading = "eager";
+      img.decoding = "async";
+      if (className) img.className = className;
+      onReady(img);
+    };
+    test.onerror = function() { onReady(null); };
+    test.src = assetUrl(src);
   }
-  document.addEventListener('DOMContentLoaded', function(){
-    hideBrokenMedia();
-    restartMovingTrack('photoFilmTrack');
-    restartMovingTrack('videoFilmTrack');
-  });
+
+  function setHeroCellNoFlicker(cell, src) {
+    if (!cell || !src) return;
+    makeLoadedImage(src, "collage-img", function(img) {
+      if (!img) return;
+      cell.appendChild(img);
+      requestAnimationFrame(function() {
+        img.classList.add("active");
+        setTimeout(function() {
+          Array.prototype.slice.call(cell.querySelectorAll(".collage-img")).forEach(function(old) {
+            if (old !== img) old.remove();
+          });
+        }, 1100);
+      });
+    });
+  }
+
+  function initHero(validPhotos) {
+    var collage = document.getElementById("heroCollage");
+    if (!collage || validPhotos.length < 3) return;
+
+    var cells = Array.prototype.slice.call(collage.querySelectorAll(".collage-cell"));
+    if (cells.length < 3) {
+      collage.innerHTML =
+        '<div class="collage-cell collage-big" data-cell="0"></div>' +
+        '<div class="collage-cell collage-top" data-cell="1"></div>' +
+        '<div class="collage-cell collage-bottom" data-cell="2"></div>';
+      cells = Array.prototype.slice.call(collage.querySelectorAll(".collage-cell"));
+    }
+
+    var order = balancedRandomPhotos(validPhotos);
+    var cursor = Math.floor(Math.random() * order.length);
+
+    cells.forEach(function(cell, i) {
+      setHeroCellNoFlicker(cell, order[(cursor + i) % order.length]);
+      cell.dataset.photoIndex = String((cursor + i) % order.length);
+    });
+
+    if (window.nishiHeroSafeInterval) clearInterval(window.nishiHeroSafeInterval);
+    window.nishiHeroSafeInterval = setInterval(function() {
+      var cell = cells[Math.floor(Math.random() * cells.length)];
+      cursor = (cursor + 1) % order.length;
+      setHeroCellNoFlicker(cell, order[cursor]);
+    }, 4200);
+  }
+
+  function makePhotoCard(src) {
+    var a = document.createElement("a");
+    a.className = "photo-film-card";
+    a.href = "gallery.html#photo-gallery";
+    a.setAttribute("aria-label", "Open photo gallery");
+    var img = document.createElement("img");
+    img.src = assetUrl(src);
+    img.alt = "";
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.onerror = function() { a.style.display = "none"; };
+    a.appendChild(img);
+    return a;
+  }
+
+  function initPhotoFilm(validPhotos) {
+    var track = document.getElementById("photoFilmTrack");
+    if (!track || validPhotos.length < 3) return;
+    var order = balancedRandomPhotos(validPhotos);
+    track.innerHTML = "";
+    order.concat(order, order).forEach(function(src) { track.appendChild(makePhotoCard(src)); });
+    track.style.animation = "none";
+    track.offsetHeight;
+    track.style.animation = "nishiPhotoMarqueeFixed 135s linear infinite";
+    track.style.animationPlayState = "running";
+  }
+
+  function createVideoChoiceModal() {
+    var modal = document.getElementById("videoChoiceModal");
+    if (modal) return modal;
+    modal = document.createElement("div");
+    modal.id = "videoChoiceModal";
+    modal.className = "video-choice-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.innerHTML = MODAL_HTML;
+    document.body.appendChild(modal);
+
+    modal.addEventListener("click", function(event) {
+      if (event.target === modal || event.target.hasAttribute("data-close-video-choice")) {
+        modal.classList.remove("open");
+      }
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") modal.classList.remove("open");
+    });
+
+    return modal;
+  }
+
+  function initVideoChoices() {
+    var modal = createVideoChoiceModal();
+
+    document.querySelectorAll(".video-film-card").forEach(function(card) {
+      card.href = "#";
+      card.setAttribute("aria-label", "Choose Instagram or TikTok to watch more videos");
+    });
+
+    document.addEventListener("click", function(event) {
+      var card = event.target.closest(".video-film-card");
+      if (!card) return;
+      event.preventDefault();
+      event.stopPropagation();
+      modal.classList.add("open");
+    }, true);
+
+    var track = document.getElementById("videoFilmTrack");
+    if (track) {
+      track.style.animation = "none";
+      track.offsetHeight;
+      track.style.animation = "nishiVideoMarquee 105s linear infinite";
+      track.style.animationPlayState = "running";
+    }
+  }
+
+  function apply() {
+    initVideoChoices();
+    preloadValidPhotos(ALL_PHOTOS, function(validPhotos) {
+      if (validPhotos.length >= 3) {
+        initHero(validPhotos);
+        initPhotoFilm(validPhotos);
+      }
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
+  else apply();
+})();
+</script>
+
+
+<script>
+/* VISIBLE PHOTO SLIDER FALLBACK: keeps the homepage slider visible in local preview and live site */
+(function() {
+  var PHOTO_FALLBACK_LIST = ['nishi-handpan-gong-01.jpg', 'charlotte-sound-bath-red-01.jpg', 'charlotte-sound-bath-red-04.jpg', 'charlotte-sound-bath-red-07.jpg', 'charlotte-sound-bath-red-05.jpg', 'nishi-handpan-gong-02.jpg', 'nishi-handpan-gong-03.jpg', 'nishi-handpan-gong-04.jpg', 'nishi-handpan-gong-05.jpg', 'nishi-handpan-gong-06.jpg', 'nishi-handpan-gong-07.jpg', 'nishi-handpan-gong-08.jpg', 'nishi-handpan-gong-09.jpg', 'nishi-handpan-gong-10.jpg', 'charlotte-sound-bath-red-02.jpg', 'charlotte-sound-bath-red-03.jpg', 'charlotte-sound-bath-red-06.jpg', 'charlotte-sound-bath-red-08.jpg', 'charlotte-sound-bath-red-09.jpg', 'charlotte-sound-bath-red-10.jpg', 'charlotte-sound-bath-red-11.jpg', 'charlotte-sound-bath-red-12.jpg', 'event-red-01.jpg', 'event-red-02.jpg', 'event-red-03.jpg', 'event-red-04.jpg', 'event-red-05.jpg', 'event-red-06.jpg', 'event-red-07.jpg', 'event-red-08.jpg', 'event-red-09.jpg', 'event-red-10.jpg', 'saunahouse-nishi.jpg', 'event-main.jpg', 'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg', 'photo7.jpg', 'photo8.jpg', 'photo9.jpg', 'photo10.jpg', 'photo11.jpg', 'photo12.jpg', 'photo13.jpg', 'photo14.jpg', 'photo15.jpg', 'photo16.jpg', 'photo17.jpg', 'photo18.jpg', 'photo19.jpg', 'photo20.jpg', 'Image-1.jpg', 'Image-2.jpg', 'Image-3.jpg', 'Image-4.jpg', 'Image-5.jpg', 'Image-6.jpg', 'Image-7.jpg', 'Image-8.jpg', 'Image-9.jpg', 'Image-10.jpg', 'Image-11.jpg', 'Image-12.jpg', 'Image-13.jpg', 'Image-14.jpg', 'Image-15.jpg', 'Image-16.jpg', 'Image-17.jpg', 'Image-18.jpg', 'Image-19.jpg', 'Image-20.jpg', 'nishi-video-poster-19.jpg', 'nishi-video-poster-20.jpg', 'nishi-video-poster-14.jpg', 'nishi-video-poster-15.jpg', 'nishi-video-poster-16.jpg', 'nishi-video-poster-17.jpg', 'nishi-video-poster-18.jpg', 'nishi-video-poster-07.jpg', 'nishi-video-poster-08.jpg', 'nishi-video-poster-09.jpg', 'nishi-video-poster-10.jpg', 'nishi-video-poster-11.jpg', 'nishi-video-poster-01.jpg', 'nishi-video-poster-02.jpg', 'nishi-video-poster-03.jpg', 'nishi-video-poster-04.jpg', 'nishi-video-poster-05.jpg', 'nishi-video-poster-06.jpg', 'nishi-video-poster-12.jpg', 'nishi-video-poster-13.jpg'];
+  var DOMAIN = "https://soundhealingwithnishi.com/";
+  function asset(src) {
+    if (!src) return src;
+    if (/^https?:\/\//i.test(src) || /^data:/i.test(src)) return src;
+    return DOMAIN + src.replace(/^\.\//, "");
+  }
+  function card(src) {
+    var a = document.createElement("a");
+    a.className = "photo-film-card";
+    a.href = "gallery.html#photo-gallery";
+    a.setAttribute("aria-label", "Open photo gallery");
+    var img = document.createElement("img");
+    img.src = asset(src);
+    img.alt = "";
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.onerror = function() { a.style.display = "none"; };
+    a.appendChild(img);
+    return a;
+  }
+  function makeVisible() {
+    var track = document.getElementById("photoFilmTrack");
+    if (!track) return;
+
+    var visibleImgs = Array.prototype.slice.call(track.querySelectorAll("img")).filter(function(img) {
+      return img.complete && img.naturalWidth > 0;
+    });
+
+    if (visibleImgs.length < 3) {
+      track.innerHTML = "";
+      PHOTO_FALLBACK_LIST.concat(PHOTO_FALLBACK_LIST, PHOTO_FALLBACK_LIST).forEach(function(src) {
+        track.appendChild(card(src));
+      });
+      track.style.animation = "none";
+      track.offsetHeight;
+      track.style.animation = "nishiPhotoMarqueeFixed 135s linear infinite";
+      track.style.animationPlayState = "running";
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(makeVisible, 300);
+      setTimeout(makeVisible, 1600);
+    });
+  } else {
+    setTimeout(makeVisible, 300);
+    setTimeout(makeVisible, 1600);
+  }
+})();
+</script>
+
+
+<script>
+/* HERO COLLAGE NO DUPLICATE FIX: no same photo visible in collage at the same time */
+(function () {
+  function normalizeSrc(src) {
+    if (!src) return "";
+    try {
+      var url = new URL(src, window.location.href);
+      return url.pathname.split("/").pop().toLowerCase();
+    } catch (e) {
+      return String(src).split("/").pop().toLowerCase();
+    }
+  }
+
+  function currentPhotoNames(cells, exceptCell) {
+    var used = {};
+    cells.forEach(function (cell) {
+      if (cell === exceptCell) return;
+      var imgs = Array.prototype.slice.call(cell.querySelectorAll("img"));
+      imgs.forEach(function (img) {
+        if (img.classList.contains("active") || imgs.length === 1) {
+          var key = normalizeSrc(img.currentSrc || img.src);
+          if (key) used[key] = true;
+        }
+      });
+    });
+    return used;
+  }
+
+  function getPhotoListFromPage() {
+    var list = [];
+
+    if (Array.isArray(window.ALL_PHOTOS)) {
+      list = window.ALL_PHOTOS.slice();
+    }
+
+    if (!list.length) {
+      var scripts = Array.prototype.slice.call(document.scripts).map(function (s) { return s.textContent || ""; }).join("\n");
+      var matches = scripts.match(/["']([^"']+\.(?:jpg|jpeg|png|webp))["']/gi) || [];
+      matches.forEach(function (m) {
+        var clean = m.replace(/^["']|["']$/g, "");
+        if (clean && list.indexOf(clean) === -1) list.push(clean);
+      });
+    }
+
+    Array.prototype.slice.call(document.querySelectorAll("img[src]")).forEach(function (img) {
+      var src = img.getAttribute("src");
+      if (src && !/^data:/i.test(src) && list.indexOf(src) === -1) list.push(src);
+    });
+
+    return list.filter(function (src, idx, arr) {
+      return src && arr.indexOf(src) === idx;
+    });
+  }
+
+  function assetUrl(src) {
+    if (!src) return src;
+    if (/^https?:\/\//i.test(src) || /^data:/i.test(src)) return src;
+    return "https://soundhealingwithnishi.com/" + src.replace(/^\.\//, "");
+  }
+
+  function preload(src, ok) {
+    var img = new Image();
+    var finished = false;
+
+    function done(success) {
+      if (finished) return;
+      finished = true;
+      ok(success);
+    }
+
+    img.onload = function () { done(true); };
+    img.onerror = function () { done(false); };
+    setTimeout(function () { done(false); }, 4500);
+    img.src = assetUrl(src);
+  }
+
+  function visibleSwap(cell, src) {
+    preload(src, function (success) {
+      if (!success) return;
+
+      var img = document.createElement("img");
+      img.src = assetUrl(src);
+      img.alt = "";
+      img.loading = "eager";
+      img.decoding = "async";
+      img.className = "collage-img";
+      img.dataset.photoKey = normalizeSrc(src);
+      cell.appendChild(img);
+
+      requestAnimationFrame(function () {
+        img.classList.add("active");
+        cell.dataset.currentPhoto = normalizeSrc(src);
+
+        setTimeout(function () {
+          Array.prototype.slice.call(cell.querySelectorAll("img")).forEach(function (old) {
+            if (old !== img) old.remove();
+          });
+        }, 1050);
+      });
+    });
+  }
+
+  function chooseNextPhoto(pool, cells, targetCell, pointerObj) {
+    if (!pool.length) return null;
+
+    var used = currentPhotoNames(cells, targetCell);
+    var attempts = 0;
+
+    while (attempts < pool.length * 2) {
+      pointerObj.index = (pointerObj.index + 1) % pool.length;
+      var candidate = pool[pointerObj.index];
+      var key = normalizeSrc(candidate);
+
+      if (!used[key]) {
+        return candidate;
+      }
+
+      attempts++;
+    }
+
+    // If every available image is already visible, return null rather than duplicate.
+    return null;
+  }
+
+  function initNoDuplicateHero() {
+    var collage = document.getElementById("heroCollage");
+    if (!collage) return;
+
+    var cells = Array.prototype.slice.call(collage.querySelectorAll(".collage-cell"));
+    if (cells.length < 2) return;
+
+    var pool = getPhotoListFromPage();
+    var uniqueByFile = {};
+    pool = pool.filter(function (src) {
+      var key = normalizeSrc(src);
+      if (!key || uniqueByFile[key]) return false;
+      uniqueByFile[key] = true;
+      return true;
+    });
+
+    // Prioritize a balanced mix so red photos do not dominate.
+    var handpan = pool.filter(function (s) { return /handpan|gong/i.test(s); });
+    var studio = pool.filter(function (s) { return /photo|image|saunahouse|event-main/i.test(s) && !/red|handpan|gong/i.test(s); });
+    var red = pool.filter(function (s) { return /red|charlotte-sound-bath/i.test(s); });
+    var other = pool.filter(function (s) { return !/handpan|gong|photo|image|saunahouse|event-main|red|charlotte-sound-bath/i.test(s); });
+
+    function shuffle(arr) {
+      var copy = arr.slice();
+      for (var i = copy.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = copy[i];
+        copy[i] = copy[j];
+        copy[j] = t;
+      }
+      return copy;
+    }
+
+    handpan = shuffle(handpan);
+    studio = shuffle(studio);
+    red = shuffle(red);
+    other = shuffle(other);
+
+    var balanced = [];
+    while (handpan.length || studio.length || red.length || other.length) {
+      if (handpan.length) balanced.push(handpan.shift());
+      if (studio.length) balanced.push(studio.shift());
+      if (other.length) balanced.push(other.shift());
+      if (handpan.length) balanced.push(handpan.shift());
+      if (studio.length) balanced.push(studio.shift());
+      if (red.length) balanced.push(red.shift());
+    }
+
+    pool = balanced.length ? balanced : pool;
+    if (pool.length < cells.length) return;
+
+    // Stop older hero timers if the previous generated code created one.
+    if (window.nishiHeroSafeInterval) {
+      clearInterval(window.nishiHeroSafeInterval);
+      window.nishiHeroSafeInterval = null;
+    }
+    if (window.nishiHeroNoDupInterval) {
+      clearInterval(window.nishiHeroNoDupInterval);
+    }
+
+    var pointer = { index: Math.floor(Math.random() * pool.length) };
+
+    // Re-seed all visible cells with different photos.
+    cells.forEach(function (cell) {
+      var src = chooseNextPhoto(pool, cells, cell, pointer);
+      if (src) visibleSwap(cell, src);
+    });
+
+    window.nishiHeroNoDupInterval = setInterval(function () {
+      cells = Array.prototype.slice.call(collage.querySelectorAll(".collage-cell"));
+      var target = cells[Math.floor(Math.random() * cells.length)];
+      var src = chooseNextPhoto(pool, cells, target, pointer);
+      if (src) visibleSwap(target, src);
+    }, 4300);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(initNoDuplicateHero, 900);
+      setTimeout(initNoDuplicateHero, 2500);
+    });
+  } else {
+    setTimeout(initNoDuplicateHero, 900);
+    setTimeout(initNoDuplicateHero, 2500);
+  }
 })();
 </script>
 
