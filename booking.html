@@ -223,6 +223,23 @@
   }
 }
 
+
+/* Site-wide subtle handpan background */
+body {
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(250,247,241,.90), rgba(250,247,241,.90)),
+    url('nishi-handpan-gong-01.jpg') center / cover no-repeat;
+  opacity: .28;
+}
+
 </style>
 
 <style>
@@ -245,7 +262,8 @@
  <li><a href="index.html">Home</a></li>
  <li><a href="event-art-sound-bath.html">Event Jul 10</a></li>
  <li><a href="offerings.html">Offerings</a></li>
- <li><a href="blog.html">Blog</a></li>
+ <li><a href="blog.html">Blog</a>
+<a href="gallery.html">Gallery</a></li>
  <li><a href="booking.html" class="nav-cta">Book</a></li>
  </ul>
 </nav>

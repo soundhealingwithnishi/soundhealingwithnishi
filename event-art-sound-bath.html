@@ -135,6 +135,23 @@
  justify-content: center;
 }
 
+
+/* Site-wide subtle handpan background */
+body {
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(250,247,241,.90), rgba(250,247,241,.90)),
+    url('nishi-handpan-gong-01.jpg') center / cover no-repeat;
+  opacity: .28;
+}
+
 </style>
 
 </head>
@@ -146,7 +163,8 @@
  <li><a href="index.html">Home</a></li>
  <li><a href="offerings.html">Offerings</a></li>
  <li><a href="sound-bath-charlotte.html">Sound Bath Charlotte</a></li>
- <li><a href="blog.html">Blog</a></li>
+ <li><a href="blog.html">Blog</a>
+<a href="gallery.html">Gallery</a></li>
  <li><a href="booking.html" class="nav-cta">Book</a></li>
  </ul>
 </nav>
@@ -186,7 +204,7 @@
  <p class="lead">This experience brings together sound healing with Himalayan bowls, crystal bowls, tuning fork energy, and meditative art-making. You will be guided into rest, reflection, and creative expression in a supportive Charlotte wellness space.</p>
  </div>
  <div class="image-card">
- <img src="photo3.jpg" alt="Sound Healing with Nishi with Himalayan bowls, crystal bowls, gong and sound healing instruments">
+ <img src="photo3.jpg" alt="">
  </div>
  </div>
 </section>

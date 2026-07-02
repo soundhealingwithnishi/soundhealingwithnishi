@@ -202,13 +202,31 @@ footer{background:var(--forest-deep);color:rgba(245,237,224,.76);padding:52px 24
  justify-content: center;
 }
 
+
+/* Site-wide subtle handpan background */
+body {
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(250,247,241,.90), rgba(250,247,241,.90)),
+    url('nishi-handpan-gong-01.jpg') center / cover no-repeat;
+  opacity: .28;
+}
+
 </style>
 </head>
 <body>
 <nav>
 <a class="nav-logo" href="index.html">Sound Healing with Nishi</a>
 <ul class="nav-links">
-<li><a class="" href="index.html">Home</a></li><li><a class="" href="offerings.html">Offerings</a></li><li><a class="" href="sound-bath-charlotte.html">Sound Bath Charlotte</a></li><li><a class="active" href="blog.html">Blog</a></li><li><a class="" href="index.html#locations">Locations</a></li><li><a class="" href="index.html#google-profile">Google Profile</a></li><li><a class="nav-cta" href="index.html#book">Book</a></li>
+<li><a class="" href="index.html">Home</a></li><li><a class="" href="offerings.html">Offerings</a></li><li><a class="" href="sound-bath-charlotte.html">Sound Bath Charlotte</a></li><li><a class="active" href="blog.html">Blog</a>
+<a href="gallery.html">Gallery</a></li><li><a class="" href="index.html#locations">Locations</a></li><li><a class="" href="index.html#google-profile">Google Profile</a></li><li><a class="nav-cta" href="index.html#book">Book</a></li>
 </ul>
 </nav>
 
@@ -218,7 +236,7 @@ footer{background:var(--forest-deep);color:rgba(245,237,224,.76);padding:52px 24
  <p class="label">Sound Healing Blog</p>
  <h1 style="color:var(--forest-deep);font-size:clamp(38px,5vw,60px);margin-bottom:20px">Sound Healing Charlotte NC: What to Expect From a Sound Bath</h1>
  <p class="lead" style="margin-left:0;margin-bottom:28px">A beginner-friendly guide to sound healing in Charlotte, including what happens during a sound bath, what instruments are used and how to book with Nishi.</p>
- <div class="photo-card" style="margin-bottom:34px"><img src="../photo3.jpg" alt="Sound Healing Charlotte NC: What to Expect From a Sound Bath"></div>
+ <div class="photo-card" style="margin-bottom:34px"><img src="../photo3.jpg" alt=""></div>
  
 <p>If you are searching for a sound healer in Charlotte, NC, you may be curious about what a sound bath actually feels like. A sound bath is a guided listening experience where you rest comfortably while sound, vibration and quiet space support a meditative state.</p>
 <p>At Sound Healing with Nishi, sessions are built around hand-picked Himalayan singing bowls, crystal bowls and 18+ instruments. The experience is gentle, immersive and beginner-friendly. You do not need to know how to meditate. You do not need to perform. You simply arrive, settle in and allow the sounds to move around you.</p>
