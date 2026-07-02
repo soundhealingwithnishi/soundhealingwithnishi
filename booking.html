@@ -15,80 +15,80 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
-  :root {
-    --forest-deep:#1a2a20; --forest-mid:#3d5a44; --gold:#c1a062; --gold-light:#d4b87a;
-    --cream:#faf7f2; --cream-dark:#f2ede3; --ink:#1e1c18; --muted:#7a7268; --white:#fff;
-  }
-  html { scroll-behavior:smooth; }
-  body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--ink); line-height:1.7; overflow-x:hidden; }
-  a { color:inherit; }
-  .topbar { background:var(--gold); color:var(--forest-deep); text-align:center; padding:9px 20px; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:600; }
-  nav { position:sticky; top:0; z-index:50; height:68px; display:flex; align-items:center; justify-content:space-between; padding:0 42px; background:rgba(26,42,32,.98); border-bottom:1px solid rgba(193,160,98,.18); }
-  .logo { font-family:'Cormorant Garamond',serif; color:var(--gold-light); font-size:21px; font-style:italic; text-decoration:none; }
-  .navlinks { display:flex; gap:28px; align-items:center; list-style:none; }
-  .navlinks a { color:rgba(245,237,224,.72); text-decoration:none; font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:500; }
-  .navlinks a:hover { color:var(--gold); }
-  .nav-cta { border:1px solid rgba(193,160,98,.45); padding:9px 18px; border-radius:100px; color:var(--gold)!important; }
-  .hero { position:relative; min-height:72vh; display:flex; align-items:center; overflow:hidden; background:var(--forest-deep); }
-  .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(26,42,32,.86), rgba(26,42,32,.52)), var(--hero-img, none); background-size:cover; background-position:center; opacity:1; }
-  .hero-inner { position:relative; z-index:2; max-width:1120px; margin:0 auto; width:100%; padding:86px 24px; display:grid; grid-template-columns:1.05fr .85fr; gap:48px; align-items:center; }
-  .label { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:16px; }
-  h1, h2, h3 { font-family:'Cormorant Garamond',serif; font-weight:300; line-height:1.1; }
-  h1 { color:#f5ede0; font-size:clamp(44px,7vw,78px); margin-bottom:20px; }
-  h1 em, h2 em { color:var(--gold-light); font-style:italic; }
-  .hero p { color:rgba(245,237,224,.78); max-width:620px; font-weight:300; font-size:17px; }
-  .btn-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:32px; }
-  .btn { display:inline-block; border:none; border-radius:100px; padding:15px 30px; text-decoration:none; font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:600; cursor:pointer; transition:.2s; }
-  .btn-gold { background:var(--gold); color:var(--forest-deep); }
-  .btn-gold:hover { background:var(--gold-light); transform:translateY(-1px); }
-  .btn-ghost { background:transparent; color:#f5ede0; border:1px solid rgba(193,160,98,.45); }
-  .btn-forest { background:var(--forest-deep); color:var(--gold-light); }
-  .panel { background:rgba(250,247,242,.94); border:1px solid rgba(193,160,98,.32); border-radius:26px; padding:30px; box-shadow:0 22px 70px rgba(0,0,0,.18); }
-  .panel.dark { background:rgba(26,42,32,.92); color:#f5ede0; }
-  .section { padding:92px 24px; }
-  .inner { max-width:1120px; margin:0 auto; }
-  .section-title { font-size:clamp(34px,5vw,56px); color:var(--ink); margin-bottom:16px; }
-  .lead { color:var(--muted); font-size:16px; max-width:760px; font-weight:300; }
-  .gold-rule { width:44px; height:1px; background:var(--gold); margin:22px 0 38px; }
-  .grid { display:grid; gap:22px; }
-  .grid.two { grid-template-columns:repeat(2,1fr); }
-  .grid.three { grid-template-columns:repeat(3,1fr); }
-  .card { background:var(--white); border:1px solid rgba(193,160,98,.18); border-radius:24px; padding:30px; box-shadow:0 16px 50px rgba(26,42,32,.06); }
-  .card h3 { font-size:26px; color:var(--forest-deep); margin-bottom:10px; }
-  .card p, .card li { color:var(--muted); font-weight:300; }
-  .icon { color:var(--gold); font-size:26px; margin-bottom:12px; }
-  .split { display:grid; grid-template-columns:1fr 1fr; gap:42px; align-items:start; }
-  .image-card { border-radius:28px; overflow:hidden; border:1px solid rgba(193,160,98,.25); background:var(--forest-mid); }
-  .image-card img { width:100%; height:100%; object-fit:cover; display:block; }
-  .map { width:100%; height:360px; border:0; border-radius:24px; filter:saturate(.9); }
-  .footer { background:var(--forest-deep); color:rgba(245,237,224,.65); padding:54px 24px; text-align:center; }
-  .footer .logo { display:block; margin-bottom:12px; }
-  .fine { font-size:12px; color:rgba(245,237,224,.42); margin-top:12px; }
-  input, select, textarea { width:100%; padding:14px 16px; border:1px solid rgba(0,0,0,.12); border-radius:15px; font-family:'Jost',sans-serif; font-size:14px; background:var(--cream); color:var(--ink); outline:none; }
-  input:focus, select:focus, textarea:focus { border-color:var(--gold); }
-  textarea { min-height:120px; resize:vertical; }
-  label { display:block; font-size:9px; letter-spacing:2.6px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:7px; }
-  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .form-group { margin-bottom:16px; }
-  .status { display:none; margin-top:18px; padding:18px; border-radius:18px; background:rgba(61,90,68,.08); border:1px solid rgba(193,160,98,.25); color:var(--forest-deep); }
-  .error { background:rgba(180,60,60,.08); border-color:rgba(180,60,60,.2); color:#8a2f2f; }
-  .pill-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:22px; }
-  .choice { border:1px solid rgba(193,160,98,.28); background:#fff; color:var(--ink); padding:16px; border-radius:18px; cursor:pointer; transition:.2s; text-align:left; }
-  .choice strong { display:block; color:var(--forest-deep); font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; }
-  .choice span { color:var(--muted); font-size:13px; }
-  .choice.active { background:var(--forest-deep); color:#f5ede0; border-color:var(--gold); }
-  .choice.active strong, .choice.active span { color:#f5ede0; }
-  .calendar-note { font-size:13px; color:var(--muted); margin:-5px 0 16px; }
-  .small { font-size:12px; color:var(--muted); }
-  @media(max-width:880px){
-    nav { padding:0 20px; }
-    .navlinks { display:none; }
-    .hero-inner, .split, .grid.two, .grid.three { grid-template-columns:1fr; }
-    .hero { min-height:auto; }
-    .hero-inner { padding:66px 22px; }
-    .form-row, .pill-grid { grid-template-columns:1fr; }
-  }
+ *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+ :root {
+ --forest-deep:#1a2a20; --forest-mid:#3d5a44; --gold:#c1a062; --gold-light:#d4b87a;
+ --cream:#faf7f2; --cream-dark:#f2ede3; --ink:#1e1c18; --muted:#7a7268; --white:#fff;
+ }
+ html { scroll-behavior:smooth; }
+ body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--ink); line-height:1.7; overflow-x:hidden; }
+ a { color:inherit; }
+ .topbar { background:var(--gold); color:var(--forest-deep); text-align:center; padding:9px 20px; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:600; }
+ nav { position:sticky; top:0; z-index:50; height:68px; display:flex; align-items:center; justify-content:space-between; padding:0 42px; background:rgba(26,42,32,.98); border-bottom:1px solid rgba(193,160,98,.18); }
+ .logo { font-family:'Cormorant Garamond',serif; color:var(--gold-light); font-size:21px; font-style:italic; text-decoration:none; }
+ .navlinks { display:flex; gap:28px; align-items:center; list-style:none; }
+ .navlinks a { color:rgba(245,237,224,.72); text-decoration:none; font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:500; }
+ .navlinks a:hover { color:var(--gold); }
+ .nav-cta { border:1px solid rgba(193,160,98,.45); padding:9px 18px; border-radius:100px; color:var(--gold)!important; }
+ .hero { position:relative; min-height:72vh; display:flex; align-items:center; overflow:hidden; background:var(--forest-deep); }
+ .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(26,42,32,.86), rgba(26,42,32,.52)), var(--hero-img, none); background-size:cover; background-position:center; opacity:1; }
+ .hero-inner { position:relative; z-index:2; max-width:1120px; margin:0 auto; width:100%; padding:86px 24px; display:grid; grid-template-columns:1.05fr .85fr; gap:48px; align-items:center; }
+ .label { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:16px; }
+ h1, h2, h3 { font-family:'Cormorant Garamond',serif; font-weight:300; line-height:1.1; }
+ h1 { color:#f5ede0; font-size:clamp(44px,7vw,78px); margin-bottom:20px; }
+ h1 em, h2 em { color:var(--gold-light); font-style:italic; }
+ .hero p { color:rgba(245,237,224,.78); max-width:620px; font-weight:300; font-size:17px; }
+ .btn-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:32px; }
+ .btn { display:inline-block; border:none; border-radius:100px; padding:15px 30px; text-decoration:none; font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:600; cursor:pointer; transition:.2s; }
+ .btn-gold { background:var(--gold); color:var(--forest-deep); }
+ .btn-gold:hover { background:var(--gold-light); transform:translateY(-1px); }
+ .btn-ghost { background:transparent; color:#f5ede0; border:1px solid rgba(193,160,98,.45); }
+ .btn-forest { background:var(--forest-deep); color:var(--gold-light); }
+ .panel { background:rgba(250,247,242,.94); border:1px solid rgba(193,160,98,.32); border-radius:26px; padding:30px; box-shadow:0 22px 70px rgba(0,0,0,.18); }
+ .panel.dark { background:rgba(26,42,32,.92); color:#f5ede0; }
+ .section { padding:92px 24px; }
+ .inner { max-width:1120px; margin:0 auto; }
+ .section-title { font-size:clamp(34px,5vw,56px); color:var(--ink); margin-bottom:16px; }
+ .lead { color:var(--muted); font-size:16px; max-width:760px; font-weight:300; }
+ .gold-rule { width:44px; height:1px; background:var(--gold); margin:22px 0 38px; }
+ .grid { display:grid; gap:22px; }
+ .grid.two { grid-template-columns:repeat(2,1fr); }
+ .grid.three { grid-template-columns:repeat(3,1fr); }
+ .card { background:var(--white); border:1px solid rgba(193,160,98,.18); border-radius:24px; padding:30px; box-shadow:0 16px 50px rgba(26,42,32,.06); }
+ .card h3 { font-size:26px; color:var(--forest-deep); margin-bottom:10px; }
+ .card p, .card li { color:var(--muted); font-weight:300; }
+ .icon { color:var(--gold); font-size:26px; margin-bottom:12px; }
+ .split { display:grid; grid-template-columns:1fr 1fr; gap:42px; align-items:start; }
+ .image-card { border-radius:28px; overflow:hidden; border:1px solid rgba(193,160,98,.25); background:var(--forest-mid); }
+ .image-card img { width:100%; height:100%; object-fit:cover; display:block; }
+ .map { width:100%; height:360px; border:0; border-radius:24px; filter:saturate(.9); }
+ .footer { background:var(--forest-deep); color:rgba(245,237,224,.65); padding:54px 24px; text-align:center; }
+ .footer .logo { display:block; margin-bottom:12px; }
+ .fine { font-size:12px; color:rgba(245,237,224,.42); margin-top:12px; }
+ input, select, textarea { width:100%; padding:14px 16px; border:1px solid rgba(0,0,0,.12); border-radius:15px; font-family:'Jost',sans-serif; font-size:14px; background:var(--cream); color:var(--ink); outline:none; }
+ input:focus, select:focus, textarea:focus { border-color:var(--gold); }
+ textarea { min-height:120px; resize:vertical; }
+ label { display:block; font-size:9px; letter-spacing:2.6px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:7px; }
+ .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+ .form-group { margin-bottom:16px; }
+ .status { display:none; margin-top:18px; padding:18px; border-radius:18px; background:rgba(61,90,68,.08); border:1px solid rgba(193,160,98,.25); color:var(--forest-deep); }
+ .error { background:rgba(180,60,60,.08); border-color:rgba(180,60,60,.2); color:#8a2f2f; }
+ .pill-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:22px; }
+ .choice { border:1px solid rgba(193,160,98,.28); background:#fff; color:var(--ink); padding:16px; border-radius:18px; cursor:pointer; transition:.2s; text-align:left; }
+ .choice strong { display:block; color:var(--forest-deep); font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; }
+ .choice span { color:var(--muted); font-size:13px; }
+ .choice.active { background:var(--forest-deep); color:#f5ede0; border-color:var(--gold); }
+ .choice.active strong, .choice.active span { color:#f5ede0; }
+ .calendar-note { font-size:13px; color:var(--muted); margin:-5px 0 16px; }
+ .small { font-size:12px; color:var(--muted); }
+ @media(max-width:880px){
+ nav { padding:0 20px; }
+ .navlinks { display:none; }
+ .hero-inner, .split, .grid.two, .grid.three { grid-template-columns:1fr; }
+ .hero { min-height:auto; }
+ .hero-inner { padding:66px 22px; }
+ .form-row, .pill-grid { grid-template-columns:1fr; }
+ }
 
 
 /* Targeted booking page refinement */
@@ -127,8 +127,6 @@
 .payment-card .btn-event-primary { padding:12px 22px; font-size:9px; }
 @media(max-width:880px){ .booking-calendar-grid { gap:5px; } .booking-day { min-height:58px; padding:7px; } .payment-inner, .payment-cards { grid-template-columns:1fr; } }
 
-
-
 /* Floating chat connect widget */
 .nishi-chat-widget { position: fixed; right: 22px; bottom: 22px; z-index: 9999; font-family: 'Jost', sans-serif; }
 .nishi-chat-toggle { width: 62px; height: 62px; border-radius: 50%; border: 1px solid rgba(193,160,98,.45); background: var(--gold, #c1a062); color: var(--forest-deep, #1a2a20); box-shadow: 0 16px 42px rgba(26,42,32,.28); cursor: pointer; font-size: 24px; display:flex; align-items:center; justify-content:center; }
@@ -148,200 +146,212 @@
 .booking-hero-inner,
 .hero-booking,
 .booking-hero-content {
-  grid-template-columns: 1fr !important;
+ grid-template-columns: 1fr !important;
 }
 .booking-hero .booking-hero-copy,
 .booking-hero-copy,
 .booking-hero-text {
-  max-width: 860px !important;
+ max-width: 860px !important;
 }
 .booking-hero-card,
 .hero-note-card {
-  display: none !important;
+ display: none !important;
+}
+
+
+/* Contact cleanup: phone removed, chat/contact opens email */
+.chat-main[href],
+.book-fab[href] {
+ text-decoration: none;
+}
+.chat-main[href] {
+ display: flex;
+ align-items: center;
+ justify-content: center;
 }
 
 </style>
 
 <style>
-  .calendar-box { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .summary { background:var(--forest-deep); color:#f5ede0; border-radius:24px; padding:28px; position:sticky; top:88px; }
-  .summary h3 { color:#f5ede0; font-size:32px; margin-bottom:18px; }
-  .summary-row { border-bottom:1px solid rgba(193,160,98,.18); padding:12px 0; }
-  .summary-row span { display:block; font-size:9px; letter-spacing:2.4px; text-transform:uppercase; color:rgba(193,160,98,.72); margin-bottom:3px; }
-  .summary-row strong { font-weight:400; color:#f5ede0; }
-  .booking-form-section { background:var(--cream-dark); }
-  .required-note { color:var(--muted); font-size:13px; margin-bottom:20px; }
-  @media(max-width:880px) { .calendar-box { grid-template-columns:1fr; } .summary { position:relative; top:auto; } }
+ .calendar-box { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+ .summary { background:var(--forest-deep); color:#f5ede0; border-radius:24px; padding:28px; position:sticky; top:88px; }
+ .summary h3 { color:#f5ede0; font-size:32px; margin-bottom:18px; }
+ .summary-row { border-bottom:1px solid rgba(193,160,98,.18); padding:12px 0; }
+ .summary-row span { display:block; font-size:9px; letter-spacing:2.4px; text-transform:uppercase; color:rgba(193,160,98,.72); margin-bottom:3px; }
+ .summary-row strong { font-weight:400; color:#f5ede0; }
+ .booking-form-section { background:var(--cream-dark); }
+ .required-note { color:var(--muted); font-size:13px; margin-bottom:20px; }
+ @media(max-width:880px) { .calendar-box { grid-template-columns:1fr; } .summary { position:relative; top:auto; } }
 </style>
 </head>
 <body>
 <div class="topbar">Book a session · Private · Group · Corporate · Events · Retreats</div>
 <nav>
-  <a class="logo" href="index.html">Sound Healing with Nishi</a>
-  <ul class="navlinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="event-art-sound-bath.html">Event Jul 10</a></li>
-    <li><a href="offerings.html">Offerings</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="booking.html" class="nav-cta">Book</a></li>
-  </ul>
+ <a class="logo" href="index.html">Sound Healing with Nishi</a>
+ <ul class="navlinks">
+ <li><a href="index.html">Home</a></li>
+ <li><a href="event-art-sound-bath.html">Event Jul 10</a></li>
+ <li><a href="offerings.html">Offerings</a></li>
+ <li><a href="blog.html">Blog</a></li>
+ <li><a href="booking.html" class="nav-cta">Book</a></li>
+ </ul>
 </nav>
 
 <section class="hero" style="--hero-img:url('photo3.jpg'); min-height:58vh;">
-  <div class="hero-inner">
-    <div>
-      <p class="label">Booking Request</p>
-      <h1>Book a <em>sound healing</em> session</h1>
-      <p>Choose your session type, preferred date, time, and intention. This form sends a booking request to Nishi. Your session is confirmed after Nishi replies.</p>
-    </div>
-    
+ <div class="hero-inner">
+ <div>
+ <p class="label">Booking Request</p>
+ <h1>Book a <em>sound healing</em> session</h1>
+ <p>Choose your session type, preferred date, time, and intention. This form sends a booking request to Nishi. Your session is confirmed after Nishi replies.</p>
+ </div>
+ 
 
-  </div>
+ </div>
 </section>
 
 
 <section class="section booking-form-section" id="booking-calendar">
-  <div class="inner booking-clean-inner">
-    <div class="booking-calendar-panel">
-      <p class="label">Availability Calendar</p>
-      <div class="booking-calendar-head">
-        <button type="button" id="bookingPrevMonth" aria-label="Previous month">‹</button>
-        <div class="booking-calendar-title" id="bookingMonthTitle">July 2026</div>
-        <button type="button" id="bookingNextMonth" aria-label="Next month">›</button>
-      </div>
-      <div class="booking-calendar-grid" id="bookingCalendarGrid"></div>
-      <div class="booking-legend">
-        <span><i></i> Open for inquiry</span>
-        <span><i class="limited"></i> Limited</span>
-        <span><i class="booked"></i> Booked</span>
-      </div>
-      <p class="booking-selected-note">Selected date: <strong id="bookingSelectedDateText">Choose a date from the calendar or use the date field below.</strong></p>
-    </div>
-    <div class="card">
-      <p class="label">Session Type</p>
-      <h2 class="section-title" style="font-size:44px;">Choose your <em>experience</em></h2>
-      <p class="required-note">Fields marked with * are required.</p>
+ <div class="inner booking-clean-inner">
+ <div class="booking-calendar-panel">
+ <p class="label">Availability Calendar</p>
+ <div class="booking-calendar-head">
+ <button type="button" id="bookingPrevMonth" aria-label="Previous month">‹</button>
+ <div class="booking-calendar-title" id="bookingMonthTitle">July 2026</div>
+ <button type="button" id="bookingNextMonth" aria-label="Next month">›</button>
+ </div>
+ <div class="booking-calendar-grid" id="bookingCalendarGrid"></div>
+ <div class="booking-legend">
+ <span><i></i> Open for inquiry</span>
+ <span><i class="limited"></i> Limited</span>
+ <span><i class="booked"></i> Booked</span>
+ </div>
+ <p class="booking-selected-note">Selected date: <strong id="bookingSelectedDateText">Choose a date from the calendar or use the date field below.</strong></p>
+ </div>
+ <div class="card">
+ <p class="label">Session Type</p>
+ <h2 class="section-title" style="font-size:44px;">Choose your <em>experience</em></h2>
+ <p class="required-note">Fields marked with * are required.</p>
 
-      <div class="pill-grid" id="sessionChoices">
-        <button type="button" class="choice active" data-value="Private Sound Bath"><strong>Private Sound Bath</strong><span>One-on-one or couples session</span></button>
-        <button type="button" class="choice" data-value="Group Sound Bath"><strong>Group Sound Bath</strong><span>Friends, family, birthdays</span></button>
-        <button type="button" class="choice" data-value="Corporate Wellness"><strong>Corporate Wellness</strong><span>Team reset, offices, retreats</span></button>
-        <button type="button" class="choice" data-value="Event or Retreat"><strong>Event or Retreat</strong><span>Custom sound healing experience</span></button>
-      </div>
+ <div class="pill-grid" id="sessionChoices">
+ <button type="button" class="choice active" data-value="Private Sound Bath"><strong>Private Sound Bath</strong><span>One-on-one or couples session</span></button>
+ <button type="button" class="choice" data-value="Group Sound Bath"><strong>Group Sound Bath</strong><span>Friends, family, birthdays</span></button>
+ <button type="button" class="choice" data-value="Corporate Wellness"><strong>Corporate Wellness</strong><span>Team reset, offices, retreats</span></button>
+ <button type="button" class="choice" data-value="Event or Retreat"><strong>Event or Retreat</strong><span>Custom sound healing experience</span></button>
+ </div>
 
-      <form id="bookingForm">
-        <input type="hidden" name="_subject" value="New Sound Healing Booking Request">
-        <input type="hidden" name="session_type" id="session_type" value="Private Sound Bath">
+ <form id="bookingForm">
+ <input type="hidden" name="_subject" value="New Sound Healing Booking Request">
+ <input type="hidden" name="session_type" id="session_type" value="Private Sound Bath">
 
-        <div class="calendar-box">
-          <div class="form-group">
-            <label for="preferred_date">Preferred Date *</label>
-            <input type="date" id="preferred_date" name="preferred_date" required>
-          </div>
-          <div class="form-group">
-            <label for="preferred_time">Preferred Time *</label>
-            <select id="preferred_time" name="preferred_time" required>
-              <option value="">Choose a time</option>
-              <option>Morning, 9:00 AM to 12:00 PM</option>
-              <option>Afternoon, 12:00 PM to 4:00 PM</option>
-              <option>Evening, 4:00 PM to 8:00 PM</option>
-              <option>Weekend preferred</option>
-              <option>Flexible</option>
-            </select>
-          </div>
-        </div>
-        <p class="calendar-note">This is a booking request calendar, not an automatic confirmed reservation.</p>
+ <div class="calendar-box">
+ <div class="form-group">
+ <label for="preferred_date">Preferred Date *</label>
+ <input type="date" id="preferred_date" name="preferred_date" required>
+ </div>
+ <div class="form-group">
+ <label for="preferred_time">Preferred Time *</label>
+ <select id="preferred_time" name="preferred_time" required>
+ <option value="">Choose a time</option>
+ <option>Morning, 9:00 AM to 12:00 PM</option>
+ <option>Afternoon, 12:00 PM to 4:00 PM</option>
+ <option>Evening, 4:00 PM to 8:00 PM</option>
+ <option>Weekend preferred</option>
+ <option>Flexible</option>
+ </select>
+ </div>
+ </div>
+ <p class="calendar-note">This is a booking request calendar, not an automatic confirmed reservation.</p>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="you@email.com" required>
-          </div>
-        </div>
+ <div class="form-row">
+ <div class="form-group">
+ <label for="name">Full Name *</label>
+ <input type="text" id="name" name="name" placeholder="Your name" required>
+ </div>
+ <div class="form-group">
+ <label for="email">Email Address *</label>
+ <input type="email" id="email" name="email" placeholder="you@email.com" required>
+ </div>
+ </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" placeholder="xxx-xxx-xxxx" required>
-          </div>
-          <div class="form-group">
-            <label for="people">Number of People *</label>
-            <input type="number" id="people" name="number_of_people" min="1" max="200" placeholder="1" required>
-          </div>
-        </div>
+ <div class="form-row">
+ <div class="form-group">
+ <label for="phone">Phone Number *</label>
+ <input type="tel" id="phone" name="phone" placeholder="" required>
+ </div>
+ <div class="form-group">
+ <label for="people">Number of People *</label>
+ <input type="number" id="people" name="number_of_people" min="1" max="200" placeholder="1" required>
+ </div>
+ </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="mood">Event Mood / Intention</label>
-            <select id="mood" name="event_mood">
-              <option value="">Choose one</option>
-              <option>Most popular: Couple Session</option>
-              <option>Peace and deep relaxation</option>
-              <option>Stress release and nervous system calm</option>
-              <option>Self-confidence manifestation</option>
-              <option>Postpartum rest and softness</option>
-              <option>Birthday or celebration</option>
-              <option>Corporate team reset</option>
-              <option>Retreat or wellness event</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="location_type">Location Type</label>
-            <select id="location_type" name="location_type">
-              <option value="">Choose one</option>
-              <option>Charlotte area studio / venue</option>
-              <option>At my home</option>
-              <option>Corporate office</option>
-              <option>Retreat / event venue</option>
-              <option>Not sure yet</option>
-            </select>
-          </div>
-        </div>
+ <div class="form-row">
+ <div class="form-group">
+ <label for="mood">Event Mood / Intention</label>
+ <select id="mood" name="event_mood">
+ <option value="">Choose one</option>
+ <option>Most popular: Couple Session</option>
+ <option>Peace and deep relaxation</option>
+ <option>Stress release and nervous system calm</option>
+ <option>Self-confidence manifestation</option>
+ <option>Postpartum rest and softness</option>
+ <option>Birthday or celebration</option>
+ <option>Corporate team reset</option>
+ <option>Retreat or wellness event</option>
+ <option>Other</option>
+ </select>
+ </div>
+ <div class="form-group">
+ <label for="location_type">Location Type</label>
+ <select id="location_type" name="location_type">
+ <option value="">Choose one</option>
+ <option>Charlotte area studio / venue</option>
+ <option>At my home</option>
+ <option>Corporate office</option>
+ <option>Retreat / event venue</option>
+ <option>Not sure yet</option>
+ </select>
+ </div>
+ </div>
 
-        <div class="form-group">
-          <label for="address">Event Address or Area</label>
-          <input type="text" id="address" name="event_address_or_area" placeholder="Charlotte, NC / venue / neighborhood">
-        </div>
+ <div class="form-group">
+ <label for="address">Event Address or Area</label>
+ <input type="text" id="address" name="event_address_or_area" placeholder="Charlotte, NC / venue / neighborhood">
+ </div>
 
-        <div class="form-group">
-          <label for="message">Message / Details</label>
-          <textarea id="message" name="message" placeholder="Tell Nishi what you are looking for, occasion, goals, questions, or accessibility needs."></textarea>
-        </div>
+ <div class="form-group">
+ <label for="message">Message / Details</label>
+ <textarea id="message" name="message" placeholder="Tell Nishi what you are looking for, occasion, goals, questions, or accessibility needs."></textarea>
+ </div>
 
-        <button class="btn btn-gold" type="submit" id="bookingSubmit">Send Booking Request</button>
-        <div class="status" id="bookingSuccess">
-          <strong>Thank you. Your request has been sent to Nishi.</strong><br>
-          Nishi will personally reply to confirm availability. This request is not confirmed until you receive a response.
-        </div>
-        <div class="status error" id="bookingError">
-          Something went wrong. Please email Nishi directly at soundhealingwithnishi@gmail.com.
-        </div>
-      </form>
-    </div>
+ <button class="btn btn-gold" type="submit" id="bookingSubmit">Send Booking Request</button>
+ <div class="status" id="bookingSuccess">
+ <strong>Thank you. Your request has been sent to Nishi.</strong><br>
+ Nishi will personally reply to confirm availability. This request is not confirmed until you receive a response.
+ </div>
+ <div class="status error" id="bookingError">
+ Something went wrong. Please email Nishi directly at soundhealingwithnishi@gmail.com.
+ </div>
+ </form>
+ </div>
 
-  </div>
+ </div>
 </section>
 <section class="section">
-  <div class="inner">
-    <p class="label">Not sure what to choose?</p>
-    <h2 class="section-title">Start with the session type that matches your setting</h2>
-    <div class="gold-rule"></div>
-    <div class="grid three">
-      <div class="card"><h3>Private</h3><p>Best for personal rest, emotional reset, couples, or a deeper one-on-one sound healing experience.</p></div>
-      <div class="card"><h3>Group</h3><p>Best for friends, family, birthdays, bridal groups, and intimate community circles.</p></div>
-      <div class="card"><h3>Corporate</h3><p>Best for employee appreciation, workplace stress release, team reset, and wellness programming.</p></div>
-    </div>
-  </div>
+ <div class="inner">
+ <p class="label">Not sure what to choose?</p>
+ <h2 class="section-title">Start with the session type that matches your setting</h2>
+ <div class="gold-rule"></div>
+ <div class="grid three">
+ <div class="card"><h3>Private</h3><p>Best for personal rest, emotional reset, couples, or a deeper one-on-one sound healing experience.</p></div>
+ <div class="card"><h3>Group</h3><p>Best for friends, family, birthdays, bridal groups, and intimate community circles.</p></div>
+ <div class="card"><h3>Corporate</h3><p>Best for employee appreciation, workplace stress release, team reset, and wellness programming.</p></div>
+ </div>
+ </div>
 </section>
 
 <footer class="footer">
-  <a class="logo" href="index.html">Sound Healing with Nishi</a>
-  <p>Charlotte, North Carolina · soundhealingwithnishi@gmail.com · </p>
+ <a class="logo" href="index.html">Sound Healing with Nishi</a>
+ <p>Charlotte, North Carolina · soundhealingwithnishi@gmail.com · </p>
 </footer>
 
 
@@ -350,11 +360,11 @@ const endpoint = "https://formspree.io/f/mdapvbvg";
 const choices = document.querySelectorAll('.choice');
 const sessionInput = document.getElementById('session_type');
 choices.forEach(btn => {
-  btn.addEventListener('click', () => {
-    choices.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    sessionInput.value = btn.dataset.value;
-  });
+ btn.addEventListener('click', () => {
+ choices.forEach(b => b.classList.remove('active'));
+ btn.classList.add('active');
+ sessionInput.value = btn.dataset.value;
+ });
 });
 
 const dateInput = document.getElementById('preferred_date');
@@ -364,22 +374,22 @@ today.setDate(today.getDate() + 1);
 dateInput.min = today.toISOString().split('T')[0];
 
 const bookingAvailability = {
-  "2026-07-05": "open",
-  "2026-07-08": "limited",
-  "2026-07-12": "open",
-  "2026-07-16": "open",
-  "2026-07-18": "limited",
-  "2026-07-22": "open",
-  "2026-07-26": "open",
-  "2026-07-30": "limited",
-  "2026-08-02": "open",
-  "2026-08-06": "open",
-  "2026-08-09": "limited",
-  "2026-08-13": "open",
-  "2026-08-17": "open",
-  "2026-08-21": "limited",
-  "2026-08-24": "open",
-  "2026-08-29": "open"
+ "2026-07-05": "open",
+ "2026-07-08": "limited",
+ "2026-07-12": "open",
+ "2026-07-16": "open",
+ "2026-07-18": "limited",
+ "2026-07-22": "open",
+ "2026-07-26": "open",
+ "2026-07-30": "limited",
+ "2026-08-02": "open",
+ "2026-08-06": "open",
+ "2026-08-09": "limited",
+ "2026-08-13": "open",
+ "2026-08-17": "open",
+ "2026-08-21": "limited",
+ "2026-08-24": "open",
+ "2026-08-29": "open"
 };
 const bookingBooked = new Set(["2026-07-10", "2026-07-19", "2026-08-16"]);
 let bookingCalendarDate = new Date(2026, 6, 1);
@@ -389,54 +399,54 @@ const bookingSelectedDateText = document.getElementById('bookingSelectedDateText
 function bookingIso(y, m, d){ return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
 function bookingPretty(iso){ const [y,m,d] = iso.split('-').map(Number); return new Date(y,m-1,d).toLocaleDateString(undefined,{weekday:'long', month:'long', day:'numeric', year:'numeric'}); }
 function renderBookingCalendar(){
-  if(!bookingCalendarGrid) return;
-  const y = bookingCalendarDate.getFullYear();
-  const m = bookingCalendarDate.getMonth();
-  bookingMonthTitle.textContent = bookingCalendarDate.toLocaleDateString(undefined,{month:'long', year:'numeric'});
-  bookingCalendarGrid.innerHTML = '';
-  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day => {
-    const el = document.createElement('div'); el.className = 'booking-dow'; el.textContent = day; bookingCalendarGrid.appendChild(el);
-  });
-  const first = new Date(y,m,1).getDay();
-  const total = new Date(y,m+1,0).getDate();
-  for(let i=0;i<first;i++){ const el=document.createElement('button'); el.type='button'; el.className='booking-day empty'; bookingCalendarGrid.appendChild(el); }
-  for(let d=1; d<=total; d++){
-    const iso = bookingIso(y,m,d);
-    const status = bookingBooked.has(iso) ? 'booked' : (bookingAvailability[iso] || 'open');
-    const el = document.createElement('button');
-    el.type = 'button';
-    el.className = `booking-day ${status}${dateInput.value===iso ? ' selected' : ''}`;
-    el.innerHTML = `<span class="n">${d}</span><span class="s">${status === 'open' ? 'Open' : status === 'limited' ? 'Limited' : 'Booked'}</span>`;
-    if(status === 'booked') { el.disabled = true; }
-    else {
-      el.addEventListener('click', () => {
-        dateInput.value = iso;
-        bookingSelectedDateText.textContent = bookingPretty(iso);
-        renderBookingCalendar();
+ if(!bookingCalendarGrid) return;
+ const y = bookingCalendarDate.getFullYear();
+ const m = bookingCalendarDate.getMonth();
+ bookingMonthTitle.textContent = bookingCalendarDate.toLocaleDateString(undefined,{month:'long', year:'numeric'});
+ bookingCalendarGrid.innerHTML = '';
+ ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day => {
+ const el = document.createElement('div'); el.className = 'booking-dow'; el.textContent = day; bookingCalendarGrid.appendChild(el);
+ });
+ const first = new Date(y,m,1).getDay();
+ const total = new Date(y,m+1,0).getDate();
+ for(let i=0;i<first;i++){ const el=document.createElement('button'); el.type='button'; el.className='booking-day empty'; bookingCalendarGrid.appendChild(el); }
+ for(let d=1; d<=total; d++){
+ const iso = bookingIso(y,m,d);
+ const status = bookingBooked.has(iso) ? 'booked' : (bookingAvailability[iso] || 'open');
+ const el = document.createElement('button');
+ el.type = 'button';
+ el.className = `booking-day ${status}${dateInput.value===iso ? ' selected' : ''}`;
+ el.innerHTML = `<span class="n">${d}</span><span class="s">${status === 'open' ? 'Open' : status === 'limited' ? 'Limited' : 'Booked'}</span>`;
+ if(status === 'booked') { el.disabled = true; }
+ else {
+ el.addEventListener('click', () => {
+ dateInput.value = iso;
+ bookingSelectedDateText.textContent = bookingPretty(iso);
+ renderBookingCalendar();
 
 /* Accept selected date from homepage calendar */
 (function(){
-  const params = new URLSearchParams(window.location.search);
-  const incomingDate = params.get('date');
-  if (!incomingDate || !dateInput) return;
-  dateInput.value = incomingDate;
-  if (bookingSelectedDateText) {
-    bookingSelectedDateText.textContent = bookingPretty(incomingDate);
-  }
-  if (typeof renderBookingCalendar === 'function') {
-    const parts = incomingDate.split('-').map(Number);
-    if (parts.length === 3 && parts.every(Boolean)) {
-      bookingCalendarDate = new Date(parts[0], parts[1] - 1, 1);
-    }
-    renderBookingCalendar();
-  }
+ const params = new URLSearchParams(window.location.search);
+ const incomingDate = params.get('date');
+ if (!incomingDate || !dateInput) return;
+ dateInput.value = incomingDate;
+ if (bookingSelectedDateText) {
+ bookingSelectedDateText.textContent = bookingPretty(incomingDate);
+ }
+ if (typeof renderBookingCalendar === 'function') {
+ const parts = incomingDate.split('-').map(Number);
+ if (parts.length === 3 && parts.every(Boolean)) {
+ bookingCalendarDate = new Date(parts[0], parts[1] - 1, 1);
+ }
+ renderBookingCalendar();
+ }
 })();
 
-        document.getElementById('bookingForm').scrollIntoView({behavior:'smooth', block:'start'});
-      });
-    }
-    bookingCalendarGrid.appendChild(el);
-  }
+ document.getElementById('bookingForm').scrollIntoView({behavior:'smooth', block:'start'});
+ });
+ }
+ bookingCalendarGrid.appendChild(el);
+ }
 }
 document.getElementById('bookingPrevMonth')?.addEventListener('click', () => { bookingCalendarDate.setMonth(bookingCalendarDate.getMonth() - 1); renderBookingCalendar(); });
 document.getElementById('bookingNextMonth')?.addEventListener('click', () => { bookingCalendarDate.setMonth(bookingCalendarDate.getMonth() + 1); renderBookingCalendar(); });
@@ -444,50 +454,48 @@ dateInput.addEventListener('input', () => { bookingSelectedDateText.textContent 
 renderBookingCalendar();
 
 document.getElementById('bookingForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const submitBtn = document.getElementById('bookingSubmit');
-  const success = document.getElementById('bookingSuccess');
-  const error = document.getElementById('bookingError');
-  success.style.display = 'none';
-  error.style.display = 'none';
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
-  try {
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    if (response.ok) {
-      success.style.display = 'block';
-      this.reset();
-      choices.forEach(b => b.classList.remove('active'));
-      choices[0].classList.add('active');
-      sessionInput.value = 'Private Sound Bath';
-      bookingSelectedDateText.textContent = 'Choose a date from the calendar or use the date field below.';
-      renderBookingCalendar();
-      window.scrollTo({ top: success.offsetTop - 120, behavior: 'smooth' });
-    } else { error.style.display = 'block'; }
-  } catch(err) { error.style.display = 'block'; }
-  submitBtn.disabled = false;
-  submitBtn.textContent = 'Send Booking Request';
+ e.preventDefault();
+ const submitBtn = document.getElementById('bookingSubmit');
+ const success = document.getElementById('bookingSuccess');
+ const error = document.getElementById('bookingError');
+ success.style.display = 'none';
+ error.style.display = 'none';
+ submitBtn.disabled = true;
+ submitBtn.textContent = 'Sending...';
+ const formData = new FormData(this);
+ const data = Object.fromEntries(formData.entries());
+ try {
+ const response = await fetch(endpoint, {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+ body: JSON.stringify(data)
+ });
+ if (response.ok) {
+ success.style.display = 'block';
+ this.reset();
+ choices.forEach(b => b.classList.remove('active'));
+ choices[0].classList.add('active');
+ sessionInput.value = 'Private Sound Bath';
+ bookingSelectedDateText.textContent = 'Choose a date from the calendar or use the date field below.';
+ renderBookingCalendar();
+ window.scrollTo({ top: success.offsetTop - 120, behavior: 'smooth' });
+ } else { error.style.display = 'block'; }
+ } catch(err) { error.style.display = 'block'; }
+ submitBtn.disabled = false;
+ submitBtn.textContent = 'Send Booking Request';
 });
 </script>
 
-
-
 <div class="nishi-chat-widget" id="nishiChatWidget">
-  <div class="nishi-chat-panel">
-    <h4>Chat with Nishi</h4>
-    <p>Have a question before booking? Send a WhatsApp or text message.</p>
-    <div class="nishi-chat-actions">
-      <a class="wa" href="https://wa.me/12019825777?text=Hi%20Nishi%2C%20I%20have%20a%20question%20about%20booking%20a%20sound%20healing%20session." target="_blank" rel="noopener">WhatsApp</a>
-      <a class="sms" href="sms:+12019825777?&body=Hi%20Nishi%2C%20I%20have%20a%20question%20about%20booking%20a%20sound%20healing%20session.">Text Nishi</a>
-    </div>
-  </div>
-  <button class="nishi-chat-toggle" type="button" aria-label="Open chat" onclick="document.getElementById('nishiChatWidget').classList.toggle('open')">💬</button>
+ <div class="nishi-chat-panel">
+ <h4>Chat with Nishi</h4>
+ <p>Have a question before booking? Send a WhatsApp or text message.</p>
+ <div class="nishi-chat-actions">
+ <a class="wa" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A" target="_blank" rel="noopener">WhatsApp</a>
+ <a class="sms" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A">Text Nishi</a>
+ </div>
+ </div>
+ <button class="nishi-chat-toggle" type="button" aria-label="Open chat" onclick="document.getElementById('nishiChatWidget').classList.toggle('open')">💬</button>
 </div>
 
 
