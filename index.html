@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sound Healing Charlotte NC | Sound Healing with Nishi</title>
-<meta name="description" content="Sound Healing with Nishi offers private sound baths, couples sound baths, group sound healing, corporate wellness, retreats, and special events in Charlotte, NC.">
-<meta name="keywords" content="sound healing Charlotte NC, sound bath Charlotte, vibrational sound healing Charlotte, Himalayan singing bowls, crystal bowls, private sound bath, group sound bath, corporate wellness Charlotte">
+<title>Sound Healing Charlotte NC | Sound Baths & Handpan | Sound Healing with Nishi</title>
+<meta name="description" content="Sound Healing with Nishi offers private sound baths, couples sound baths, group sound healing, handpan sound journeys, corporate wellness, retreats, and special events in Charlotte, NC. Charlotte's first sound healer playing handpan by hand.">
+<meta name="keywords" content="sound healing Charlotte NC, sound bath Charlotte, vibrational sound healing Charlotte, handpan Charlotte, handpan sound healing, handpan played by hand, Himalayan singing bowls, crystal bowls, private sound bath, group sound bath, corporate wellness Charlotte">
 <link rel="canonical" href="https://soundhealingwithnishi.com/">
 <meta property="og:title" content="Sound Healing with Nishi | Charlotte, NC">
 <meta property="og:description" content="Vibrational sound healing in Charlotte with Himalayan bowls, crystal bowls, tuning fork, gong, and 18+ instruments.">
@@ -20,7 +20,6 @@
   "@type": "HealthAndBeautyBusiness",
   "name": "Sound Healing with Nishi",
   "url": "https://soundhealingwithnishi.com/",
-  "telephone": "+1-201-982-5777",
   "email": "soundhealingwithnishi@gmail.com",
   "image": "https://soundhealingwithnishi.com/photo3.jpg",
   "address": {
@@ -40,6 +39,8 @@
     "sound bath",
     "Himalayan singing bowls",
     "crystal bowls",
+    "handpan",
+    "handpan sound healing",
     "corporate wellness",
     "vibrational sound healing"
   ]
@@ -229,6 +230,15 @@ button,input,select,textarea { font-family:inherit; }
   font-weight:600;
 }
 .hero-eyebrow::before { content:''; width:36px; height:1px; background:var(--gold); }
+.hero-quote {
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-size:clamp(17px,2vw,21px);
+  font-weight:300;
+  color:var(--gold);
+  margin:-10px 0 18px;
+  letter-spacing:.02em;
+}
 .hero h1 {
   font-family:'Cormorant Garamond', serif;
   font-size:clamp(52px,6vw,84px);
@@ -940,44 +950,31 @@ footer {
   color:rgba(255,255,255,.28);
   font-size:11px;
 }
-.chat {
+/* Floating Book button — quick booking, especially on phones */
+.book-fab {
   position:fixed;
-  right:22px;
-  bottom:22px;
+  right:20px;
+  bottom:20px;
   z-index:1000;
-}
-.chat-main {
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  border:0;
   background:var(--gold);
   color:var(--forest);
-  font-size:24px;
-  box-shadow:0 18px 50px rgba(22,37,28,.25);
-  cursor:pointer;
+  text-decoration:none;
+  font-family:'Jost',sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  padding:16px 26px;
+  border-radius:100px;
+  box-shadow:0 18px 50px rgba(22,37,28,.3);
+  animation:fab-pulse 2.8s ease-in-out infinite;
+  transition:transform .2s, background .2s;
 }
-.chat-options {
-  position:absolute;
-  right:0;
-  bottom:70px;
-  background:var(--white);
-  border:1px solid var(--line);
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 18px 60px rgba(22,37,28,.15);
-  display:none;
-  min-width:190px;
+.book-fab:hover { transform:translateY(-3px); background:var(--gold2, #ddc27e); }
+@keyframes fab-pulse {
+  0%,100% { box-shadow:0 18px 50px rgba(22,37,28,.3), 0 0 0 0 rgba(193,160,98,.45); }
+  50% { box-shadow:0 18px 50px rgba(22,37,28,.3), 0 0 0 12px rgba(193,160,98,0); }
 }
-.chat-options.open { display:block; }
-.chat-options a {
-  display:block;
-  padding:13px 16px;
-  color:var(--forest);
-  font-size:13px;
-  border-bottom:1px solid var(--line);
-}
-.chat-options a:last-child { border-bottom:0; }
 
 @media(max-width:1100px){
   .svc-grid { grid-template-columns:repeat(2,1fr); }
@@ -1625,12 +1622,13 @@ footer {
 <section class="hero" id="home">
   <div class="hero-left">
     <p class="hero-eyebrow">Charlotte Vibrational Sound Healing</p>
+    <p class="hero-quote">"Let the sounds make you fall in love with yourself."</p>
     <h1>Feel sound.<br>Find your <em>calm.</em></h1>
-    <p class="hero-sub">A refined, immersive sound healing experience with Himalayan bowls, crystal bowls, tuning fork, gong, and 18+ instruments. Designed for deep rest, stress release, emotional softness, and self-connection.</p>
+    <p class="hero-sub">A refined, immersive sound healing experience with Himalayan bowls, crystal bowls, handpan, tuning fork, gong, and 18+ instruments. Charlotte's first sound healer playing handpan by hand — designed for deep rest, stress release, emotional softness, and self-connection.</p>
     <div class="hero-actions">
       <a href="booking.html" class="btn-fill">Book Your Session</a>
       <a href="#gallery" class="btn-line"><span>→</span> See the Experience</a>
-      <a href="booking.html#booking-calendar" class="btn-line"><span>↓</span> View Dates</a>
+      <a href="#availability" class="btn-line"><span>↓</span> View Dates</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-n">18+</div><div class="hero-stat-l">Instruments</div></div>
@@ -1642,10 +1640,10 @@ footer {
   <div class="hero-right">
     <div class="hero-collage" id="heroCollage">
       <div class="collage-cell collage-big" data-cell="0">
-        <img class="collage-img active" src="photo3.jpg" alt="Sound Healing with Nishi">
+        <img class="collage-img active" src="event-red-01.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Nishi playing crystal bowls at an outdoor sound bath in Charlotte">
       </div>
       <div class="collage-cell collage-top" data-cell="1">
-        <img class="collage-img active" src="photo4.jpg" alt="Sound healing session in Charlotte">
+        <img class="collage-img active" src="event-red-02.jpg" onerror="this.onerror=null;this.src='photo4.jpg';" alt="Outdoor handpan and gong sound healing session">
       </div>
       <div class="collage-cell collage-bottom" data-cell="2">
         <img class="collage-img active" src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo5.jpg';" alt="Sunset sound bath">
@@ -1654,7 +1652,7 @@ footer {
     <div class="hero-veil"></div>
     <div class="hero-chip">
       <div class="hero-chip-label">Signature Session</div>
-      <div class="hero-chip-text">Himalayan bowls, crystal bowls & vibrational instruments</div>
+      <div class="hero-chip-text">Himalayan bowls, crystal bowls, handpan &amp; vibrational instruments</div>
     </div>
   </div>
 </section>
@@ -1666,6 +1664,7 @@ footer {
     <span class="marquee-item hl">Himalayan Singing Bowls</span>
     <span class="marquee-item">Crystal Bowls</span>
     <span class="marquee-item">Tuning Fork</span>
+    <span class="marquee-item hl">Handpan · Played by Hand</span>
     <span class="marquee-item">Gong</span>
     <span class="marquee-item">Rain Stick</span>
     <span class="marquee-item">Koshi Chimes</span>
@@ -1675,6 +1674,7 @@ footer {
     <span class="marquee-item hl">Himalayan Singing Bowls</span>
     <span class="marquee-item">Crystal Bowls</span>
     <span class="marquee-item">Tuning Fork</span>
+    <span class="marquee-item hl">Handpan · Played by Hand</span>
     <span class="marquee-item">Gong</span>
     <span class="marquee-item">Rain Stick</span>
     <span class="marquee-item">Koshi Chimes</span>
@@ -1720,6 +1720,36 @@ footer {
     </div>
   </div>
 </section>
+<section class="sec calendar-sec" id="availability">
+  <div class="sec-inner calendar-layout">
+    <div>
+      <p class="eyebrow">Availability Calendar</p>
+      <h2 class="h2">Choose a date, then <em>send your inquiry</em></h2>
+      <div class="hairline"></div>
+      <p class="lead">This calendar keeps booking simple. Click an open or limited date and the booking page will open with that date selected. Nishi still confirms availability personally by email or phone.</p>
+      <div class="hero-actions" style="margin-top:30px;">
+        <a class="btn-fill" href="booking.html">Open Booking Page</a>
+        <a class="btn-line" href="booking.html#booking-calendar"><span>→</span> Full Calendar</a>
+      </div>
+    </div>
+    <div class="calendar-card">
+      <div class="cal-head">
+        <button type="button" id="prevMonth">‹</button>
+        <div class="cal-title" id="monthTitle">Availability</div>
+        <button type="button" id="nextMonth">›</button>
+      </div>
+      <div class="cal-grid" id="calendarGrid"></div>
+      <div class="legend">
+        <span><i class="dot"></i> Open</span>
+        <span><i class="dot limited"></i> Limited</span>
+        <span><i class="dot booked"></i> Booked</span>
+        <span><i class="dot filled"></i> Filled</span>
+      </div>
+      <p class="calendar-admin-note">To update availability later, edit the <strong>calendarStatus</strong> list in this index file and use: open, limited, booked, or filled.</p>
+    </div>
+  </div>
+</section>
+
 <section class="sec services-sec" id="sessions">
   <div class="sec-inner">
     <p class="eyebrow">Book Your Session</p>
@@ -1768,6 +1798,18 @@ footer {
 
   <div class="bubble-gallery">
     <a class="bubble-photo bubble-large" href="booking.html">
+      <img src="event-red-01.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Nishi leading an outdoor sound bath with crystal bowls, gong and handpan in Charlotte">
+    </a>
+    <a class="bubble-photo bubble-tall" href="booking.html">
+      <img src="event-red-02.jpg" onerror="this.onerror=null;this.src='photo4.jpg';" alt="Outdoor sound healing setup with gong, handpan and singing bowls">
+    </a>
+    <a class="bubble-photo" href="booking.html">
+      <img src="event-red-03.jpg" onerror="this.onerror=null;this.src='photo1.jpg';" alt="Guests resting during an outdoor sound bath session">
+    </a>
+    <a class="bubble-photo bubble-wide" href="#summer-series">
+      <img src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo5.jpg';" alt="Summer sound bath series">
+    </a>
+    <a class="bubble-photo" href="booking.html">
       <img src="photo3.jpg" alt="Private sound healing session with Nishi">
     </a>
     <a class="bubble-photo bubble-tall" href="booking.html">
@@ -1775,18 +1817,6 @@ footer {
     </a>
     <a class="bubble-photo" href="booking.html">
       <img src="photo1.jpg" alt="Sound healing instruments and bowls">
-    </a>
-    <a class="bubble-photo bubble-wide" href="#summer-series">
-      <img src="saunahouse-nishi.jpg" onerror="this.onerror=null;this.src='photo5.jpg';" alt="Summer sound bath series">
-    </a>
-    <a class="bubble-photo" href="booking.html">
-      <img src="photo5.jpg" alt="Sound healing room and calming setup">
-    </a>
-    <a class="bubble-photo bubble-tall" href="booking.html">
-      <img src="Image-1.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="Relaxing sound healing moment">
-    </a>
-    <a class="bubble-photo" href="booking.html">
-      <img src="Image-3.jpg" onerror="this.onerror=null;this.src='photo1.jpg';" alt="Grounding sound bath moment">
     </a>
     <a class="bubble-photo bubble-wide" href="event-art-sound-bath.html">
       <img src="Image-5.jpg" onerror="this.onerror=null;this.src='photo4.jpg';" alt="Sound bath event moment">
@@ -1878,39 +1908,17 @@ footer {
       <video src="nishi-social-video-11.mp4" poster="nishi-video-poster-11.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
       <div class="video-play-badge">▶</div>
     </a>
+    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Outdoor sound bath event video">
+      <video src="nishi-social-video-12.mp4" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
+    </a>
+    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Outdoor sound healing event video">
+      <video src="nishi-social-video-13.mp4" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <div class="video-play-badge">▶</div>
+    </a>
   </div>
-  <p class="social-video-note">Tap any video to open Instagram or TikTok. New videos 07, 08, 09, 10, and 11 are now connected.</p>
+  <p class="social-video-note">Tap any video to open Instagram or TikTok — videos play right here on hover or touch.</p>
 </section>
-<section class="sec calendar-sec" id="availability">
-  <div class="sec-inner calendar-layout">
-    <div>
-      <p class="eyebrow">Availability Calendar</p>
-      <h2 class="h2">Choose a date, then <em>send your inquiry</em></h2>
-      <div class="hairline"></div>
-      <p class="lead">This calendar keeps booking simple. Click an open or limited date and the booking page will open with that date selected. Nishi still confirms availability personally by email or phone.</p>
-      <div class="hero-actions" style="margin-top:30px;">
-        <a class="btn-fill" href="booking.html">Open Booking Page</a>
-        <a class="btn-line" href="booking.html#booking-calendar"><span>→</span> Full Calendar</a>
-      </div>
-    </div>
-    <div class="calendar-card">
-      <div class="cal-head">
-        <button type="button" id="prevMonth">‹</button>
-        <div class="cal-title" id="monthTitle">Availability</div>
-        <button type="button" id="nextMonth">›</button>
-      </div>
-      <div class="cal-grid" id="calendarGrid"></div>
-      <div class="legend">
-        <span><i class="dot"></i> Open</span>
-        <span><i class="dot limited"></i> Limited</span>
-        <span><i class="dot booked"></i> Booked</span>
-        <span><i class="dot filled"></i> Filled</span>
-      </div>
-      <p class="calendar-admin-note">To update availability later, edit the <strong>calendarStatus</strong> list in this index file and use: open, limited, booked, or filled.</p>
-    </div>
-  </div>
-</section>
-
 <section class="sec series-sec" id="summer-series">
   <div class="sec-inner series-layout">
     <div class="series-visual">
@@ -2000,7 +2008,7 @@ footer {
   <div class="sec-inner">
     <p class="eyebrow">Sound Healing Charlotte</p>
     <h2 class="h2">Why sound healing is becoming <em>popular</em></h2>
-    <p class="lead">Sound healing has become a growing wellness practice for people looking for peace, stress release, nervous system support, and a deeper way to rest. At Sound Healing with Nishi, each session is designed with hand-picked Himalayan bowls, crystal bowls, tuning fork, gong and 18+ instruments to create an immersive vibrational sound experience in Charlotte, NC.</p>
+    <p class="lead">Sound healing has become a growing wellness practice for people looking for peace, stress release, nervous system support, and a deeper way to rest. At Sound Healing with Nishi, each session is designed with hand-picked Himalayan bowls, crystal bowls, handpan, tuning fork, gong and 18+ instruments to create an immersive vibrational sound experience in Charlotte, NC. Nishi is Charlotte's first sound healer playing the handpan by hand, adding a warm, melodic layer you won't find anywhere else.</p>
     <p class="lead" style="font-size:13px;">Further reading: <a href="https://stratfordschoolofmeditation.com/blog-1/f/celebrities-who-swear-by-sound-healing" target="_blank" rel="noopener" style="color:var(--gold);font-weight:700;">Stratford School of Meditation on sound healing in wellness culture</a>.</p>
   </div>
 </section>
@@ -2031,7 +2039,7 @@ footer {
         <div class="fg"><label>Email *</label><input type="email" name="email" required placeholder="you@email.com"></div>
       </div>
       <div class="form-row">
-        <div class="fg"><label>Phone</label><input name="phone" placeholder="201-982-5777"></div>
+        <div class="fg"><label>Phone</label><input name="phone" placeholder="Optional"></div>
         <div class="fg"><label>Interest</label><select name="interest"><option>Private Sound Bath</option><option>Couples Sound Bath</option><option>Group Sound Bath</option><option>Corporate / Retreat</option><option>July 10 Event</option></select></div>
       </div>
       <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell Nishi what you are looking for."></textarea></div>
@@ -2064,7 +2072,6 @@ footer {
     <h4>Contact</h4>
     <ul>
       <li><a href="mailto:soundhealingwithnishi@gmail.com">soundhealingwithnishi@gmail.com</a></li>
-      <li><a href="tel:2019825777">201-982-5777</a></li>
       <li><a href="https://share.google/nts81XwQVwJB2WoPT" target="_blank" rel="noopener">Google Profile</a></li>
       <li><a href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener">@soundhealingwithnishi</a></li>
     </ul>
@@ -2075,21 +2082,12 @@ footer {
   <p>Charlotte, North Carolina</p>
 </div>
 
-<div class="chat">
-  <div class="chat-options" id="chatOptions">
-    <a href="sms:2019825777">Text Nishi</a>
-    <a href="https://wa.me/12019825777" target="_blank" rel="noopener">WhatsApp Nishi</a>
-    <a href="mailto:soundhealingwithnishi@gmail.com">Email Nishi</a>
-  </div>
-  <button class="chat-main" onclick="toggleChat()" aria-label="Chat with Nishi">💬</button>
-</div>
+<!-- Floating Book button (mobile-friendly quick booking) -->
+<a class="book-fab" href="booking.html" aria-label="Book a sound healing session">✦ Book</a>
 
 <script>
 function toggleMenu(open) {
   document.getElementById('mobileMenu').classList.toggle('open', open);
-}
-function toggleChat() {
-  document.getElementById('chatOptions').classList.toggle('open');
 }
 
 /* Calendar */
@@ -2205,6 +2203,7 @@ if (quickForm) {
 <script>
 /* FIXED: automatic hero collage slider and video hover */
 window.HERO_COLLAGE_PHOTOS = [
+  'event-red-01.jpg','event-red-02.jpg','event-red-03.jpg',
   'photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg',
   'photo7.jpg','photo8.jpg','photo10.jpg',
   'Image-1.jpg','Image-2.jpg','Image-3.jpg','Image-4.jpg',
@@ -2222,7 +2221,7 @@ function initHeroCollageFixed(){
 
   cells.forEach((cell, i) => {
     const img = cell.querySelector('.collage-img.active') || cell.querySelector('.collage-img');
-    const startIndex = (i * Math.ceil(photos.length / cells.length)) % photos.length;
+    const startIndex = i % photos.length; /* open on the newest event photos */
     if (img) { img.src = photos[startIndex]; img.classList.add('active'); }
     cell.dataset.photoIndex = String(startIndex);
   });
