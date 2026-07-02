@@ -611,21 +611,334 @@ body::before {
   }
 }
 
+
+/* Consistent deploy-safe top navigation across every page */
+.global-top-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: #12291d;
+  box-shadow: 0 1px 0 rgba(198,160,82,.20);
+}
+.global-ribbon {
+  height: 35px;
+  overflow: hidden;
+  background: #c8a052;
+  color: #14261b;
+  border-bottom: 1px solid rgba(18,41,29,.16);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.global-ribbon-track {
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  gap: 44px;
+  min-width: max-content;
+  padding-left: 18px;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: .04em;
+  animation: globalRibbonMove 46s linear infinite;
+}
+.global-ribbon:hover .global-ribbon-track {
+  animation-play-state: paused;
+}
+.global-ribbon-track strong {
+  font-weight: 900;
+}
+@keyframes globalRibbonMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.global-header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 28px;
+  background: #12291d;
+  color: #fbf7ef;
+}
+.global-logo {
+  flex: 0 0 auto;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #d8b56c !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+.global-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.global-nav::-webkit-scrollbar {
+  display: none;
+}
+.global-nav-link,
+.global-book {
+  flex: 0 0 auto;
+  color: rgba(251,247,239,.78) !important;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .20em;
+  font-weight: 800;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.global-nav-link:hover,
+.global-nav-link.active {
+  color: #d8b56c !important;
+}
+.global-book {
+  color: #d8b56c !important;
+  border: 1px solid rgba(216,181,108,.64);
+  border-radius: 999px;
+  padding: 15px 24px;
+  margin-left: 4px;
+}
+.global-book:hover {
+  background: rgba(216,181,108,.12);
+}
+@media(max-width: 1000px) {
+  .global-header {
+    height: auto;
+    min-height: 76px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 18px 12px;
+  }
+  .global-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 0 0 7px;
+  }
+  .global-ribbon,
+  .global-ribbon-track {
+    height: 32px;
+  }
+  .global-ribbon-track {
+    font-size: 12px;
+    gap: 30px;
+  }
+}
+@media(max-width: 560px) {
+  .global-logo {
+    font-size: 18px;
+  }
+  .global-nav-link,
+  .global-book {
+    font-size: 9px;
+    letter-spacing: .16em;
+  }
+  .global-book {
+    padding: 12px 18px;
+  }
+}
+/* Prevent old page nav styles from affecting the new shared header */
+.global-top-wrap ul,
+.global-top-wrap li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+/* Consistent old-style elegant navigation across every page */
+.global-top-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: #13281d;
+  box-shadow: 0 1px 0 rgba(198,160,82,.18);
+}
+.global-ribbon {
+  height: 30px;
+  overflow: hidden;
+  background: #c6a15a;
+  color: #16251c;
+  border-bottom: 1px solid rgba(18,41,29,.12);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.global-ribbon-track {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 42px;
+  min-width: max-content;
+  padding-left: 16px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .025em;
+  animation: globalRibbonMove 52s linear infinite;
+}
+.global-ribbon:hover .global-ribbon-track {
+  animation-play-state: paused;
+}
+.global-ribbon-track strong {
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+@keyframes globalRibbonMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.global-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 24px;
+  background: #13281d;
+  color: #fbf7ef;
+}
+.global-logo {
+  flex: 0 0 auto;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  color: #d4b067 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+.global-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 23px;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.global-nav::-webkit-scrollbar {
+  display: none;
+}
+.global-nav-link,
+.global-book {
+  flex: 0 0 auto;
+  color: rgba(251,247,239,.70) !important;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-size: 9.5px;
+  line-height: 1;
+  letter-spacing: .19em;
+  font-weight: 500;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.global-nav-link:hover,
+.global-nav-link.active {
+  color: #d4b067 !important;
+}
+.global-book {
+  color: #d4b067 !important;
+  border: 1px solid rgba(212,176,103,.52);
+  border-radius: 999px;
+  padding: 12px 22px;
+  margin-left: 4px;
+  letter-spacing: .20em;
+}
+.global-book:hover {
+  background: rgba(212,176,103,.10);
+}
+@media(max-width: 1000px) {
+  .global-header {
+    height: auto;
+    min-height: 70px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 13px 18px 10px;
+  }
+  .global-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 0 0 7px;
+  }
+  .global-ribbon,
+  .global-ribbon-track {
+    height: 28px;
+  }
+  .global-ribbon-track {
+    font-size: 11.5px;
+    gap: 30px;
+  }
+}
+@media(max-width: 560px) {
+  .global-logo {
+    font-size: 17px;
+  }
+  .global-nav-link,
+  .global-book {
+    font-size: 9px;
+    letter-spacing: .15em;
+  }
+  .global-book {
+    padding: 11px 16px;
+  }
+}
+/* Prevent old page nav styles from affecting the new shared header */
+.global-top-wrap ul,
+.global-top-wrap li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 </style>
 </head>
 <body>
-<nav>
-<a class="nav-logo" href="index.html">Sound Healing with Nishi</a>
-<ul class="nav-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="offerings.html">Offerings</a></li>
-<li><a class="active" href="sound-bath-charlotte.html">Sound Bath Charlotte</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="gallery.html">Gallery</a></li>
-<li><a href="index.html#google-reviews">Google Reviews</a></li>
-<li><a class="nav-cta" href="booking.html">Book</a></li>
-</ul>
-</nav>
+
+<div class="global-top-wrap">
+  <div class="global-ribbon" onclick="window.location.href='event-art-sound-bath.html'">
+    <div class="global-ribbon-track">
+      <span><strong>Upcoming Event</strong> Soundbath + Artmaking · Confidence Manifestation Experience</span>
+      <span>Friday, July 10 · 6:00-7:45 PM · Charlotte, NC</span>
+      <span><strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
+      <span><strong>Tap for Details & Tickets →</strong></span>
+      <span><strong>Upcoming Event</strong> Soundbath + Artmaking · Confidence Manifestation Experience</span>
+      <span>Friday, July 10 · 6:00-7:45 PM · Charlotte, NC</span>
+      <span><strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
+      <span><strong>Tap for Details & Tickets →</strong></span>
+    </div>
+  </div>
+
+  <header class="global-header">
+    <a class="global-logo" href="index.html">Sound Healing with Nishi</a>
+    <nav class="global-nav" aria-label="Main navigation">
+      <a class="global-nav-link" href="index.html">Home</a>
+      <a class="global-nav-link" href="index.html#summer-series">Summer Series</a>
+      <a class="global-nav-link" href="event-art-sound-bath.html">Event Jul 10</a>
+      <a class="global-nav-link" href="index.html#about-nishi">About</a>
+      <a class="global-nav-link" href="index.html#sessions">Sessions</a>
+      <a class="global-nav-link" href="index.html#social-videos">Videos</a>
+      <a class="global-nav-link" href="gallery.html">Gallery</a>
+      <a class="global-nav-link" href="offerings.html">Offerings</a>
+      <a class="global-nav-link active" href="sound-bath-charlotte.html">Sound Bath Charlotte</a>
+      <a class="global-nav-link" href="blog.html">Blog</a>
+      <a class="global-nav-link" href="index.html#google-reviews">Google Reviews</a>
+      <a class="global-book" href="booking.html">Book</a>
+    </nav>
+  </header>
+</div>
 
 <section class="experience-hero">
   <div class="experience-hero-copy">
@@ -649,9 +962,9 @@ body::before {
 <section class="section story-section" id="experience-story">
   <div class="inner story-layout">
     <aside class="story-panel">
-      <p class="label">Why this page exists</p>
-      <h3>Not just SEO. A real experience.</h3>
-      <p>This page is for people who want to feel what a session with Nishi is like before they book. It highlights an actual Charlotte wellness experience, the atmosphere, the instruments and the kind of calm people can expect.</p>
+      <p class="label">The Charlotte Experience</p>
+      <h3>Feel the session before you book</h3>
+      <p>See the atmosphere, instruments and peaceful energy of a Charlotte sound bath before booking your own private, group, event or corporate wellness session.</p>
       <div class="feature-links">
         <a class="btn gold" href="booking.html">Book Now</a>
         <a class="btn ghost" href="https://share.google/waUMZUo9HU1gkxktu" target="_blank" rel="noopener">Google Profile</a>
@@ -660,12 +973,10 @@ body::before {
 
     <div class="story-list">
       <div class="story-item">
-        <h3>A Charlotte creator experienced the sound bath</h3>
-        <p>Nishi recently offered a local Charlotte wellness experience where a creator/community member was invited to step into the session, feel the sound, and share the atmosphere with her audience.</p>
-        <p>This is not a scripted performance. It is the same energy Nishi brings to private sessions, couples sessions, groups, retreats, birthdays and corporate wellness events.</p>
-        <div class="quote-card">
-          <p><strong>Note:</strong> Any personal testimonial, name, quote or photo should only be used publicly with permission. Until then, this page keeps the focus on the experience itself.</p>
-        </div>
+        <h3>A real Charlotte sound bath experience</h3>
+        <p>Nishi recently hosted an outdoor Charlotte sound bath with Himalayan bowls, crystal bowls, gong, handpan, tuning fork and gentle instruments in a calm, natural setting.</p>
+        <p>The same calm, grounding energy is available for private sessions, couples sessions, groups, retreats, birthdays and corporate wellness events.</p>
+        <div class="quote-card"><p>Every session is created with care, intention and a soft landing for guests who want to rest, reset and reconnect.</p></div>
       </div>
 
       <div class="story-item">
@@ -824,7 +1135,7 @@ body::before {
  </div>
 </footer>
 
-<a class="email-fab" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A">Email Nishi</a>
+<a class="email-fab" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry">Email Nishi</a>
 
 <script>
 /* Video hover/touch playback */

@@ -3,1927 +3,1021 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sound Healing Photo Gallery Charlotte | Sound Healing with Nishi</title>
-<meta name="description" content="A photo gallery from Sound Healing with Nishi, featuring an outdoor Charlotte sound bath experience with bowls, gong, tuning fork and vibrational instruments.">
-<link rel="canonical" href="https://soundhealingwithnishi.com/gallery.html">
-<meta property="og:title" content="Sound Healing Photo Gallery Charlotte">
-<meta property="og:description" content="A visual gallery from Sound Healing with Nishi in Charlotte, NC.">
-<meta property="og:image" content="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ImageGallery",
-  "name": "Sound Healing with Nishi Photo Gallery",
-  "url": "https://soundhealingwithnishi.com/gallery.html",
-  "about": "Charlotte sound bath photo gallery",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Sound Healing with Nishi",
-    "url": "https://soundhealingwithnishi.com/"
-  }
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Sound Healing Gallery Charlotte NC | Sound Healing with Nishi</title>
+<meta name="description" content="Photo and video gallery for Sound Healing with Nishi in Charlotte, NC. View handpan, gong, Himalayan bowls, crystal bowls, and outdoor sound bath experiences.">
 <style>
-
 :root {
- --forest:#16251c;
- --forest2:#243b2b;
- --sage:#6f7e68;
- --gold:#c6a15a;
- --gold2:#ddc27e;
- --cream:#faf7f1;
- --off:#f1eadf;
- --white:#fffdf9;
- --ink:#1d1a15;
- --muted:#756e64;
- --line:#e6ddcd;
+  --forest:#12291d;
+  --forest2:#0b1f15;
+  --cream:#fbf7ef;
+  --off:#f3eadf;
+  --gold:#c8a052;
+  --gold2:#d8b56c;
+  --text:#16251c;
+  --muted:#746f65;
+  --line:rgba(198,160,82,.28);
 }
-* { box-sizing:border-box; margin:0; padding:0; }
+* { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
- font-family:'DM Sans', sans-serif;
- background:var(--white);
- color:var(--ink);
- overflow-x:hidden;
- -webkit-font-smoothing:antialiased;
-}
-img { max-width:100%; display:block; }
-a { color:inherit; text-decoration:none; }
-button,input,select,textarea { font-family:inherit; }
-
-/* top event ribbon */
-.event-ribbon {
- position:relative;
- z-index:950;
- height:46px;
- background:var(--gold);
- color:var(--forest);
- overflow:hidden;
- display:flex;
- align-items:center;
-}
-.ribbon-track {
- display:flex;
- align-items:center;
- white-space:nowrap;
- animation:ribbonMove 34s linear infinite;
-}
-.ribbon-track:hover { animation-play-state:paused; }
-.ribbon-item {
- display:inline-flex;
- align-items:center;
- gap:14px;
- padding:0 26px;
- font-family:'Cormorant Garamond', serif;
- font-size:16px;
-}
-.ribbon-tag {
- background:var(--forest);
- color:var(--gold2);
- border-radius:100px;
- padding:5px 14px;
- font-size:8px;
- letter-spacing:.24em;
- text-transform:uppercase;
- font-family:'DM Sans', sans-serif;
- font-weight:700;
-}
-.ribbon-link {
- font-family:'DM Sans', sans-serif;
- font-size:9px;
- letter-spacing:.18em;
- text-transform:uppercase;
- border-bottom:1px solid rgba(22,37,28,.55);
- font-weight:700;
-}
-@keyframes ribbonMove { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-
-/* nav */
-#nav {
- position:sticky;
- top:0;
- z-index:900;
- height:72px;
- padding:0 42px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- background:rgba(22,37,28,.96);
- backdrop-filter:blur(16px);
- border-bottom:1px solid rgba(198,161,90,.16);
-}
-.nav-logo {
- font-family:'Cormorant Garamond', serif;
- font-size:23px;
- font-style:italic;
- color:var(--gold2);
- white-space:nowrap;
-}
-.nav-links {
- display:flex;
- align-items:center;
- gap:28px;
- list-style:none;
-}
-.nav-links a {
- font-size:10px;
- letter-spacing:.23em;
- text-transform:uppercase;
- color:rgba(250,247,241,.62);
- transition:color .2s;
-}
-.nav-links a:hover { color:var(--gold2); }
-.nav-book {
- border:1px solid rgba(198,161,90,.45);
- border-radius:100px;
- color:var(--gold2)!important;
- padding:10px 20px;
-}
-.nav-ham {
- display:none;
- border:0;
- background:none;
- flex-direction:column;
- gap:5px;
- cursor:pointer;
-}
-.nav-ham span { display:block; width:24px; height:1px; background:var(--gold2); }
-.mobile-menu {
- position:fixed;
- inset:0;
- z-index:1200;
- background:var(--forest);
- display:none;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- gap:30px;
-}
-.mobile-menu.open { display:flex; }
-.mobile-menu a {
- font-family:'Cormorant Garamond', serif;
- font-size:34px;
- color:var(--cream);
- font-style:italic;
-}
-.mobile-close {
- position:absolute;
- top:24px;
- right:28px;
- color:var(--gold2);
- border:0;
- background:none;
- font-size:30px;
- cursor:pointer;
-}
-
-/* AURA-style hero */
-.hero {
- min-height:calc(100vh - 72px);
- display:grid;
- grid-template-columns:42% 58%;
- background:var(--cream);
- position:relative;
-}
-.hero-left {
- padding:108px 60px 74px 70px;
- display:flex;
- flex-direction:column;
- justify-content:flex-end;
- background:
- radial-gradient(circle at 0% 0%, rgba(198,161,90,.16), transparent 38%),
- linear-gradient(180deg, var(--cream), var(--off));
- position:relative;
- z-index:3;
-}
-.hero-eyebrow {
- display:flex;
- align-items:center;
- gap:14px;
- font-size:10px;
- letter-spacing:.28em;
- text-transform:uppercase;
- color:var(--gold);
- margin-bottom:26px;
- font-weight:600;
-}
-.hero-eyebrow::before { content:''; width:36px; height:1px; background:var(--gold); }
-.hero-quote {
- font-family:'Cormorant Garamond', serif;
- font-style:italic;
- font-size:clamp(17px,2vw,21px);
- font-weight:300;
- color:var(--gold);
- margin:-10px 0 18px;
- letter-spacing:.02em;
-}
-.hero h1 {
- font-family:'Cormorant Garamond', serif;
- font-size:clamp(52px,6vw,84px);
- font-weight:300;
- line-height:1.02;
- color:var(--forest);
- margin-bottom:26px;
-}
-.hero h1 em { color:var(--gold); font-style:italic; }
-.hero-sub {
- max-width:440px;
- font-size:15px;
- line-height:1.85;
- color:var(--muted);
- margin-bottom:38px;
-}
-.hero-actions {
- display:flex;
- flex-wrap:wrap;
- align-items:center;
- gap:15px;
-}
-.btn-fill {
- background:var(--forest);
- color:var(--gold2);
- border:1px solid var(--forest);
- border-radius:100px;
- padding:16px 34px;
- font-size:10px;
- letter-spacing:.18em;
- text-transform:uppercase;
- font-weight:700;
- transition:transform .16s, background .2s, color .2s;
- display:inline-flex;
- align-items:center;
- justify-content:center;
-}
-.btn-fill:hover { background:var(--gold); color:var(--forest); transform:translateY(-2px); }
-.btn-line {
- color:var(--forest);
- display:inline-flex;
- align-items:center;
- gap:10px;
- font-size:10px;
- letter-spacing:.16em;
- text-transform:uppercase;
- font-weight:700;
-}
-.btn-line span {
- width:36px;
- height:36px;
- border:1px solid currentColor;
- border-radius:50%;
- display:flex;
- align-items:center;
- justify-content:center;
-}
-.hero-stats {
- display:flex;
- gap:0;
- margin-top:58px;
- padding-top:34px;
- border-top:1px solid rgba(198,161,90,.26);
-}
-.hero-stat { padding-right:30px; margin-right:30px; border-right:1px solid rgba(198,161,90,.18); }
-.hero-stat:last-child { border-right:none; margin-right:0; padding-right:0; }
-.hero-stat-n {
- font-family:'Cormorant Garamond', serif;
- font-size:36px;
- color:var(--forest);
- line-height:1;
-}
-.hero-stat-l {
- margin-top:7px;
- color:var(--muted);
- font-size:9px;
- letter-spacing:.17em;
- text-transform:uppercase;
-}
-
-.hero-right {
- position:relative;
- overflow:hidden;
- background:var(--forest);
-}
-.hero-img-grid {
- position:absolute;
- inset:0;
- display:grid;
- grid-template-columns:1.05fr .95fr;
- grid-template-rows:1fr 1fr;
- gap:5px;
- padding:5px;
-}
-.img-cell {
- overflow:hidden;
- background:var(--forest2);
- position:relative;
-}
-.img-cell.big { grid-row:1 / 3; }
-.img-cell img {
- width:100%;
- height:100%;
- object-fit:cover;
- object-position:center center;
- transition:transform .7s ease, filter .7s ease;
- filter:saturate(.92) contrast(.96);
-}
-.img-cell.big img { object-position:center center; }
-.img-cell:hover img { transform:scale(1.045); filter:saturate(1.05); }
-.hero-veil {
- position:absolute;
- inset:0;
- background:linear-gradient(to left, rgba(22,37,28,.16), rgba(22,37,28,.06));
- pointer-events:none;
-}
-.hero-chip {
- position:absolute;
- left:-26px;
- bottom:48px;
- z-index:5;
- background:var(--white);
- border:1px solid rgba(198,161,90,.18);
- box-shadow:0 18px 70px rgba(22,37,28,.16);
- border-radius:20px;
- padding:23px 28px;
- min-width:245px;
-}
-.hero-chip-label {
- font-size:9px;
- letter-spacing:.22em;
- text-transform:uppercase;
- color:var(--gold);
- margin-bottom:8px;
- font-weight:700;
-}
-.hero-chip-text {
- font-family:'Cormorant Garamond', serif;
- color:var(--forest);
- font-size:22px;
- line-height:1.25;
-}
-
-/* marquee */
-.marquee {
- background:var(--forest);
- overflow:hidden;
- padding:16px 0;
-}
-.marquee-inner {
- display:flex;
- white-space:nowrap;
- animation:marquee 30s linear infinite;
-}
-@keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-.marquee-item {
- flex-shrink:0;
- color:rgba(221,194,126,.62);
- font-size:10px;
- letter-spacing:.24em;
- text-transform:uppercase;
- padding:0 30px;
- border-right:1px solid rgba(221,194,126,.1);
-}
-.marquee-item.hl { color:var(--gold2); }
-
-/* section base */
-.sec { padding:104px 60px; }
-.sec-inner { max-width:1120px; margin:0 auto; }
-.eyebrow {
- font-size:10px;
- letter-spacing:.28em;
- text-transform:uppercase;
- color:var(--gold);
- margin-bottom:18px;
- font-weight:700;
-}
-.h2 {
- font-family:'Cormorant Garamond', serif;
- font-size:clamp(38px,5vw,60px);
- font-weight:300;
- line-height:1.08;
- color:var(--forest);
-}
-.h2 em { color:var(--gold); font-style:italic; }
-.lead {
- max-width:650px;
- color:var(--muted);
- font-size:15px;
- line-height:1.85;
- margin-top:18px;
-}
-.hairline { width:44px; height:1px; background:var(--gold); margin:30px 0 40px; }
-
-/* full photo gallery first screen feel */
-.gallery-sec {
- background:var(--off);
- padding:100px 0;
-}
-.gallery-head {
- padding:0 60px 50px;
- display:flex;
- justify-content:space-between;
- align-items:flex-end;
- gap:20px;
- flex-wrap:wrap;
-}
-.gallery-grid {
- columns:4;
- column-gap:6px;
- padding:0 6px;
-}
-.gallery-item {
- break-inside:avoid;
- margin-bottom:6px;
- overflow:hidden;
- background:var(--forest);
- position:relative;
- border-radius:4px;
-}
-.gallery-item img {
- width:100%;
- height:auto;
- display:block;
- transition:transform .55s ease;
-}
-.gallery-item:hover img { transform:scale(1.035); }
-.gallery-cap {
- position:absolute;
- inset:0;
- background:linear-gradient(to top, rgba(22,37,28,.72), transparent 56%);
- opacity:0;
- display:flex;
- align-items:flex-end;
- padding:20px;
- transition:opacity .25s;
-}
-.gallery-item:hover .gallery-cap { opacity:1; }
-.gallery-cap span {
- color:var(--cream);
- font-size:10px;
- letter-spacing:.18em;
- text-transform:uppercase;
-}
-
-/* services */
-.services-sec {
- background:var(--forest);
- color:var(--cream);
-}
-.services-sec .h2 { color:var(--cream); }
-.services-sec .h2 em { color:var(--gold2); }
-.svc-grid {
- margin-top:54px;
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:1px;
- background:rgba(221,194,126,.11);
-}
-.svc {
- background:rgba(255,255,255,.035);
- padding:42px 34px;
- min-height:285px;
- border:1px solid rgba(255,255,255,.035);
- transition:background .25s, transform .2s;
- position:relative;
- overflow:hidden;
-}
-.svc:hover { background:rgba(198,161,90,.12); transform:translateY(-2px); }
-.svc-n {
- font-family:'Cormorant Garamond', serif;
- font-size:48px;
- color:rgba(255,255,255,.08);
- margin-bottom:20px;
-}
-.svc-title {
- font-family:'Cormorant Garamond', serif;
- font-size:27px;
- margin-bottom:12px;
- color:var(--cream);
-}
-.svc-body {
- color:rgba(250,247,241,.58);
- font-size:13.5px;
- line-height:1.75;
-}
-.svc-tag {
- display:inline-block;
- margin-top:24px;
- color:var(--gold2);
- font-size:9px;
- letter-spacing:.17em;
- text-transform:uppercase;
- border-bottom:1px solid rgba(221,194,126,.28);
- padding-bottom:3px;
-}
-
-/* availability */
-.calendar-sec { background:var(--cream); }
-.calendar-layout {
- display:grid;
- grid-template-columns:.88fr 1.12fr;
- gap:64px;
- align-items:start;
-}
-.calendar-card {
- background:var(--white);
- border:1px solid var(--line);
- border-radius:26px;
- padding:26px;
- box-shadow:0 22px 70px rgba(22,37,28,.08);
-}
-.cal-head {
- display:flex;
- align-items:center;
- justify-content:space-between;
- margin-bottom:18px;
-}
-.cal-title {
- font-family:'Cormorant Garamond', serif;
- font-size:32px;
- color:var(--forest);
-}
-.cal-nav { display:flex; gap:8px; }
-.cal-nav button {
- width:36px;
- height:36px;
- border-radius:50%;
- border:1px solid var(--line);
- background:var(--cream);
- color:var(--forest);
- cursor:pointer;
-}
-.cal-grid {
- display:grid;
- grid-template-columns:repeat(7,1fr);
- gap:7px;
-}
-.dow {
- text-align:center;
- color:var(--gold);
- font-size:8px;
- letter-spacing:.18em;
- text-transform:uppercase;
- font-weight:700;
- padding:7px 0;
-}
-.day {
- min-height:62px;
- border:1px solid rgba(22,37,28,.08);
- background:var(--off);
- border-radius:14px;
- padding:8px;
- text-align:left;
- cursor:pointer;
-}
-.day.empty { visibility:hidden; pointer-events:none; }
-.day .n { display:block; color:var(--forest); font-size:13px; }
-.day .s { display:block; margin-top:7px; color:var(--muted); font-size:8px; letter-spacing:.12em; text-transform:uppercase; }
-.day.open { background:rgba(198,161,90,.15); border-color:rgba(198,161,90,.45); }
-.day.limited { background:rgba(111,126,104,.13); border-color:rgba(111,126,104,.35); }
-.day.booked { opacity:.55; cursor:not-allowed; }
-.legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; color:var(--muted); font-size:12px; }
-.legend span { display:inline-flex; align-items:center; gap:7px; }
-.dot { width:10px; height:10px; border-radius:50%; background:var(--gold); }
-.dot.limited { background:var(--sage); }
-.dot.booked { background:#b9afa4; }
-
-/* summer series */
-.series-sec {
- background:var(--white);
-}
-.series-layout {
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:78px;
- align-items:center;
-}
-.series-visual {
- position:relative;
- min-height:640px;
-}
-.series-main {
- position:absolute;
- top:0;
- left:0;
- width:72%;
- height:88%;
- object-fit:cover;
- border-radius:8px;
-}
-.series-accent {
- position:absolute;
- right:0;
- bottom:0;
- width:48%;
- height:48%;
- object-fit:cover;
- border:6px solid var(--white);
- border-radius:8px;
-}
-.badge {
- position:absolute;
- right:0;
- top:40%;
- transform:translate(20%, -50%);
- width:118px;
- height:118px;
- border-radius:50%;
- background:var(--forest);
- color:var(--gold2);
- display:flex;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- text-align:center;
- z-index:5;
- box-shadow:0 12px 50px rgba(22,37,28,.18);
-}
-.badge strong {
- font-family:'Cormorant Garamond', serif;
- font-size:31px;
- line-height:1;
-}
-.badge span {
- font-size:8px;
- letter-spacing:.14em;
- text-transform:uppercase;
- margin-top:6px;
- max-width:76px;
-}
-.series-dates {
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin:28px 0;
-}
-.pill {
- border:1px solid rgba(198,161,90,.38);
- background:rgba(198,161,90,.08);
- border-radius:100px;
- padding:8px 15px;
- font-size:11px;
- color:var(--forest);
-}
-
-/* event */
-.event-sec {
- background:var(--forest);
- color:var(--cream);
- padding:0;
-}
-.event-layout {
- display:grid;
- grid-template-columns:1fr 1fr;
- min-height:620px;
-}
-.event-left {
- padding:88px 64px;
- display:flex;
- flex-direction:column;
- justify-content:center;
-}
-.event-left .h2 { color:var(--cream); }
-.event-left .h2 em { color:var(--gold2); }
-.event-left .lead { color:rgba(250,247,241,.6); }
-.event-meta {
- display:grid;
- gap:16px;
- margin:36px 0;
-}
-.meta-row {
- display:flex;
- gap:14px;
- align-items:flex-start;
- color:rgba(250,247,241,.78);
-}
-.meta-icon {
- width:36px;
- height:36px;
- border:1px solid rgba(198,161,90,.25);
- border-radius:50%;
- display:flex;
- align-items:center;
- justify-content:center;
- color:var(--gold2);
- flex-shrink:0;
-}
-.event-right {
- min-height:620px;
- position:relative;
- overflow:hidden;
-}
-.event-right img {
- width:100%;
- height:100%;
- object-fit:cover;
- object-position:center;
- opacity:.74;
-}
-.event-count {
- position:absolute;
- bottom:34px;
- right:34px;
- background:rgba(22,37,28,.92);
- border:1px solid rgba(198,161,90,.28);
- color:var(--gold2);
- padding:22px 28px;
- border-radius:20px;
- text-align:center;
- backdrop-filter:blur(12px);
-}
-.event-count strong {
- display:block;
- font-family:'Cormorant Garamond', serif;
- font-size:42px;
- line-height:1;
-}
-
-/* trusted/reviews */
-.trusted-sec {
- background:var(--cream);
- overflow:hidden;
- padding:76px 0;
-}
-.trusted-head {
- text-align:center;
- padding:0 24px 36px;
-}
-.trusted-marquee {
- overflow:hidden;
- position:relative;
-}
-.trusted-track {
- display:flex;
- animation:trustedMove 36s linear infinite;
- white-space:nowrap;
-}
-.trusted-item {
- display:inline-flex;
- flex-direction:column;
- align-items:center;
- min-width:230px;
- padding:0 46px;
-}
-.trusted-name {
- font-family:'Cormorant Garamond', serif;
- font-size:27px;
- color:var(--forest);
-}
-.trusted-tag {
- font-size:9px;
- letter-spacing:.18em;
- color:var(--muted);
- text-transform:uppercase;
- margin-top:5px;
-}
-@keyframes trustedMove { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-.review-sec { background:var(--white); }
-.review-grid {
- margin-top:54px;
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:20px;
-}
-.review-card {
- border:1px solid var(--line);
- background:var(--white);
- border-radius:6px;
- padding:34px;
- box-shadow:0 12px 50px rgba(22,37,28,.05);
-}
-.stars { color:var(--gold); letter-spacing:.16em; font-size:12px; margin-bottom:16px; }
-.review-text {
- color:var(--muted);
- line-height:1.8;
- font-size:14px;
- font-style:italic;
-}
-.review-name {
- margin-top:20px;
- font-weight:700;
- color:var(--forest);
-}
-.google-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:34px; }
-
-/* inquiry / newsletter */
-.inquiry-sec {
- background:var(--forest);
- display:grid;
- grid-template-columns:1fr 1.1fr;
-}
-.inq-left {
- padding:110px 72px;
- display:flex;
- flex-direction:column;
- justify-content:center;
-}
-.inq-left .h2 { color:var(--cream); }
-.inq-left .h2 em { color:var(--gold2); }
-.inq-left .lead { color:rgba(250,247,241,.58); }
-.inq-list { display:grid; gap:12px; margin:36px 0; color:rgba(250,247,241,.58); font-size:14px; }
-.inq-right {
- background:var(--off);
- padding:92px 70px;
- display:flex;
- align-items:center;
- justify-content:center;
-}
-.form-card {
- width:100%;
- max-width:540px;
-}
-.form-title {
- font-family:'Cormorant Garamond', serif;
- color:var(--forest);
- font-size:33px;
- margin-bottom:8px;
-}
-.form-sub { color:var(--muted); line-height:1.7; margin-bottom:26px; font-size:14px; }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-.fg { margin-bottom:14px; }
-.fg label {
- display:block;
- color:var(--muted);
- font-size:9px;
- letter-spacing:.16em;
- text-transform:uppercase;
- margin-bottom:7px;
- font-weight:700;
-}
-.fg input,.fg select,.fg textarea {
- width:100%;
- border:1px solid var(--line);
- background:var(--white);
- color:var(--ink);
- padding:13px 15px;
- border-radius:12px;
- outline:none;
-}
-.fg textarea { min-height:104px; resize:vertical; }
-.fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--gold); }
-.submit {
- width:100%;
- border:0;
- background:var(--forest);
- color:var(--gold2);
- border-radius:100px;
- padding:16px;
- font-size:10px;
- letter-spacing:.2em;
- text-transform:uppercase;
- font-weight:700;
- cursor:pointer;
- margin-top:6px;
-}
-.form-status {
- display:none;
- margin-top:14px;
- padding:14px;
- border-radius:12px;
- background:rgba(111,126,104,.15);
- color:var(--forest);
- font-size:14px;
-}
-.newsletter-box {
- margin-top:24px;
- border:1px solid rgba(198,161,90,.28);
- background:rgba(198,161,90,.08);
- padding:24px;
- border-radius:18px;
-}
-.newsletter-box p { color:rgba(250,247,241,.64); line-height:1.7; margin-bottom:16px; }
-
-/* footer / chat */
-footer {
- background:var(--ink);
- color:rgba(255,255,255,.5);
- padding:64px 60px 36px;
- display:grid;
- grid-template-columns:2fr 1fr 1fr;
- gap:54px;
-}
-.footer-brand {
- font-family:'Cormorant Garamond', serif;
- font-size:30px;
- color:var(--cream);
- margin-bottom:14px;
- font-style:italic;
-}
-.footer-col h4 {
- font-size:10px;
- letter-spacing:.2em;
- text-transform:uppercase;
- color:rgba(255,255,255,.28);
- margin-bottom:18px;
-}
-.footer-col ul { list-style:none; }
-.footer-col li { margin-bottom:9px; }
-.footer-col a:hover { color:var(--gold2); }
-.footer-bottom {
- background:var(--ink);
- border-top:1px solid rgba(255,255,255,.06);
- padding:18px 60px 28px;
- display:flex;
- justify-content:space-between;
- flex-wrap:wrap;
- gap:10px;
- color:rgba(255,255,255,.28);
- font-size:11px;
-}
-/* Floating Book button — quick booking, especially on phones */
-.book-fab {
- position:fixed;
- right:20px;
- bottom:20px;
- z-index:1000;
- background:var(--gold);
- color:var(--forest);
- text-decoration:none;
- font-family:'Jost',sans-serif;
- font-size:11px;
- font-weight:600;
- letter-spacing:2.5px;
- text-transform:uppercase;
- padding:16px 26px;
- border-radius:100px;
- box-shadow:0 18px 50px rgba(22,37,28,.3);
- animation:fab-pulse 2.8s ease-in-out infinite;
- transition:transform .2s, background .2s;
-}
-.book-fab:hover { transform:translateY(-3px); background:var(--gold2, #ddc27e); }
-@keyframes fab-pulse {
- 0%,100% { box-shadow:0 18px 50px rgba(22,37,28,.3), 0 0 0 0 rgba(193,160,98,.45); }
- 50% { box-shadow:0 18px 50px rgba(22,37,28,.3), 0 0 0 12px rgba(193,160,98,0); }
-}
-
-@media(max-width:1100px){
- .svc-grid { grid-template-columns:repeat(2,1fr); }
- .gallery-grid { columns:3; }
- .review-grid { grid-template-columns:1fr 1fr; }
-}
-@media(max-width:900px){
- #nav { padding:0 22px; height:66px; }
- .nav-links { display:none; }
- .nav-ham { display:flex; }
- .hero { grid-template-columns:1fr; min-height:auto; }
- .hero-left { padding:96px 24px 48px; }
- .hero-right { min-height:520px; }
- .hero-img-grid {
- position:relative;
- height:520px;
- }
- .hero-chip {
- left:18px;
- bottom:18px;
- min-width:0;
- max-width:260px;
- }
- .hero-stats { gap:0; overflow-x:auto; }
- .sec { padding:78px 24px; }
- .gallery-sec { padding:78px 0; }
- .gallery-head { padding:0 24px 40px; }
- .gallery-grid { columns:2; }
- .calendar-layout,.series-layout,.event-layout,.inquiry-sec { grid-template-columns:1fr; }
- .series-visual { min-height:420px; }
- .event-left { padding:72px 24px; }
- .event-right { min-height:420px; }
- .inq-left,.inq-right { padding:72px 24px; }
- footer { grid-template-columns:1fr; padding:54px 24px 34px; }
- .footer-bottom { padding:16px 24px 24px; }
- .form-row { grid-template-columns:1fr; }
-}
-@media(max-width:560px){
- .ribbon-item { font-size:14px; padding:0 18px; }
- .hero h1 { font-size:48px; }
- .hero-img-grid {
- grid-template-columns:1fr 1fr;
- grid-template-rows:1fr 1fr;
- height:480px;
- }
- .hero-actions { align-items:stretch; }
- .btn-fill,.btn-line { width:100%; justify-content:center; }
- .hero-stat { padding-right:18px; margin-right:18px; }
- .hero-stat-n { font-size:30px; }
- .svc-grid,.review-grid { grid-template-columns:1fr; }
- .gallery-grid { columns:1; }
- .cal-grid { gap:4px; }
- .day { min-height:52px; padding:6px; }
- .series-main { width:78%; }
- .series-accent { width:58%; }
-}
-
-/* Social video grid */
-.social-sec {
- background: var(--white);
- padding: 100px 60px;
-}
-.social-head {
- max-width: 1120px;
- margin: 0 auto 46px;
- display: flex;
- justify-content: space-between;
- align-items: flex-end;
- gap: 24px;
- flex-wrap: wrap;
-}
-.social-head .lead {
- max-width: 560px;
-}
-.social-actions {
- display: flex;
- gap: 12px;
- flex-wrap: wrap;
-}
-.social-grid {
- max-width: 1120px;
- margin: 0 auto;
- display: grid;
- grid-template-columns: repeat(4, 1fr);
- gap: 14px;
-}
-.social-card {
- position: relative;
- overflow: hidden;
- border-radius: 18px;
- background: var(--forest);
- min-height: 360px;
- box-shadow: 0 18px 54px rgba(22,37,28,.10);
- border: 1px solid rgba(198,161,90,.16);
-}
-.social-card.video-card {
- aspect-ratio: 9 / 16;
- min-height: 0;
-}
-.social-card video,
-.social-card img {
- width: 100%;
- height: 100%;
- object-fit: cover;
- object-position: center;
- display: block;
- opacity: .86;
- transition: transform .55s ease, opacity .3s ease;
-}
-.social-card:hover video,
-.social-card:hover img {
- transform: scale(1.04);
- opacity: .98;
-}
-.social-overlay {
- position: absolute;
- inset: 0;
- background: linear-gradient(to top, rgba(22,37,28,.88) 0%, rgba(22,37,28,.26) 48%, transparent 76%);
- display: flex;
- flex-direction: column;
- justify-content: flex-end;
- padding: 22px;
- pointer-events: none;
-}
-.social-platform {
- color: var(--gold2);
- font-size: 9px;
- letter-spacing: .22em;
- text-transform: uppercase;
- font-weight: 700;
- margin-bottom: 8px;
-}
-.social-title {
- font-family: 'Cormorant Garamond', serif;
- color: var(--cream);
- font-size: 24px;
- line-height: 1.12;
-}
-.social-sub {
- margin-top: 6px;
- color: rgba(250,247,241,.62);
- font-size: 12px;
- line-height: 1.5;
-}
-.social-card.link-card {
- display: flex;
- min-height: 360px;
- padding: 28px;
- flex-direction: column;
- justify-content: space-between;
- color: var(--cream);
- background:
- radial-gradient(circle at 20% 10%, rgba(198,161,90,.25), transparent 35%),
- linear-gradient(135deg, var(--forest), var(--forest2));
-}
-.link-card .social-title {
- font-size: 34px;
-}
-.link-card .social-sub {
- font-size: 14px;
-}
-.social-arrow {
- width: 44px;
- height: 44px;
- border-radius: 50%;
- border: 1px solid rgba(221,194,126,.36);
- display: flex;
- align-items: center;
- justify-content: center;
- color: var(--gold2);
- font-size: 20px;
-}
-@media(max-width: 1100px) {
- .social-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media(max-width: 680px) {
- .social-sec { padding: 78px 20px; }
- .social-grid { grid-template-columns: 1fr; }
- .social-card { min-height: 320px; }
- .social-card.video-card { max-width: 360px; width: 100%; margin: 0 auto; }
-}
-
-/* Updated: all new social videos attached */
-.social-grid.all-videos {
- grid-template-columns: repeat(3, 1fr);
-}
-.social-grid.all-videos .social-card.video-card {
- min-height: 0;
-}
-.social-video-note {
- max-width: 1120px;
- margin: 18px auto 0;
- color: var(--muted);
- font-size: 12px;
- line-height: 1.6;
- text-align: center;
-}
-@media(max-width: 1100px) {
- .social-grid.all-videos { grid-template-columns: repeat(2, 1fr); }
-}
-@media(max-width: 680px) {
- .social-grid.all-videos { grid-template-columns: 1fr; }
- .social-grid.all-videos .social-card.video-card {
- max-width: 360px;
- width: 100%;
- margin: 0 auto;
- }
-}
-
-/* Refined symmetric bubble gallery */
-.bubble-gallery-sec {
- background:
- radial-gradient(circle at 10% 10%, rgba(198,161,90,.10), transparent 30%),
- linear-gradient(180deg, var(--off), var(--cream));
- padding: 96px 0 110px;
-}
-.bubble-gallery-head {
- max-width: 1120px;
- margin: 0 auto 54px;
- padding: 0 60px;
- display: flex;
- justify-content: space-between;
- align-items: flex-end;
- gap: 28px;
- flex-wrap: wrap;
-}
-.bubble-gallery {
- max-width: 1180px;
- margin: 0 auto;
- padding: 0 24px;
- display: grid;
- grid-template-columns: repeat(4, 1fr);
- grid-auto-rows: 210px;
- gap: 18px;
-}
-.bubble-photo {
- position: relative;
- overflow: hidden;
- border-radius: 38px;
- background: var(--forest);
- border: 1px solid rgba(198,161,90,.18);
- box-shadow: 0 22px 64px rgba(22,37,28,.10);
- isolation: isolate;
-}
-.bubble-photo img {
- width: 100%;
- height: 100%;
- object-fit: cover;
- object-position: center;
- transition: transform .7s ease, filter .4s ease;
- filter: saturate(.95) contrast(.96);
-}
-.bubble-photo:hover img {
- transform: scale(1.055);
- filter: saturate(1.05) contrast(1);
-}
-.bubble-photo::after {
- content: '';
- position: absolute;
- inset: 0;
- background: linear-gradient(to top, rgba(22,37,28,.74), rgba(22,37,28,.12) 52%, transparent);
- z-index: 1;
-}
-.bubble-photo span {
- position: absolute;
- left: 22px;
- bottom: 20px;
- z-index: 2;
- color: var(--cream);
- font-size: 10px;
- letter-spacing: .18em;
- text-transform: uppercase;
- font-weight: 700;
-}
-.bubble-large {
- grid-column: span 2;
- grid-row: span 2;
- border-radius: 44px;
-}
-.bubble-wide {
- grid-column: span 2;
-}
-.bubble-tall {
- grid-row: span 2;
-}
-@media(max-width: 1000px) {
- .bubble-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
-}
-@media(max-width: 640px) {
- .bubble-gallery-head { padding: 0 24px; }
- .bubble-gallery { grid-template-columns: 1fr; grid-auto-rows: 280px; padding: 0 20px; }
- .bubble-large,.bubble-wide,.bubble-tall { grid-column: span 1; grid-row: span 1; }
- .bubble-photo { border-radius: 32px; }
-}
-
-/* About Nishi */
-.about-nishi-sec {
- background: var(--white);
-}
-.about-nishi-layout {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 86px;
- align-items: center;
-}
-.about-nishi-visual {
- position: relative;
- min-height: 650px;
-}
-.about-main-img {
- position: absolute;
- top: 0;
- left: 0;
- width: 72%;
- height: 88%;
- object-fit: cover;
- object-position: center;
- border-radius: 14px;
- box-shadow: 0 22px 70px rgba(22,37,28,.12);
-}
-.about-accent-img {
- position: absolute;
- bottom: 0;
- right: 0;
- width: 52%;
- height: 50%;
- object-fit: cover;
- object-position: center;
- border-radius: 14px;
- border: 7px solid var(--white);
- box-shadow: 0 18px 58px rgba(22,37,28,.12);
-}
-.about-badge {
- position: absolute;
- top: 42%;
- right: 0;
- transform: translate(20%, -50%);
- width: 126px;
- height: 126px;
- border-radius: 50%;
- background: var(--forest);
- color: var(--gold2);
- display: flex;
- align-items: center;
- justify-content: center;
- flex-direction: column;
- box-shadow: 0 18px 60px rgba(22,37,28,.20);
- text-align: center;
- padding: 14px;
- z-index: 5;
-}
-.about-badge strong {
- font-family: 'Cormorant Garamond', serif;
- font-size: 24px;
- line-height: 1;
-}
-.about-badge span {
- margin-top: 7px;
- font-size: 8px;
- letter-spacing: .13em;
- text-transform: uppercase;
- color: rgba(250,247,241,.68);
- line-height: 1.4;
-}
-.about-nishi-copy p {
- color: var(--muted);
- font-size: 15px;
- line-height: 1.9;
- margin-bottom: 18px;
-}
-.about-tags {
- display: flex;
- gap: 9px;
- flex-wrap: wrap;
- margin-top: 28px;
-}
-.about-tags span {
- border: 1px solid rgba(198,161,90,.30);
- background: rgba(198,161,90,.08);
- color: var(--forest);
- border-radius: 100px;
- padding: 8px 15px;
- font-size: 10px;
- letter-spacing: .13em;
- text-transform: uppercase;
- font-weight: 700;
-}
-@media(max-width: 900px) {
- .about-nishi-layout { grid-template-columns: 1fr; gap: 48px; }
- .about-nishi-visual { min-height: 460px; }
- .about-main-img { width: 76%; }
- .about-accent-img { width: 56%; }
- .about-badge { transform: translate(5%, -50%); }
-}
-@media(max-width: 560px) {
- .about-nishi-visual { min-height: 380px; }
- .about-badge { width: 108px; height: 108px; right: 4px; }
- .about-badge strong { font-size: 21px; }
-}
-
-/* Refined social video wording */
-.social-card.video-card .social-platform {
- color: var(--gold2);
-}
-
-/* Small text update: About Nishi certification badge */
-.about-badge strong {
- font-size: 20px !important;
-}
-.about-badge span {
- max-width: 92px !important;
-}
-
-/* Hero photo slider: one image at a time, using all previous hero photos */
-.hero-collage {
- position: absolute;
- inset: 0;
- display: grid;
- grid-template-columns: 1.05fr .95fr;
- grid-template-rows: 1fr 1fr;
- gap: 6px;
- padding: 6px;
- background: var(--forest);
-}
-.collage-big { grid-row: 1 / 3; grid-column: 1; }
-.collage-top { grid-row: 1; grid-column: 2; }
-.collage-bottom { grid-row: 2; grid-column: 2; }
-.collage-cell {
- position: relative;
- overflow: hidden;
- border-radius: 12px;
- background: var(--forest2);
-}
-.collage-img {
- position: absolute;
- inset: 0;
- width: 100%;
- height: 100%;
- object-fit: cover;
- object-position: center center;
- opacity: 0;
- transition: opacity 1.3s ease;
- filter: saturate(.98) contrast(.98);
-}
-.collage-img.active { opacity: 1; }
-.collage-cell::after {
- content: '';
- position: absolute;
- inset: 0;
- background: linear-gradient(to top, rgba(22,37,28,.22), transparent 46%);
- pointer-events: none;
- z-index: 2;
-}
-@media(max-width: 900px) {
- .hero-collage { position: relative; height: 520px; }
-}
-@media(max-width: 560px) {
- .hero-collage { height: 460px; }
-}
-
-/* Clean video cards with iPhone/iPad poster thumbnails */
-.clean-video-card {
- background: var(--forest);
- border-radius: 18px;
- overflow: hidden;
-}
-.clean-video-card video {
- width: 100%;
- height: 100%;
- object-fit: cover;
- object-position: center;
- display: block;
- opacity: 1;
- background: var(--forest);
-}
-.video-play-badge {
- position: absolute;
- left: 50%;
- top: 50%;
- transform: translate(-50%,-50%);
- width: 54px;
- height: 54px;
- border-radius: 50%;
- background: rgba(22,37,28,.55);
- border: 1px solid rgba(221,194,126,.5);
- color: var(--gold2);
- display: flex;
- align-items: center;
- justify-content: center;
- padding-left: 3px;
- font-size: 19px;
- z-index: 5;
- backdrop-filter: blur(8px);
-}
-.clean-video-card:hover .video-play-badge {
- background: rgba(198,161,90,.86);
- color: var(--forest);
-}
-@media(max-width: 900px) {
- .clean-video-card video { min-height: 420px; }
-}
-@media(max-width: 560px) {
- .clean-video-card video { min-height: 520px; }
-}
-
-/* Final fix: hide all photo names in the visual journey gallery */
-.bubble-gallery .bubble-photo span,
-.gallery-grid .gallery-cap,
-.gallery-cap {
- display: none !important;
-}
-.bubble-gallery .bubble-photo::after {
- background: linear-gradient(to top, rgba(22,37,28,.18), transparent 58%) !important;
-}
-
-/* Calendar status support: open, limited, booked, filled */
-.day.filled {
- background: rgba(120,76,55,.16);
- border-color: rgba(120,76,55,.34);
- cursor: not-allowed;
-}
-.day.filled .s {
- color: #784c37;
-}
-.dot.filled {
- background: #784c37;
-}
-.calendar-admin-note {
- margin-top: 16px;
- color: var(--muted);
- font-size: 12px;
- line-height: 1.6;
-}
-
-/* Social profile cards with image placeholders */
-.social-card.link-card.instagram-profile-card,
-.social-card.link-card.tiktok-profile-card {
- position: relative;
- overflow: hidden;
- background: var(--forest);
- color: var(--cream);
-}
-
-.social-profile-bg {
- position: absolute;
- inset: 0;
- z-index: 0;
-}
-
-.social-profile-bg img {
- width: 100%;
- height: 100%;
- object-fit: cover;
- object-position: center;
- opacity: .72;
- filter: saturate(.95) contrast(.96);
-}
-
-.social-card.link-card.instagram-profile-card::after,
-.social-card.link-card.tiktok-profile-card::after {
- content: "";
- position: absolute;
- inset: 0;
- z-index: 1;
- background:
- radial-gradient(circle at 20% 12%, rgba(198,161,90,.22), transparent 36%),
- linear-gradient(to top, rgba(22,37,28,.92), rgba(22,37,28,.52), rgba(22,37,28,.18));
-}
-
-.social-card.link-card.instagram-profile-card > div:not(.social-profile-bg),
-.social-card.link-card.tiktok-profile-card > div:not(.social-profile-bg),
-.social-card.link-card.instagram-profile-card .social-arrow,
-.social-card.link-card.tiktok-profile-card .social-arrow {
- position: relative;
- z-index: 2;
-}
-
-.social-card.link-card.instagram-profile-card:hover .social-profile-bg img,
-.social-card.link-card.tiktok-profile-card:hover .social-profile-bg img {
- transform: scale(1.045);
- transition: transform .6s ease;
-}
-
-@media(max-width: 680px) {
- .social-card.link-card.instagram-profile-card,
- .social-card.link-card.tiktok-profile-card {
- min-height: 360px;
- }
-}
-
-/* Final contact cleanup: chat button opens email */
-.chat-main[href],
-.book-fab[href] {
- text-decoration: none;
-}
-.chat-main[href] {
- display: flex;
- align-items: center;
- justify-content: center;
-}
-
-
-/* Contact cleanup: phone removed, chat/contact opens email */
-.chat-main[href],
-.book-fab[href] {
- text-decoration: none;
-}
-.chat-main[href] {
- display: flex;
- align-items: center;
- justify-content: center;
-}
-
-
-/* Image rule: never show photo names or broken-image text */
-img {
-  color: transparent !important;
-  font-size: 0 !important;
-}
-.bubble-photo,
-.media-card,
-.experience-gallery div,
-.gallery-photo,
-.gallery-card,
-.photo-card {
-  color: transparent !important;
-}
-
-
-
-.gallery-page-hero {
-  min-height: 58vh;
-  display: flex;
-  align-items: center;
-  background:
-    radial-gradient(circle at 15% 15%, rgba(198,161,90,.18), transparent 34%),
-    linear-gradient(135deg, #17271d, #0f1e16);
-  color: var(--cream);
-  padding: 118px 8vw 82px;
-}
-.gallery-page-hero .hero-copy {
-  max-width: 900px;
-}
-.gallery-page-hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 8vw, 105px);
-  line-height: .96;
-  font-weight: 300;
-  letter-spacing: -.04em;
-  margin: 0 0 28px;
-}
-.gallery-page-hero h1 em {
-  color: var(--gold2);
-}
-.gallery-page-hero p {
-  color: rgba(250,247,241,.72);
-  max-width: 650px;
-  line-height: 1.8;
-}
-.full-gallery-section {
-  background: var(--cream);
-  padding: 90px 0 120px;
-}
-.full-gallery-grid {
-  max-width: 1220px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 260px;
-  gap: 18px;
-}
-.gallery-card {
-  display: block;
-  border-radius: 34px;
-  overflow: hidden;
-  border: 1px solid rgba(198,161,90,.20);
-  background: var(--forest);
-  box-shadow: 0 22px 70px rgba(22,37,28,.10);
-}
-.gallery-card.large {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-.gallery-card.tall {
-  grid-row: span 2;
-}
-.gallery-card.wide {
-  grid-column: span 2;
-}
-.gallery-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform .65s ease;
-}
-.gallery-card:hover img {
-  transform: scale(1.045);
-}
-.gallery-cta {
-  max-width: 860px;
-  margin: 70px auto 0;
-  padding: 0 24px;
-  text-align: center;
-}
-@media(max-width: 900px) {
-  .full-gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 300px;
-  }
-}
-@media(max-width: 620px) {
-  .gallery-page-hero {
-    padding: 100px 24px 64px;
-  }
-  .full-gallery-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 420px;
-  }
-  .gallery-card.large,
-  .gallery-card.tall,
-  .gallery-card.wide {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
-}
-
-
-/* Image rule: never show photo names or broken-image text */
-img {
-  color: transparent !important;
-  font-size: 0 !important;
-}
-.bubble-photo,
-.media-card,
-.experience-gallery div,
-.gallery-photo,
-.gallery-card,
-.photo-card {
-  color: transparent !important;
-}
-
-
-/* New event video cards */
-.event-video-section {
-  background: var(--cream, #f8f2e8);
-  padding: 92px 0 110px;
-}
-.event-video-head {
-  max-width: 1080px;
-  margin: 0 auto 34px;
-  padding: 0 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 24px;
-}
-.event-video-head .lead {
-  max-width: 620px;
-}
-.event-video-grid {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
-}
-.event-video-card {
-  position: relative;
-  min-height: 430px;
-  border-radius: 30px;
-  overflow: hidden;
-  background: var(--forest, #16251c);
-  border: 1px solid rgba(198,161,90,.22);
-  box-shadow: 0 22px 70px rgba(22,37,28,.10);
-  display: block;
-}
-.event-video-card video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  filter: brightness(.82) saturate(.95);
-}
-.event-video-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(22,37,28,.34), transparent 58%);
-  pointer-events: none;
-}
-.event-video-card .video-play-badge {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 2;
-  width: 54px;
-  height: 54px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: rgba(198,161,90,.92);
-  color: #16251c;
-  font-size: 18px;
-  box-shadow: 0 12px 34px rgba(22,37,28,.22);
-}
-@media(max-width: 1100px) {
-  .event-video-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media(max-width: 720px) {
-  .event-video-head {
-    display: block;
-  }
-  .event-video-head .hero-actions {
-    margin-top: 22px;
-  }
-  .event-video-grid {
-    grid-template-columns: 1fr;
-  }
-  .event-video-card {
-    min-height: 520px;
-  }
-}
-
-
-/* Site-wide subtle handpan background */
-body {
-  position: relative;
+  margin:0;
+  background:var(--cream);
+  color:var(--text);
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  position:relative;
 }
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
   background:
-    linear-gradient(rgba(250,247,241,.90), rgba(250,247,241,.90)),
+    linear-gradient(rgba(251,247,239,.91), rgba(251,247,239,.91)),
     url('nishi-handpan-gong-01.jpg') center / cover no-repeat;
-  opacity: .28;
+  opacity:.25;
+}
+a { color:inherit; text-decoration:none; }
+img, video { max-width:100%; }
+.site-header {
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:76px;
+  background:rgba(18,41,29,.98);
+  border-bottom:1px solid rgba(198,160,82,.18);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 32px;
+}
+.logo {
+  color:var(--gold2);
+  font-family: Georgia, serif;
+  font-size:22px;
+  font-style:italic;
+  white-space:nowrap;
+}
+.nav {
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:rgba(251,247,239,.75);
+}
+.nav a:hover { color:var(--gold2); }
+.book-pill {
+  border:1px solid rgba(198,160,82,.62);
+  border-radius:999px;
+  padding:12px 22px;
+  color:var(--gold2) !important;
+}
+.hero {
+  min-height:610px;
+  background:
+    radial-gradient(circle at 78% 30%, rgba(198,160,82,.16), transparent 38%),
+    linear-gradient(120deg, rgba(18,41,29,.97), rgba(9,28,18,.99));
+  color:var(--cream);
+  display:grid;
+  place-items:center;
+  padding:92px 36px;
+  overflow:hidden;
+}
+.hero-inner {
+  max-width:1180px;
+  width:100%;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:58px;
+  align-items:center;
+}
+.eyebrow {
+  margin:0 0 18px;
+  color:var(--gold2);
+  font-size:11px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  font-weight:800;
+}
+.h1, .h2 {
+  margin:0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight:400;
+  line-height:.98;
+}
+.h1 { font-size:clamp(58px, 8vw, 112px); color:var(--cream); }
+.h2 { font-size:clamp(42px, 5.2vw, 78px); color:var(--forest); }
+em { color:var(--gold); font-style:italic; }
+.lead {
+  max-width:720px;
+  margin:24px 0 0;
+  font-size:17px;
+  line-height:1.85;
+  color:rgba(251,247,239,.76);
+}
+.hero-photo-stack {
+  min-height:460px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  grid-template-rows:1fr 1fr;
+  gap:16px;
+}
+.hero-photo-stack img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:32px;
+  border:1px solid rgba(198,160,82,.30);
+  box-shadow:0 26px 80px rgba(0,0,0,.25);
+}
+.hero-photo-stack img:first-child { grid-row:span 2; }
+.actions {
+  margin-top:34px;
+  display:flex;
+  gap:14px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.btn-fill, .btn-line {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  border-radius:999px;
+  padding:0 30px;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:800;
+}
+.btn-fill {
+  background:var(--forest);
+  color:var(--gold2);
+  border:1px solid var(--forest);
+}
+.hero .btn-fill { background:var(--gold); border-color:var(--gold); color:#07170f; }
+.btn-line {
+  border:1px solid rgba(198,160,82,.45);
+  color:var(--forest);
+}
+.hero .btn-line { color:var(--cream); border-color:rgba(198,160,82,.45); }
+.section {
+  padding:94px 36px;
+}
+.section-inner {
+  max-width:1180px;
+  margin:0 auto;
+}
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:28px;
+  margin-bottom:42px;
+  flex-wrap:wrap;
+}
+.section-head .lead {
+  color:var(--muted);
+  margin-top:18px;
+}
+.photo-reel {
+  overflow:hidden;
+  margin:0 -36px;
+  padding:8px 0 28px;
+}
+.photo-reel-track {
+  display:flex;
+  gap:18px;
+  width:max-content;
+  animation: photoMove 88s linear infinite;
+}
+.photo-reel:hover .photo-reel-track {
+  animation-play-state:paused;
+}
+.photo-reel-card {
+  flex:0 0 clamp(290px, 28vw, 500px);
+  height:clamp(330px, 34vw, 520px);
+  border-radius:34px;
+  overflow:hidden;
+  background:var(--forest);
+  border:1px solid rgba(198,160,82,.25);
+  box-shadow:0 22px 64px rgba(18,41,29,.13);
+}
+.photo-reel-card:nth-child(3n+2) { margin-top:42px; }
+.photo-reel-card:nth-child(4n) { margin-top:78px; }
+.photo-reel-card img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+@keyframes photoMove {
+  from { transform:translateX(0); }
+  to { transform:translateX(-50%); }
+}
+.photo-grid {
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:18px;
+}
+.gallery-photo-card {
+  grid-column:span 4;
+  min-height:360px;
+  border:0;
+  padding:0;
+  cursor:pointer;
+  border-radius:32px;
+  overflow:hidden;
+  background:var(--forest);
+  box-shadow:0 20px 56px rgba(18,41,29,.13);
+  border:1px solid rgba(198,160,82,.24);
+}
+.gallery-photo-card.wide { grid-column:span 8; }
+.gallery-photo-card img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .55s ease, filter .55s ease;
+}
+.gallery-photo-card:hover img {
+  transform:scale(1.035);
+  filter:saturate(1.08);
+}
+.video-section {
+  background:var(--forest);
+  color:var(--cream);
+  padding:100px 36px;
+}
+.video-section .h2 { color:var(--cream); }
+.video-section .lead { color:rgba(251,247,239,.72); }
+.video-grid {
+  max-width:1180px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:18px;
+}
+.video-card {
+  position:relative;
+  border-radius:30px;
+  overflow:hidden;
+  min-height:480px;
+  background:#08180f;
+  border:1px solid rgba(198,160,82,.28);
+  box-shadow:0 24px 70px rgba(0,0,0,.22);
+}
+.video-card video {
+  width:100%;
+  height:100%;
+  min-height:480px;
+  object-fit:cover;
+  display:block;
+  background:#08180f;
+}
+.video-card::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(7,22,14,.34), transparent 58%);
+  pointer-events:none;
+}
+.play-button {
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:64px;
+  height:64px;
+  border-radius:999px;
+  border:1px solid rgba(216,181,108,.65);
+  background:rgba(200,160,82,.92);
+  color:#07170f;
+  z-index:5;
+  cursor:pointer;
+  font-size:22px;
+  display:grid;
+  place-items:center;
+}
+.cta {
+  padding:96px 36px;
+  text-align:center;
+}
+.cta .lead {
+  color:var(--muted);
+  margin-left:auto;
+  margin-right:auto;
+}
+.email-nishi {
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:60;
+  min-height:56px;
+  border-radius:999px;
+  padding:0 28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--gold);
+  color:#07170f;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:900;
+  box-shadow:0 20px 48px rgba(18,41,29,.20);
+}
+.lightbox {
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(7,19,12,.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+}
+.lightbox.open { display:flex; }
+.lightbox img {
+  max-width:min(1100px, 94vw);
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:24px;
+  box-shadow:0 30px 100px rgba(0,0,0,.45);
+}
+.close-lightbox {
+  position:absolute;
+  right:24px;
+  top:22px;
+  width:48px;
+  height:48px;
+  border-radius:999px;
+  border:1px solid rgba(216,181,108,.55);
+  background:rgba(18,41,29,.8);
+  color:var(--cream);
+  font-size:26px;
+  cursor:pointer;
+}
+.site-footer {
+  background:#17130f;
+  color:rgba(251,247,239,.66);
+  padding:44px 36px;
+  font-size:14px;
+}
+.footer-inner {
+  max-width:1180px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+}
+@media(max-width:1100px) {
+  .nav { gap:18px; font-size:10px; }
+  .hero-inner { grid-template-columns:1fr; }
+  .video-grid { grid-template-columns:repeat(3, 1fr); }
+  .gallery-photo-card { grid-column:span 6; }
+  .gallery-photo-card.wide { grid-column:span 12; }
+}
+@media(max-width:820px) {
+  .site-header {
+    height:auto;
+    min-height:76px;
+    padding:16px 18px;
+    align-items:flex-start;
+    gap:14px;
+    flex-direction:column;
+  }
+  .nav {
+    width:100%;
+    overflow-x:auto;
+    padding-bottom:6px;
+  }
+  .hero { min-height:auto; padding:76px 22px; }
+  .hero-photo-stack { min-height:auto; grid-template-columns:1fr; }
+  .hero-photo-stack img { min-height:280px; }
+  .section, .video-section, .cta { padding-left:22px; padding-right:22px; }
+  .photo-reel { margin:0 -22px; }
+  .photo-reel-card {
+    flex-basis:78vw;
+    height:98vw;
+  }
+  .photo-reel-card:nth-child(3n+2),
+  .photo-reel-card:nth-child(4n) { margin-top:0; }
+  .video-grid { grid-template-columns:repeat(2, 1fr); }
+  .video-card, .video-card video { min-height:420px; }
+}
+@media(max-width:560px) {
+  .h1 { font-size:54px; }
+  .h2 { font-size:42px; }
+  .gallery-photo-card,
+  .gallery-photo-card.wide {
+    grid-column:span 12;
+    min-height:330px;
+  }
+  .video-grid { grid-template-columns:1fr; }
+  .video-card {
+    max-width:360px;
+    width:100%;
+    margin:0 auto;
+  }
+  .btn-fill, .btn-line { width:100%; }
+  .email-nishi { right:14px; bottom:14px; padding:0 18px; }
+}
+
+/* Consistent deploy-safe top navigation across every page */
+.global-top-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: #12291d;
+  box-shadow: 0 1px 0 rgba(198,160,82,.20);
+}
+.global-ribbon {
+  height: 35px;
+  overflow: hidden;
+  background: #c8a052;
+  color: #14261b;
+  border-bottom: 1px solid rgba(18,41,29,.16);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.global-ribbon-track {
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  gap: 44px;
+  min-width: max-content;
+  padding-left: 18px;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: .04em;
+  animation: globalRibbonMove 46s linear infinite;
+}
+.global-ribbon:hover .global-ribbon-track {
+  animation-play-state: paused;
+}
+.global-ribbon-track strong {
+  font-weight: 900;
+}
+@keyframes globalRibbonMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.global-header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 28px;
+  background: #12291d;
+  color: #fbf7ef;
+}
+.global-logo {
+  flex: 0 0 auto;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #d8b56c !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+.global-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.global-nav::-webkit-scrollbar {
+  display: none;
+}
+.global-nav-link,
+.global-book {
+  flex: 0 0 auto;
+  color: rgba(251,247,239,.78) !important;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .20em;
+  font-weight: 800;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.global-nav-link:hover,
+.global-nav-link.active {
+  color: #d8b56c !important;
+}
+.global-book {
+  color: #d8b56c !important;
+  border: 1px solid rgba(216,181,108,.64);
+  border-radius: 999px;
+  padding: 15px 24px;
+  margin-left: 4px;
+}
+.global-book:hover {
+  background: rgba(216,181,108,.12);
+}
+@media(max-width: 1000px) {
+  .global-header {
+    height: auto;
+    min-height: 76px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 18px 12px;
+  }
+  .global-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 0 0 7px;
+  }
+  .global-ribbon,
+  .global-ribbon-track {
+    height: 32px;
+  }
+  .global-ribbon-track {
+    font-size: 12px;
+    gap: 30px;
+  }
+}
+@media(max-width: 560px) {
+  .global-logo {
+    font-size: 18px;
+  }
+  .global-nav-link,
+  .global-book {
+    font-size: 9px;
+    letter-spacing: .16em;
+  }
+  .global-book {
+    padding: 12px 18px;
+  }
+}
+/* Prevent old page nav styles from affecting the new shared header */
+.global-top-wrap ul,
+.global-top-wrap li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+/* Consistent old-style elegant navigation across every page */
+.global-top-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: #13281d;
+  box-shadow: 0 1px 0 rgba(198,160,82,.18);
+}
+.global-ribbon {
+  height: 30px;
+  overflow: hidden;
+  background: #c6a15a;
+  color: #16251c;
+  border-bottom: 1px solid rgba(18,41,29,.12);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.global-ribbon-track {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 42px;
+  min-width: max-content;
+  padding-left: 16px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .025em;
+  animation: globalRibbonMove 52s linear infinite;
+}
+.global-ribbon:hover .global-ribbon-track {
+  animation-play-state: paused;
+}
+.global-ribbon-track strong {
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+@keyframes globalRibbonMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.global-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 24px;
+  background: #13281d;
+  color: #fbf7ef;
+}
+.global-logo {
+  flex: 0 0 auto;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  color: #d4b067 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+.global-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 23px;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.global-nav::-webkit-scrollbar {
+  display: none;
+}
+.global-nav-link,
+.global-book {
+  flex: 0 0 auto;
+  color: rgba(251,247,239,.70) !important;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-size: 9.5px;
+  line-height: 1;
+  letter-spacing: .19em;
+  font-weight: 500;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.global-nav-link:hover,
+.global-nav-link.active {
+  color: #d4b067 !important;
+}
+.global-book {
+  color: #d4b067 !important;
+  border: 1px solid rgba(212,176,103,.52);
+  border-radius: 999px;
+  padding: 12px 22px;
+  margin-left: 4px;
+  letter-spacing: .20em;
+}
+.global-book:hover {
+  background: rgba(212,176,103,.10);
+}
+@media(max-width: 1000px) {
+  .global-header {
+    height: auto;
+    min-height: 70px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 13px 18px 10px;
+  }
+  .global-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 0 0 7px;
+  }
+  .global-ribbon,
+  .global-ribbon-track {
+    height: 28px;
+  }
+  .global-ribbon-track {
+    font-size: 11.5px;
+    gap: 30px;
+  }
+}
+@media(max-width: 560px) {
+  .global-logo {
+    font-size: 17px;
+  }
+  .global-nav-link,
+  .global-book {
+    font-size: 9px;
+    letter-spacing: .15em;
+  }
+  .global-book {
+    padding: 11px 16px;
+  }
+}
+/* Prevent old page nav styles from affecting the new shared header */
+.global-top-wrap ul,
+.global-top-wrap li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 </style>
 </head>
 <body>
-<nav>
-  <a class="brand" href="index.html">Sound Healing with Nishi</a>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="booking.html">Book</a></li>
-    <li><a href="sound-bath-charlotte.html">Sound Bath Charlotte</a></li>
-    <li><a href="offerings.html">Offerings</a></li>
-    <li><a href="blog.html">Blog</a></li>
-  </ul>
-</nav>
 
-<section class="gallery-page-hero">
-  <div class="hero-copy">
-    <p class="eyebrow">Photo Gallery</p>
-    <h1>A visual story of <em>sound healing</em></h1>
-    <p>Moments from Nishi’s outdoor Charlotte sound bath experience, created for people who want to feel the atmosphere before booking.</p>
-    <div class="hero-actions">
-      <a class="btn-fill" href="booking.html">Book Your Session</a>
-      <a class="btn-line" href="sound-bath-charlotte.html"><span>→</span> Experience Page</a>
+<div class="global-top-wrap">
+  <div class="global-ribbon" onclick="window.location.href='event-art-sound-bath.html'">
+    <div class="global-ribbon-track">
+      <span><strong>Upcoming Event</strong> Soundbath + Artmaking · Confidence Manifestation Experience</span>
+      <span>Friday, July 10 · 6:00-7:45 PM · Charlotte, NC</span>
+      <span><strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
+      <span><strong>Tap for Details & Tickets →</strong></span>
+      <span><strong>Upcoming Event</strong> Soundbath + Artmaking · Confidence Manifestation Experience</span>
+      <span>Friday, July 10 · 6:00-7:45 PM · Charlotte, NC</span>
+      <span><strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
+      <span><strong>Tap for Details & Tickets →</strong></span>
     </div>
   </div>
-</section>
 
-<section class="full-gallery-section">
-  <div class="full-gallery-grid">
-    <a class="gallery-card large" href="booking.html"><img src="charlotte-sound-bath-red-01.jpg" alt=""></a>
-    <a class="gallery-card tall" href="booking.html"><img src="charlotte-sound-bath-red-04.jpg" alt=""></a>
-    <a class="gallery-card" href="booking.html"><img src="charlotte-sound-bath-red-02.jpg" alt=""></a>
-    <a class="gallery-card" href="booking.html"><img src="charlotte-sound-bath-red-05.jpg" alt=""></a>
-    <a class="gallery-card wide" href="booking.html"><img src="charlotte-sound-bath-red-03.jpg" alt=""></a>
-    <a class="gallery-card" href="booking.html"><img src="charlotte-sound-bath-red-06.jpg" alt=""></a>
-    <a class="gallery-card wide" href="booking.html"><img src="charlotte-sound-bath-red-07.jpg" alt=""></a>
-    <a class="gallery-card" href="booking.html"><img src="charlotte-sound-bath-red-08.jpg" alt=""></a>
-  </div>
-  <div class="gallery-cta">
-    <p class="lead">Private, couples, group, corporate, retreat and event sessions are available by request.</p>
-    <div class="hero-actions" style="justify-content:center; margin-top:24px;">
-      <a class="btn-fill" href="booking.html">Book Your Session</a>
-      <a class="btn-line" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A"><span>→</span> Email Nishi</a>
+  <header class="global-header">
+    <a class="global-logo" href="index.html">Sound Healing with Nishi</a>
+    <nav class="global-nav" aria-label="Main navigation">
+      <a class="global-nav-link" href="index.html">Home</a>
+      <a class="global-nav-link" href="index.html#summer-series">Summer Series</a>
+      <a class="global-nav-link" href="event-art-sound-bath.html">Event Jul 10</a>
+      <a class="global-nav-link" href="index.html#about-nishi">About</a>
+      <a class="global-nav-link" href="index.html#sessions">Sessions</a>
+      <a class="global-nav-link" href="index.html#social-videos">Videos</a>
+      <a class="global-nav-link active" href="gallery.html">Gallery</a>
+      <a class="global-nav-link" href="offerings.html">Offerings</a>
+      <a class="global-nav-link" href="sound-bath-charlotte.html">Sound Bath Charlotte</a>
+      <a class="global-nav-link" href="blog.html">Blog</a>
+      <a class="global-nav-link" href="index.html#google-reviews">Google Reviews</a>
+      <a class="global-book" href="booking.html">Book</a>
+    </nav>
+  </header>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Photo & Video Gallery</p>
+        <h1 class="h1">A visual story of <em>sound healing</em></h1>
+        <p class="lead">Moments from Nishi’s Charlotte sound bath experiences, shown from newest to oldest, with handpan, gong, Himalayan bowls, crystal bowls and peaceful outdoor sessions.</p>
+        <div class="actions">
+          <a class="btn-fill" href="booking.html">Book Your Session</a>
+          <a class="btn-line" href="#gallery-videos">Watch Videos</a>
+        </div>
+      </div>
+      <div class="hero-photo-stack">
+        <img src="nishi-handpan-gong-03.jpg" alt="">
+        <img src="nishi-handpan-gong-02.jpg" alt="">
+        <img src="charlotte-sound-bath-red-08.jpg" alt="">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
+  <section class="section" id="photo-gallery">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Newest Photos First</p>
+          <h2 class="h2">Sound bath <em>moments</em></h2>
+          <p class="lead">A cleaner gallery layout with all photos organized from the newest handpan and outdoor session images to earlier sound bath photos.</p>
+        </div>
+        <div class="actions">
+          <a class="btn-fill" href="booking.html">Book Your Session</a>
+          <a class="btn-line" href="#gallery-videos">Videos</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="photo-reel" aria-label="Moving photo gallery">
+      <div class="photo-reel-track">
+      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-03.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-02.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-01.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-08.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-07.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-06.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-05.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-04.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-03.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-02.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-01.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="saunahouse-nishi.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="photo1.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="photo4.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-03.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-02.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="nishi-handpan-gong-01.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-08.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-07.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-06.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-05.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-04.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-03.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-02.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="charlotte-sound-bath-red-01.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="saunahouse-nishi.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="photo1.jpg" alt=""></a>
+      <a class="photo-reel-card" href="#photo-gallery"><img src="photo4.jpg" alt=""></a>
+      </div>
+    </div>
+
+    <div class="section-inner" style="margin-top:48px;">
+      <div class="photo-grid">
+      <button class="gallery-photo-card wide" type="button" data-img="nishi-handpan-gong-03.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-03.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="nishi-handpan-gong-02.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-02.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="nishi-handpan-gong-01.jpg" aria-label="Open photo"><img src="nishi-handpan-gong-01.jpg" alt=""></button>
+      <button class="gallery-photo-card wide" type="button" data-img="charlotte-sound-bath-red-08.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-08.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-07.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-07.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-06.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-06.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-05.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-05.jpg" alt=""></button>
+      <button class="gallery-photo-card wide" type="button" data-img="charlotte-sound-bath-red-04.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-04.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-03.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-03.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-02.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-02.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="charlotte-sound-bath-red-01.jpg" aria-label="Open photo"><img src="charlotte-sound-bath-red-01.jpg" alt=""></button>
+      <button class="gallery-photo-card wide" type="button" data-img="saunahouse-nishi.jpg" aria-label="Open photo"><img src="saunahouse-nishi.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="photo1.jpg" aria-label="Open photo"><img src="photo1.jpg" alt=""></button>
+      <button class="gallery-photo-card " type="button" data-img="photo4.jpg" aria-label="Open photo"><img src="photo4.jpg" alt=""></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section" id="gallery-videos">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Newest Videos First</p>
+          <h2 class="h2">Video gallery of <em>sound</em></h2>
+          <p class="lead">All uploaded video moments in one place, ordered from newest to oldest. Tap or hover to play.</p>
+        </div>
+        <div class="actions">
+          <a class="btn-fill" href="booking.html">Book Your Session</a>
+          <a class="btn-line" href="#photo-gallery">Photos</a>
+        </div>
+      </div>
+    </div>
+    <div class="video-grid">
+      <article class="video-card">
+        <video src="nishi-social-video-20.mp4" poster="nishi-video-poster-20.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-19.mp4" poster="nishi-video-poster-19.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-18.mp4" poster="nishi-video-poster-18.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-17.mp4" poster="nishi-video-poster-17.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-16.mp4" poster="nishi-video-poster-16.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-15.mp4" poster="nishi-video-poster-15.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-14.mp4" poster="nishi-video-poster-14.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-11.mp4" poster="nishi-video-poster-11.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-10.mp4" poster="nishi-video-poster-10.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-09.mp4" poster="nishi-video-poster-09.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-08.mp4" poster="nishi-video-poster-08.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-07.mp4" poster="nishi-video-poster-07.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-06.mp4" poster="nishi-video-poster-06.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-05.mp4" poster="nishi-video-poster-05.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-04.mp4" poster="nishi-video-poster-04.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-03.mp4" poster="nishi-video-poster-03.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-02.mp4" poster="nishi-video-poster-02.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+      <article class="video-card">
+        <video src="nishi-social-video-01.mp4" poster="nishi-video-poster-01.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+        <button class="play-button" type="button" aria-label="Play video">▶</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta">
+    <p class="eyebrow">Ready to experience it?</p>
+    <h2 class="h2">Book a sound healing <em>session</em></h2>
+    <p class="lead">Private, couples, group, corporate and event sound bath requests are available through the booking page.</p>
+    <div class="actions" style="justify-content:center;">
+      <a class="btn-fill" href="booking.html">Book Your Session</a>
+      <a class="btn-line" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry">Email Nishi</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
   <div class="footer-inner">
-    <div>
-      <div class="footer-logo">Sound Healing with Nishi</div>
-      <p>Charlotte, NC sound baths with Himalayan bowls, crystal bowls, tuning fork, gong, handpan and 18+ instruments.</p>
-    </div>
-    <div class="footer-links">
-      <a href="mailto:soundhealingwithnishi@gmail.com">soundhealingwithnishi@gmail.com</a>
-      <a href="index.html">Home</a>
-      <a href="booking.html">Book</a>
-      <a href="sound-bath-charlotte.html">Sound Bath Charlotte</a>
-    </div>
+    <div>Sound Healing with Nishi<br>Charlotte, NC sound baths with Himalayan bowls, crystal bowls, tuning fork, gong, handpan and 18+ instruments.</div>
+    <a href="mailto:soundhealingwithnishi@gmail.com">Email Nishi</a>
   </div>
+</footer>
 
-<section class="event-video-section" id="gallery-videos">
-  <div class="event-video-head">
-    <div>
-      <p class="eyebrow">Video Gallery</p>
-      <h2 class="display-title">Movement, sound and atmosphere</h2>
-      <p class="lead">Video moments from the same Charlotte sound bath experience.</p>
-    </div>
-    <div class="hero-actions">
-      <a class="btn-fill" href="booking.html">Book Your Session</a>
-      <a class="btn-line" href="sound-bath-charlotte.html"><span>→</span> Experience Page</a>
-    </div>
-  </div>
-  <div class="event-video-grid">
-    <a class="event-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-14.mp4" poster="nishi-video-poster-14.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-    <a class="event-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-15.mp4" poster="nishi-video-poster-15.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-    <a class="event-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-16.mp4" poster="nishi-video-poster-16.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-    <a class="event-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-17.mp4" poster="nishi-video-poster-17.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-    <a class="event-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-18.mp4" poster="nishi-video-poster-18.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>    <a class="event-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-19.mp4" poster="nishi-video-poster-19.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-    <a class="event-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-20.mp4" poster="nishi-video-poster-20.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
+<a class="email-nishi" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry">Email Nishi</a>
 
-
-  </div>
-</section>
-
-<footer>
-<a class="email-fab" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry&body=Hi%20Nishi,%0A%0AI%20am%20interested%20in%20a%20sound%20healing%20session.%0A%0AName:%0APreferred%20date:%0ASession%20type:%0AMessage:%0A">Email Nishi</a>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="close-lightbox" type="button" aria-label="Close photo">×</button>
+  <img src="" alt="">
+</div>
 
 <script>
-/* Video hover/touch playback */
-document.addEventListener('DOMContentLoaded', function(){
-  document.querySelectorAll('video').forEach(video => {
-    const card = video.closest('a') || video.parentElement;
-    if (!card) return;
-    card.addEventListener('mouseenter', () => video.play().catch(()=>{}));
-    card.addEventListener('mouseleave', () => { video.pause(); try { video.currentTime = 0; } catch(e){} });
-    card.addEventListener('touchstart', () => video.play().catch(()=>{}), {passive:true});
+document.addEventListener('DOMContentLoaded', function() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const closeBtn = lightbox.querySelector('.close-lightbox');
+
+  document.querySelectorAll('.gallery-photo-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      lightboxImg.src = btn.dataset.img;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.src = '';
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.querySelectorAll('.video-card').forEach(card => {
+    const video = card.querySelector('video');
+    const btn = card.querySelector('.play-button');
+
+    function playVideo() {
+      document.querySelectorAll('.video-card video').forEach(v => {
+        if (v !== video) v.pause();
+      });
+      video.play().catch(() => {});
+    }
+
+    function toggleVideo(e) {
+      e.preventDefault();
+      if (video.paused) {
+        playVideo();
+        btn.style.opacity = '0';
+      } else {
+        video.pause();
+        btn.style.opacity = '1';
+      }
+    }
+
+    card.addEventListener('mouseenter', () => {
+      video.play().catch(() => {});
+      btn.style.opacity = '0';
+    });
+    card.addEventListener('mouseleave', () => {
+      video.pause();
+      btn.style.opacity = '1';
+    });
+    btn.addEventListener('click', toggleVideo);
+    video.addEventListener('click', toggleVideo);
   });
 });
 </script>
-
 </body>
 </html>

@@ -1805,33 +1805,636 @@ body::before {
   }
 }
 
+
+/* Movie-style all-video slider */
+.video-film-sec {
+  padding: 105px 0 110px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(198,161,90,.12), transparent 32%),
+    linear-gradient(180deg, var(--cream), var(--off));
+  overflow: hidden;
+}
+.video-film-head {
+  max-width: 1180px;
+  margin: 0 auto 38px;
+  padding: 0 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.video-film-head .lead {
+  max-width: 720px;
+}
+.video-film-shell {
+  position: relative;
+  width: 100%;
+}
+.video-film-viewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0 22px;
+  cursor: grab;
+}
+.video-film-viewport:active {
+  cursor: grabbing;
+}
+.video-film-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  will-change: transform;
+  animation: nishiVideoMarquee 85s linear infinite;
+}
+.video-film-shell:hover .video-film-track {
+  animation-play-state: paused;
+}
+.video-film-card {
+  position: relative;
+  flex: 0 0 clamp(230px, 22vw, 360px);
+  height: clamp(420px, 58vw, 620px);
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--forest);
+  box-shadow: 0 28px 75px rgba(22,37,28,.16);
+  border: 1px solid rgba(198,161,90,.24);
+  transform: translateZ(0);
+}
+.video-film-card:nth-child(3n+2) {
+  margin-top: 34px;
+}
+.video-film-card:nth-child(4n) {
+  margin-top: 68px;
+}
+.video-film-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: var(--forest);
+  opacity: 1;
+}
+.video-film-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 34%, rgba(22,37,28,.12)),
+    linear-gradient(to top, rgba(22,37,28,.34), transparent 54%);
+  pointer-events: none;
+  z-index: 2;
+}
+.video-film-card:hover video {
+  filter: saturate(1.06) contrast(1.02);
+}
+.video-film-card .video-play-badge {
+  z-index: 5;
+}
+.video-film-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 8;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(198,161,90,.48);
+  background: rgba(22,37,28,.88);
+  color: var(--gold2);
+  font-size: 34px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 18px 42px rgba(22,37,28,.18);
+}
+.video-film-nav.prev { left: 22px; }
+.video-film-nav.next { right: 22px; }
+.video-film-actions {
+  max-width: 1120px;
+  margin: 34px auto 0;
+  padding: 0 36px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@keyframes nishiVideoMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media(max-width: 900px) {
+  .video-film-sec { padding: 82px 0 90px; }
+  .video-film-head { padding: 0 24px; }
+  .video-film-card {
+    flex-basis: min(78vw, 340px);
+    height: min(128vw, 560px);
+    border-radius: 26px;
+  }
+  .video-film-nav { display: none; }
+}
+@media(max-width: 560px) {
+  .video-film-card {
+    flex-basis: 82vw;
+    height: 132vw;
+  }
+  .video-film-card:nth-child(3n+2),
+  .video-film-card:nth-child(4n) {
+    margin-top: 0;
+  }
+  .video-film-actions a,
+  .video-film-head .social-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .video-film-track { animation: none; }
+}
+
+
+/* Movie-style visual journey photo slider */
+.photo-film-sec {
+  padding: 105px 0 112px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(198,161,90,.12), transparent 30%),
+    linear-gradient(180deg, var(--cream), var(--off));
+  overflow: hidden;
+}
+.photo-film-head {
+  max-width: 1180px;
+  margin: 0 auto 42px;
+  padding: 0 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.photo-film-head .lead {
+  max-width: 720px;
+}
+.photo-film-shell {
+  position: relative;
+  width: 100%;
+}
+.photo-film-viewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0 26px;
+  cursor: grab;
+}
+.photo-film-viewport:active {
+  cursor: grabbing;
+}
+.photo-film-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  will-change: transform;
+  animation: nishiPhotoMarquee 95s linear infinite;
+}
+.photo-film-shell:hover .photo-film-track {
+  animation-play-state: paused;
+}
+.photo-film-card {
+  position: relative;
+  flex: 0 0 clamp(260px, 25vw, 420px);
+  height: clamp(360px, 42vw, 560px);
+  border-radius: 34px;
+  overflow: hidden;
+  background: var(--forest);
+  box-shadow: 0 28px 75px rgba(22,37,28,.14);
+  border: 1px solid rgba(198,161,90,.26);
+  transform: translateZ(0);
+}
+.photo-film-card:nth-child(3n+2) {
+  margin-top: 40px;
+}
+.photo-film-card:nth-child(4n) {
+  margin-top: 78px;
+}
+.photo-film-card:nth-child(5n) {
+  flex-basis: clamp(360px, 36vw, 600px);
+}
+.photo-film-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: var(--forest);
+}
+.photo-film-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 45%, rgba(22,37,28,.08)),
+    linear-gradient(to top, rgba(22,37,28,.22), transparent 54%);
+  pointer-events: none;
+}
+.photo-film-card:hover img {
+  filter: saturate(1.06) contrast(1.02);
+}
+.photo-film-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 8;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(198,161,90,.48);
+  background: rgba(22,37,28,.88);
+  color: var(--gold2);
+  font-size: 34px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 18px 42px rgba(22,37,28,.18);
+}
+.photo-film-nav.prev { left: 22px; }
+.photo-film-nav.next { right: 22px; }
+.photo-film-actions {
+  max-width: 1120px;
+  margin: 34px auto 0;
+  padding: 0 36px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@keyframes nishiPhotoMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media(max-width: 900px) {
+  .photo-film-sec { padding: 82px 0 90px; }
+  .photo-film-head { padding: 0 24px; }
+  .photo-film-card {
+    flex-basis: min(78vw, 380px);
+    height: min(110vw, 540px);
+    border-radius: 28px;
+  }
+  .photo-film-card:nth-child(5n) {
+    flex-basis: min(86vw, 460px);
+  }
+  .photo-film-nav { display: none; }
+}
+@media(max-width: 560px) {
+  .photo-film-card,
+  .photo-film-card:nth-child(5n) {
+    flex-basis: 84vw;
+    height: 112vw;
+  }
+  .photo-film-card:nth-child(3n+2),
+  .photo-film-card:nth-child(4n) {
+    margin-top: 0;
+  }
+  .photo-film-actions a,
+  .photo-film-head .social-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-film-track { animation: none; }
+}
+
+
+/* Consistent deploy-safe top navigation across every page */
+.global-top-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: #12291d;
+  box-shadow: 0 1px 0 rgba(198,160,82,.20);
+}
+.global-ribbon {
+  height: 35px;
+  overflow: hidden;
+  background: #c8a052;
+  color: #14261b;
+  border-bottom: 1px solid rgba(18,41,29,.16);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.global-ribbon-track {
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  gap: 44px;
+  min-width: max-content;
+  padding-left: 18px;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: .04em;
+  animation: globalRibbonMove 46s linear infinite;
+}
+.global-ribbon:hover .global-ribbon-track {
+  animation-play-state: paused;
+}
+.global-ribbon-track strong {
+  font-weight: 900;
+}
+@keyframes globalRibbonMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.global-header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 28px;
+  background: #12291d;
+  color: #fbf7ef;
+}
+.global-logo {
+  flex: 0 0 auto;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #d8b56c !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+.global-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.global-nav::-webkit-scrollbar {
+  display: none;
+}
+.global-nav-link,
+.global-book {
+  flex: 0 0 auto;
+  color: rgba(251,247,239,.78) !important;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .20em;
+  font-weight: 800;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.global-nav-link:hover,
+.global-nav-link.active {
+  color: #d8b56c !important;
+}
+.global-book {
+  color: #d8b56c !important;
+  border: 1px solid rgba(216,181,108,.64);
+  border-radius: 999px;
+  padding: 15px 24px;
+  margin-left: 4px;
+}
+.global-book:hover {
+  background: rgba(216,181,108,.12);
+}
+@media(max-width: 1000px) {
+  .global-header {
+    height: auto;
+    min-height: 76px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 18px 12px;
+  }
+  .global-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 0 0 7px;
+  }
+  .global-ribbon,
+  .global-ribbon-track {
+    height: 32px;
+  }
+  .global-ribbon-track {
+    font-size: 12px;
+    gap: 30px;
+  }
+}
+@media(max-width: 560px) {
+  .global-logo {
+    font-size: 18px;
+  }
+  .global-nav-link,
+  .global-book {
+    font-size: 9px;
+    letter-spacing: .16em;
+  }
+  .global-book {
+    padding: 12px 18px;
+  }
+}
+/* Prevent old page nav styles from affecting the new shared header */
+.global-top-wrap ul,
+.global-top-wrap li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+/* Consistent old-style elegant navigation across every page */
+.global-top-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: #13281d;
+  box-shadow: 0 1px 0 rgba(198,160,82,.18);
+}
+.global-ribbon {
+  height: 30px;
+  overflow: hidden;
+  background: #c6a15a;
+  color: #16251c;
+  border-bottom: 1px solid rgba(18,41,29,.12);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.global-ribbon-track {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 42px;
+  min-width: max-content;
+  padding-left: 16px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .025em;
+  animation: globalRibbonMove 52s linear infinite;
+}
+.global-ribbon:hover .global-ribbon-track {
+  animation-play-state: paused;
+}
+.global-ribbon-track strong {
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+@keyframes globalRibbonMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.global-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 24px;
+  background: #13281d;
+  color: #fbf7ef;
+}
+.global-logo {
+  flex: 0 0 auto;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  color: #d4b067 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+.global-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 23px;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.global-nav::-webkit-scrollbar {
+  display: none;
+}
+.global-nav-link,
+.global-book {
+  flex: 0 0 auto;
+  color: rgba(251,247,239,.70) !important;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-size: 9.5px;
+  line-height: 1;
+  letter-spacing: .19em;
+  font-weight: 500;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.global-nav-link:hover,
+.global-nav-link.active {
+  color: #d4b067 !important;
+}
+.global-book {
+  color: #d4b067 !important;
+  border: 1px solid rgba(212,176,103,.52);
+  border-radius: 999px;
+  padding: 12px 22px;
+  margin-left: 4px;
+  letter-spacing: .20em;
+}
+.global-book:hover {
+  background: rgba(212,176,103,.10);
+}
+@media(max-width: 1000px) {
+  .global-header {
+    height: auto;
+    min-height: 70px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 13px 18px 10px;
+  }
+  .global-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 0 0 7px;
+  }
+  .global-ribbon,
+  .global-ribbon-track {
+    height: 28px;
+  }
+  .global-ribbon-track {
+    font-size: 11.5px;
+    gap: 30px;
+  }
+}
+@media(max-width: 560px) {
+  .global-logo {
+    font-size: 17px;
+  }
+  .global-nav-link,
+  .global-book {
+    font-size: 9px;
+    letter-spacing: .15em;
+  }
+  .global-book {
+    padding: 11px 16px;
+  }
+}
+/* Prevent old page nav styles from affecting the new shared header */
+.global-top-wrap ul,
+.global-top-wrap li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 </style>
 <!-- Sections reordered: Experience and Social after Book Your Session -->
 </head>
 <body>
 
-<div class="mobile-menu" id="mobileMenu">
- <button class="mobile-close" onclick="toggleMenu(false)">×</button>
- <a onclick="toggleMenu(false)" href="#gallery">Gallery</a>
- <a onclick="toggleMenu(false)" href="#about-nishi">About</a>
- <a onclick="toggleMenu(false)" href="#sessions">Sessions</a>
- <a onclick="toggleMenu(false)" href="#social-videos">Videos</a>
- <a onclick="toggleMenu(false)" href="#summer-series">Summer Series</a>
- <a onclick="toggleMenu(false)" href="#availability">Calendar</a>
- <a onclick="toggleMenu(false)" href="booking.html">Book</a>
+<div class="global-top-wrap">
+  <div class="global-ribbon" onclick="window.location.href='event-art-sound-bath.html'">
+    <div class="global-ribbon-track">
+      <span><strong>Upcoming Event</strong> Soundbath + Artmaking · Confidence Manifestation Experience</span>
+      <span>Friday, July 10 · 6:00-7:45 PM · Charlotte, NC</span>
+      <span><strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
+      <span><strong>Tap for Details & Tickets →</strong></span>
+      <span><strong>Upcoming Event</strong> Soundbath + Artmaking · Confidence Manifestation Experience</span>
+      <span>Friday, July 10 · 6:00-7:45 PM · Charlotte, NC</span>
+      <span><strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
+      <span><strong>Tap for Details & Tickets →</strong></span>
+    </div>
+  </div>
+
+  <header class="global-header">
+    <a class="global-logo" href="index.html">Sound Healing with Nishi</a>
+    <nav class="global-nav" aria-label="Main navigation">
+      <a class="global-nav-link active" href="index.html">Home</a>
+      <a class="global-nav-link" href="index.html#summer-series">Summer Series</a>
+      <a class="global-nav-link" href="event-art-sound-bath.html">Event Jul 10</a>
+      <a class="global-nav-link" href="index.html#about-nishi">About</a>
+      <a class="global-nav-link" href="index.html#sessions">Sessions</a>
+      <a class="global-nav-link" href="index.html#social-videos">Videos</a>
+      <a class="global-nav-link" href="gallery.html">Gallery</a>
+      <a class="global-nav-link" href="offerings.html">Offerings</a>
+      <a class="global-nav-link" href="sound-bath-charlotte.html">Sound Bath Charlotte</a>
+      <a class="global-nav-link" href="blog.html">Blog</a>
+      <a class="global-nav-link" href="index.html#google-reviews">Google Reviews</a>
+      <a class="global-book" href="booking.html">Book</a>
+    </nav>
+  </header>
 </div>
 
-<div class="event-ribbon" onclick="window.location.href='event-art-sound-bath.html'">
- <div class="ribbon-track">
- <span class="ribbon-item"><span class="ribbon-tag">Upcoming Event</span><strong>Soundbath + Artmaking</strong> · Confidence Manifestation Experience</span>
- <span class="ribbon-item">Friday, July 10 · 6:00–7:45 PM · Charlotte, NC</span>
- <span class="ribbon-item"><strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
- <span class="ribbon-item"><span class="ribbon-link">Tap for Details & Tickets →</span></span>
- <span class="ribbon-item"><span class="ribbon-tag">Upcoming Event</span><strong>Soundbath + Artmaking</strong> · Confidence Manifestation Experience</span>
- <span class="ribbon-item">Friday, July 10 · 6:00–7:45 PM · Charlotte, NC</span>
- <span class="ribbon-item"><strong>Summer Sound Bath Series</strong> @ Sauna House · Use code NISHI15 for $15 off</span>
- <span class="ribbon-item"><span class="ribbon-link">Tap for Details & Tickets →</span></span>
- </div>
 </div>
 
 <nav id="nav">
@@ -2019,164 +2622,350 @@ body::before {
 
 <!-- Moved below Book Your Session section -->
 
-<section class="gallery-sec bubble-gallery-sec" id="gallery">
-  <div class="bubble-gallery-head">
+<section class="gallery-sec photo-film-sec" id="gallery">
+  <div class="photo-film-head">
     <div>
       <p class="eyebrow">The Experience</p>
       <h2 class="h2">A visual journey into <em>sound</em></h2>
-      <p class="lead">A soft photo story from Nishi’s outdoor Charlotte sound bath experience.</p>
+      <p class="lead">A moving photo story from Nishi’s sound bath spaces, handpan, gong, bowls, outdoor moments and peaceful sessions.</p>
     </div>
-    <div class="gallery-head-actions">
+    <div class="social-actions">
       <a class="btn-fill" href="booking.html">Book Your Session</a>
       <a class="btn-line" href="gallery.html"><span>→</span> View Gallery</a>
     </div>
   </div>
 
-  <div class="bubble-gallery">
-    <a class="bubble-photo bubble-large" href="gallery.html"><img src="nishi-handpan-gong-01.jpg" alt=""></a>
-    <a class="bubble-photo" href="gallery.html"><img src="nishi-handpan-gong-02.jpg" alt=""></a>
-    <a class="bubble-photo bubble-wide" href="gallery.html"><img src="nishi-handpan-gong-03.jpg" alt=""></a>
+  <div class="photo-film-shell">
+    <button class="photo-film-nav prev" type="button" aria-label="Previous photos">‹</button>
+    <div class="photo-film-viewport" id="photoFilmViewport">
+      <div class="photo-film-track" id="photoFilmTrack">
+        
+      <a class="photo-film-card" href="gallery.html">
+        <img src="nishi-handpan-gong-01.jpg" alt="">
+      </a>
 
-    <a class="bubble-photo bubble-large" href="gallery.html"><img src="charlotte-sound-bath-red-01.jpg" alt=""></a>
-    <a class="bubble-photo bubble-tall" href="gallery.html"><img src="charlotte-sound-bath-red-04.jpg" alt=""></a>
-    <a class="bubble-photo" href="gallery.html"><img src="charlotte-sound-bath-red-05.jpg" alt=""></a>
-    <a class="bubble-photo bubble-wide" href="gallery.html"><img src="charlotte-sound-bath-red-03.jpg" alt=""></a>
-    <a class="bubble-photo" href="gallery.html"><img src="charlotte-sound-bath-red-02.jpg" alt=""></a>
-    <a class="bubble-photo bubble-tall" href="gallery.html"><img src="charlotte-sound-bath-red-06.jpg" alt=""></a>
-    <a class="bubble-photo" href="gallery.html"><img src="charlotte-sound-bath-red-08.jpg" alt=""></a>
-    <a class="bubble-photo bubble-wide" href="gallery.html"><img src="charlotte-sound-bath-red-07.jpg" alt=""></a>
+      <a class="photo-film-card" href="gallery.html">
+        <img src="nishi-handpan-gong-02.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="nishi-handpan-gong-03.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-01.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-02.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-03.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-04.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-05.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-06.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-07.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-08.jpg" alt="">
+      </a>
+        
+      <a class="photo-film-card" href="gallery.html">
+        <img src="nishi-handpan-gong-01.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="nishi-handpan-gong-02.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="nishi-handpan-gong-03.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-01.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-02.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-03.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-04.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-05.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-06.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-07.jpg" alt="">
+      </a>
+
+      <a class="photo-film-card" href="gallery.html">
+        <img src="charlotte-sound-bath-red-08.jpg" alt="">
+      </a>
+      </div>
+    </div>
+    <button class="photo-film-nav next" type="button" aria-label="Next photos">›</button>
+  </div>
+
+  <div class="photo-film-actions">
+    <a class="btn-fill" href="gallery.html">View Full Photo Gallery</a>
+    <a class="btn-line" href="booking.html"><span>→</span> Book Your Session</a>
   </div>
 </section>
 
 
-<section class="social-sec" id="social-videos">
- <div class="social-head">
- <div>
- <p class="eyebrow">Instagram & TikTok</p>
- <h2 class="h2">Watch the sound healing <em>experience</em></h2>
- <p class="lead">Explore Nishi’s latest sound bath moments, instrument clips, event energy, and behind-the-scenes videos.</p>
- </div>
- <div class="social-actions">
- <a class="btn-fill" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener">Instagram</a>
- <a class="btn-line" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener"><span>→</span> TikTok</a>
- </div>
- </div>
+<section class="social-sec video-film-sec" id="social-videos">
+  <div class="video-film-head">
+    <div>
+      <p class="eyebrow">Video Gallery Preview</p>
+      <h2 class="h2">Watch the sound healing <em>experience</em></h2>
+      <p class="lead">A moving film-style strip of Nishi’s sound bath moments, handpan, gong, bowls, outdoor sessions and group experiences.</p>
+    </div>
+    <div class="social-actions">
+      <a class="btn-fill" href="gallery.html#gallery-videos">View Full Video Gallery</a>
+      <a class="btn-line" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener"><span>→</span> Instagram</a>
+      <a class="btn-line" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener"><span>→</span> TikTok</a>
+    </div>
+  </div>
 
- <div class="social-grid all-videos">
- 
- <a class="social-card link-card instagram-profile-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener">
- <div class="social-profile-bg">
- <img src="instagram-cover.jpg" onerror="this.onerror=null;this.src='photo3.jpg';" alt="">
- </div>
- <div>
- <div class="social-platform">Instagram</div>
- <div class="social-title">@soundhealingwithnishi</div>
- <div class="social-sub">Reels, event updates, sound bath clips, and Charlotte wellness posts.</div>
- </div>
- <div class="social-arrow">→</div>
- </a>
-
- <a class="social-card link-card tiktok-profile-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener">
- <div class="social-profile-bg">
- <img src="tiktok-cover.jpg" onerror="this.onerror=null;this.src='photo1.jpg';" alt="">
- </div>
- <div>
- <div class="social-platform">TikTok</div>
- <div class="social-title">@soundhealingnishi</div>
- <div class="social-sub">Short videos, relaxing clips, and sound healing moments.</div>
- </div>
- <div class="social-arrow">→</div>
- </a>
- 
- <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-01.mp4" poster="nishi-video-poster-01.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-02.mp4" poster="nishi-video-poster-02.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-03.mp4" poster="nishi-video-poster-03.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-04.mp4" poster="nishi-video-poster-04.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-05.mp4" poster="nishi-video-poster-05.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-06.mp4" poster="nishi-video-poster-06.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-07.mp4" poster="nishi-video-poster-07.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-08.mp4" poster="nishi-video-poster-08.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-09.mp4" poster="nishi-video-poster-09.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-10.mp4" poster="nishi-video-poster-10.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
- <video src="nishi-social-video-11.mp4" poster="nishi-video-poster-11.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Outdoor sound bath event video">
- <video src="nishi-social-video-12.mp4" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Outdoor sound healing event video">
- <video src="nishi-social-video-13.mp4" muted loop playsinline webkit-playsinline preload="metadata"></video>
- <div class="video-play-badge">▶</div>
- </a>
- 
-    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-14.mp4" poster="nishi-video-poster-14.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-
-    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-15.mp4" poster="nishi-video-poster-15.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-
-    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-16.mp4" poster="nishi-video-poster-16.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-
-    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-17.mp4" poster="nishi-video-poster-17.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
-
-    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
-      <video src="nishi-social-video-18.mp4" poster="nishi-video-poster-18.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
-    </a>
- 
-    <a class="social-card video-card clean-video-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+  <div class="video-film-shell">
+    <button class="video-film-nav prev" type="button" aria-label="Previous videos">‹</button>
+    <div class="video-film-viewport" id="videoFilmViewport">
+      <div class="video-film-track" id="videoFilmTrack">
+        
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-19.mp4" poster="nishi-video-poster-19.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
+      <span class="video-play-badge">▶</span>
     </a>
 
-    <a class="social-card video-card clean-video-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
       <video src="nishi-social-video-20.mp4" poster="nishi-video-poster-20.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
-      <div class="video-play-badge">▶</div>
+      <span class="video-play-badge">▶</span>
     </a>
- </div>
- <p class="social-video-note">Tap any video to open Instagram or TikTok — videos play right here on hover or touch.</p>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-14.mp4" poster="nishi-video-poster-14.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-15.mp4" poster="nishi-video-poster-15.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-16.mp4" poster="nishi-video-poster-16.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-17.mp4" poster="nishi-video-poster-17.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-18.mp4" poster="nishi-video-poster-18.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-07.mp4" poster="nishi-video-poster-07.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-08.mp4" poster="nishi-video-poster-08.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-09.mp4" poster="nishi-video-poster-09.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-10.mp4" poster="nishi-video-poster-10.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-11.mp4" poster="nishi-video-poster-11.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-01.mp4" poster="nishi-video-poster-01.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-02.mp4" poster="nishi-video-poster-02.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-03.mp4" poster="nishi-video-poster-03.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-04.mp4" poster="nishi-video-poster-04.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-05.mp4" poster="nishi-video-poster-05.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-06.mp4" poster="nishi-video-poster-06.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-12.mp4" poster="nishi-video-poster-12.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-13.mp4" poster="nishi-video-poster-13.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+        
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-19.mp4" poster="nishi-video-poster-19.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-20.mp4" poster="nishi-video-poster-20.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-14.mp4" poster="nishi-video-poster-14.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-15.mp4" poster="nishi-video-poster-15.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-16.mp4" poster="nishi-video-poster-16.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-17.mp4" poster="nishi-video-poster-17.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-18.mp4" poster="nishi-video-poster-18.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-07.mp4" poster="nishi-video-poster-07.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-08.mp4" poster="nishi-video-poster-08.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-09.mp4" poster="nishi-video-poster-09.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-10.mp4" poster="nishi-video-poster-10.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-11.mp4" poster="nishi-video-poster-11.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-01.mp4" poster="nishi-video-poster-01.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-02.mp4" poster="nishi-video-poster-02.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-03.mp4" poster="nishi-video-poster-03.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-04.mp4" poster="nishi-video-poster-04.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-05.mp4" poster="nishi-video-poster-05.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-06.mp4" poster="nishi-video-poster-06.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-12.mp4" poster="nishi-video-poster-12.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+
+    <a class="video-film-card" href="https://www.tiktok.com/@soundhealingnishi" target="_blank" rel="noopener" aria-label="Sound healing video">
+      <video src="nishi-social-video-13.mp4" poster="nishi-video-poster-13.jpg" muted loop playsinline webkit-playsinline preload="metadata"></video>
+      <span class="video-play-badge">▶</span>
+    </a>
+      </div>
+    </div>
+    <button class="video-film-nav next" type="button" aria-label="Next videos">›</button>
+  </div>
+
+  <div class="video-film-actions">
+    <a class="btn-fill" href="gallery.html#gallery-videos">View Full Video Gallery</a>
+    <a class="btn-line" href="booking.html"><span>→</span> Book Your Session</a>
+  </div>
 </section>
 <section class="sec series-sec" id="summer-series">
  <div class="sec-inner series-layout">
@@ -2555,6 +3344,70 @@ document.addEventListener('DOMContentLoaded', function(){
     card.addEventListener('mouseenter', () => video.play().catch(()=>{}));
     card.addEventListener('mouseleave', () => { video.pause(); try { video.currentTime = 0; } catch(e){} });
     card.addEventListener('touchstart', () => video.play().catch(()=>{}), {passive:true});
+  });
+});
+</script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function setupFilmSlider(viewportId, trackId, navSelector) {
+    var viewport = document.getElementById(viewportId);
+    var track = document.getElementById(trackId);
+    if (!viewport || !track) return;
+
+    var offset = 0;
+    var step = function () {
+      return Math.min(760, Math.max(320, viewport.clientWidth * 0.72));
+    };
+
+    var pause = function () {
+      track.style.animationPlayState = 'paused';
+    };
+
+    document.querySelectorAll(navSelector).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        pause();
+        var direction = btn.classList.contains('next') ? -1 : 1;
+        offset += direction * step();
+        track.style.transform = 'translateX(' + offset + 'px)';
+      });
+    });
+
+    var startX = 0;
+    var dragging = false;
+
+    viewport.addEventListener('pointerdown', function (event) {
+      dragging = true;
+      startX = event.clientX;
+      pause();
+      try { viewport.setPointerCapture(event.pointerId); } catch (e) {}
+    });
+
+    viewport.addEventListener('pointerup', function (event) {
+      if (!dragging) return;
+      dragging = false;
+      var delta = event.clientX - startX;
+      if (Math.abs(delta) > 20) {
+        offset += delta;
+        track.style.transform = 'translateX(' + offset + 'px)';
+      }
+    });
+
+    viewport.addEventListener('pointercancel', function () {
+      dragging = false;
+    });
+  }
+
+  setupFilmSlider('photoFilmViewport', 'photoFilmTrack', '.photo-film-nav');
+  setupFilmSlider('videoFilmViewport', 'videoFilmTrack', '.video-film-nav');
+
+  document.querySelectorAll('video').forEach(function (video) {
+    video.muted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
   });
 });
 </script>
