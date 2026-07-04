@@ -1442,7 +1442,7 @@ footer {
 }
 
 
-/* Clean video cards with iPhone/iPad poster thumbnails */
+
 .clean-video-card {
   background: var(--forest);
   border-radius: 18px;
@@ -1639,6 +1639,22 @@ a[href^="tel:"],
     display: block !important;
   }
 }
+
+
+/* Public inquiry calendar status */
+.day.request { background: rgba(198,161,90,.12); border-color: rgba(198,161,90,.35); }
+.day.request .s { color: var(--muted); }
+.calendar-admin-note { color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+
+/* Mobile navigation safety */
+.mobile-menu { overflow-y: auto !important; -webkit-overflow-scrolling: touch !important; padding-top: 72px; padding-bottom: 44px; }
+
+
+/* Hero quote */
+.hero-quote { margin: -6px 0 22px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(18px, 2vw, 23px); line-height: 1.45; color: #c6a15a; font-style: italic; }
+a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important; }
+@media(max-width:760px){ .hero-quote{ margin:0 0 20px; font-size:18px; } }
 
 </style>
 <!-- Sections reordered: Experience and Social after Book Your Session -->
@@ -1955,7 +1971,7 @@ a[href^="tel:"],
       <div class="video-play-badge">▶</div>
     </a>
   </div>
-  <p class="social-video-note">Tap any video to open Instagram or TikTok. New videos 07, 08, 09, 10, and 11 are now connected.</p>
+  <p class="social-video-note">Tap any video to open Instagram or TikTok. Watch more sound healing moments on Instagram or TikTok.</p>
 </section>
 <section class="sec calendar-sec" id="availability">
   <div class="sec-inner calendar-layout">
@@ -1963,7 +1979,7 @@ a[href^="tel:"],
       <p class="eyebrow">Availability Calendar</p>
       <h2 class="h2">Choose a date, then <em>send your inquiry</em></h2>
       <div class="hairline"></div>
-      <p class="lead">This calendar keeps booking simple. Click an open or limited date and the booking page will open with that date selected. Nishi still confirms availability personally by email or phone.</p>
+      <p class="lead">Choose any date to start your inquiry. Nishi will personally confirm the best available time by email.</p>
       <div class="hero-actions" style="margin-top:30px;">
         <a class="btn-fill" href="booking.html">Open Booking Page</a>
         <a class="btn-line" href="booking.html#booking-calendar"><span>→</span> Full Calendar</a>
@@ -1976,13 +1992,8 @@ a[href^="tel:"],
         <button type="button" id="nextMonth">›</button>
       </div>
       <div class="cal-grid" id="calendarGrid"></div>
-      <div class="legend">
-        <span><i class="dot"></i> Open</span>
-        <span><i class="dot limited"></i> Limited</span>
-        <span><i class="dot booked"></i> Booked</span>
-        <span><i class="dot filled"></i> Filled</span>
-      </div>
-      <p class="calendar-admin-note">To update availability later, edit the <strong>calendarStatus</strong> list in this index file and use: open, limited, booked, or filled.</p>
+      <div class="legend"><span><i class="dot"></i> Request a Date</span></div>
+      <p class="calendar-admin-note">All dates are inquiry-based. Nishi will confirm availability directly by email.</p>
     </div>
   </div>
 </section>
@@ -2107,7 +2118,7 @@ a[href^="tel:"],
         <div class="fg"><label>Email *</label><input type="email" name="email" required placeholder="you@email.com"></div>
       </div>
       <div class="form-row">
-        <div class="fg"><label>Phone</label><input name="phone" placeholder=""></div>
+        <div class="fg"><label>Preferred Date</label><input name="preferred_date" placeholder="Optional"></div>
         <div class="fg"><label>Interest</label><select name="interest"><option>Private Sound Bath</option><option>Couples Sound Bath</option><option>Group Sound Bath</option><option>Corporate / Retreat</option><option>July 10 Event</option></select></div>
       </div>
       <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell Nishi what you are looking for."></textarea></div>
@@ -2152,8 +2163,8 @@ a[href^="tel:"],
 
 <div class="chat">
   <div class="chat-options" id="chatOptions">
-    <a href="sms:">Text Nishi</a>
-    <a href="https://wa.me/" target="_blank" rel="noopener">WhatsApp Nishi</a>
+    <a href="mailto:soundhealingwithnishi@gmail.com">Email Nishi</a>
+    <a href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener">Instagram</a>
     <a href="mailto:soundhealingwithnishi@gmail.com">Email Nishi</a>
   </div>
   <button class="chat-main" onclick="toggleChat()" aria-label="Chat with Nishi">💬</button>
@@ -2168,35 +2179,6 @@ function toggleChat() {
 }
 
 /* Calendar */
-/* EDIT CALENDAR STATUS HERE
-   Options visitors can see:
-   open = Open
-   limited = Limited
-   booked = Booked
-   filled = Filled
-   ask or blank = Ask
-*/
-const calendarStatus = {
-  "2026-07-05":"open",
-  "2026-07-08":"limited",
-  "2026-07-10":"booked",
-  "2026-07-12":"open",
-  "2026-07-16":"open",
-  "2026-07-18":"limited",
-  "2026-07-19":"filled",
-  "2026-07-22":"open",
-  "2026-07-26":"open",
-  "2026-07-30":"limited",
-  "2026-08-02":"open",
-  "2026-08-06":"open",
-  "2026-08-09":"limited",
-  "2026-08-13":"open",
-  "2026-08-16":"booked",
-  "2026-08-17":"open",
-  "2026-08-21":"limited",
-  "2026-08-24":"open",
-  "2026-08-29":"open"
-};
 let calDate = new Date(2026, 6, 1);
 const monthTitle = document.getElementById("monthTitle");
 const grid = document.getElementById("calendarGrid");
@@ -2226,16 +2208,14 @@ function renderCalendar() {
   }
   for (let d=1; d<=days; d++) {
     const date = iso(y,m,d);
-    const status = calendarStatus[date] || "";
+    const status = "request";
     const cell = document.createElement("button");
     cell.type = "button";
     cell.className = "day " + status;
-    cell.innerHTML = "<span class='n'>" + d + "</span><span class='s'>" + (status === "open" ? "Open" : status === "limited" ? "Limited" : status === "booked" ? "Booked" : status === "filled" ? "Filled" : "Ask") + "</span>";
-    if (status !== "booked" && status !== "filled") {
-      cell.addEventListener("click", () => {
+    cell.innerHTML = "<span class='n'>" + d + "</span><span class='s'>Request</span>";
+    cell.addEventListener("click", () => {
         window.location.href = "booking.html?date=" + encodeURIComponent(date) + "#booking-calendar";
       });
-    }
     grid.appendChild(cell);
   }
 }
