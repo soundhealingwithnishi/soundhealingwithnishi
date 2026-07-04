@@ -307,6 +307,29 @@ footer strong {
     padding:14px 17px;
   }
 }
+
+/* NO PHONE + HERO QUOTE FINAL FIX */
+.hero-quote {
+  margin: -6px 0 22px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.45;
+  color: #c6a15a;
+  font-style: italic;
+}
+a[href^="tel:"],
+.phone,
+.phone-number,
+.contact-phone {
+  display: none !important;
+}
+@media(max-width: 760px) {
+  .hero-quote {
+    margin: 0 0 20px;
+    font-size: 18px;
+  }
+}
+
 </style>
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:title" content="Gallery | Sound Healing with Nishi">

@@ -20,7 +20,6 @@
   "@type": "HealthAndBeautyBusiness",
   "name": "Sound Healing with Nishi",
   "url": "https://soundhealingwithnishi.com/",
-  "telephone": "+1-201-982-5777",
   "email": "soundhealingwithnishi@gmail.com",
   "image": "https://soundhealingwithnishi.com/photo3.jpg",
   "address": {
@@ -1600,6 +1599,29 @@ footer {
   }
 }
 
+
+/* NO PHONE + HERO QUOTE FINAL FIX */
+.hero-quote {
+  margin: -6px 0 22px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.45;
+  color: #c6a15a;
+  font-style: italic;
+}
+a[href^="tel:"],
+.phone,
+.phone-number,
+.contact-phone {
+  display: none !important;
+}
+@media(max-width: 760px) {
+  .hero-quote {
+    margin: 0 0 20px;
+    font-size: 18px;
+  }
+}
+
 </style>
 <!-- Sections reordered: Experience and Social after Book Your Session -->
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -1653,6 +1675,7 @@ footer {
 <section class="hero" id="home">
   <div class="hero-left">
     <p class="hero-eyebrow">Charlotte Vibrational Sound Healing</p>
+        <p class="hero-quote">"Let the sounds make you fall in love with yourself."</p>
     <h1>Feel sound.<br>Find your <em>calm.</em></h1>
     <p class="hero-sub">A refined, immersive sound healing experience with Himalayan bowls, crystal bowls, tuning fork, gong, and 18+ instruments. Designed for deep rest, stress release, emotional softness, and self-connection.</p>
     <div class="hero-actions">
@@ -2062,7 +2085,7 @@ footer {
         <div class="fg"><label>Email *</label><input type="email" name="email" required placeholder="you@email.com"></div>
       </div>
       <div class="form-row">
-        <div class="fg"><label>Phone</label><input name="phone" placeholder="201-982-5777"></div>
+        <div class="fg"><label>Phone</label><input name="phone" placeholder=""></div>
         <div class="fg"><label>Interest</label><select name="interest"><option>Private Sound Bath</option><option>Couples Sound Bath</option><option>Group Sound Bath</option><option>Corporate / Retreat</option><option>July 10 Event</option></select></div>
       </div>
       <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell Nishi what you are looking for."></textarea></div>
@@ -2095,7 +2118,6 @@ footer {
     <h4>Contact</h4>
     <ul>
       <li><a href="mailto:soundhealingwithnishi@gmail.com">soundhealingwithnishi@gmail.com</a></li>
-      <li><a href="tel:2019825777">201-982-5777</a></li>
       <li><a href="https://share.google/nts81XwQVwJB2WoPT" target="_blank" rel="noopener">Google Profile</a></li>
       <li><a href="https://www.instagram.com/soundhealingwithnishi/" target="_blank" rel="noopener">@soundhealingwithnishi</a></li>
     </ul>
@@ -2108,8 +2130,8 @@ footer {
 
 <div class="chat">
   <div class="chat-options" id="chatOptions">
-    <a href="sms:2019825777">Text Nishi</a>
-    <a href="https://wa.me/12019825777" target="_blank" rel="noopener">WhatsApp Nishi</a>
+    <a href="sms:">Text Nishi</a>
+    <a href="https://wa.me/" target="_blank" rel="noopener">WhatsApp Nishi</a>
     <a href="mailto:soundhealingwithnishi@gmail.com">Email Nishi</a>
   </div>
   <button class="chat-main" onclick="toggleChat()" aria-label="Chat with Nishi">💬</button>
