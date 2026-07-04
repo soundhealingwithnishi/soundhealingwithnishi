@@ -1622,6 +1622,24 @@ a[href^="tel:"],
   }
 }
 
+
+/* MOBILE MENU PAGE LINKS FIX */
+.mobile-menu {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: 72px 24px 44px !important;
+}
+.mobile-menu a {
+  text-align: center;
+}
+@media(max-width: 760px) {
+  .mobile-menu a[href="sound-bath-charlotte.html"],
+  .mobile-menu a[href="blog.html"],
+  .mobile-menu a[href="gallery.html"] {
+    display: block !important;
+  }
+}
+
 </style>
 <!-- Sections reordered: Experience and Social after Book Your Session -->
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -1638,6 +1656,10 @@ a[href^="tel:"],
   <a onclick="toggleMenu(false)" href="#social-videos">Videos</a>
   <a onclick="toggleMenu(false)" href="#summer-series">Summer Series</a>
   <a onclick="toggleMenu(false)" href="#availability">Calendar</a>
+  
+  <a href="gallery.html">Gallery</a>
+  <a href="sound-bath-charlotte.html">Sound Bath Charlotte</a>
+  <a href="blog.html">Blog</a>
   <a onclick="toggleMenu(false)" href="booking.html">Book</a>
 </div>
 
@@ -2332,6 +2354,32 @@ if (document.readyState === 'loading') {
   initHeroCollageFixed();
   initSocialVideoHoverFixed();
 }
+</script>
+
+
+<script>
+/* MOBILE MENU PAGE LINKS RUNTIME SAFETY */
+(function(){
+  function addLink(menu, href, text) {
+    if (!menu || menu.querySelector('a[href="' + href + '"]')) return;
+    var a = document.createElement('a');
+    a.href = href;
+    a.textContent = text;
+    var book = menu.querySelector('a[href="booking.html"]');
+    if (book) menu.insertBefore(a, book);
+    else menu.appendChild(a);
+  }
+  function fixMobileMenu() {
+    var menus = document.querySelectorAll('.mobile-menu, #mobileMenu, .mobile-nav');
+    menus.forEach(function(menu) {
+      addLink(menu, 'gallery.html', 'Gallery');
+      addLink(menu, 'sound-bath-charlotte.html', 'Sound Bath Charlotte');
+      addLink(menu, 'blog.html', 'Blog');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixMobileMenu);
+  else fixMobileMenu();
+})();
 </script>
 
 </body>
