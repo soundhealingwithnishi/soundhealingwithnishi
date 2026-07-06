@@ -673,6 +673,7 @@ body > nav:has(.navlinks) {
  </div>
 
  <form id="bookingForm">
+        <input type="checkbox" name="botcheck" style="display:none;">
  <input type="hidden" name="_subject" value="New Sound Healing Booking Request">
  <input type="hidden" name="session_type" id="session_type" value="Private Sound Bath">
 
@@ -790,7 +791,8 @@ body > nav:has(.navlinks) {
 
 
 <script>
-const endpoint = "https://formspree.io/f/mdapvbvg";
+const endpoint = "https://api.web3forms.com/submit";
+const web3formsAccessKey = "99efa5ae-779a-4735-a250-d2e9879c2676";
 
 const choices = document.querySelectorAll(".choice");
 const sessionInput = document.getElementById("session_type");
@@ -931,7 +933,11 @@ if (bookingForm) {
     const formData = new FormData(bookingForm);
     const data = Object.fromEntries(formData.entries());
 
-    try {
+    
+    data.access_key = web3formsAccessKey;
+    data.subject = "New Sound Healing Booking Request";
+    data.from_name = "Sound Healing with Nishi Website";
+try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
