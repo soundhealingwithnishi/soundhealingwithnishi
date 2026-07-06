@@ -548,6 +548,31 @@ body::before {
 a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important; }
 @media(max-width:760px){ .hero-quote{ margin:0 0 20px; font-size:18px; } }
 
+
+/* BOOKING CALENDAR REQUEST-ONLY CLEANUP */
+.booking-calendar-panel {
+  background: #fffdf8;
+}
+.booking-day,
+.booking-day.request,
+.booking-day.open,
+.booking-day.limited,
+.booking-day.booked {
+  background: var(--cream) !important;
+  border-color: rgba(193,160,98,.45) !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+  color: var(--forest-deep) !important;
+}
+.booking-day .s {
+  color: var(--muted) !important;
+}
+.booking-legend i,
+.booking-legend i.limited,
+.booking-legend i.booked {
+  background: var(--gold) !important;
+}
+
 </style>
 
 <style>
@@ -636,11 +661,9 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
  </div>
  <div class="booking-calendar-grid" id="bookingCalendarGrid"></div>
  <div class="booking-legend">
- <span><i></i> Open for inquiry</span>
- <span><i class="limited"></i> Limited</span>
- <span><i class="booked"></i> Booked</span>
+ <span><i></i> Request a Date</span>
  </div>
- <p class="booking-selected-note">Selected date: <strong id="bookingSelectedDateText">Choose a date from the calendar or use the date field below.</strong></p>
+ <p class="booking-selected-note">All dates are inquiry-based. Nishi will confirm availability directly by email.</p>
  </div>
  <div class="card">
  <p class="label">Session Type</p>
@@ -729,8 +752,8 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
  </div>
 
  <div class="form-group">
- <label for="address">Event Address or Area</label>
- <input type="text" id="address" name="event_address_or_area" placeholder="Charlotte, NC / venue / neighborhood">
+ <label for="address">Event Address or Area *</label>
+ <input type="text" id="address" name="event_address_or_area" placeholder="Charlotte, NC / venue / neighborhood" required>
  </div>
 
  <div class="form-group">
@@ -770,136 +793,179 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
 </footer>
 
 
+
 <script>
 const endpoint = "https://formspree.io/f/mdapvbvg";
-const choices = document.querySelectorAll('.choice');
-const sessionInput = document.getElementById('session_type');
-choices.forEach(btn => {
- btn.addEventListener('click', () => {
- choices.forEach(b => b.classList.remove('active'));
- btn.classList.add('active');
- sessionInput.value = btn.dataset.value;
- });
+
+const choices = document.querySelectorAll(".choice");
+const sessionInput = document.getElementById("session_type");
+choices.forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    choices.forEach(function(b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+    sessionInput.value = btn.dataset.value || "Private Sound Bath";
+  });
 });
 
-const dateInput = document.getElementById('preferred_date');
-const timeInput = document.getElementById('preferred_time');
-const today = new Date();
-today.setDate(today.getDate() + 1);
-dateInput.min = today.toISOString().split('T')[0];
+const dateInput = document.getElementById("preferred_date");
+const timeInput = document.getElementById("preferred_time");
+const bookingMonthTitle = document.getElementById("bookingMonthTitle");
+const bookingCalendarGrid = document.getElementById("bookingCalendarGrid");
 
-const bookingAvailability = {
- "2026-07-05": "open",
- "2026-07-08": "limited",
- "2026-07-12": "open",
- "2026-07-16": "open",
- "2026-07-18": "limited",
- "2026-07-22": "open",
- "2026-07-26": "open",
- "2026-07-30": "limited",
- "2026-08-02": "open",
- "2026-08-06": "open",
- "2026-08-09": "limited",
- "2026-08-13": "open",
- "2026-08-17": "open",
- "2026-08-21": "limited",
- "2026-08-24": "open",
- "2026-08-29": "open"
-};
-const bookingBooked = new Set(["2026-07-10", "2026-07-19", "2026-08-16"]);
+if (dateInput) {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  dateInput.min = tomorrow.toISOString().split("T")[0];
+}
+
 let bookingCalendarDate = new Date(2026, 6, 1);
-const bookingMonthTitle = document.getElementById('bookingMonthTitle');
-const bookingCalendarGrid = document.getElementById('bookingCalendarGrid');
-const bookingSelectedDateText = document.getElementById('bookingSelectedDateText');
-function bookingIso(y, m, d){ return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
-function bookingPretty(iso){ const [y,m,d] = iso.split('-').map(Number); return new Date(y,m-1,d).toLocaleDateString(undefined,{weekday:'long', month:'long', day:'numeric', year:'numeric'}); }
-function renderBookingCalendar(){
- if(!bookingCalendarGrid) return;
- const y = bookingCalendarDate.getFullYear();
- const m = bookingCalendarDate.getMonth();
- bookingMonthTitle.textContent = bookingCalendarDate.toLocaleDateString(undefined,{month:'long', year:'numeric'});
- bookingCalendarGrid.innerHTML = '';
- ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day => {
- const el = document.createElement('div'); el.className = 'booking-dow'; el.textContent = day; bookingCalendarGrid.appendChild(el);
- });
- const first = new Date(y,m,1).getDay();
- const total = new Date(y,m+1,0).getDate();
- for(let i=0;i<first;i++){ const el=document.createElement('button'); el.type='button'; el.className='booking-day empty'; bookingCalendarGrid.appendChild(el); }
- for(let d=1; d<=total; d++){
- const iso = bookingIso(y,m,d);
- const status = bookingBooked.has(iso) ? 'booked' : (bookingAvailability[iso] || 'open');
- const el = document.createElement('button');
- el.type = 'button';
- el.className = `booking-day ${status}${dateInput.value===iso ? ' selected' : ''}`;
- el.innerHTML = `<span class="n">${d}</span><span class="s">${status === 'open' ? 'Open' : status === 'limited' ? 'Limited' : 'Booked'}</span>`;
- if(status === 'booked') { el.disabled = true; }
- else {
- el.addEventListener('click', () => {
- dateInput.value = iso;
- bookingSelectedDateText.textContent = bookingPretty(iso);
- renderBookingCalendar();
 
-/* Accept selected date from homepage calendar */
-(function(){
- const params = new URLSearchParams(window.location.search);
- const incomingDate = params.get('date');
- if (!incomingDate || !dateInput) return;
- dateInput.value = incomingDate;
- if (bookingSelectedDateText) {
- bookingSelectedDateText.textContent = bookingPretty(incomingDate);
- }
- if (typeof renderBookingCalendar === 'function') {
- const parts = incomingDate.split('-').map(Number);
- if (parts.length === 3 && parts.every(Boolean)) {
- bookingCalendarDate = new Date(parts[0], parts[1] - 1, 1);
- }
- renderBookingCalendar();
- }
+function bookingIso(y, m, d) {
+  return y + "-" + String(m + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
+}
+
+function bookingPretty(iso) {
+  if (!iso) return "";
+  const parts = iso.split("-").map(Number);
+  if (parts.length !== 3 || parts.some(function(x) { return !x; })) return iso;
+  return new Date(parts[0], parts[1] - 1, parts[2]).toLocaleDateString(undefined, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  });
+}
+
+function renderBookingCalendar() {
+  if (!bookingCalendarGrid || !bookingMonthTitle) return;
+
+  const y = bookingCalendarDate.getFullYear();
+  const m = bookingCalendarDate.getMonth();
+
+  bookingMonthTitle.textContent = bookingCalendarDate.toLocaleDateString(undefined, {
+    month: "long",
+    year: "numeric"
+  });
+
+  bookingCalendarGrid.innerHTML = "";
+
+  ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach(function(day) {
+    const el = document.createElement("div");
+    el.className = "booking-dow";
+    el.textContent = day;
+    bookingCalendarGrid.appendChild(el);
+  });
+
+  const first = new Date(y, m, 1).getDay();
+  const total = new Date(y, m + 1, 0).getDate();
+
+  for (let i = 0; i < first; i++) {
+    const empty = document.createElement("button");
+    empty.type = "button";
+    empty.className = "booking-day empty";
+    empty.disabled = true;
+    bookingCalendarGrid.appendChild(empty);
+  }
+
+  for (let d = 1; d <= total; d++) {
+    const iso = bookingIso(y, m, d);
+    const el = document.createElement("button");
+    el.type = "button";
+    el.className = "booking-day request" + (dateInput && dateInput.value === iso ? " selected" : "");
+    el.innerHTML = "<span class='n'>" + d + "</span><span class='s'>Request</span>";
+    el.addEventListener("click", function() {
+      if (dateInput) dateInput.value = iso;
+      renderBookingCalendar();
+      const form = document.getElementById("bookingForm");
+      if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    bookingCalendarGrid.appendChild(el);
+  }
+}
+
+document.getElementById("bookingPrevMonth")?.addEventListener("click", function() {
+  bookingCalendarDate.setMonth(bookingCalendarDate.getMonth() - 1);
+  renderBookingCalendar();
+});
+
+document.getElementById("bookingNextMonth")?.addEventListener("click", function() {
+  bookingCalendarDate.setMonth(bookingCalendarDate.getMonth() + 1);
+  renderBookingCalendar();
+});
+
+dateInput?.addEventListener("input", function() {
+  if (dateInput.value) {
+    const parts = dateInput.value.split("-").map(Number);
+    if (parts.length === 3 && parts.every(Boolean)) {
+      bookingCalendarDate = new Date(parts[0], parts[1] - 1, 1);
+    }
+  }
+  renderBookingCalendar();
+});
+
+(function acceptHomepageSelectedDate() {
+  const params = new URLSearchParams(window.location.search);
+  const incomingDate = params.get("date");
+  if (!incomingDate || !dateInput) return;
+
+  dateInput.value = incomingDate;
+  const parts = incomingDate.split("-").map(Number);
+  if (parts.length === 3 && parts.every(Boolean)) {
+    bookingCalendarDate = new Date(parts[0], parts[1] - 1, 1);
+  }
 })();
 
- document.getElementById('bookingForm').scrollIntoView({behavior:'smooth', block:'start'});
- });
- }
- bookingCalendarGrid.appendChild(el);
- }
-}
-document.getElementById('bookingPrevMonth')?.addEventListener('click', () => { bookingCalendarDate.setMonth(bookingCalendarDate.getMonth() - 1); renderBookingCalendar(); });
-document.getElementById('bookingNextMonth')?.addEventListener('click', () => { bookingCalendarDate.setMonth(bookingCalendarDate.getMonth() + 1); renderBookingCalendar(); });
-dateInput.addEventListener('input', () => { bookingSelectedDateText.textContent = dateInput.value ? bookingPretty(dateInput.value) : 'Choose a date from the calendar or use the date field below.'; renderBookingCalendar(); });
 renderBookingCalendar();
 
-document.getElementById('bookingForm').addEventListener('submit', async function(e) {
- e.preventDefault();
- const submitBtn = document.getElementById('bookingSubmit');
- const success = document.getElementById('bookingSuccess');
- const error = document.getElementById('bookingError');
- success.style.display = 'none';
- error.style.display = 'none';
- submitBtn.disabled = true;
- submitBtn.textContent = 'Sending...';
- const formData = new FormData(this);
- const data = Object.fromEntries(formData.entries());
- try {
- const response = await fetch(endpoint, {
- method: 'POST',
- headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
- body: JSON.stringify(data)
- });
- if (response.ok) {
- success.style.display = 'block';
- this.reset();
- choices.forEach(b => b.classList.remove('active'));
- choices[0].classList.add('active');
- sessionInput.value = 'Private Sound Bath';
- bookingSelectedDateText.textContent = 'Choose a date from the calendar or use the date field below.';
- renderBookingCalendar();
- window.scrollTo({ top: success.offsetTop - 120, behavior: 'smooth' });
- } else { error.style.display = 'block'; }
- } catch(err) { error.style.display = 'block'; }
- submitBtn.disabled = false;
- submitBtn.textContent = 'Send Booking Request';
-});
+const bookingForm = document.getElementById("bookingForm");
+if (bookingForm) {
+  bookingForm.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById("bookingSubmit");
+    const success = document.getElementById("bookingSuccess");
+    const error = document.getElementById("bookingError");
+
+    if (success) success.style.display = "none";
+    if (error) error.style.display = "none";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+    }
+
+    const formData = new FormData(bookingForm);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        if (success) success.style.display = "block";
+        bookingForm.reset();
+        choices.forEach(function(b) { b.classList.remove("active"); });
+        if (choices[0]) choices[0].classList.add("active");
+        if (sessionInput) sessionInput.value = "Private Sound Bath";
+        renderBookingCalendar();
+        if (success) window.scrollTo({ top: success.offsetTop - 120, behavior: "smooth" });
+      } else {
+        if (error) error.style.display = "block";
+      }
+    } catch(err) {
+      if (error) error.style.display = "block";
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Booking Request";
+    }
+  });
+}
 </script>
+
 
 
 <div class="nishi-chat-widget" id="nishiChatWidget">
