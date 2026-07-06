@@ -573,6 +573,13 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
   background: var(--gold) !important;
 }
 
+
+/* SINGLE HEADER FIX: hide legacy booking-page nav if an older copy remains */
+body > nav:has(.logo),
+body > nav:has(.navlinks) {
+  display: none !important;
+}
+
 </style>
 
 <style>
@@ -625,18 +632,6 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
 
 
 <div class="topbar">Book a session · Private · Group · Corporate · Events · Retreats</div>
-<nav>
- <a class="logo" href="index.html">Sound Healing with Nishi</a>
- <ul class="navlinks">
- <li><a href="index.html">Home</a></li>
- <li><a href="event-art-sound-bath.html">Event Jul 10</a></li>
- <li><a href="offerings.html">Offerings</a></li>
- <li><a href="blog.html">Blog</a>
-<a href="gallery.html">Gallery</a></li>
- <li><a href="booking.html" class="nav-cta">Book</a></li>
- </ul>
-</nav>
-
 <section class="hero" style="--hero-img:url('photo3.jpg'); min-height:58vh;">
  <div class="hero-inner">
  <div>
