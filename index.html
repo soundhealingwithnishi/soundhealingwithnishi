@@ -1656,6 +1656,134 @@ a[href^="tel:"],
 a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important; }
 @media(max-width:760px){ .hero-quote{ margin:0 0 20px; font-size:18px; } }
 
+
+/* REAL GOOGLE REVIEW FIX */
+.reviews-sec {
+  background: #fffdf8;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  max-width: 860px;
+  margin: 34px 0 28px;
+}
+.review-card {
+  border: 1px solid rgba(198,161,90,.34);
+  background: #fffdf8;
+  border-radius: 22px;
+  padding: 34px;
+  box-shadow: 0 18px 54px rgba(19,40,29,.08);
+}
+.review-stars {
+  color: #c6a15a;
+  letter-spacing: .18em;
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+.review-text {
+  color: #5f5a52;
+  font-size: 17px;
+  line-height: 1.85;
+  font-style: italic;
+  margin: 0 0 24px;
+}
+.review-card strong {
+  display: block;
+  color: #13281d;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.review-card span {
+  display: block;
+  color: #756e64;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.review-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+@media(max-width: 760px) {
+  .review-card {
+    padding: 24px;
+  }
+  .review-text {
+    font-size: 15px;
+  }
+  .review-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+/* REAL GOOGLE REVIEW MAPS LINK UPDATE */
+.reviews-sec {
+  background: #fffdf8;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  max-width: 860px;
+  margin: 34px 0 28px;
+}
+.review-card {
+  border: 1px solid rgba(198,161,90,.34);
+  background: #fffdf8;
+  border-radius: 22px;
+  padding: 34px;
+  box-shadow: 0 18px 54px rgba(19,40,29,.08);
+}
+.review-stars {
+  color: #c6a15a;
+  letter-spacing: .18em;
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+.review-text {
+  color: #5f5a52;
+  font-size: 17px;
+  line-height: 1.85;
+  font-style: italic;
+  margin: 0 0 24px;
+}
+.review-card strong {
+  display: block;
+  color: #13281d;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.review-card span {
+  display: block;
+  color: #756e64;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.review-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+@media(max-width: 760px) {
+  .review-card {
+    padding: 24px;
+  }
+  .review-text {
+    font-size: 15px;
+  }
+  .review-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 </style>
 <!-- Sections reordered: Experience and Social after Book Your Session -->
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -2066,22 +2194,31 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
   </div>
 </section>
 
-<section class="sec review-sec" id="google-reviews">
+
+
+<section class="sec reviews-sec" id="google-reviews">
   <div class="sec-inner">
     <p class="eyebrow">Google Reviews</p>
-    <h2 class="h2">What people feel after a <em>sound bath</em></h2>
-    <p class="lead">Real reviews help new clients understand the feeling of the experience before they book.</p>
-    <div class="review-grid">
-      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">A peaceful, therapeutic experience that helped me feel calm and grounded.</p><div class="review-name">Google Review</div></div>
-      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">The sound bath created a deep reset. It felt gentle, beautiful, and very intentional.</p><div class="review-name">Client Experience</div></div>
-      <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">A relaxing and unique wellness experience in Charlotte.</p><div class="review-name">Charlotte Client</div></div>
+    <h2>What people feel after a <em>sound bath</em></h2>
+    <p class="section-lead">Real client words from Google reviews.</p>
+
+    <div class="reviews-grid">
+      <article class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">“This was an incredible experience! I did a couples session with my husband in our home. It was such a therapeutic experience and Nishi was very professional and an expert in her craft. She wrote a beautiful script to go along with the purpose of the session and helped us feel grounded in the experience. I would definitely recommend her for individual or group/team building experience.”</p>
+        <strong>Alexis B. Henley</strong>
+        <span>Google Review · Couples sound bath · A week ago</span>
+      </article>
     </div>
-    <div class="google-actions">
-      <a class="btn-fill" href="https://share.google/nts81XwQVwJB2WoPT" target="_blank" rel="noopener">Read Google Reviews</a>
-      <a class="btn-line" href="https://share.google/nts81XwQVwJB2WoPT" target="_blank" rel="noopener"><span>★</span> Leave Review</a>
+
+    <div class="review-actions">
+      <a class="btn-fill" href="https://maps.app.goo.gl/E2h1EWs57nez8DCH9" target="_blank" rel="noopener">Read Google Review</a>
+      <a class="btn-line" href="https://share.google/BjH2OGuSRRioNX27w" target="_blank" rel="noopener"><span>★</span> Leave Review</a>
     </div>
   </div>
 </section>
+
+
 
 <section class="sec" id="about">
   <div class="sec-inner">
