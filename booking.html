@@ -672,9 +672,13 @@ body > nav:has(.navlinks) {
  <button type="button" class="choice" data-value="Event or Retreat"><strong>Event or Retreat</strong><span>Custom sound healing experience</span></button>
  </div>
 
- <form id="bookingForm">
+ <form id="bookingForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="99efa5ae-779a-4735-a250-d2e9879c2676">
+        <input type="hidden" name="subject" value="New Sound Healing Booking Request">
+        <input type="hidden" name="from_name" value="Sound Healing with Nishi Website">
         <input type="checkbox" name="botcheck" style="display:none;">
- <input type="hidden" name="_subject" value="New Sound Healing Booking Request">
+
+<input type="hidden" name="_subject" value="New Sound Healing Booking Request">
  <input type="hidden" name="session_type" id="session_type" value="Private Sound Bath">
 
  <div class="calendar-box">
@@ -793,7 +797,6 @@ body > nav:has(.navlinks) {
 <script>
 const endpoint = "https://api.web3forms.com/submit";
 const web3formsAccessKey = "99efa5ae-779a-4735-a250-d2e9879c2676";
-
 const choices = document.querySelectorAll(".choice");
 const sessionInput = document.getElementById("session_type");
 choices.forEach(function(btn) {
