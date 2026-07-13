@@ -1,0 +1,60 @@
+JULY 10 EVENT REMOVAL
+
+FILES UPDATED
+- index.html
+- blog.html
+- booking.html
+- corporate-sound-meditation-charlotte.html
+- event-art-sound-bath.html
+- gallery.html
+- himalayan-singing-bowls-vs-crystal-bowls.html
+- offerings.html
+- private-vs-group-sound-bath-charlotte.html
+- sound-bath-charlotte.html
+- sound-healing-charlotte-nc-guide.html
+
+WHAT WAS CHANGED
+- Removed every July 10 event promotion and navigation link.
+- Removed the full July 10 event section from index.html.
+- Removed the July 10 option from the homepage inquiry form.
+- Changed the homepage event photo tile to open Gallery instead of the expired event page.
+- Kept the Summer Sound Bath Series promotion in the top ribbon.
+- Preserved all other page content and styling.
+- Preserved the Web3Forms booking implementation.
+- Replaced event-art-sound-bath.html with a small automatic redirect to index.html.
+
+IMPORTANT
+Do not delete event-art-sound-bath.html if you want old shared event links to avoid an error.
+Upload the replacement redirect file over the old event page. The visible event page is removed,
+but visitors using the old URL are safely sent to the homepage.
+
+HOW TO UPDATE GITHUB
+1. Open the GitHub repository used by soundhealingwithnishi.com.
+2. Open the repository root, where index.html is stored.
+3. Click Add file, then Upload files.
+4. Drag all HTML files from this package into the upload area.
+5. GitHub will show that existing files are being replaced.
+6. In the commit message, enter:
+   Remove completed July 10 event
+7. Click Commit changes.
+8. Wait for GitHub Pages to deploy.
+9. Open the website in a private/incognito window and test:
+   - Homepage top ribbon
+   - Homepage navigation
+   - Homepage around the Summer Series and reviews sections
+   - Booking page
+   - Gallery
+   - Blog and article pages
+   - https://soundhealingwithnishi.com/event-art-sound-bath.html
+     This old address should redirect to the homepage.
+
+GITHUB WEB EDITOR ALTERNATIVE
+You can upload one file at a time:
+1. Click the file in GitHub.
+2. Click the pencil icon.
+3. Replace its contents with the revised file.
+4. Click Commit changes.
+
+DO NOT
+- Do not upload the README files from the previous Web3Forms fix over any HTML page.
+- Do not delete the event redirect file unless you accept a Page Not Found response for old links.

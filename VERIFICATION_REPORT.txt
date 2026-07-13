@@ -1,0 +1,26 @@
+JULY 10 EVENT REMOVAL VERIFICATION
+
+Updated files:
+- blog.html
+- booking.html
+- corporate-sound-meditation-charlotte.html
+- himalayan-singing-bowls-vs-crystal-bowls.html
+- offerings.html
+- private-vs-group-sound-bath-charlotte.html
+- sound-bath-charlotte.html
+- sound-healing-charlotte-nc-guide.html
+- gallery.html
+- index.html
+- event-art-sound-bath.html
+
+Checks passed:
+- No July 10 or Jul 10 text remains on active pages.
+- No active page links to event-art-sound-bath.html.
+- No Eventbrite ticket ID remains on active pages.
+- No EARLYBIRD text remains on active pages.
+- Homepage event section and inquiry option were removed.
+- Homepage event image tile now opens Gallery.
+- Summer Series promotion remains in the top ribbon.
+- Booking page still uses Web3Forms.
+- Booking page contains no Formspree references.
+- Old event URL redirects to the homepage.
