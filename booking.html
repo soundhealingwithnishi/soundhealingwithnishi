@@ -549,29 +549,52 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
 @media(max-width:760px){ .hero-quote{ margin:0 0 20px; font-size:18px; } }
 
 
-/* BOOKING CALENDAR REQUEST-ONLY CLEANUP */
-.booking-calendar-panel {
-  background: #fffdf8;
+
+/* GOOGLE CALENDAR AVAILABILITY STATES */
+.booking-calendar-panel { background:#fffdf8; }
+.booking-day.request {
+  background:var(--cream)!important;
+  border-color:rgba(193,160,98,.45)!important;
+  opacity:1!important;
+  cursor:pointer!important;
+  color:var(--forest-deep)!important;
 }
-.booking-day,
-.booking-day.request,
-.booking-day.open,
-.booking-day.limited,
+.booking-day.request:hover { background:rgba(193,160,98,.16)!important; transform:translateY(-1px); }
 .booking-day.booked {
-  background: var(--cream) !important;
-  border-color: rgba(193,160,98,.45) !important;
-  opacity: 1 !important;
-  cursor: pointer !important;
-  color: var(--forest-deep) !important;
+  background:#e9e2d8!important;
+  border-color:rgba(117,110,100,.22)!important;
+  color:#8d8378!important;
+  cursor:not-allowed!important;
+  opacity:.82!important;
 }
-.booking-day .s {
-  color: var(--muted) !important;
+.booking-day.public-event {
+  background:rgba(61,90,68,.13)!important;
+  border-color:rgba(61,90,68,.42)!important;
+  color:var(--forest-deep)!important;
+  cursor:pointer!important;
 }
-.booking-legend i,
-.booking-legend i.limited,
-.booking-legend i.booked {
-  background: var(--gold) !important;
+.booking-day.public-event:hover { background:rgba(61,90,68,.19)!important; }
+.booking-day .s { color:var(--muted)!important; }
+.booking-day.booked .s { color:#8d8378!important; }
+.booking-day.public-event .s { color:var(--forest-mid)!important; font-weight:600; }
+.booking-legend i { background:var(--gold)!important; }
+.booking-legend i.booked { background:#a99e91!important; }
+.booking-legend i.public { background:var(--forest-mid)!important; }
+.calendar-sync-status { margin-top:14px; color:var(--muted); font-size:12px; line-height:1.6; }
+.calendar-sync-status.error { color:#8a2f2f; }
+.public-events-panel { display:none; margin-top:22px; padding-top:22px; border-top:1px solid rgba(193,160,98,.22); }
+.public-events-panel.visible { display:block; }
+.public-events-title { margin:0 0 14px; color:var(--forest-deep); font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:400; }
+.public-events-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.public-event-card { padding:20px; border:1px solid rgba(61,90,68,.24); border-radius:20px; background:rgba(61,90,68,.07); }
+.public-event-card h3 { margin:0 0 8px; color:var(--forest-deep); font-size:25px; }
+.public-event-card p { margin:5px 0; color:var(--muted); font-size:13px; line-height:1.6; }
+.public-event-card a {
+  display:inline-flex; margin-top:12px; padding:10px 16px; border-radius:999px;
+  background:var(--forest-deep); color:var(--gold-light); text-decoration:none;
+  font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
 }
+@media(max-width:700px){ .public-events-grid{grid-template-columns:1fr;} }
 
 
 /* SINGLE HEADER FIX: hide legacy booking-page nav if an older copy remains */
@@ -653,9 +676,16 @@ body > nav:has(.navlinks) {
  </div>
  <div class="booking-calendar-grid" id="bookingCalendarGrid"></div>
  <div class="booking-legend">
+ <span><i class="booked"></i> Fully Booked</span>
+ <span><i class="public"></i> Public Event</span>
  <span><i></i> Request a Date</span>
  </div>
- <p class="booking-selected-note">All dates are inquiry-based. Nishi will confirm availability directly by email.</p>
+ <p class="booking-selected-note" id="bookingCalendarNote"><strong>July 2026 is fully booked.</strong> Please request a later date. Nishi will confirm availability directly by email.</p>
+ <p class="calendar-sync-status" id="calendarSyncStatus">Connecting to Nishi's live availability calendar…</p>
+ <div class="public-events-panel" id="publicEventsPanel">
+   <h2 class="public-events-title">Public events this month</h2>
+   <div class="public-events-grid" id="publicEventsGrid"></div>
+ </div>
  </div>
  <div class="card">
  <p class="label">Session Type</p>
@@ -695,7 +725,7 @@ body > nav:has(.navlinks) {
  </select>
  </div>
  </div>
- <p class="calendar-note">This is a booking request calendar, not an automatic confirmed reservation.</p>
+ <p class="calendar-note">Choose a date marked <strong>Request</strong>. Dates marked Fully Booked or Public Event cannot be requested. This is a booking request, not an automatic confirmed reservation.</p>
 
  <div class="form-row">
  <div class="form-group">
@@ -804,33 +834,187 @@ choices.forEach(function(btn) {
   });
 });
 
+
 const dateInput = document.getElementById("preferred_date");
 const timeInput = document.getElementById("preferred_time");
 const bookingMonthTitle = document.getElementById("bookingMonthTitle");
 const bookingCalendarGrid = document.getElementById("bookingCalendarGrid");
+const bookingCalendarNote = document.getElementById("bookingCalendarNote");
+const calendarSyncStatus = document.getElementById("calendarSyncStatus");
+const publicEventsPanel = document.getElementById("publicEventsPanel");
+const publicEventsGrid = document.getElementById("publicEventsGrid");
 
-if (dateInput) {
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  dateInput.min = tomorrow.toISOString().split("T")[0];
-}
+const calendarWebAppUrl = "https://script.google.com/macros/s/AKfycbw1VMtzj21l9rJjp3J867lBLHvZiDiOxia4yHMpsWorg9hVyMQULB7Ng12ROF3iXg18lQ/exec";
+const earliestRequestDate = "2026-08-01";
+const fallbackFullyBookedMonths = new Set(["2026-07"]);
+const calendarMonthCache = new Map();
+
+if (dateInput) dateInput.min = earliestRequestDate;
 
 let bookingCalendarDate = new Date(2026, 6, 1);
+let currentMonthAvailability = null;
+let calendarLoadSequence = 0;
 
-function bookingIso(y, m, d) {
-  return y + "-" + String(m + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
+function bookingMonthKey(y,m) {
+  return y + "-" + String(m + 1).padStart(2,"0");
+}
+
+function bookingIso(y,m,d) {
+  return y + "-" + String(m + 1).padStart(2,"0") + "-" + String(d).padStart(2,"0");
 }
 
 function bookingPretty(iso) {
   if (!iso) return "";
-  const parts = iso.split("-").map(Number);
-  if (parts.length !== 3 || parts.some(function(x) { return !x; })) return iso;
-  return new Date(parts[0], parts[1] - 1, parts[2]).toLocaleDateString(undefined, {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric"
+  const p = iso.split("-").map(Number);
+  if (p.length !== 3 || p.some(function(v){ return !v; })) return iso;
+  return new Date(p[0],p[1]-1,p[2]).toLocaleDateString(undefined,{
+    weekday:"long",month:"long",day:"numeric",year:"numeric"
   });
+}
+
+function monthRange(y,m) {
+  const next = new Date(y,m+1,1);
+  return {
+    start: bookingIso(y,m,1),
+    end: bookingIso(next.getFullYear(),next.getMonth(),1)
+  };
+}
+
+function fallbackDayState(iso,y,m) {
+  if (fallbackFullyBookedMonths.has(bookingMonthKey(y,m)) || iso < earliestRequestDate) {
+    return {status:"booked"};
+  }
+  return null;
+}
+
+function dayStateFor(iso,y,m) {
+  if (currentMonthAvailability && currentMonthAvailability.days && currentMonthAvailability.days[iso]) {
+    return currentMonthAvailability.days[iso];
+  }
+  return fallbackDayState(iso,y,m);
+}
+
+function isDateUnavailable(iso) {
+  if (!iso) return false;
+  const p = iso.split("-").map(Number);
+  if (p.length !== 3 || p.some(function(v){ return !v; })) return true;
+  if (iso < earliestRequestDate) return true;
+  const state = dayStateFor(iso,p[0],p[1]-1);
+  return Boolean(state && (state.status === "booked" || state.status === "public"));
+}
+
+function jsonpCalendarRequest(start,end) {
+  return new Promise(function(resolve,reject) {
+    const callbackName = "__nishiCalendar_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+    const script = document.createElement("script");
+    let done = false;
+
+    function cleanup() {
+      if (script.parentNode) script.parentNode.removeChild(script);
+      try { delete window[callbackName]; } catch(err) { window[callbackName] = undefined; }
+    }
+
+    const timer = window.setTimeout(function() {
+      if (done) return;
+      done = true;
+      cleanup();
+      reject(new Error("Calendar response timed out."));
+    },12000);
+
+    window[callbackName] = function(payload) {
+      if (done) return;
+      done = true;
+      window.clearTimeout(timer);
+      cleanup();
+      resolve(payload);
+    };
+
+    script.onerror = function() {
+      if (done) return;
+      done = true;
+      window.clearTimeout(timer);
+      cleanup();
+      reject(new Error("Calendar could not be loaded."));
+    };
+
+    script.src = calendarWebAppUrl +
+      "?start=" + encodeURIComponent(start) +
+      "&end=" + encodeURIComponent(end) +
+      "&prefix=" + encodeURIComponent(callbackName) +
+      "&_=" + Date.now();
+
+    document.head.appendChild(script);
+  });
+}
+
+function updateCalendarStatus(loading,failed) {
+  if (!calendarSyncStatus) return;
+  calendarSyncStatus.classList.toggle("error",Boolean(failed));
+
+  if (loading) {
+    calendarSyncStatus.textContent = "Checking Nishi's live Google Calendar availability…";
+  } else if (failed) {
+    calendarSyncStatus.textContent = "Live calendar could not be reached. Safe fallback availability is being used. Please email Nishi if you need immediate confirmation.";
+  } else {
+    calendarSyncStatus.textContent = "Live availability updated automatically from Nishi's privacy-safe Google Calendar.";
+  }
+}
+
+function loadCalendarMonth(y,m) {
+  const key = bookingMonthKey(y,m);
+  if (calendarMonthCache.has(key)) {
+    currentMonthAvailability = calendarMonthCache.get(key);
+    updateCalendarStatus(false,false);
+    renderBookingCalendar();
+    renderPublicEvents();
+    return Promise.resolve(currentMonthAvailability);
+  }
+
+  const range = monthRange(y,m);
+  const sequence = ++calendarLoadSequence;
+  currentMonthAvailability = null;
+  updateCalendarStatus(true,false);
+  renderBookingCalendar();
+  renderPublicEvents();
+
+  return jsonpCalendarRequest(range.start,range.end)
+    .then(function(payload) {
+      if (!payload || payload.ok !== true || typeof payload.days !== "object") {
+        throw new Error(payload && payload.error ? payload.error : "Invalid calendar response.");
+      }
+      calendarMonthCache.set(key,payload);
+      if (sequence === calendarLoadSequence) {
+        currentMonthAvailability = payload;
+        updateCalendarStatus(false,false);
+        renderBookingCalendar();
+        renderPublicEvents();
+        validateSelectedDate();
+      }
+      return payload;
+    })
+    .catch(function(error) {
+      console.error("Calendar sync error:",error);
+      if (sequence === calendarLoadSequence) {
+        currentMonthAvailability = null;
+        updateCalendarStatus(false,true);
+        renderBookingCalendar();
+        renderPublicEvents();
+        validateSelectedDate();
+      }
+      return null;
+    });
+}
+
+function updateCalendarNote(y,m) {
+  if (!bookingCalendarNote) return;
+  const monthKey = bookingMonthKey(y,m);
+  const monthName = new Date(y,m,1).toLocaleDateString(undefined,{month:"long",year:"numeric"});
+
+  if (fallbackFullyBookedMonths.has(monthKey)) {
+    bookingCalendarNote.innerHTML = "<strong>" + monthName + " is fully booked.</strong> Please request a later date. Nishi will confirm availability directly by email.";
+  } else {
+    bookingCalendarNote.textContent = "Dates marked Request are inquiry-based. Fully Booked and Public Event dates cannot be requested.";
+  }
 }
 
 function renderBookingCalendar() {
@@ -839,24 +1023,21 @@ function renderBookingCalendar() {
   const y = bookingCalendarDate.getFullYear();
   const m = bookingCalendarDate.getMonth();
 
-  bookingMonthTitle.textContent = bookingCalendarDate.toLocaleDateString(undefined, {
-    month: "long",
-    year: "numeric"
-  });
-
+  bookingMonthTitle.textContent = bookingCalendarDate.toLocaleDateString(undefined,{month:"long",year:"numeric"});
+  updateCalendarNote(y,m);
   bookingCalendarGrid.innerHTML = "";
 
-  ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach(function(day) {
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(function(day) {
     const el = document.createElement("div");
     el.className = "booking-dow";
     el.textContent = day;
     bookingCalendarGrid.appendChild(el);
   });
 
-  const first = new Date(y, m, 1).getDay();
-  const total = new Date(y, m + 1, 0).getDate();
+  const first = new Date(y,m,1).getDay();
+  const total = new Date(y,m+1,0).getDate();
 
-  for (let i = 0; i < first; i++) {
+  for (let i=0;i<first;i++) {
     const empty = document.createElement("button");
     empty.type = "button";
     empty.className = "booking-day empty";
@@ -864,40 +1045,148 @@ function renderBookingCalendar() {
     bookingCalendarGrid.appendChild(empty);
   }
 
-  for (let d = 1; d <= total; d++) {
-    const iso = bookingIso(y, m, d);
+  for (let d=1;d<=total;d++) {
+    const iso = bookingIso(y,m,d);
+    const state = dayStateFor(iso,y,m);
     const el = document.createElement("button");
     el.type = "button";
-    el.className = "booking-day request" + (dateInput && dateInput.value === iso ? " selected" : "");
-    el.innerHTML = "<span class='n'>" + d + "</span><span class='s'>Request</span>";
-    el.addEventListener("click", function() {
-      if (dateInput) dateInput.value = iso;
-      renderBookingCalendar();
-      const form = document.getElementById("bookingForm");
-      if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+
+    if (state && state.status === "public") {
+      el.className = "booking-day public-event";
+      el.innerHTML = "<span class='n'>" + d + "</span><span class='s'>Public Event</span>";
+      el.setAttribute("aria-label",bookingPretty(iso) + ", public event");
+      el.addEventListener("click",function() {
+        const target = document.getElementById("public-event-" + iso);
+        if (target) target.scrollIntoView({behavior:"smooth",block:"center"});
+      });
+    } else if (state && state.status === "booked") {
+      el.className = "booking-day booked";
+      el.disabled = true;
+      el.setAttribute("aria-disabled","true");
+      el.innerHTML = "<span class='n'>" + d + "</span><span class='s'>Fully Booked</span>";
+    } else {
+      el.className = "booking-day request" + (dateInput && dateInput.value === iso ? " selected" : "");
+      el.innerHTML = "<span class='n'>" + d + "</span><span class='s'>Request</span>";
+      el.addEventListener("click",function() {
+        if (dateInput) dateInput.value = iso;
+        renderBookingCalendar();
+        const form = document.getElementById("bookingForm");
+        if (form) form.scrollIntoView({behavior:"smooth",block:"start"});
+      });
+    }
     bookingCalendarGrid.appendChild(el);
   }
 }
 
-document.getElementById("bookingPrevMonth")?.addEventListener("click", function() {
-  bookingCalendarDate.setMonth(bookingCalendarDate.getMonth() - 1);
-  renderBookingCalendar();
-});
+function escapeHtml(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
 
-document.getElementById("bookingNextMonth")?.addEventListener("click", function() {
-  bookingCalendarDate.setMonth(bookingCalendarDate.getMonth() + 1);
-  renderBookingCalendar();
-});
+function renderPublicEvents() {
+  if (!publicEventsPanel || !publicEventsGrid) return;
 
-dateInput?.addEventListener("input", function() {
-  if (dateInput.value) {
-    const parts = dateInput.value.split("-").map(Number);
-    if (parts.length === 3 && parts.every(Boolean)) {
-      bookingCalendarDate = new Date(parts[0], parts[1] - 1, 1);
-    }
+  const eventMap = new Map();
+  if (currentMonthAvailability && currentMonthAvailability.days) {
+    Object.keys(currentMonthAvailability.days).sort().forEach(function(dateKey) {
+      const day = currentMonthAvailability.days[dateKey];
+      if (!day || day.status !== "public" || !Array.isArray(day.events)) return;
+
+      day.events.forEach(function(event) {
+        if (event && event.key && !eventMap.has(event.key)) {
+          eventMap.set(event.key,{event:event,firstDate:dateKey});
+        }
+      });
+    });
   }
-  renderBookingCalendar();
+
+  const events = Array.from(eventMap.values());
+  publicEventsGrid.innerHTML = "";
+
+  if (!events.length) {
+    publicEventsPanel.classList.remove("visible");
+    return;
+  }
+
+  events.forEach(function(item) {
+    const event = item.event;
+    const card = document.createElement("article");
+    card.className = "public-event-card";
+    card.id = "public-event-" + item.firstDate;
+
+    const title = document.createElement("h3");
+    title.textContent = event.title || "Public Sound Healing Event";
+    card.appendChild(title);
+
+    if (event.dateLabel) {
+      const row = document.createElement("p");
+      row.innerHTML = "<strong>Date:</strong> " + escapeHtml(event.dateLabel);
+      card.appendChild(row);
+    }
+    if (event.timeLabel) {
+      const row = document.createElement("p");
+      row.innerHTML = "<strong>Time:</strong> " + escapeHtml(event.timeLabel);
+      card.appendChild(row);
+    }
+    if (event.location) {
+      const row = document.createElement("p");
+      row.innerHTML = "<strong>Location:</strong> " + escapeHtml(event.location);
+      card.appendChild(row);
+    }
+    if (event.url && /^https?:\/\//i.test(event.url)) {
+      const link = document.createElement("a");
+      link.href = event.url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = "View Details";
+      card.appendChild(link);
+    }
+
+    publicEventsGrid.appendChild(card);
+  });
+
+  publicEventsPanel.classList.add("visible");
+}
+
+function validateSelectedDate() {
+  if (!dateInput || !dateInput.value) return true;
+  if (isDateUnavailable(dateInput.value)) {
+    dateInput.value = "";
+    renderBookingCalendar();
+    return false;
+  }
+  return true;
+}
+
+document.getElementById("bookingPrevMonth")?.addEventListener("click",function() {
+  bookingCalendarDate.setMonth(bookingCalendarDate.getMonth()-1);
+  loadCalendarMonth(bookingCalendarDate.getFullYear(),bookingCalendarDate.getMonth());
+});
+
+document.getElementById("bookingNextMonth")?.addEventListener("click",function() {
+  bookingCalendarDate.setMonth(bookingCalendarDate.getMonth()+1);
+  loadCalendarMonth(bookingCalendarDate.getFullYear(),bookingCalendarDate.getMonth());
+});
+
+dateInput?.addEventListener("input",function() {
+  if (!dateInput.value) {
+    renderBookingCalendar();
+    return;
+  }
+
+  const p = dateInput.value.split("-").map(Number);
+  if (p.length === 3 && p.every(Boolean)) {
+    bookingCalendarDate = new Date(p[0],p[1]-1,1);
+    loadCalendarMonth(p[0],p[1]-1).then(function() {
+      if (!validateSelectedDate()) {
+        window.alert("That date is fully booked or reserved for a public event. Please choose another date.");
+      }
+    });
+  }
 });
 
 (function acceptHomepageSelectedDate() {
@@ -905,19 +1194,31 @@ dateInput?.addEventListener("input", function() {
   const incomingDate = params.get("date");
   if (!incomingDate || !dateInput) return;
 
+  if (incomingDate < earliestRequestDate) {
+    dateInput.value = "";
+    bookingCalendarDate = new Date(2026,6,1);
+    return;
+  }
+
   dateInput.value = incomingDate;
-  const parts = incomingDate.split("-").map(Number);
-  if (parts.length === 3 && parts.every(Boolean)) {
-    bookingCalendarDate = new Date(parts[0], parts[1] - 1, 1);
+  const p = incomingDate.split("-").map(Number);
+  if (p.length === 3 && p.every(Boolean)) {
+    bookingCalendarDate = new Date(p[0],p[1]-1,1);
   }
 })();
 
-renderBookingCalendar();
+loadCalendarMonth(bookingCalendarDate.getFullYear(),bookingCalendarDate.getMonth());
 
 const bookingForm = document.getElementById("bookingForm");
 if (bookingForm) {
   bookingForm.addEventListener("submit", async function(e) {
     e.preventDefault();
+
+    if (!validateSelectedDate()) {
+      window.alert("The selected date is fully booked or reserved for a public event. Please choose another date.");
+      if (dateInput) dateInput.focus();
+      return;
+    }
 
     const submitBtn = document.getElementById("bookingSubmit");
     const success = document.getElementById("bookingSuccess");
