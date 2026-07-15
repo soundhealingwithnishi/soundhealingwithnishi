@@ -80,6 +80,17 @@
  .choice.active { background:var(--forest-deep); color:#f5ede0; border-color:var(--gold); }
  .choice.active strong, .choice.active span { color:#f5ede0; }
  .calendar-note { font-size:13px; color:var(--muted); margin:-5px 0 16px; }
+.preferred-date-status {
+  display:none;
+  margin:8px 0 0;
+  color:#8a2f2f;
+  font-size:12px;
+  line-height:1.55;
+}
+.preferred-date-status.visible {
+  display:block;
+}
+
  .small { font-size:12px; color:var(--muted); }
  @media(max-width:880px){
  nav { padding:0 20px; }
@@ -712,6 +723,7 @@ body > nav:has(.navlinks) {
  <div class="form-group">
  <label for="preferred_date">Preferred Date *</label>
  <input type="date" id="preferred_date" name="preferred_date" required>
+ <p class="preferred-date-status" id="preferredDateStatus" role="status" aria-live="polite"></p>
  </div>
  <div class="form-group">
  <label for="preferred_time">Preferred Time *</label>
@@ -836,6 +848,7 @@ choices.forEach(function(btn) {
 
 
 const dateInput = document.getElementById("preferred_date");
+const preferredDateStatus = document.getElementById("preferredDateStatus");
 const timeInput = document.getElementById("preferred_time");
 const bookingMonthTitle = document.getElementById("bookingMonthTitle");
 const bookingCalendarGrid = document.getElementById("bookingCalendarGrid");
@@ -988,7 +1001,7 @@ function loadCalendarMonth(y,m) {
         updateCalendarStatus(false,false);
         renderBookingCalendar();
         renderPublicEvents();
-        validateSelectedDate();
+        validateSelectedDate(false);
       }
       return payload;
     })
@@ -999,7 +1012,7 @@ function loadCalendarMonth(y,m) {
         updateCalendarStatus(false,true);
         renderBookingCalendar();
         renderPublicEvents();
-        validateSelectedDate();
+        validateSelectedDate(false);
       }
       return null;
     });
@@ -1152,13 +1165,33 @@ function renderPublicEvents() {
   publicEventsPanel.classList.add("visible");
 }
 
-function validateSelectedDate() {
-  if (!dateInput || !dateInput.value) return true;
+function setPreferredDateStatus(message) {
+  if (!preferredDateStatus) return;
+
+  preferredDateStatus.textContent = message || "";
+  preferredDateStatus.classList.toggle("visible", Boolean(message));
+}
+
+function validateSelectedDate(showMessage) {
+  if (!dateInput || !dateInput.value) {
+    if (!showMessage) setPreferredDateStatus("");
+    return true;
+  }
+
   if (isDateUnavailable(dateInput.value)) {
     dateInput.value = "";
     renderBookingCalendar();
+
+    if (showMessage) {
+      setPreferredDateStatus(
+        "That date is fully booked or reserved for a public event. Please choose another available date."
+      );
+    }
+
     return false;
   }
+
+  setPreferredDateStatus("");
   return true;
 }
 
@@ -1172,19 +1205,25 @@ document.getElementById("bookingNextMonth")?.addEventListener("click",function()
   loadCalendarMonth(bookingCalendarDate.getFullYear(),bookingCalendarDate.getMonth());
 });
 
-dateInput?.addEventListener("input",function() {
+dateInput?.addEventListener("change",function() {
+  setPreferredDateStatus("");
+
   if (!dateInput.value) {
     renderBookingCalendar();
     return;
   }
 
-  const p = dateInput.value.split("-").map(Number);
+  const selectedDate = dateInput.value;
+  const p = selectedDate.split("-").map(Number);
+
   if (p.length === 3 && p.every(Boolean)) {
     bookingCalendarDate = new Date(p[0],p[1]-1,1);
+
     loadCalendarMonth(p[0],p[1]-1).then(function() {
-      if (!validateSelectedDate()) {
-        window.alert("That date is fully booked or reserved for a public event. Please choose another date.");
-      }
+      // Ignore a stale response if the visitor changed the field again.
+      if (!dateInput || dateInput.value !== selectedDate) return;
+
+      validateSelectedDate(true);
     });
   }
 });
@@ -1214,9 +1253,11 @@ if (bookingForm) {
   bookingForm.addEventListener("submit", async function(e) {
     e.preventDefault();
 
-    if (!validateSelectedDate()) {
-      window.alert("The selected date is fully booked or reserved for a public event. Please choose another date.");
-      if (dateInput) dateInput.focus();
+    if (!validateSelectedDate(true)) {
+      if (dateInput) {
+        dateInput.focus();
+        dateInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
       return;
     }
 
