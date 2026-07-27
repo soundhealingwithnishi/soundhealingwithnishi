@@ -3618,6 +3618,22 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
   .top-wrap .links a.book{padding:10px 16px!important}
 }
 
+/* Guard: the homepage nav uses .nav-links a, not .global-nav-link.
+   A stray .global-nav-link class on a single item (Gallery) was giving it
+   inline-flex, 8px vertical padding, a transparent bottom border and
+   different letter-spacing, so it sat out of line with its siblings. */
+.nav-links .global-nav-link{
+  display:inline;
+  padding:0;
+  border-bottom:0;
+  line-height:inherit;
+  font-family:inherit;
+  font-size:10px;
+  font-weight:inherit;
+  letter-spacing:.23em;
+}
+.nav-links .global-nav-link:hover{border-bottom:0}
+
 /* respect the OS "reduce motion" setting */
 @media(prefers-reduced-motion:reduce){
   .global-ribbon-track,
@@ -3657,7 +3673,7 @@ a[href^="tel:"], .phone, .phone-number, .contact-phone { display:none !important
 <li><a href="#about-nishi">About</a></li>
 <li><a href="#sessions">Sessions</a></li>
 <li><a href="#social-videos">Videos</a></li>
-<li><a class="global-nav-link" href="gallery.html">Gallery</a></li>
+<li><a href="gallery.html">Gallery</a></li>
 <li><a href="sound-bath-manifest-circle-august-14.html">Aug 14 Event</a></li>
 <li><a href="offerings.html">Offerings</a></li>
 <li><a href="sound-bath-charlotte.html">Sound Bath Charlotte</a></li>
