@@ -347,6 +347,379 @@ a.global-ribbon:focus-visible {
   outline-offset: -3px;
 }
 </style>
+
+<style>
+/* ============================================================
+   UNIFIED SITE HEADER + MARQUEE NORMALIZER
+   Added 2026-07-27
+
+   Why this exists:
+   - Each page defined its own "forest" green for the top bar
+     (#16251c, #13281d, #10251a), so the header changed colour
+     from page to page.
+   - Every marquee translated by -50% but the tracks were flex
+     children with default shrink, or had uneven halves, so the
+     loops jumped and clipped.
+
+   This block is injected last on every page so it wins the
+   cascade. It normalises colour and marquee behaviour everywhere,
+   and normalises layout everywhere except the homepage, which
+   keeps its own desktop/tablet/hamburger nav system.
+   ============================================================ */
+:root{
+  --nav-forest:#13281d;
+  --nav-gold:#c6a15a;
+  --nav-gold-lt:#d4b067;
+  --nav-ribbon-ink:#16251c;
+  --nav-link:rgba(251,247,239,.72);
+  --nav-h:66px;
+  --ribbon-h:34px;
+}
+
+/* ---------- top container ----------
+   The wrapper itself no longer sticks. The gold ribbon scrolls away
+   and only the dark nav bar pins to the top, which is the same
+   behaviour the homepage and the event page already had, and it
+   gives phones back ~34px of reading height. */
+.global-top-wrap,
+.top-wrap,
+.site-top-wrap{
+  position:static;
+  width:100%;
+  background:var(--nav-forest);
+  box-shadow:none;
+  border-bottom:0;
+}
+
+/* ---------- the gold ribbon ---------- */
+.global-ribbon,
+.event-ribbon,
+.site-top-wrap > .ribbon,
+.top-wrap > .ribbon{
+  display:block;
+  height:var(--ribbon-h);
+  overflow:hidden;
+  background:var(--nav-gold);
+  color:var(--nav-ribbon-ink);
+  border-bottom:1px solid rgba(18,41,29,.14);
+  white-space:nowrap;
+  cursor:pointer;
+  position:relative;
+  z-index:1;
+  padding:0;
+}
+
+/* Seamless marquee track.
+   The loop translates by exactly -50%, so the track must hold two
+   identical halves and every item must carry its own spacing.
+   Spacing lives on the items rather than as a container gap or a
+   padding-left, so the wrap point is spaced like every other join. */
+.global-ribbon-track,
+.event-ribbon .ribbon-track,
+.site-top-wrap .ribbon-track,
+.top-wrap .ribbon-track{
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:center;
+  height:var(--ribbon-h);
+  width:max-content;
+  min-width:max-content;
+  gap:0;
+  padding:0;
+  margin:0;
+  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  font-size:14px;
+  letter-spacing:.025em;
+  animation:navRibbonLoop 46s linear infinite;
+  will-change:transform;
+}
+.global-ribbon-track > *,
+.event-ribbon .ribbon-track > *,
+.site-top-wrap .ribbon-track > *,
+.top-wrap .ribbon-track > *{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:0 22px;
+  margin:0;
+  white-space:nowrap;
+  animation:none;
+}
+.global-ribbon-track strong,
+.event-ribbon .ribbon-track strong,
+.site-top-wrap .ribbon-track strong,
+.top-wrap .ribbon-track strong{
+  font-weight:600;
+  letter-spacing:.04em;
+}
+.global-ribbon:hover .global-ribbon-track,
+.event-ribbon:hover .ribbon-track,
+.site-top-wrap .ribbon:hover .ribbon-track,
+.top-wrap .ribbon:hover .ribbon-track{
+  animation-play-state:paused;
+}
+@keyframes navRibbonLoop{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* pill + link chips inside the homepage ribbon */
+.event-ribbon .ribbon-tag{
+  background:var(--nav-forest);
+  color:var(--nav-gold-lt);
+  border-radius:100px;
+  padding:4px 12px;
+  font-family:'DM Sans',Inter,sans-serif;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.event-ribbon .ribbon-link{
+  font-family:'DM Sans',Inter,sans-serif;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border-bottom:1px solid rgba(22,37,28,.55);
+}
+
+/* ---------- navigation bar (all pages except the homepage) ---------- */
+.global-header,
+.site-top-wrap > .header,
+.top-wrap > .nav{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  border-bottom:1px solid rgba(198,161,90,.20);
+}
+.global-header,
+.site-top-wrap > .header > .nav,
+.top-wrap > .nav{
+  min-height:var(--nav-h);
+  height:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:0 24px;
+  background:var(--nav-forest);
+  color:#fbf7ef;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+.site-top-wrap > .header{
+  background:var(--nav-forest);
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+
+/* wordmark */
+.global-logo,
+.site-top-wrap .logo,
+.top-wrap .brand{
+  flex:0 0 auto;
+  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:20px;
+  line-height:1.1;
+  color:var(--nav-gold-lt)!important;
+  text-decoration:none!important;
+  white-space:nowrap;
+}
+
+/* link row */
+.global-nav,
+.site-top-wrap .links,
+.top-wrap .links{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:22px;
+  min-width:0;
+  margin:0;
+  padding:0;
+  list-style:none;
+  overflow-x:auto;
+  overflow-y:hidden;
+  white-space:nowrap;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  -webkit-overflow-scrolling:touch;
+}
+.global-nav::-webkit-scrollbar,
+.site-top-wrap .links::-webkit-scrollbar,
+.top-wrap .links::-webkit-scrollbar{display:none}
+
+.global-nav-link,
+.global-book,
+.site-top-wrap .links a,
+.top-wrap .links a{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  color:var(--nav-link)!important;
+  text-decoration:none!important;
+  text-transform:uppercase;
+  font-family:Inter,Avenir,Helvetica,Arial,sans-serif;
+  font-size:10px;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.19em;
+  padding:8px 0;
+  border-bottom:1px solid transparent;
+  transition:color .2s ease,border-color .2s ease,background .2s ease;
+}
+.global-nav-link:hover,
+.global-nav-link.active,
+.site-top-wrap .links a:hover,
+.site-top-wrap .links a.active,
+.top-wrap .links a:hover,
+.top-wrap .links a.active{
+  color:var(--nav-gold-lt)!important;
+  border-bottom-color:rgba(212,176,103,.55);
+}
+
+/* the Book pill */
+.global-book,
+.site-top-wrap .links a.book,
+.top-wrap .links a.book{
+  color:var(--nav-gold-lt)!important;
+  border:1px solid rgba(212,176,103,.55)!important;
+  border-radius:999px;
+  padding:11px 20px!important;
+  margin-left:4px;
+  letter-spacing:.20em;
+}
+.global-book:hover,
+.site-top-wrap .links a.book:hover,
+.top-wrap .links a.book:hover{
+  background:rgba(212,176,103,.12);
+  border-color:rgba(212,176,103,.78)!important;
+}
+
+/* ---------- homepage nav: colour only, layout untouched ----------
+   index.html has its own desktop / tablet / hamburger system, so
+   only the palette is aligned here. */
+#nav{
+  background:var(--nav-forest);
+  border-bottom:1px solid rgba(198,161,90,.20);
+}
+.nav-logo{color:var(--nav-gold-lt)}
+.nav-links a{color:var(--nav-link)}
+.nav-links a:hover,.nav-links a.active{color:var(--nav-gold-lt)}
+.nav-book{
+  color:var(--nav-gold-lt)!important;
+  border-color:rgba(212,176,103,.55);
+}
+.nav-book:hover{background:rgba(212,176,103,.12)}
+
+/* keyboard accessibility */
+.global-nav-link:focus-visible,
+.global-book:focus-visible,
+.site-top-wrap .links a:focus-visible,
+.top-wrap .links a:focus-visible,
+.nav-links a:focus-visible,
+.global-ribbon:focus-visible,
+.event-ribbon:focus-visible{
+  outline:2px solid var(--nav-gold-lt);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* stop legacy list styling leaking into the bar */
+.global-top-wrap ul,.global-top-wrap li,
+.site-top-wrap ul,.site-top-wrap li,
+.top-wrap ul,.top-wrap li{
+  list-style:none!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+/* ---------- other marquees ---------- */
+/* Flex children shrink by default, which squashed these tracks and
+   broke the -50% loop. */
+.trusted-marquee,.marquee{overflow:hidden;position:relative}
+.trusted-track,.marquee-inner{
+  display:flex;
+  flex-wrap:nowrap;
+  width:max-content;
+  min-width:max-content;
+  will-change:transform;
+}
+.trusted-item,.marquee-item{flex:0 0 auto}
+.trusted-marquee:hover .trusted-track,
+.marquee:hover .marquee-inner{animation-play-state:paused}
+
+/* soft fade at both ends so the loop point is never obvious */
+.trusted-marquee:before,.trusted-marquee:after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:90px;
+  z-index:2;
+  pointer-events:none;
+}
+.trusted-marquee:before{left:0;background:linear-gradient(90deg,var(--cream,#faf7f1),transparent)}
+.trusted-marquee:after{right:0;background:linear-gradient(270deg,var(--cream,#faf7f1),transparent)}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){
+  :root{--ribbon-h:30px}
+  .global-header,
+  .site-top-wrap > .header > .nav,
+  .top-wrap > .nav{
+    min-height:auto;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    padding:12px 16px 8px;
+  }
+  .global-nav,
+  .site-top-wrap .links,
+  .top-wrap .links{
+    width:100%;
+    justify-content:flex-start;
+    gap:18px;
+    padding-bottom:4px;
+  }
+  .global-ribbon-track,
+  .event-ribbon .ribbon-track,
+  .site-top-wrap .ribbon-track,
+  .top-wrap .ribbon-track{font-size:12px}
+  .global-ribbon-track > *,
+  .event-ribbon .ribbon-track > *,
+  .site-top-wrap .ribbon-track > *,
+  .top-wrap .ribbon-track > *{padding:0 16px;gap:9px}
+  .trusted-marquee:before,.trusted-marquee:after{width:46px}
+}
+@media(max-width:560px){
+  .global-logo,
+  .site-top-wrap .logo,
+  .top-wrap .brand{font-size:17px}
+  .global-nav-link,
+  .global-book,
+  .site-top-wrap .links a,
+  .top-wrap .links a{font-size:9px;letter-spacing:.15em}
+  .global-book,
+  .site-top-wrap .links a.book,
+  .top-wrap .links a.book{padding:10px 16px!important}
+}
+
+/* respect the OS "reduce motion" setting */
+@media(prefers-reduced-motion:reduce){
+  .global-ribbon-track,
+  .event-ribbon .ribbon-track,
+  .site-top-wrap .ribbon-track,
+  .top-wrap .ribbon-track,
+  .trusted-track,
+  .marquee-inner{animation:none!important;transform:none!important}
+}
+
+</style>
 </head>
 <body>
 <div class="global-top-wrap">
