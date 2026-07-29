@@ -652,6 +652,180 @@ a[href^="tel:"],.phone,.phone-number,.contact-phone { display:none !important; }
 }
 
 </style>
+
+<style>
+
+/* ============================================================
+   EVENTS DROPDOWN  (added 2026-07-29)
+   The nav strips use overflow-x:auto for small screens, which
+   would clip an absolutely positioned menu, so the panel is
+   position:fixed and placed from the button's rect in JS.
+   ============================================================ */
+.nav-drop{position:relative;display:inline-flex;flex:0 0 auto}
+.nav-drop-btn{
+  background:none;
+  border:0;
+  cursor:pointer;
+  font:inherit;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+.nav-drop-caret{
+  width:6px;height:6px;
+  border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;
+  transform:rotate(45deg) translateY(-1px);
+  transition:transform .25s ease;
+  opacity:.75;
+}
+.nav-drop.is-open .nav-drop-caret{transform:rotate(225deg) translateY(-3px)}
+
+.nav-drop-menu{
+  position:fixed;
+  z-index:10050;
+  min-width:308px;
+  max-width:calc(100vw - 24px);
+  padding:10px;
+  border-radius:20px;
+  background:#13281d;
+  border:1px solid rgba(198,161,90,.28);
+  box-shadow:0 28px 70px rgba(9,20,14,.42);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-8px);
+  transition:opacity .22s ease,transform .22s ease,visibility .22s;
+}
+.nav-drop.is-open .nav-drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-drop-menu a{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:14px 16px;
+  border-radius:14px;
+  text-decoration:none!important;
+  color:#f3efe6!important;
+  letter-spacing:normal!important;
+  text-transform:none!important;
+  border-bottom:0!important;
+  transition:background .2s ease;
+}
+.nav-drop-menu a:hover,.nav-drop-menu a:focus-visible{background:rgba(198,161,90,.14);outline:none}
+.nav-drop-menu a:focus-visible{box-shadow:inset 0 0 0 1px rgba(212,176,103,.6)}
+.ndm-date{
+  flex:0 0 auto;
+  margin-top:2px;
+  padding:5px 9px;
+  border-radius:8px;
+  background:rgba(198,161,90,.16);
+  color:#ddc27e;
+  font-family:Inter,Avenir,Helvetica,Arial,sans-serif;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.ndm-main{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ndm-title{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:17px;
+  font-weight:400;
+  line-height:1.25;
+  color:#f6f2e8;
+}
+.ndm-sub{
+  font-family:Inter,Avenir,Helvetica,Arial,sans-serif;
+  font-size:11.5px;
+  font-weight:400;
+  line-height:1.4;
+  color:rgba(233,229,218,.6);
+}
+@media(max-width:560px){
+  .nav-drop-menu{min-width:0;width:calc(100vw - 24px);padding:8px}
+  .ndm-title{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){
+  .nav-drop-menu{transition:none}
+  .nav-drop-caret{transition:none}
+}
+
+</style>
+
+<style>
+
+/* ============================================================
+   CONTACT LAUNCHER  (updated 2026-07-29)
+   Direct message links to Instagram, WhatsApp, Messenger, email.
+   ============================================================ */
+.chat{position:fixed;right:20px;bottom:20px;z-index:9500}
+.chat-main{
+  width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;
+  background:#c6a15a;color:#13281d;
+  display:grid;place-items:center;
+  box-shadow:0 16px 44px rgba(19,40,29,.30);
+  transition:transform .28s cubic-bezier(.2,.7,.3,1),background .2s ease;
+}
+.chat-main:hover{transform:scale(1.06);background:#d4b067}
+.chat-main:focus-visible{outline:2px solid #13281d;outline-offset:3px}
+.chat-main-ico{
+  width:26px;height:24px;border-radius:7px 7px 7px 2px;
+  border:2.5px solid #13281d;position:relative;display:block;
+  transition:transform .3s ease;
+}
+.chat-main-ico::before,.chat-main-ico::after{
+  content:"";position:absolute;height:2.5px;background:#13281d;border-radius:2px;
+}
+.chat-main-ico::before{top:5px;left:4px;right:4px}
+.chat-main-ico::after{top:11px;left:4px;right:9px}
+.chat.is-open .chat-main-ico{transform:rotate(90deg) scale(.86)}
+
+.chat-options{
+  position:absolute;right:0;bottom:74px;
+  width:296px;max-width:calc(100vw - 40px);
+  padding:8px;border-radius:22px;
+  background:#fffdf9;border:1px solid rgba(198,161,90,.30);
+  box-shadow:0 26px 70px rgba(19,40,29,.22);
+  opacity:0;visibility:hidden;transform:translateY(10px) scale(.98);
+  transition:opacity .24s ease,transform .24s cubic-bezier(.2,.7,.3,1),visibility .24s;
+  display:block;
+}
+.chat.is-open .chat-options{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.chat-head{padding:14px 14px 12px;border-bottom:1px solid rgba(19,40,29,.09);margin-bottom:6px}
+.chat-head b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:400;color:#13281d}
+.chat-head span{display:block;margin-top:2px;font-size:11.5px;color:#7a7268}
+.chat-opt{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 12px;border-radius:15px;
+  text-decoration:none!important;color:#1e1c18!important;
+  transition:background .18s ease;
+}
+.chat-opt:hover,.chat-opt:focus-visible{background:rgba(198,161,90,.13);outline:none}
+.chat-txt{display:flex;flex-direction:column;min-width:0}
+.chat-txt b{font-size:13.5px;font-weight:600;line-height:1.3}
+.chat-txt i{font-style:normal;font-size:11px;color:#7a7268;line-height:1.35;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:196px}
+.chat-ico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:block}
+.chat-ico-wa{background:#25d366}
+.chat-ico-ig{background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}
+.chat-ico-fb{background:#0084ff}
+.chat-ico-mail{background:#13281d}
+.chat-ico-tt{background:#111}
+@media(max-width:560px){
+  .chat{right:14px;bottom:14px}
+  .chat-main{width:54px;height:54px}
+  .chat-options{width:calc(100vw - 28px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .chat-options,.chat-main,.chat-main-ico{transition:none}
+}
+
+</style>
+
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="Sound Healing with Nishi, Charlotte NC" property="og:image:alt"/>
+<meta content="en_US" property="og:locale"/>
 </head>
 <body>
 <div class="global-top-wrap">
@@ -662,7 +836,7 @@ a[href^="tel:"],.phone,.phone-number,.contact-phone { display:none !important; }
 <a class="global-logo" href="index.html">Sound Healing with Nishi</a>
 <nav aria-label="Main navigation" class="global-nav">
 <a class="global-nav-link" href="index.html">Home</a>
-<a class="global-nav-link" href="sound-bath-manifest-circle-august-14.html">Aug 14 Event</a>
+<div class="nav-drop" data-navdrop="navdrop5"><button aria-expanded="false" aria-haspopup="true" aria-controls="navdrop5-menu" class="global-nav-link nav-drop-btn" type="button">Events<span aria-hidden="true" class="nav-drop-caret"></span></button><div class="nav-drop-menu" id="navdrop5-menu" role="menu"><a href="events.html" role="menuitem"><span class="ndm-main"><span class="ndm-title">All Events</span><span class="ndm-sub">The full calendar</span></span></a><a href="sound-bath-manifest-circle-august-14.html" role="menuitem"><span class="ndm-date">Aug 14</span><span class="ndm-main"><span class="ndm-title">Sound Bath &amp; Manifest Circle</span><span class="ndm-sub">The Soul Nest &middot; 15 seats</span></span></a><a href="booking.html" role="menuitem"><span class="ndm-main"><span class="ndm-title">Private Session</span><span class="ndm-sub">Host your own circle</span></span></a></div></div>
 <a class="global-nav-link" href="index.html#about-nishi">About</a>
 <a class="global-nav-link" href="index.html#sessions">Sessions</a>
 <a class="global-nav-link" href="index.html#social-videos">Videos</a>
@@ -699,7 +873,7 @@ a[href^="tel:"],.phone,.phone-number,.contact-phone { display:none !important; }
 <div class="footer-inner">
 <div>
 <div class="footer-logo">Sound Healing with Nishi</div>
-<p>Charlotte, NC sound baths with Nishi Bhansali, Certified Sound Healing Practitioner. Private, group, corporate, retreat and event sound journeys with Himalayan singing bowls, crystal bowls and 18+ instruments.</p>
+<p>Charlotte, NC sound baths with Nishi Bhansali, Certified Sound Healing Practitioner. Private, group, corporate, retreat and event sound journeys with Himalayan singing bowls, crystal bowls and 18 instruments.</p>
 </div>
 <div class="footer-links">
 <a href="mailto:soundhealingwithnishi@gmail.com">soundhealingwithnishi@gmail.com</a>
@@ -710,5 +884,114 @@ a[href^="tel:"],.phone,.phone-number,.contact-phone { display:none !important; }
 </div>
 </div>
 </footer>
+
+<script>
+
+/* Events dropdown: hover on pointer devices, click/tap everywhere,
+   Escape to close, click-outside to close. Menu is fixed-positioned
+   from the button rect so nav overflow never clips it. */
+(function () {
+  var drops = [].slice.call(document.querySelectorAll('.nav-drop'));
+  if (!drops.length) return;
+  var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  function place(drop) {
+    var btn = drop.querySelector('.nav-drop-btn');
+    var menu = drop.querySelector('.nav-drop-menu');
+    if (!btn || !menu) return;
+    var r = btn.getBoundingClientRect();
+    menu.style.visibility = 'hidden';
+    menu.style.display = 'block';
+    var mw = menu.offsetWidth, mh = menu.offsetHeight;
+    menu.style.display = '';
+    menu.style.visibility = '';
+    var left = Math.min(Math.max(12, r.left), window.innerWidth - mw - 12);
+    var top = r.bottom + 10;
+    if (top + mh > window.innerHeight - 12) {
+      top = Math.max(12, r.top - mh - 10);
+    }
+    menu.style.left = left + 'px';
+    menu.style.top = top + 'px';
+  }
+
+  function open(drop) {
+    close();
+    place(drop);
+    drop.classList.add('is-open');
+    var btn = drop.querySelector('.nav-drop-btn');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+  }
+
+  function close() {
+    drops.forEach(function (d) {
+      d.classList.remove('is-open');
+      var b = d.querySelector('.nav-drop-btn');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  drops.forEach(function (drop) {
+    var btn = drop.querySelector('.nav-drop-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (drop.classList.contains('is-open')) close(); else open(drop);
+    });
+    if (canHover) {
+      var t;
+      drop.addEventListener('mouseenter', function () { clearTimeout(t); open(drop); });
+      drop.addEventListener('mouseleave', function () { t = setTimeout(close, 160); });
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-drop')) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+  window.addEventListener('resize', close);
+  window.addEventListener('scroll', function () {
+    var open_ = document.querySelector('.nav-drop.is-open');
+    if (open_) place(open_);
+  }, { passive: true });
+})();
+
+</script>
+
+<div class="chat" id="chatWidget">
+<div aria-label="Contact Nishi" class="chat-options" id="chatOptions" role="dialog">
+<div class="chat-head"><b>Chat with Nishi</b><span>Pick whichever is easiest</span></div>
+<a class="chat-opt" data-net="instagram" href="https://ig.me/m/soundhealingwithnishi" rel="noopener" target="_blank"><span class="chat-ico chat-ico-ig" aria-hidden="true"></span><span class="chat-txt"><b>Instagram DM</b><i>Message on Instagram</i></span></a><a class="chat-opt" data-net="email" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry"><span class="chat-ico chat-ico-mail" aria-hidden="true"></span><span class="chat-txt"><b>Email</b><i>soundhealingwithnishi@gmail.com</i></span></a><a class="chat-opt" data-net="tiktok" href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank"><span class="chat-ico chat-ico-tt" aria-hidden="true"></span><span class="chat-txt"><b>TikTok</b><i>See recent sessions</i></span></a>
+</div>
+<button aria-controls="chatOptions" aria-expanded="false" aria-label="Contact Nishi" class="chat-main" id="chatMain" type="button">
+<span class="chat-main-ico" aria-hidden="true"></span>
+</button>
+</div>
+<script>
+
+/* Contact launcher: toggle, click-outside, Escape. */
+(function () {
+  var wrap = document.getElementById('chatWidget');
+  if (!wrap) return;
+  var btn = document.getElementById('chatMain');
+  function set(open) {
+    wrap.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  }
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    set(!wrap.classList.contains('is-open'));
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('#chatWidget')) set(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') set(false);
+  });
+})();
+
+</script>
 </body>
 </html>
