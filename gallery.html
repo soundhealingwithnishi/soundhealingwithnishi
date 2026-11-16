@@ -251,7 +251,7 @@ footer strong {
  min-height:360px;
  }.video-card video {
  max-height:74vh;
- }.actions .btn {
+ }.actions.btn {
  width:100%;
  }.email-float {
  right:12px;
@@ -296,829 +296,15 @@ a[href^="tel:"],.phone,.phone-number,.contact-phone { display:none !important; }
 <meta content="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg" property="og:image"/>
 <meta content="website" property="og:type"/>
 <meta content="summary_large_image" name="twitter:card"/>
-
-<style>
-/* ============================================================
-   UNIFIED SITE HEADER + MARQUEE NORMALIZER
-   Added 2026-07-27
-
-   Why this exists:
-   - Each page defined its own "forest" green for the top bar
-     (#16251c, #13281d, #10251a), so the header changed colour
-     from page to page.
-   - Every marquee translated by -50% but the tracks were flex
-     children with default shrink, or had uneven halves, so the
-     loops jumped and clipped.
-
-   This block is injected last on every page so it wins the
-   cascade. It normalises colour and marquee behaviour everywhere,
-   and normalises layout everywhere except the homepage, which
-   keeps its own desktop/tablet/hamburger nav system.
-   ============================================================ */
-:root{
-  --nav-forest:#13281d;
-  --nav-gold:#c6a15a;
-  --nav-gold-lt:#d4b067;
-  --nav-ribbon-ink:#16251c;
-  --nav-link:rgba(251,247,239,.72);
-  --nav-h:66px;
-  --ribbon-h:34px;
-}
-
-/* ---------- top container ----------
-   The wrapper itself no longer sticks. The gold ribbon scrolls away
-   and only the dark nav bar pins to the top, which is the same
-   behaviour the homepage and the event page already had, and it
-   gives phones back ~34px of reading height. */
-.global-top-wrap,
-.top-wrap,
-.site-top-wrap{
-  position:static;
-  width:100%;
-  background:var(--nav-forest);
-  box-shadow:none;
-  border-bottom:0;
-}
-
-/* ---------- the gold ribbon ---------- */
-.global-ribbon,
-.event-ribbon,
-.site-top-wrap > .ribbon,
-.top-wrap > .ribbon{
-  display:block;
-  height:var(--ribbon-h);
-  overflow:hidden;
-  background:var(--nav-gold);
-  color:var(--nav-ribbon-ink);
-  border-bottom:1px solid rgba(18,41,29,.14);
-  white-space:nowrap;
-  cursor:pointer;
-  position:relative;
-  z-index:1;
-  padding:0;
-}
-
-/* Seamless marquee track.
-   The loop translates by exactly -50%, so the track must hold two
-   identical halves and every item must carry its own spacing.
-   Spacing lives on the items rather than as a container gap or a
-   padding-left, so the wrap point is spaced like every other join. */
-.global-ribbon-track,
-.event-ribbon .ribbon-track,
-.site-top-wrap .ribbon-track,
-.top-wrap .ribbon-track{
-  display:flex;
-  flex-wrap:nowrap;
-  align-items:center;
-  height:var(--ribbon-h);
-  width:max-content;
-  min-width:max-content;
-  gap:0;
-  padding:0;
-  margin:0;
-  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;
-  font-size:14px;
-  letter-spacing:.025em;
-  animation:navRibbonLoop 46s linear infinite;
-  will-change:transform;
-}
-.global-ribbon-track > *,
-.event-ribbon .ribbon-track > *,
-.site-top-wrap .ribbon-track > *,
-.top-wrap .ribbon-track > *{
-  flex:0 0 auto;
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  padding:0 22px;
-  margin:0;
-  white-space:nowrap;
-  animation:none;
-}
-.global-ribbon-track strong,
-.event-ribbon .ribbon-track strong,
-.site-top-wrap .ribbon-track strong,
-.top-wrap .ribbon-track strong{
-  font-weight:600;
-  letter-spacing:.04em;
-}
-.global-ribbon:hover .global-ribbon-track,
-.event-ribbon:hover .ribbon-track,
-.site-top-wrap .ribbon:hover .ribbon-track,
-.top-wrap .ribbon:hover .ribbon-track{
-  animation-play-state:paused;
-}
-@keyframes navRibbonLoop{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-
-/* pill + link chips inside the homepage ribbon */
-.event-ribbon .ribbon-tag{
-  background:var(--nav-forest);
-  color:var(--nav-gold-lt);
-  border-radius:100px;
-  padding:4px 12px;
-  font-family:'DM Sans',Inter,sans-serif;
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-}
-.event-ribbon .ribbon-link{
-  font-family:'DM Sans',Inter,sans-serif;
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  border-bottom:1px solid rgba(22,37,28,.55);
-}
-
-/* ---------- navigation bar (all pages except the homepage) ---------- */
-.global-header,
-.site-top-wrap > .header,
-.top-wrap > .nav{
-  position:sticky;
-  top:0;
-  z-index:9999;
-  border-bottom:1px solid rgba(198,161,90,.20);
-}
-.global-header,
-.site-top-wrap > .header > .nav,
-.top-wrap > .nav{
-  min-height:var(--nav-h);
-  height:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-  padding:0 24px;
-  background:var(--nav-forest);
-  color:#fbf7ef;
-  -webkit-backdrop-filter:none;
-  backdrop-filter:none;
-}
-.site-top-wrap > .header{
-  background:var(--nav-forest);
-  -webkit-backdrop-filter:none;
-  backdrop-filter:none;
-}
-
-/* wordmark */
-.global-logo,
-.site-top-wrap .logo,
-.top-wrap .brand{
-  flex:0 0 auto;
-  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;
-  font-style:italic;
-  font-weight:400;
-  font-size:20px;
-  line-height:1.1;
-  color:var(--nav-gold-lt)!important;
-  text-decoration:none!important;
-  white-space:nowrap;
-}
-
-/* link row */
-.global-nav,
-.site-top-wrap .links,
-.top-wrap .links{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap:22px;
-  min-width:0;
-  margin:0;
-  padding:0;
-  list-style:none;
-  overflow-x:auto;
-  overflow-y:hidden;
-  white-space:nowrap;
-  scrollbar-width:none;
-  -ms-overflow-style:none;
-  -webkit-overflow-scrolling:touch;
-}
-.global-nav::-webkit-scrollbar,
-.site-top-wrap .links::-webkit-scrollbar,
-.top-wrap .links::-webkit-scrollbar{display:none}
-
-.global-nav-link,
-.global-book,
-.site-top-wrap .links a,
-.top-wrap .links a{
-  flex:0 0 auto;
-  display:inline-flex;
-  align-items:center;
-  color:var(--nav-link)!important;
-  text-decoration:none!important;
-  text-transform:uppercase;
-  font-family:Inter,Avenir,Helvetica,Arial,sans-serif;
-  font-size:10px;
-  font-weight:500;
-  line-height:1;
-  letter-spacing:.19em;
-  padding:8px 0;
-  border-bottom:1px solid transparent;
-  transition:color .2s ease,border-color .2s ease,background .2s ease;
-}
-.global-nav-link:hover,
-.global-nav-link.active,
-.site-top-wrap .links a:hover,
-.site-top-wrap .links a.active,
-.top-wrap .links a:hover,
-.top-wrap .links a.active{
-  color:var(--nav-gold-lt)!important;
-  border-bottom-color:rgba(212,176,103,.55);
-}
-
-/* the Book pill */
-.global-book,
-.site-top-wrap .links a.book,
-.top-wrap .links a.book{
-  color:var(--nav-gold-lt)!important;
-  border:1px solid rgba(212,176,103,.55)!important;
-  border-radius:999px;
-  padding:11px 20px!important;
-  margin-left:4px;
-  letter-spacing:.20em;
-}
-.global-book:hover,
-.site-top-wrap .links a.book:hover,
-.top-wrap .links a.book:hover{
-  background:rgba(212,176,103,.12);
-  border-color:rgba(212,176,103,.78)!important;
-}
-
-/* ---------- homepage nav: colour only, layout untouched ----------
-   index.html has its own desktop / tablet / hamburger system, so
-   only the palette is aligned here. */
-#nav{
-  background:var(--nav-forest);
-  border-bottom:1px solid rgba(198,161,90,.20);
-}
-.nav-logo{color:var(--nav-gold-lt)}
-.nav-links a{color:var(--nav-link)}
-.nav-links a:hover,.nav-links a.active{color:var(--nav-gold-lt)}
-.nav-book{
-  color:var(--nav-gold-lt)!important;
-  border-color:rgba(212,176,103,.55);
-}
-.nav-book:hover{background:rgba(212,176,103,.12)}
-
-/* keyboard accessibility */
-.global-nav-link:focus-visible,
-.global-book:focus-visible,
-.site-top-wrap .links a:focus-visible,
-.top-wrap .links a:focus-visible,
-.nav-links a:focus-visible,
-.global-ribbon:focus-visible,
-.event-ribbon:focus-visible{
-  outline:2px solid var(--nav-gold-lt);
-  outline-offset:3px;
-  border-radius:4px;
-}
-
-/* stop legacy list styling leaking into the bar */
-.global-top-wrap ul,.global-top-wrap li,
-.site-top-wrap ul,.site-top-wrap li,
-.top-wrap ul,.top-wrap li{
-  list-style:none!important;
-  margin:0!important;
-  padding:0!important;
-}
-
-/* ---------- other marquees ---------- */
-/* Flex children shrink by default, which squashed these tracks and
-   broke the -50% loop. */
-.trusted-marquee,.marquee{overflow:hidden;position:relative}
-.trusted-track,.marquee-inner{
-  display:flex;
-  flex-wrap:nowrap;
-  width:max-content;
-  min-width:max-content;
-  will-change:transform;
-}
-.trusted-item,.marquee-item{flex:0 0 auto}
-.trusted-marquee:hover .trusted-track,
-.marquee:hover .marquee-inner{animation-play-state:paused}
-
-/* soft fade at both ends so the loop point is never obvious */
-.trusted-marquee:before,.trusted-marquee:after{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:90px;
-  z-index:2;
-  pointer-events:none;
-}
-.trusted-marquee:before{left:0;background:linear-gradient(90deg,var(--cream,#faf7f1),transparent)}
-.trusted-marquee:after{right:0;background:linear-gradient(270deg,var(--cream,#faf7f1),transparent)}
-
-/* ---------- responsive ---------- */
-@media(max-width:1000px){
-  :root{--ribbon-h:30px}
-  .global-header,
-  .site-top-wrap > .header > .nav,
-  .top-wrap > .nav{
-    min-height:auto;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:6px;
-    padding:12px 16px 8px;
-  }
-  .global-nav,
-  .site-top-wrap .links,
-  .top-wrap .links{
-    width:100%;
-    justify-content:flex-start;
-    gap:18px;
-    padding-bottom:4px;
-  }
-  .global-ribbon-track,
-  .event-ribbon .ribbon-track,
-  .site-top-wrap .ribbon-track,
-  .top-wrap .ribbon-track{font-size:12px}
-  .global-ribbon-track > *,
-  .event-ribbon .ribbon-track > *,
-  .site-top-wrap .ribbon-track > *,
-  .top-wrap .ribbon-track > *{padding:0 16px;gap:9px}
-  .trusted-marquee:before,.trusted-marquee:after{width:46px}
-}
-@media(max-width:560px){
-  .global-logo,
-  .site-top-wrap .logo,
-  .top-wrap .brand{font-size:17px}
-  .global-nav-link,
-  .global-book,
-  .site-top-wrap .links a,
-  .top-wrap .links a{font-size:9px;letter-spacing:.15em}
-  .global-book,
-  .site-top-wrap .links a.book,
-  .top-wrap .links a.book{padding:10px 16px!important}
-}
-
-/* respect the OS "reduce motion" setting */
-@media(prefers-reduced-motion:reduce){
-  .global-ribbon-track,
-  .event-ribbon .ribbon-track,
-  .site-top-wrap .ribbon-track,
-  .top-wrap .ribbon-track,
-  .trusted-track,
-  .marquee-inner{animation:none!important;transform:none!important}
-}
-
-</style>
-
-<style>
-/* ============================================================
-   GALLERY REBUILD - 2026-07-27
-   Replaces the old 4-column grid whose nth-child spans
-   (every 6th tile 2 rows tall, every 7th 2 columns wide) left
-   6 empty holes in the layout and never formed a rhythm.
-   Every tile is now the same 4:5 shape, so rows always align
-   and the column count can flex from 2 on a phone to 5 on a
-   wide screen with no gaps.
-   ============================================================ */
-
-.g-section{padding-bottom:56px}
-
-/* ---------- filter chips ---------- */
-.g-filters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin:0 0 26px;
-}
-.g-chip{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 17px;
-  border:1px solid rgba(19,40,29,.16);
-  border-radius:999px;
-  background:transparent;
-  color:#3d5a44;
-  font-family:inherit;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition:background .2s ease,color .2s ease,border-color .2s ease;
-}
-.g-chip:hover{border-color:rgba(198,161,90,.6);color:#13281d}
-.g-chip.is-active{
-  background:#13281d;
-  border-color:#13281d;
-  color:#ddc27e;
-}
-.g-chip-n{
-  font-size:9px;
-  font-weight:600;
-  letter-spacing:.06em;
-  opacity:.6;
-}
-.g-chip.is-active .g-chip-n{opacity:.75}
-.g-chip:focus-visible{outline:2px solid #c6a15a;outline-offset:3px}
-
-/* ---------- the grid ---------- */
-.g-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-  gap:14px;
-}
-.g-tile{
-  position:relative;
-  display:block;
-  padding:0;
-  margin:0;
-  border:1px solid rgba(198,161,90,.22);
-  border-radius:22px;
-  overflow:hidden;
-  background:#183524;
-  box-shadow:0 14px 40px rgba(19,40,29,.10);
-  aspect-ratio:4/5;
-  cursor:zoom-in;
-  isolation:isolate;
-}
-.g-tile[hidden]{display:none}
-.g-tile img,
-.g-tile video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  display:block;
-  transition:transform .55s cubic-bezier(.2,.7,.3,1);
-}
-.g-tile:hover img,
-.g-tile:hover video{transform:scale(1.045)}
-.g-tile::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(19,40,29,.28),transparent 52%);
-  opacity:0;
-  transition:opacity .3s ease;
-  pointer-events:none;
-}
-.g-tile:hover::after{opacity:1}
-.g-tile:focus-visible{outline:2px solid #c6a15a;outline-offset:3px}
-
-/* play badge on video tiles */
-.g-play{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  z-index:2;
-  width:48px;
-  height:48px;
-  border-radius:999px;
-  display:grid;
-  place-items:center;
-  background:rgba(198,161,90,.94);
-  color:#13281d;
-  font-size:15px;
-  line-height:1;
-  box-shadow:0 10px 28px rgba(19,40,29,.28);
-  transition:transform .25s ease;
-  pointer-events:none;
-}
-.g-tile:hover .g-play{transform:translate(-50%,-50%) scale(1.08)}
-
-/* ---------- show more ---------- */
-.g-more-wrap{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-  margin-top:30px;
-}
-.g-more{
-  min-height:48px;
-  padding:0 34px;
-  border:1px solid rgba(19,40,29,.22);
-  border-radius:999px;
-  background:transparent;
-  color:#13281d;
-  font-family:inherit;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition:background .2s ease,color .2s ease;
-}
-.g-more:hover{background:#13281d;color:#ddc27e;border-color:#13281d}
-.g-more[hidden]{display:none}
-.g-more:focus-visible{outline:2px solid #c6a15a;outline-offset:3px}
-.g-count{
-  margin:0;
-  color:#756e64;
-  font-size:11px;
-  letter-spacing:.1em;
-}
-.g-empty{
-  margin:34px 0 0;
-  text-align:center;
-  color:#756e64;
-  font-size:14px;
-}
-.g-empty[hidden]{display:none}
-
-/* ---------- social footer block ---------- */
-.g-social-actions{display:flex;flex-wrap:wrap;gap:12px}
-
-/* ---------- lightbox ---------- */
-.g-lightbox{
-  position:fixed;
-  inset:0;
-  z-index:10000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:26px;
-  background:rgba(9,20,14,.94);
-  -webkit-backdrop-filter:blur(6px);
-  backdrop-filter:blur(6px);
-}
-.g-lightbox.is-open{display:flex}
-.g-lb-stage{
-  position:relative;
-  max-width:min(1180px,100%);
-  max-height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.g-lb-stage img,
-.g-lb-stage video{
-  max-width:100%;
-  max-height:calc(100vh - 132px);
-  width:auto;
-  height:auto;
-  display:block;
-  border-radius:16px;
-  box-shadow:0 30px 90px rgba(0,0,0,.5);
-  background:#0f2017;
-}
-.g-lb-btn{
-  position:absolute;
-  z-index:2;
-  width:50px;
-  height:50px;
-  border:1px solid rgba(221,194,126,.4);
-  border-radius:999px;
-  background:rgba(19,40,29,.82);
-  color:#ddc27e;
-  font-size:19px;
-  line-height:1;
-  display:grid;
-  place-items:center;
-  cursor:pointer;
-  transition:background .2s ease,transform .2s ease;
-}
-.g-lb-btn:hover{background:#13281d;transform:scale(1.06)}
-.g-lb-btn:focus-visible{outline:2px solid #ddc27e;outline-offset:3px}
-.g-lb-prev{left:18px;top:50%;transform:translateY(-50%)}
-.g-lb-next{right:18px;top:50%;transform:translateY(-50%)}
-.g-lb-prev:hover{transform:translateY(-50%) scale(1.06)}
-.g-lb-next:hover{transform:translateY(-50%) scale(1.06)}
-.g-lb-close{top:18px;right:18px;position:fixed}
-.g-lb-caption{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:20px;
-  text-align:center;
-  color:rgba(251,247,239,.72);
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-}
-body.g-lb-lock{overflow:hidden}
-
-/* ---------- responsive ---------- */
-@media(max-width:1050px){
-  .g-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
-}
-@media(max-width:760px){
-  .g-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-  .g-tile{border-radius:18px}
-  .g-filters{
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
-    margin:0 -18px 22px;
-    padding:0 18px 4px;
-  }
-  .g-filters::-webkit-scrollbar{display:none}
-  .g-chip{flex:0 0 auto;padding:9px 14px;font-size:9px;letter-spacing:.13em}
-  .g-lightbox{padding:12px}
-  .g-lb-stage img,.g-lb-stage video{max-height:calc(100vh - 150px);border-radius:12px}
-  .g-lb-btn{width:44px;height:44px;font-size:17px}
-  .g-lb-prev{left:6px}
-  .g-lb-next{right:6px}
-  .g-lb-close{top:12px;right:12px}
-  .g-play{width:40px;height:40px;font-size:13px}
-}
-@media(max-width:400px){
-  .g-grid{gap:9px}
-}
-@media(prefers-reduced-motion:reduce){
-  .g-tile img,.g-tile video,.g-tile::after,.g-play,.g-lb-btn{transition:none}
-  .g-tile:hover img,.g-tile:hover video{transform:none}
-}
-
-</style>
-
-<style>
-
-/* ============================================================
-   EVENTS DROPDOWN  (added 2026-07-29)
-   The nav strips use overflow-x:auto for small screens, which
-   would clip an absolutely positioned menu, so the panel is
-   position:fixed and placed from the button's rect in JS.
-   ============================================================ */
-.nav-drop{position:relative;display:inline-flex;flex:0 0 auto}
-.nav-drop-btn{
-  background:none;
-  border:0;
-  cursor:pointer;
-  font:inherit;
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-}
-.nav-drop-caret{
-  width:6px;height:6px;
-  border-right:1.5px solid currentColor;
-  border-bottom:1.5px solid currentColor;
-  transform:rotate(45deg) translateY(-1px);
-  transition:transform .25s ease;
-  opacity:.75;
-}
-.nav-drop.is-open .nav-drop-caret{transform:rotate(225deg) translateY(-3px)}
-
-.nav-drop-menu{
-  position:fixed;
-  z-index:10050;
-  min-width:308px;
-  max-width:calc(100vw - 24px);
-  padding:10px;
-  border-radius:20px;
-  background:#13281d;
-  border:1px solid rgba(198,161,90,.28);
-  box-shadow:0 28px 70px rgba(9,20,14,.42);
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(-8px);
-  transition:opacity .22s ease,transform .22s ease,visibility .22s;
-}
-.nav-drop.is-open .nav-drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.nav-drop-menu a{
-  display:flex;
-  align-items:flex-start;
-  gap:14px;
-  padding:14px 16px;
-  border-radius:14px;
-  text-decoration:none!important;
-  color:#f3efe6!important;
-  letter-spacing:normal!important;
-  text-transform:none!important;
-  border-bottom:0!important;
-  transition:background .2s ease;
-}
-.nav-drop-menu a:hover,.nav-drop-menu a:focus-visible{background:rgba(198,161,90,.14);outline:none}
-.nav-drop-menu a:focus-visible{box-shadow:inset 0 0 0 1px rgba(212,176,103,.6)}
-.ndm-date{
-  flex:0 0 auto;
-  margin-top:2px;
-  padding:5px 9px;
-  border-radius:8px;
-  background:rgba(198,161,90,.16);
-  color:#ddc27e;
-  font-family:Inter,Avenir,Helvetica,Arial,sans-serif;
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  white-space:nowrap;
-}
-.ndm-main{display:flex;flex-direction:column;gap:3px;min-width:0}
-.ndm-title{
-  font-family:'Cormorant Garamond',Georgia,serif;
-  font-size:17px;
-  font-weight:400;
-  line-height:1.25;
-  color:#f6f2e8;
-}
-.ndm-sub{
-  font-family:Inter,Avenir,Helvetica,Arial,sans-serif;
-  font-size:11.5px;
-  font-weight:400;
-  line-height:1.4;
-  color:rgba(233,229,218,.6);
-}
-@media(max-width:560px){
-  .nav-drop-menu{min-width:0;width:calc(100vw - 24px);padding:8px}
-  .ndm-title{font-size:16px}
-}
-@media(prefers-reduced-motion:reduce){
-  .nav-drop-menu{transition:none}
-  .nav-drop-caret{transition:none}
-}
-
-</style>
-
-<style>
-
-/* ============================================================
-   CONTACT LAUNCHER  (updated 2026-07-29)
-   Direct message links to Instagram, WhatsApp, Messenger, email.
-   ============================================================ */
-.chat{position:fixed;right:20px;bottom:20px;z-index:9500}
-.chat-main{
-  width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;
-  background:#c6a15a;color:#13281d;
-  display:grid;place-items:center;
-  box-shadow:0 16px 44px rgba(19,40,29,.30);
-  transition:transform .28s cubic-bezier(.2,.7,.3,1),background .2s ease;
-}
-.chat-main:hover{transform:scale(1.06);background:#d4b067}
-.chat-main:focus-visible{outline:2px solid #13281d;outline-offset:3px}
-.chat-main-ico{
-  width:26px;height:24px;border-radius:7px 7px 7px 2px;
-  border:2.5px solid #13281d;position:relative;display:block;
-  transition:transform .3s ease;
-}
-.chat-main-ico::before,.chat-main-ico::after{
-  content:"";position:absolute;height:2.5px;background:#13281d;border-radius:2px;
-}
-.chat-main-ico::before{top:5px;left:4px;right:4px}
-.chat-main-ico::after{top:11px;left:4px;right:9px}
-.chat.is-open .chat-main-ico{transform:rotate(90deg) scale(.86)}
-
-.chat-options{
-  position:absolute;right:0;bottom:74px;
-  width:296px;max-width:calc(100vw - 40px);
-  padding:8px;border-radius:22px;
-  background:#fffdf9;border:1px solid rgba(198,161,90,.30);
-  box-shadow:0 26px 70px rgba(19,40,29,.22);
-  opacity:0;visibility:hidden;transform:translateY(10px) scale(.98);
-  transition:opacity .24s ease,transform .24s cubic-bezier(.2,.7,.3,1),visibility .24s;
-  display:block;
-}
-.chat.is-open .chat-options{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-.chat-head{padding:14px 14px 12px;border-bottom:1px solid rgba(19,40,29,.09);margin-bottom:6px}
-.chat-head b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:400;color:#13281d}
-.chat-head span{display:block;margin-top:2px;font-size:11.5px;color:#7a7268}
-.chat-opt{
-  display:flex;align-items:center;gap:12px;
-  padding:11px 12px;border-radius:15px;
-  text-decoration:none!important;color:#1e1c18!important;
-  transition:background .18s ease;
-}
-.chat-opt:hover,.chat-opt:focus-visible{background:rgba(198,161,90,.13);outline:none}
-.chat-txt{display:flex;flex-direction:column;min-width:0}
-.chat-txt b{font-size:13.5px;font-weight:600;line-height:1.3}
-.chat-txt i{font-style:normal;font-size:11px;color:#7a7268;line-height:1.35;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:196px}
-.chat-ico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:block}
-.chat-ico-wa{background:#25d366}
-.chat-ico-ig{background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}
-.chat-ico-fb{background:#0084ff}
-.chat-ico-mail{background:#13281d}
-.chat-ico-tt{background:#111}
-@media(max-width:560px){
-  .chat{right:14px;bottom:14px}
-  .chat-main{width:54px;height:54px}
-  .chat-options{width:calc(100vw - 28px)}
-}
-@media(prefers-reduced-motion:reduce){
-  .chat-options,.chat-main,.chat-main-ico{transition:none}
-}
-
-</style>
-
-<meta content="1200" property="og:image:width"/>
-<meta content="630" property="og:image:height"/>
-<meta content="Sound Healing with Nishi, Charlotte NC" property="og:image:alt"/>
-<meta content="Sound Healing with Nishi" property="og:site_name"/>
-<meta content="en_US" property="og:locale"/>
-<meta content="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg" name="twitter:image"/>
 </head>
 <body>
 <header class="top-wrap">
-<div class="ribbon" onclick="window.location.href='booking.html'" style=";cursor:pointer"><div class="ribbon-track"><span>Private &amp; group sound baths in Charlotte, NC · Himalayan bowls, crystal bowls, gong &amp; handpan · Book your session &rarr; </span><span>Private &amp; group sound baths in Charlotte, NC · Himalayan bowls, crystal bowls, gong &amp; handpan · Book your session &rarr; </span></div></div>
+<div class="ribbon" onclick="window.location.href='sound-bath-manifest-circle-august-14.html'" style=";cursor:pointer"><span>Sound Bath &amp; Manifest Circle · August 14, 2026 · The Soul Nest · Charlotte, NC · Explore the Event → </span><span>Sound Bath &amp; Manifest Circle · August 14, 2026 · The Soul Nest · Charlotte, NC · Explore the Event → </span></div>
 <nav class="nav">
 <a class="brand" href="index.html">Sound Healing with Nishi</a>
 <div class="links">
 <a href="index.html">Home</a>
-<div class="nav-drop" data-navdrop="navdrop4"><button aria-expanded="false" aria-haspopup="true" aria-controls="navdrop4-menu" class=" nav-drop-btn" type="button">Events<span aria-hidden="true" class="nav-drop-caret"></span></button><div class="nav-drop-menu" id="navdrop4-menu" role="menu"><a href="events.html" role="menuitem"><span class="ndm-main"><span class="ndm-title">All Events</span><span class="ndm-sub">The full calendar</span></span></a><a href="booking.html" role="menuitem"><span class="ndm-main"><span class="ndm-title">Private Session</span><span class="ndm-sub">Host your own circle</span></span></a></div></div>
+<a href="sound-bath-manifest-circle-august-14.html">Aug 14 Event</a>
 <a href="index.html#about-nishi">About</a>
 <a href="index.html#sessions">Sessions</a>
 <a class="active" href="gallery.html">Gallery</a>
@@ -1136,142 +322,418 @@ body.g-lb-lock{overflow:hidden}
 <p class="lead">Browse photos and videos from Nishi's sound baths, handpan moments, gong sessions, events and Charlotte wellness experiences. Explore moments from Nishi's sound baths, handpan, gong, events and Charlotte wellness experiences.</p>
 <div class="actions">
 <a class="btn gold" href="booking.html">Book Your Session</a>
-<a class="btn" data-gallery-filter="all" href="#photos">View Photos</a>
-<a class="btn" data-gallery-filter="video" href="#photos">View Videos</a>
+<a class="btn" href="#photos">View Photos</a>
+<a class="btn" href="#videos">View Videos</a>
 </div>
 </section>
-<section class="section g-section" id="photos">
+<section class="section" id="photos">
 <div class="section-head">
 <div>
-<div class="eyebrow">Photos &amp; Videos</div>
+<div class="eyebrow">Photos</div>
 <h2>Visual story</h2>
 </div>
-<p>Browse everything in one place, or filter by what you would like to see. Select any tile to open it full screen.</p>
+<p>Photos are arranged as a calm visual story of Nishi's sound healing sessions, instruments, spaces, and events, now refreshed with recent outdoor gathering moments.</p>
 </div>
-<div aria-label="Filter gallery" class="g-filters" role="group">
-<button aria-pressed="true" class="g-chip is-active" data-filter="all" type="button">All<span class="g-chip-n">96</span></button>
-<button aria-pressed="false" class="g-chip" data-filter="soundbath" type="button">Sound Baths<span class="g-chip-n">12</span></button>
-<button aria-pressed="false" class="g-chip" data-filter="handpan" type="button">Handpan &amp; Gong<span class="g-chip-n">10</span></button>
-<button aria-pressed="false" class="g-chip" data-filter="events" type="button">Events<span class="g-chip-n">12</span></button>
-<button aria-pressed="false" class="g-chip" data-filter="sessions" type="button">Sessions &amp; Moments<span class="g-chip-n">42</span></button>
-<button aria-pressed="false" class="g-chip" data-filter="video" type="button">Videos<span class="g-chip-n">20</span></button>
-</div>
-<div class="g-grid" id="galleryGrid">
-<button class="g-tile" data-cat="handpan" data-index="0" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-01.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-01.jpg"/></button>
-<button class="g-tile" data-cat="handpan" data-index="1" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-02.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-02.jpg"/></button>
-<button class="g-tile" data-cat="handpan" data-index="2" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-03.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-03.jpg"/></button>
-<button class="g-tile" data-cat="handpan" data-index="3" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-04.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-04.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="4" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-19.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-19.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="handpan" data-index="5" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-05.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-05.jpg"/></button>
-<button class="g-tile" data-cat="handpan" data-index="6" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-06.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-06.jpg"/></button>
-<button class="g-tile" data-cat="handpan" data-index="7" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-07.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-07.jpg"/></button>
-<button class="g-tile" data-cat="handpan" data-index="8" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-08.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-08.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="9" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-07.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-07.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="handpan" data-index="10" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-09.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-09.jpg"/></button>
-<button class="g-tile" data-cat="handpan" data-index="11" data-type="photo" data-src="https://soundhealingwithnishi.com/nishi-handpan-gong-10.jpg" type="button" aria-label="Open photo: Nishi playing handpan and gong"><img alt="Nishi playing handpan and gong" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-handpan-gong-10.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="12" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="13" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-02.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-02.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="14" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-14.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-14.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="soundbath" data-index="15" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-03.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-03.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="16" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-04.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-04.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="17" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-05.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-05.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="18" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-06.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-06.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="19" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-01.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-01.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="soundbath" data-index="20" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-07.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-07.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="21" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-08.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-08.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="22" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-09.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-09.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="23" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-10.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-10.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="24" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-20.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-20.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="soundbath" data-index="25" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-11.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-11.jpg"/></button>
-<button class="g-tile" data-cat="soundbath" data-index="26" data-type="photo" data-src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-12.jpg" type="button" aria-label="Open photo: Outdoor sound bath session in Charlotte with Nishi"><img alt="Outdoor sound bath session in Charlotte with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-12.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="27" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-01.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-01.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="28" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-02.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-02.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="29" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-08.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-08.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="events" data-index="30" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-03.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-03.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="31" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-04.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-04.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="32" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-05.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-05.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="33" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-06.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-06.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="34" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-15.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-15.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="events" data-index="35" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-07.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-07.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="36" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-08.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-08.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="37" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-09.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-09.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="38" data-type="photo" data-src="https://soundhealingwithnishi.com/event-red-10.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-red-10.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="39" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-02.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-02.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="40" data-type="photo" data-src="https://soundhealingwithnishi.com/photo1.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo1.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="41" data-type="photo" data-src="https://soundhealingwithnishi.com/photo2.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo2.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="42" data-type="photo" data-src="https://soundhealingwithnishi.com/photo3.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo3.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="43" data-type="photo" data-src="https://soundhealingwithnishi.com/photo4.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo4.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="44" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-11.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-11.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="45" data-type="photo" data-src="https://soundhealingwithnishi.com/photo5.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo5.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="46" data-type="photo" data-src="https://soundhealingwithnishi.com/photo6.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo6.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="47" data-type="photo" data-src="https://soundhealingwithnishi.com/photo7.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo7.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="48" data-type="photo" data-src="https://soundhealingwithnishi.com/photo8.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo8.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="49" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-03.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-03.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="50" data-type="photo" data-src="https://soundhealingwithnishi.com/photo9.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo9.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="51" data-type="photo" data-src="https://soundhealingwithnishi.com/photo10.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo10.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="52" data-type="photo" data-src="https://soundhealingwithnishi.com/photo11.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo11.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="53" data-type="photo" data-src="https://soundhealingwithnishi.com/photo12.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo12.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="54" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-16.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-16.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="55" data-type="photo" data-src="https://soundhealingwithnishi.com/photo13.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo13.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="56" data-type="photo" data-src="https://soundhealingwithnishi.com/photo14.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo14.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="57" data-type="photo" data-src="https://soundhealingwithnishi.com/photo15.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo15.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="58" data-type="photo" data-src="https://soundhealingwithnishi.com/photo16.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo16.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="59" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-09.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-09.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="60" data-type="photo" data-src="https://soundhealingwithnishi.com/photo17.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo17.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="61" data-type="photo" data-src="https://soundhealingwithnishi.com/photo18.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo18.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="62" data-type="photo" data-src="https://soundhealingwithnishi.com/photo19.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo19.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="63" data-type="photo" data-src="https://soundhealingwithnishi.com/photo20.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/photo20.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="64" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-04.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-04.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="65" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-1.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-1.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="66" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-2.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-2.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="67" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-3.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-3.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="68" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-4.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-4.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="69" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-17.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-17.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="70" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-5.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-5.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="71" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-6.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-6.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="72" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-7.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-7.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="73" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-8.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-8.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="74" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-10.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-10.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="75" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-9.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-9.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="76" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-10.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-10.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="77" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-11.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-11.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="78" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-12.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-12.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="79" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-05.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-05.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="80" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-13.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-13.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="81" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-14.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-14.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="82" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-15.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-15.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="83" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-16.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-16.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="84" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-18.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-18.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="sessions" data-index="85" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-17.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-17.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="86" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-18.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-18.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="87" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-19.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-19.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="88" data-type="photo" data-src="https://soundhealingwithnishi.com/Image-20.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/Image-20.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="89" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-12.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-12.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="events" data-index="90" data-type="photo" data-src="https://soundhealingwithnishi.com/saunahouse-nishi.jpg" type="button" aria-label="Open photo: Nishi at a Sauna House sound bath"><img alt="Nishi at a Sauna House sound bath" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/saunahouse-nishi.jpg"/></button>
-<button class="g-tile" data-cat="events" data-index="91" data-type="photo" data-src="https://soundhealingwithnishi.com/event-main.jpg" type="button" aria-label="Open photo: Sound healing event gathering with Nishi"><img alt="Sound healing event gathering with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/event-main.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="92" data-type="photo" data-src="https://soundhealingwithnishi.com/instagram-cover.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/instagram-cover.jpg"/></button>
-<button class="g-tile" data-cat="sessions" data-index="93" data-type="photo" data-src="https://soundhealingwithnishi.com/tiktok-cover.jpg" type="button" aria-label="Open photo: Sound healing with Nishi"><img alt="Sound healing with Nishi" decoding="async" loading="lazy" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/tiktok-cover.jpg"/></button>
-<button class="g-tile" data-cat="video" data-index="94" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-06.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-06.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-<button class="g-tile" data-cat="video" data-index="95" data-type="video" data-src="https://soundhealingwithnishi.com/nishi-social-video-13.mp4" type="button" aria-label="Play video"><video muted="" playsinline="" preload="metadata" onerror="this.closest('.g-tile').remove();window.galleryRecount&amp;&amp;window.galleryRecount();" src="https://soundhealingwithnishi.com/nishi-social-video-13.mp4#t=0.1"></video><span aria-hidden="true" class="g-play">&#9654;</span></button>
-</div>
-<p class="g-empty" hidden="" id="galleryEmpty">Nothing to show in this category yet.</p>
-<div class="g-more-wrap">
-<button class="g-more" id="galleryMore" type="button">Show more</button>
-<p class="g-count" id="galleryCount"></p>
+<div class="grid">
+<a aria-label="Open photo" class="media-card photo-card" href="media/thanksgiving-rotating-4.jpg" rel="noopener" target="_blank">
+<img alt="Nishi playing instruments during an outdoor lakeside sound bath" decoding="async" loading="lazy" src="media/thanksgiving-rotating-4.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="media/thanksgiving-rotating-1.jpg" rel="noopener" target="_blank">
+<img alt="Guests resting on yoga mats during an outdoor sound bath by the lake" decoding="async" loading="lazy" src="media/thanksgiving-rotating-1.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="media/thanksgiving-rotating-2.jpg" rel="noopener" target="_blank">
+<img alt="Guests seated for a lakeside sound healing gathering" decoding="async" loading="lazy" src="media/thanksgiving-rotating-2.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="media/thanksgiving-rotating-3.jpg" rel="noopener" target="_blank">
+<img alt="Outdoor sound bath beside the pool with guests in deep relaxation" decoding="async" loading="lazy" src="media/thanksgiving-rotating-3.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="media/thanksgiving-rotating-5.jpg" rel="noopener" target="_blank">
+<img alt="A peaceful lakeside sound bath with guests resting under an open sky" decoding="async" loading="lazy" src="media/thanksgiving-rotating-5.jpg"/>
+</a>
+
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-01.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-01.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-02.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-02.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-03.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-03.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-04.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-04.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-05.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-05.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-06.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-06.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-07.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-07.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-08.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-08.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-09.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-09.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="nishi-handpan-gong-10.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/nishi-handpan-gong-10.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-01.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-01.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-02.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-02.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-03.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-03.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-04.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-04.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-05.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-05.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-06.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-06.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-07.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-07.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-08.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-08.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-09.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-09.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-10.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-10.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-11.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-11.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="charlotte-sound-bath-red-12.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/charlotte-sound-bath-red-12.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-01.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-01.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-02.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-02.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-03.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-03.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-04.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-04.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-05.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-05.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-06.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-06.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-07.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-07.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-08.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-08.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-09.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-09.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-red-10.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-red-10.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo1.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo1.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo2.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo2.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo3.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo3.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo4.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo4.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo5.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo5.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo6.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo6.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo7.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo7.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo8.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo8.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo9.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo9.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo10.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo10.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo11.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo11.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo12.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo12.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo13.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo13.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo14.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo14.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo15.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo15.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo16.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo16.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo17.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo17.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo18.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo18.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo19.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo19.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="photo20.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/photo20.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-1.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-1.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-2.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-2.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-3.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-3.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-4.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-4.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-5.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-5.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-6.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-6.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-7.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-7.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-8.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-8.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-9.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-9.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-10.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-10.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-11.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-11.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-12.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-12.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-13.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-13.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-14.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-14.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-15.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-15.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-16.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-16.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-17.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-17.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-18.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-18.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-19.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-19.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="Image-20.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/Image-20.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="saunahouse-nishi.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/saunahouse-nishi.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="event-main.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/event-main.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="instagram-cover.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/instagram-cover.jpg"/>
+</a>
+<a aria-label="Open photo" class="media-card photo-card" href="tiktok-cover.jpg" rel="noopener" target="_blank">
+<img alt="" decoding="async" loading="lazy" onerror="this.closest('.media-card').remove()" src="https://soundhealingwithnishi.com/tiktok-cover.jpg"/>
+</a>
 </div>
 </section>
-<section class="section g-social" id="videos">
+<section class="section video-section" id="videos">
 <div class="section-head">
 <div>
-<div class="eyebrow">Keep watching</div>
-<h2>More on social</h2>
+<div class="eyebrow">Videos</div>
+<h2>Sound bath videos</h2>
 </div>
-<p>New sound bath clips are posted regularly. Follow along for upcoming sessions and behind-the-scenes moments.</p>
+<p>Videos are available to play when you are ready. You can also continue watching on Instagram or TikTok.</p>
 </div>
-<div class="g-social-actions">
-<a class="btn gold" href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
-<a class="btn" href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
-<a class="btn" href="booking.html">Book Your Session</a>
+<div class="video-grid">
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-19.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-07.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-14.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-01.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-20.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-08.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-15.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-02.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-11.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-03.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-16.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-09.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-04.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-17.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-10.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-05.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-18.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-12.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-06.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+<article class="media-card video-card">
+<video controls="" playsinline="" preload="metadata" src="https://soundhealingwithnishi.com/nishi-social-video-13.mp4"></video>
+<div class="video-actions">
+<a href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">TikTok</a>
+</div>
+</article>
+</div>
+<div class="actions">
+<a class="btn gold" href="https://www.instagram.com/soundhealingwithnishi/" rel="noopener" target="_blank">Open Instagram</a>
+<a class="btn" href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank">Open TikTok</a>
 </div>
 </section>
 </main>
@@ -1280,312 +742,5 @@ body.g-lb-lock{overflow:hidden}
 <div><a href="mailto:soundhealingwithnishi@gmail.com">soundhealingwithnishi@gmail.com</a></div>
 </footer>
 <a class="email-float" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry">Email Nishi</a>
-
-<script>
-/* ============================================================
-   GALLERY BEHAVIOUR - 2026-07-27
-   Filter chips, progressive reveal, and an in-page lightbox so
-   selecting a photo no longer navigates away to a bare .jpg.
-   ============================================================ */
-(function () {
-  "use strict";
-
-  var PAGE = 24;
-  var grid = document.getElementById("galleryGrid");
-  if (!grid) return;
-
-  var moreBtn = document.getElementById("galleryMore");
-  var countEl = document.getElementById("galleryCount");
-  var emptyEl = document.getElementById("galleryEmpty");
-  var chips = Array.prototype.slice.call(document.querySelectorAll(".g-chip"));
-
-  var filter = "all";
-  var shown = PAGE;
-
-  function allTiles() {
-    return Array.prototype.slice.call(grid.querySelectorAll(".g-tile"));
-  }
-
-  function matching() {
-    return allTiles().filter(function (t) {
-      return filter === "all" || t.getAttribute("data-cat") === filter;
-    });
-  }
-
-  function render() {
-    var tiles = allTiles();
-    var match = matching();
-    var visible = match.slice(0, shown);
-    var visSet = new Set(visible);
-
-    tiles.forEach(function (t) {
-      if (visSet.has(t)) {
-        t.removeAttribute("hidden");
-      } else {
-        t.setAttribute("hidden", "");
-      }
-    });
-
-    if (emptyEl) {
-      if (match.length === 0) emptyEl.removeAttribute("hidden");
-      else emptyEl.setAttribute("hidden", "");
-    }
-    if (moreBtn) {
-      if (shown >= match.length) moreBtn.setAttribute("hidden", "");
-      else moreBtn.removeAttribute("hidden");
-    }
-    if (countEl) {
-      countEl.textContent = match.length
-        ? "Showing " + Math.min(shown, match.length) + " of " + match.length
-        : "";
-    }
-  }
-
-  // exposed so a tile removed by an image error can trigger a recount
-  window.galleryRecount = render;
-
-  chips.forEach(function (chip) {
-    chip.addEventListener("click", function () {
-      filter = chip.getAttribute("data-filter");
-      shown = PAGE;
-      chips.forEach(function (c) {
-        var on = c === chip;
-        c.classList.toggle("is-active", on);
-        c.setAttribute("aria-pressed", on ? "true" : "false");
-      });
-      render();
-      var head = document.querySelector(".g-section .section-head");
-      if (head && head.getBoundingClientRect().top < 0) {
-        head.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  });
-
-  if (moreBtn) {
-    moreBtn.addEventListener("click", function () {
-      shown += PAGE;
-      render();
-    });
-  }
-
-  /* ---------------- lightbox ---------------- */
-  var lb = document.createElement("div");
-  lb.className = "g-lightbox";
-  lb.setAttribute("role", "dialog");
-  lb.setAttribute("aria-modal", "true");
-  lb.setAttribute("aria-label", "Gallery viewer");
-  lb.innerHTML =
-    '<button class="g-lb-btn g-lb-close" type="button" aria-label="Close">&#10005;</button>' +
-    '<button class="g-lb-btn g-lb-prev" type="button" aria-label="Previous">&#8249;</button>' +
-    '<div class="g-lb-stage"></div>' +
-    '<button class="g-lb-btn g-lb-next" type="button" aria-label="Next">&#8250;</button>' +
-    '<p class="g-lb-caption"></p>';
-  document.body.appendChild(lb);
-
-  var stage = lb.querySelector(".g-lb-stage");
-  var caption = lb.querySelector(".g-lb-caption");
-  var seq = [];
-  var pos = 0;
-  var lastFocus = null;
-
-  function show(i) {
-    if (!seq.length) return;
-    pos = (i + seq.length) % seq.length;
-    var tile = seq[pos];
-    var type = tile.getAttribute("data-type");
-    var src = tile.getAttribute("data-src");
-    stage.innerHTML = "";
-
-    if (type === "video") {
-      var v = document.createElement("video");
-      v.src = src;
-      v.controls = true;
-      v.autoplay = true;
-      v.playsInline = true;
-      v.setAttribute("playsinline", "");
-      v.setAttribute("webkit-playsinline", "");
-      stage.appendChild(v);
-      v.play().catch(function () {});
-    } else {
-      var img = document.createElement("img");
-      var source = tile.querySelector("img");
-      img.src = src;
-      img.alt = source ? source.alt : "";
-      stage.appendChild(img);
-    }
-    caption.textContent = (pos + 1) + " of " + seq.length;
-  }
-
-  function open(tile) {
-    seq = matching().filter(function (t) { return !t.hasAttribute("hidden"); });
-    var idx = seq.indexOf(tile);
-    if (idx === -1) { seq = [tile]; idx = 0; }
-    lastFocus = document.activeElement;
-    lb.classList.add("is-open");
-    document.body.classList.add("g-lb-lock");
-    show(idx);
-    lb.querySelector(".g-lb-close").focus();
-  }
-
-  function close() {
-    lb.classList.remove("is-open");
-    document.body.classList.remove("g-lb-lock");
-    stage.innerHTML = "";
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  grid.addEventListener("click", function (e) {
-    var tile = e.target.closest(".g-tile");
-    if (tile) open(tile);
-  });
-
-  lb.querySelector(".g-lb-close").addEventListener("click", close);
-  lb.querySelector(".g-lb-prev").addEventListener("click", function () { show(pos - 1); });
-  lb.querySelector(".g-lb-next").addEventListener("click", function () { show(pos + 1); });
-  lb.addEventListener("click", function (e) {
-    if (e.target === lb) close();
-  });
-
-  document.addEventListener("keydown", function (e) {
-    if (!lb.classList.contains("is-open")) return;
-    if (e.key === "Escape") close();
-    else if (e.key === "ArrowLeft") show(pos - 1);
-    else if (e.key === "ArrowRight") show(pos + 1);
-  });
-
-  // swipe on touch devices
-  var x0 = null;
-  lb.addEventListener("touchstart", function (e) {
-    x0 = e.changedTouches[0].clientX;
-  }, { passive: true });
-  lb.addEventListener("touchend", function (e) {
-    if (x0 === null) return;
-    var dx = e.changedTouches[0].clientX - x0;
-    if (Math.abs(dx) > 55) show(dx > 0 ? pos - 1 : pos + 1);
-    x0 = null;
-  }, { passive: true });
-
-  // hero shortcut buttons select a filter instead of jumping to an anchor
-  document.querySelectorAll("[data-gallery-filter]").forEach(function (link) {
-    link.addEventListener("click", function () {
-      var want = link.getAttribute("data-gallery-filter");
-      var chip = document.querySelector('.g-chip[data-filter="' + want + '"]');
-      if (chip) chip.click();
-    });
-  });
-
-  render();
-})();
-
-</script>
-
-<script>
-
-/* Events dropdown: hover on pointer devices, click/tap everywhere,
-   Escape to close, click-outside to close. Menu is fixed-positioned
-   from the button rect so nav overflow never clips it. */
-(function () {
-  var drops = [].slice.call(document.querySelectorAll('.nav-drop'));
-  if (!drops.length) return;
-  var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-
-  function place(drop) {
-    var btn = drop.querySelector('.nav-drop-btn');
-    var menu = drop.querySelector('.nav-drop-menu');
-    if (!btn || !menu) return;
-    var r = btn.getBoundingClientRect();
-    menu.style.visibility = 'hidden';
-    menu.style.display = 'block';
-    var mw = menu.offsetWidth, mh = menu.offsetHeight;
-    menu.style.display = '';
-    menu.style.visibility = '';
-    var left = Math.min(Math.max(12, r.left), window.innerWidth - mw - 12);
-    var top = r.bottom + 10;
-    if (top + mh > window.innerHeight - 12) {
-      top = Math.max(12, r.top - mh - 10);
-    }
-    menu.style.left = left + 'px';
-    menu.style.top = top + 'px';
-  }
-
-  function open(drop) {
-    close();
-    place(drop);
-    drop.classList.add('is-open');
-    var btn = drop.querySelector('.nav-drop-btn');
-    if (btn) btn.setAttribute('aria-expanded', 'true');
-  }
-
-  function close() {
-    drops.forEach(function (d) {
-      d.classList.remove('is-open');
-      var b = d.querySelector('.nav-drop-btn');
-      if (b) b.setAttribute('aria-expanded', 'false');
-    });
-  }
-
-  drops.forEach(function (drop) {
-    var btn = drop.querySelector('.nav-drop-btn');
-    if (!btn) return;
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (drop.classList.contains('is-open')) close(); else open(drop);
-    });
-    if (canHover) {
-      var t;
-      drop.addEventListener('mouseenter', function () { clearTimeout(t); open(drop); });
-      drop.addEventListener('mouseleave', function () { t = setTimeout(close, 160); });
-    }
-  });
-
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.nav-drop')) close();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') close();
-  });
-  window.addEventListener('resize', close);
-  window.addEventListener('scroll', function () {
-    var open_ = document.querySelector('.nav-drop.is-open');
-    if (open_) place(open_);
-  }, { passive: true });
-})();
-
-</script>
-
-<div class="chat" id="chatWidget">
-<div aria-label="Contact Nishi" class="chat-options" id="chatOptions" role="dialog">
-<div class="chat-head"><b>Chat with Nishi</b><span>Pick whichever is easiest</span></div>
-<a class="chat-opt" data-net="instagram" href="https://ig.me/m/soundhealingwithnishi" rel="noopener" target="_blank"><span class="chat-ico chat-ico-ig" aria-hidden="true"></span><span class="chat-txt"><b>Instagram DM</b><i>Message on Instagram</i></span></a><a class="chat-opt" data-net="email" href="mailto:soundhealingwithnishi@gmail.com?subject=Sound%20Healing%20Inquiry"><span class="chat-ico chat-ico-mail" aria-hidden="true"></span><span class="chat-txt"><b>Email</b><i>soundhealingwithnishi@gmail.com</i></span></a><a class="chat-opt" data-net="tiktok" href="https://www.tiktok.com/@soundhealingnishi" rel="noopener" target="_blank"><span class="chat-ico chat-ico-tt" aria-hidden="true"></span><span class="chat-txt"><b>TikTok</b><i>See recent sessions</i></span></a>
-</div>
-<button aria-controls="chatOptions" aria-expanded="false" aria-label="Contact Nishi" class="chat-main" id="chatMain" type="button">
-<span class="chat-main-ico" aria-hidden="true"></span>
-</button>
-</div>
-<script>
-
-/* Contact launcher: toggle, click-outside, Escape. */
-(function () {
-  var wrap = document.getElementById('chatWidget');
-  if (!wrap) return;
-  var btn = document.getElementById('chatMain');
-  function set(open) {
-    wrap.classList.toggle('is-open', open);
-    btn.setAttribute('aria-expanded', String(open));
-  }
-  btn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    set(!wrap.classList.contains('is-open'));
-  });
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('#chatWidget')) set(false);
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') set(false);
-  });
-})();
-
-</script>
 </body>
 </html>
